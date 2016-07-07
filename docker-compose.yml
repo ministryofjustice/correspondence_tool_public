@@ -1,0 +1,13 @@
+version: '2'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    environment:
+      RAILS_ENV: development
+    command: bundle exec puma -b tcp://0.0.0.0:3000
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "3000:3000"
