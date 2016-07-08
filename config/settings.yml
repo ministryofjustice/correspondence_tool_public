@@ -1,0 +1,9 @@
+correspondence_types:
+  - Freedom of Information Request
+  - Treat Official
+
+correspondence_sub_types:
+  - Prisons
+  - Courts
+  - Legal Aid
+  - Other / Not applicable

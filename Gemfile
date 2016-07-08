@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'slim'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'config'
 
 group :test do
   gem 'capybara'
