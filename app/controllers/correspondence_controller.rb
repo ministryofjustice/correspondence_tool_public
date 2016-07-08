@@ -8,8 +8,10 @@ class CorrespondenceController < ApplicationController
     @correspondence = Correspondence.new(correspondence_params)
 
     if @correspondence.valid?
+      # TODO: create and send email
       render 'correspondence/confirmation'
     else
+      # TODO: show errors
       render :new
     end
   end

@@ -2,7 +2,13 @@ require 'rails_helper'
 
 Rails.describe Correspondence, type: :model do
 
-  let(:correspondence) { described_class.new(name: Faker::Name.name, email: Faker::Internet.email, type: 'Freedom of Information Request', sub_type: 'Prisons', message: Faker::Lorem.paragraph[1]) }
+  let(:correspondence) { build :correspondence }
+
+  describe 'has a factory' do
+    it 'that produces a valid object by default' do
+      expect(correspondence).to be_valid
+    end
+  end
 
   describe 'attributes' do
     context 'mandatory' do
