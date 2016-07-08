@@ -5,7 +5,7 @@ feature 'A member of the public makes an FOI request' do
   background do 
     @name = Faker::Name.name
     @email = Faker::Internet.email
-    @text = Faker::Lorem.paragraphs(1)
+    @text = Faker::Lorem.paragraphs[1]
   end
 
   scenario 'Using valid inputs' do
@@ -13,8 +13,8 @@ feature 'A member of the public makes an FOI request' do
     fill_in 'Name', with: @name
     fill_in 'Email', with: @email
     fill_in 'Email confirmation', with: @email
-    select 'Freedom of Information Request', from: "type_select"
-    select 'Prisons', from: "subject_select"
+    page.find(:select, text: 'Freedom').select('Freedom of Information Request')
+    page.find(:select, text: 'Prisons').select('Prisons')
     fill_in 'Message', with: @text
     click_button 'Send'
     expect(page).to have_content('Thank you')

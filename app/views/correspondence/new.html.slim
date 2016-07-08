@@ -1,0 +1,28 @@
+h1 Contact MoJ
+
+= form_for @correspondence do |f|
+	div.field
+		= f.label :name
+		= f.text_field :name
+	br
+	div.field
+		= f.label :email
+		= f.text_field :email
+	br
+	div.field
+		= f.label :email_confirmation
+		= f.text_field :email_confirmation
+	br
+	div.select
+		= f.label :correspondence_type
+		= f.select :type, ['Freedom of Information Request']
+	br
+	div.select
+		= f.label :area_of_interest
+		= f.select :sub_type, ['Prisons', 'Courts', 'Legal Aid', 'Other']
+	div.field
+		= f.label :message
+		= f.text_field :message
+	div.button
+		= f.submit 'Send'
+		
