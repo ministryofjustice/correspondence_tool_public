@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'A member of the public makes an FOI request' do
 
-  beackground do 
+  background do 
     @name = Faker::Name.name
     @email = Faker::Internet.email
     @text = Faker::Lorem.paragraphs(1)
