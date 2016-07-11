@@ -31,12 +31,10 @@ Rails.describe Correspondence, type: :model do
         correspondence.message = nil
         expect(correspondence).not_to be_valid
       end
-    end
 
-    context 'optional' do
-      it 'sub_type' do
+      it 'subtype' do
         correspondence.sub_type = nil
-        expect(correspondence).to be_valid
+        expect(correspondence).not_to be_valid
       end
     end
   end
