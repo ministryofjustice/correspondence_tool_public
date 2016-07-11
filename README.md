@@ -15,7 +15,7 @@ $ cd correspondence_tool_public
 
 The reason Docker is used in while in development is to overcome issues with Ruby,Rails, Postgres version conflicts and time to set these up for new developers.
 
-Majority of the team uses Docker Toolbox. Docker for Mac is currently in beta but for the time being just use Docker Toolbox. Download and follow the [installation instructions](https://docs.docker.com/toolbox/toolbox_install_mac/)
+Majority of the team uses Docker Toolbox. Docker for Mac is currently in beta but for the time being just use Docker Toolbox. [Download](https://www.docker.com/products/docker-toolbox) and follow the [installation instructions](https://docs.docker.com/toolbox/toolbox_install_mac/)
 
 ###Build Docker Image and bring the Docker Containers up
 First build the initial docker image that will be used for the container.
