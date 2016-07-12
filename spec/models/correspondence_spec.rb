@@ -22,6 +22,12 @@ Rails.describe Correspondence, type: :model do
         expect(correspondence).not_to be_valid
       end
 
+      it 'email confirmation' do
+        correspondence.email_confirmation = nil
+        expect(correspondence).not_to be_valid
+        expect(correspondence.errors.full_messages).to include("Email confirmation can't be blank")
+      end
+
       it 'type' do
         correspondence.type = nil
         expect(correspondence).not_to be_valid
