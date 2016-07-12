@@ -1,5 +1,12 @@
 =render partial: 'layouts/header', locals: {page_heading: 'Contact Ministry of Justice'}
 
+- if @correspondence.errors.any?
+	div.errors
+		h2 = pluralize(@correspondence.errors.count, 'error') + " prevented this form from being submitted:"
+		ul
+			- @correspondence.errors.full_messages.each do |error_message|
+				li = error_message
+
 = form_for @correspondence do |f|
 	.form-group
 		= f.label :name, class:'form-label'
