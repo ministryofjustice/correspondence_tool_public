@@ -57,7 +57,7 @@ You should be greeted with the services home page
 ###Questions about Docker
 
 #### 1. Where should I make the changes?
-The docker containers use a symlink to your local machine so any changes you make to the project files will automatically be synced with the docker containers. However if you if you need to ```bundle install``` then its best to SSH into the docker container and run it from there. The reason for this is that it will then us the docker containers version of Ruby/Rails to install the gems.
+The docker containers use a symlink to your local machine so any changes you make to the project files will automatically be synced with the docker containers. However if you if you need to ```bundle install``` then its best to SSH into the docker container and run it from there. The reason for this is that it will then use the docker containers version of Ruby/Rails to install the gems.
 
 ####2. Do I have to rebuild the Docker Image after I made changes to the local files?
 No, as mentioned in question 1. the rails files are sync automatically with your local machine.
