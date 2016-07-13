@@ -26,5 +26,6 @@ module CorrespondenceToolPublic
       g.factory_girl false
     end
 
+    ActionView::Base.default_form_builder = GovukElementsFormBuilder::FormBuilder
   end
 end
