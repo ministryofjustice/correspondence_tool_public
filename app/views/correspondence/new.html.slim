@@ -1,27 +1,23 @@
-h1 Contact MoJ
+=render partial: 'layouts/header', locals: {page_heading: 'Contact Ministry of Justice'}
 
 = form_for @correspondence do |f|
-	div.field
-		= f.label :name
-		= f.text_field :name
-	br
-	div.field
-		= f.label :email
-		= f.text_field :email
-	br
-	div.field
-		= f.label :email_confirmation
-		= f.text_field :email_confirmation
-	br
-	div.select
-		= f.label :correspondence_type
-		= f.select :type, Settings.correspondence_types
-	br
-	div.select
-		= f.label :area_of_interest
-		= f.select :sub_type, Settings.correspondence_sub_types
-	div.field
-		= f.label :message
-		= f.text_field :message
-	div.button
-		= f.submit 'Send'
+	.form-group
+		= f.label :name, class:'form-label'
+		= f.text_field :name, class: 'form-control'
+	.form-group
+		= f.label :email, class: 'form-label'
+		= f.email_field :email, class:'form-control'
+    .form-group
+		= f.label :email_confirmation, class: 'form-label'
+		= f.email_field :email_confirmation, class:'form-control'
+	.form-group
+		= f.label :type, 'Type of correspondence', class: 'form-label'
+		= f.select :type, Settings.correspondence_types, {}, {class:'form-control'}
+	.form-group
+		= f.label :sub_type, 'Area of interest',class: 'form-label'
+		= f.select :sub_type, Settings.correspondence_sub_types, {},{ class:'form-control'}
+    .form-group
+		= f.label :message, class: 'form-label'
+		= f.text_area :message, class:'form-control'
+
+	= f.submit 'Send', class:'button'
