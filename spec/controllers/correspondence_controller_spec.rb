@@ -33,7 +33,7 @@ RSpec.describe CorrespondenceController, type: :controller do
       end
 
       it 'sends #new_correspondence to CorrespondenceMailer' do
-        CorrespondenceMailer.any_instance.should_receive(:new_correspondence)
+        expect_any_instance_of(CorrespondenceMailer).to receive(:new_correspondence)
         post :create, params: params
       end
     end
