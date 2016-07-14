@@ -50,6 +50,11 @@ Rails.describe Correspondence, type: :model do
         expect(correspondence).not_to be_valid
         expect(correspondence.errors.full_messages).to include("Email confirmation doesn't match Email")
       end
+
+      it 'email is case insensitive' do
+        correspondence.email_confirmation = correspondence.email_confirmation.upcase
+        expect(correspondence).to be_valid
+      end
     end
   end
 
