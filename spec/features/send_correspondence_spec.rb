@@ -19,6 +19,8 @@ feature 'A member of the public makes an FOI request' do
     fill_in 'Message', with: @text
     click_button 'Send'
     expect(page).to have_content('Thank you')
+    click_link 'Finish'
+    expect(page.current_path).to eq root_path
   end
 
   scenario 'Without supplying a name, email address, email confirmation or message' do
