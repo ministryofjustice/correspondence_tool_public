@@ -31,6 +31,11 @@ RSpec.describe CorrespondenceController, type: :controller do
       it 'renders the confirmation template' do
         expect(response).to render_template(:confirmation)
       end
+
+      it 'sends #new_correspondence to CorrespondenceMailer' do
+        CorrespondenceMailer.any_instance.should_receive(:new_correspondence)
+        post :create, params: params
+      end
     end
 
     context 'with invalid params' do

@@ -9,6 +9,7 @@ class CorrespondenceController < ApplicationController
 
     if @correspondence.valid?
       # TODO: create and send email
+      CorrespondenceMailer.new_correspondence(@correspondence).deliver_now
       render 'correspondence/confirmation'
     else
       # TODO: show errors
