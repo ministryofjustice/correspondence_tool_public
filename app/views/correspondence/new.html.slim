@@ -1,23 +1,22 @@
-=render partial: 'layouts/header', locals: {page_heading: 'Contact Ministry of Justice'}
+= GovukElementsErrorsHelper.error_summary @correspondence,
+  "#{pluralize(@correspondence.errors.count, 'error')} prevented this form from being submitted:", ""
+
+= render partial: 'layouts/header', locals: {page_heading: 'Contact Ministry of Justice'}
+
 
 = form_for @correspondence do |f|
+	= f.text_field :name
+	= f.email_field :email
+    = f.email_field :email_confirmation
+
 	.form-group
-		= f.label :name, class:'form-label'
-		= f.text_field :name, class: 'form-control'
+	    = f.label :type, 'Type of correspondence', class: 'form-label'
+	    = f.select :type, Settings.correspondence_types, {}, {class:'form-control'}
+
 	.form-group
-		= f.label :email, class: 'form-label'
-		= f.email_field :email, class:'form-control'
-    .form-group
-		= f.label :email_confirmation, class: 'form-label'
-		= f.email_field :email_confirmation, class:'form-control'
-	.form-group
-		= f.label :type, 'Type of correspondence', class: 'form-label'
-		= f.select :type, Settings.correspondence_types, {}, {class:'form-control'}
-	.form-group
-		= f.label :sub_type, 'Area of interest',class: 'form-label'
-		= f.select :sub_type, Settings.correspondence_sub_types, {},{ class:'form-control'}
-    .form-group
-		= f.label :message, class: 'form-label'
-		= f.text_area :message, class:'form-control'
+	    = f.label :sub_type, 'Area of interest',class: 'form-label'
+	    = f.select :sub_type, Settings.correspondence_sub_types, {},{ class:'form-control'}
+
+    = f.text_area :message
 
 	= f.submit 'Send', class:'button'

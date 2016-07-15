@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/ministryofjustice/govuk_elements_form_builder.git
+  revision: a27071223a9ab2338dd69b357c88365c902a6fdf
+  specs:
+    govuk_elements_form_builder (0.0.1)
+      rails (>= 4.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -268,6 +275,7 @@ DEPENDENCIES
   config
   factory_girl_rails
   faker
+  govuk_elements_form_builder!
   govuk_elements_rails (>= 1.2.1)
   govuk_frontend_toolkit (>= 4.13.0)
   govuk_template (~> 0.18.0)

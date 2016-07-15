@@ -1,1 +1,12 @@
-h1 Thank you
+.confirmation-header
+  h1.page-title.bold-large
+    object type='image/svg+xml' data=image_path('icons/tick-white.svg') class="confirmation-tick"
+    | Thank you
+  .bold-medium
+    | Your message has been sent
+
+  .normal
+    | and we will reply shortly.
+
+.button-holder
+  = link_to "Finish",root_path, {role: 'button', class: 'button-secondary'}
