@@ -8,7 +8,6 @@ gem 'govuk_elements_rails',   '>= 1.2.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
-gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
 gem 'puma', '~> 3.0'
 gem 'rails', '~> 5.0.0'
 gem 'sass-rails', '~> 5.0'
