@@ -32,9 +32,13 @@ RSpec.describe CorrespondenceController, type: :controller do
         expect(response).to render_template(:confirmation)
       end
 
-      it 'sends #new_correspondence to CorrespondenceMailer' do
-        expect_any_instance_of(CorrespondenceMailer).to receive(:new_correspondence)
-        post :create, params: params
+      it 'sends #perorm_later to the EmailCorrespondenceJob' do
+        expect(EmailCorrespondenceJob).to receive(:perform_later)
+        post :create, params: params        
+      end
+
+      it 'and a job is enqueued' do
+        expect { post :create, params: params }.to have_enqueued_job(EmailCorrespondenceJob)
       end
     end
 
