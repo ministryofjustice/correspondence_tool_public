@@ -26,6 +26,9 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  # Do care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = true
+  
   config.action_mailer.perform_caching = false
   config.active_job.queue_adapter = :sidekiq
   config.action_mailer.delivery_method = :smtp
