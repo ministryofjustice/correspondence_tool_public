@@ -8,11 +8,9 @@ class CorrespondenceController < ApplicationController
     @correspondence = Correspondence.new(correspondence_params)
 
     if @correspondence.valid?
-      # TODO: create and send email
-      CorrespondenceMailer.new_correspondence(@correspondence).deliver_now
+      EmailCorrespondenceJob.perform_later(YAML.dump(@correspondence))
       render 'correspondence/confirmation'
     else
-      # TODO: show errors
       render :new
     end
   end

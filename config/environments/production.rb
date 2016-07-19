@@ -28,6 +28,7 @@ Rails.application.configure do
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   config.action_mailer.delivery_method = :smtp
+  config.active_job.queue_adapter = :sidekiq
 # SMTP settings for gmail
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
