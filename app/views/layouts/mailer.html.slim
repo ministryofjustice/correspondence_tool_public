@@ -1,0 +1,28 @@
+doctype html
+html xmlns="http://www.w3.org/1999/xhtml"
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title Correspondence Tool
+    meta content="width=device-width, initial-scale=1.0" name="viewport" /
+    = stylesheet_link_tag "email", media: "all"
+
+  body
+
+    table#wrapper cellpadding="0" cellspacing="0"
+      tr
+        td
+          table#mail-header cellpadding="0" cellspacing="0" align="center"
+            tr
+              td#govuk-logo
+                = image_tag image_url('govuk_logotype_email.png'), alt: 'GOV.UK'
+            tr
+              td#moj-logo
+                = image_tag image_url('moj_logotype_email.png'), alt: 'Ministry of Justice'
+
+                span.title
+                  = " | Correspondence Tool"
+            tr
+              td#email-content
+                = yield
+
+

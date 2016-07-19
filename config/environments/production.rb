@@ -29,7 +29,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.active_job.queue_adapter = :sidekiq
-# SMTP settings for gmail
+  config.action_mailer.asset_host  = 'https://correspondance.herokuapp.com'
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
