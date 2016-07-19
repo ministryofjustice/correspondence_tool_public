@@ -2,7 +2,7 @@ correspondence_types:
   - Freedom of Information Request
   - Treat Official
 
-correspondence_sub_types:
+correspondence_topics:
   - Prisons
   - Courts
   - Legal Aid
