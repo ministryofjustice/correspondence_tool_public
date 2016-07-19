@@ -1,7 +1,5 @@
 class EmailCorrespondenceJob < ApplicationJob
 
-  require 'sidekiq/API'
-
   queue_as :mailers
 
   def perform(correspondence_yaml)
