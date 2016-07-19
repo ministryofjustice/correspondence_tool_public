@@ -14,7 +14,7 @@ feature 'A member of the public makes an FOI request' do
     fill_in 'Name', with: @name
     fill_in 'Email', with: @email
     fill_in 'Email confirmation', with: @email
-    page.find(:select, text: 'Freedom').select('Freedom of Information Request')
+    page.find(:select, text: 'Freedom').select('Freedom of information request')
     page.find(:select, text: 'Prisons').select('Prisons')
     fill_in 'Message', with: @text
     click_button 'Send'
@@ -25,7 +25,7 @@ feature 'A member of the public makes an FOI request' do
 
   scenario 'Without supplying a name, email address, email confirmation or message' do
     visit 'correspondence/new'
-    page.find(:select, text: 'Freedom').select('Freedom of Information Request')
+    page.find(:select, text: 'Freedom').select('Freedom of information request')
     page.find(:select, text: 'Prisons').select('Prisons')
     click_button 'Send'
     @error_messages.each { |error_message| expect(page).to have_content(error_message) }
