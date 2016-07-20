@@ -33,6 +33,8 @@ Rails.application.configure do
   config.active_job.queue_adapter = :sidekiq
   config.action_mailer.delivery_method = :smtp
 
+  config.action_mailer.asset_host  = 'http://localhost:3000'
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

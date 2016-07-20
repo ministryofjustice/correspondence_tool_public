@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #e7e7e7;
+    font-family:arial;
+}
+
+table#wrapper {
+    width: 100%;
+}
+
+table#wrapper td {
+    padding: 0;
+}
+
+p {
+    font-family: arial;
+    font-size:19px;
+}
+
+.title {
+    font-family:arial;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+table#mail-header {
+    width: 100%;
+    max-width: 700px;
+    border: 1px solid rgb(213,213,213);
+    background-color: #ffffff;
+    margin-top: 15px;
+}
+table#mail-header td {
+    padding-left: 60px;
+}
+td#govuk-logo {
+    height: 50px;
+    background-color: #000000;
+    padding-left: 60px;
+}
+
+td#moj-logo {
+    height: 45px;
+    padding-left: 60px;
+}
+
+td#moj-logo img{
+    vertical-align: bottom;
+}
+
+td {
+    padding-left: 60px;
+}
