@@ -39,7 +39,7 @@ Rails.describe Correspondence, type: :model do
       end
 
       it 'subtype' do
-        correspondence.sub_type = nil
+        correspondence.topic = nil
         expect(correspondence).not_to be_valid
       end
     end

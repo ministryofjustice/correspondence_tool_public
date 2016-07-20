@@ -23,7 +23,7 @@ class CorrespondenceController < ApplicationController
       :email,
       :email_confirmation,
       :type,
-      :sub_type,
+      :topic,
       :message
       ) 
   end

@@ -26,7 +26,7 @@ RSpec.describe CorrespondenceMailer, type: :mailer do
 
       it 'the area of interest' do
         mail = ActionMailer::Base.deliveries.first
-        expect(mail.subject).to include(@correspondence.sub_type)
+        expect(mail.subject).to include(@correspondence.topic)
       end
     end
 

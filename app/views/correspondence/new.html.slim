@@ -14,8 +14,8 @@
 	    = f.select :type, Settings.correspondence_types, {}, {class:'form-control'}
 
 	.form-group
-	    = f.label :sub_type, 'Area of interest',class: 'form-label'
-	    = f.select :sub_type, Settings.correspondence_sub_types, {},{ class:'form-control'}
+	    = f.label :topic, class: 'form-label'
+	    = f.select :topic, Settings.correspondence_topics, {},{ class:'form-control'}
 
     = f.text_area :message
 
