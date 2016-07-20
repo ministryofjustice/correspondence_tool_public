@@ -32,8 +32,8 @@ RSpec.describe CorrespondenceMailer, type: :mailer do
 
     context 'and the body contains' do
       it 'a message from a member of the public' do
-        mail = ActionMailer::Base.deliveries.fir
-        mail.html_part.body.to_s.include?(@correspondence.message)smar
+        mail = ActionMailer::Base.deliveries.first
+        mail.html_part.body.to_s.include?(@correspondence.message)
       end
     end
   end
