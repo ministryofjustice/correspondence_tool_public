@@ -11,11 +11,11 @@
 
 	.form-group
 	    = f.label :type, 'Type of correspondence', class: 'form-label'
-	    = f.collection_select :type, Settings.correspondence_types, :underscore, :humanize, {class:'form-control'}
+	    = f.collection_select :type, Settings.correspondence_types, :underscore, :humanize, {}, {class:'form-control'}
 
 	.form-group
 	    = f.label :topic, class: 'form-label'
-	    = f.collection_select :topic, Settings.correspondence_topics, :underscore, :humanize, {class:'form-control'}
+	    = f.collection_select :topic, Settings.correspondence_topics, :underscore, :humanize, {}, {class:'form-control'}
 
     = f.text_area :message
 
