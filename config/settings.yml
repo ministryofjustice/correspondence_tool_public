@@ -6,6 +6,5 @@ correspondence_topics:
   - prisons
   - courts
   - legal_aid
-  - other
-  - more_than_one
-  - do_not_know
+  - probation
+  - i_don't_know/more_than_one/other
