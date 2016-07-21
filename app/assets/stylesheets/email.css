@@ -5,11 +5,15 @@ body {
     font-family:arial;
 }
 
-table#wrapper {
+h3{
+    font-size: 19px;
+}
+
+#wrapper {
     width: 100%;
 }
 
-table#wrapper td {
+#wrapper td {
     padding: 0;
 }
 
@@ -25,28 +29,28 @@ p {
     margin-top: 15px;
 }
 
-table#mail-header {
+#mail-header {
     width: 100%;
     max-width: 700px;
     border: 1px solid rgb(213,213,213);
     background-color: #ffffff;
     margin-top: 15px;
 }
-table#mail-header td {
+#mail-header td {
     padding-left: 60px;
 }
-td#govuk-logo {
+#govuk-logo {
     height: 50px;
     background-color: #000000;
     padding-left: 60px;
 }
 
-td#moj-logo {
+#moj-logo {
     height: 45px;
     padding-left: 60px;
 }
 
-td#moj-logo img{
+#moj-logo img{
     vertical-align: bottom;
 }
 
