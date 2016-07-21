@@ -10,6 +10,14 @@ Rails.describe Correspondence, type: :model do
     end
   end
 
+  describe 'each type' do
+    Settings.correspondence_types.each do |type|
+      it 'has a specific email address associated' do
+        expect(ENV["#{type.upcase}_EMAIL"]).not_to be nil
+      end
+    end
+  end
+
   describe 'attributes' do
     context 'mandatory' do
       it 'name' do

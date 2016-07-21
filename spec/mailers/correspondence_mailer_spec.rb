@@ -2,12 +2,16 @@ require "rails_helper"
 
 RSpec.describe CorrespondenceMailer, type: :mailer do
 
-  before(:each) do
+  def send_email(correspondence_type='freedom_of_information_request')
     ActionMailer::Base.perform_deliveries = true
     ActionMailer::Base.deliveries = []
-    @correspondence = build(:correspondence)
+    @correspondence = build(:correspondence, type: correspondence_type)
     CorrespondenceMailer.new_correspondence(@correspondence).deliver_now
     @mail = ActionMailer::Base.deliveries.first
+  end
+
+  before(:each) do
+    send_email
   end
 
   after(:each) do
@@ -15,6 +19,7 @@ RSpec.describe CorrespondenceMailer, type: :mailer do
   end
 
   describe '#new_correspondence' do
+
     it 'sends an email' do
       expect(ActionMailer::Base.deliveries.count).to eq 1
     end
@@ -25,16 +30,14 @@ RSpec.describe CorrespondenceMailer, type: :mailer do
       end
 
       it 'treat official' do
-        ActionMailer::Base.deliveries.clear
-        @correspondence = build(:correspondence, type: 'treat_official')
-        CorrespondenceMailer.new_correspondence(@correspondence).deliver_now
-        @mail = ActionMailer::Base.deliveries.first
+        send_email('treat_official')
         expect(@mail.to).to eq [ ENV['TREAT_OFFICIAL_EMAIL'] ]
       end
 
     end
 
     context 'and the subject contains' do
+
       it 'the type of correspondence' do
         expect(@mail.subject).to include(@correspondence.type)
       end
