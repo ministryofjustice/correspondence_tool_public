@@ -6,8 +6,10 @@
     "semi": [2, "always"]
   },
   "globals": {
-    "moj": true,
-    "MOJ": true
+    "moj"        : true,
+    "MOJ"        : true,
+    "App"        : true,
+    "ActionCable": true
   },
   "env": {
     "browser": true,
