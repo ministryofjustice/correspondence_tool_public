@@ -36,6 +36,7 @@ group :development, :test do
   gem 'faker'
   gem 'factory_girl_rails'
   gem 'byebug', platform: :mri
+  gem 'codeclimate-test-reporter',  require: false
   gem 'rspec-rails', '~> 3.4'
 end
 

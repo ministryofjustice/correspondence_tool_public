@@ -1,0 +1,7 @@
+{
+  "browser": true,
+  "jquery": true,
+  "predef": [
+    "moj"
+  ]
+}
