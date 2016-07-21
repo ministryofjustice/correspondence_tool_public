@@ -1,11 +1,11 @@
 correspondence_types:
-  - Freedom of Information Request
-  - Treat Official
+  - freedom_of_information_request
+  - treat_official
 
 correspondence_topics:
-  - Prisons
-  - Courts
-  - Legal Aid
-  - Other
-  - More than one
-  - I don't know
+  - prisons
+  - courts
+  - legal_aid
+  - other
+  - more_than_one
+  - do_not_know
