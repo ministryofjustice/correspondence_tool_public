@@ -27,4 +27,11 @@ en:
     formats:
       default: "%d/%m/%Y %H:%M"
 
-  hello: "Hello world"
+  helpers:
+    label:
+      correspondence:
+        type: Type of correspondence
+    hint:
+      correspondence:
+        email: |
+          We will only use this to send you a response.

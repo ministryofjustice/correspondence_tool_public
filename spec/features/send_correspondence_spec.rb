@@ -12,7 +12,7 @@ feature 'A member of the public makes an FOI request' do
   scenario 'Using valid inputs' do
     visit 'correspondence/new'
     fill_in 'Name', with: @name
-    fill_in 'Email', with: @email
+    fill_in 'correspondence[email]', with: @email
     fill_in 'Email confirmation', with: @email
     page.find(:select, text: 'Freedom').select('Freedom of information request')
     page.find(:select, text: 'Prisons').select('Prisons')
