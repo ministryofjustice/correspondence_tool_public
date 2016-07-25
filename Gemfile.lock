@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/ministryofjustice/govuk_elements_form_builder.git
-  revision: a27071223a9ab2338dd69b357c88365c902a6fdf
+  revision: 21c0a08a47fd9248b17204e0c3333aea80b7880d
   specs:
     govuk_elements_form_builder (0.0.1)
       rails (>= 4.2)
@@ -46,7 +46,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     addressable (2.4.0)
-    arel (7.0.0)
+    arel (7.1.0)
     builder (3.2.2)
     byebug (9.0.5)
     capybara (2.7.1)
@@ -98,7 +98,7 @@ GEM
       govuk_frontend_toolkit (>= 4.12.0)
       rails (>= 4.1.0)
       sass (>= 3.2.0)
-    govuk_frontend_toolkit (4.13.0)
+    govuk_frontend_toolkit (4.14.0)
       rails (>= 3.1.0)
       sass (>= 3.2.0)
     govuk_template (0.18.0)
@@ -125,7 +125,7 @@ GEM
     htmlentities (4.3.4)
     http_parser.rb (0.6.0)
     i18n (0.7.0)
-    jbuilder (2.5.0)
+    jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
     jquery-rails (4.1.1)
@@ -167,7 +167,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    puma (3.5.0)
+    puma (3.6.0)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -230,7 +230,7 @@ GEM
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
     sass (3.4.22)
-    sass-rails (5.0.5)
+    sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
       sass (~> 3.1)
       sprockets (>= 2.8, < 4.0)
@@ -258,7 +258,7 @@ GEM
     spring-watcher-listen (2.0.0)
       listen (>= 2.7, < 4.0)
       spring (~> 1.2)
-    sprockets (3.6.3)
+    sprockets (3.7.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-rails (3.1.1)
