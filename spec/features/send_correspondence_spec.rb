@@ -31,8 +31,10 @@ feature 'A member of the public makes an FOI request' do
     @error_messages.each { |error_message| expect(page).to have_content(error_message) }
   end
 
-  scenario 'But email and email confirmation do not match' do
-    
+  scenario 'and then refreshing the page, does not cause a routing error' do
+    visit 'correspondence/new'
+    click_button 'Send'
+    expect{ visit current_path }.not_to raise_error
   end
 
 end
