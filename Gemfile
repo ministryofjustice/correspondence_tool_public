@@ -26,6 +26,7 @@ gem 'uglifier', '>= 1.3.0'
 
 group :test do
   gem 'capybara'
+  gem "codeclimate-test-reporter", require: nil
   gem 'rails-controller-testing'
 end
 
@@ -34,7 +35,6 @@ group :development, :test do
   gem 'faker'
   gem 'factory_girl_rails'
   gem 'byebug', platform: :mri
-  gem 'codeclimate-test-reporter',  require: false
   gem 'rspec-rails', '~> 3.4'
 end
 
