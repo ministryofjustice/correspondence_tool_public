@@ -11,7 +11,7 @@ RSpec.describe CorrespondenceController, type: :controller do
         email_confirmation: external_user.email,
         type: "freedom_of_information_request",
         topic: "prisons",
-        message: Faker::Lorem.paragraph[1]
+        message: Faker::Lorem.paragraph(1)
       }
     }
   end
