@@ -1,6 +1,6 @@
 correspondence_types:
+  - general_enquiries
   - freedom_of_information_request
-  - treat_official
 
 correspondence_topics:
   - prisons
