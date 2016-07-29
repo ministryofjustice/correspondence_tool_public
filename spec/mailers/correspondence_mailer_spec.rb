@@ -29,9 +29,9 @@ RSpec.describe CorrespondenceMailer, type: :mailer do
         expect(@mail.to).to eq [ ENV['FREEDOM_OF_INFORMATION_REQUEST_EMAIL'] ]
       end
 
-      it 'treat official' do
-        send_email('treat_official')
-        expect(@mail.to).to eq [ ENV['TREAT_OFFICIAL_EMAIL'] ]
+      it 'general_enquiries' do
+        send_email('general_enquiries')
+        expect(@mail.to).to eq [ ENV['GENERAL_ENQUIRIES_EMAIL'] ]
       end
 
     end
