@@ -18,6 +18,9 @@ Bundler.require(*Rails.groups)
 
 module CorrespondenceToolPublic
   class Application < Rails::Application
+
+    config.ga_tracking_id = (ENV['GA_TRACKING_ID'] || '')
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
