@@ -29,3 +29,6 @@ config/environments/*.local.yml
 config/secrets.yml
 
 .env
+
+# RubyMine
+.idea/*
