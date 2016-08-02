@@ -31,4 +31,4 @@ config/secrets.yml
 .env
 
 # RubyMine
-.idea/workspace.xml
+.idea/*
