@@ -17,4 +17,4 @@
 
     = f.text_area :message
 
-	= f.submit 'Send', class:'button'
+	= f.submit 'Send', {class:'button', onclick: "ga('send', 'event', 'Question', 'Sent')"}
