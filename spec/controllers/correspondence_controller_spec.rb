@@ -15,6 +15,13 @@ RSpec.describe CorrespondenceController, type: :controller do
       }
     }
   end
+  describe 'GET start' do
+    before { get :start }
+
+    it 'renders the :start template' do
+      expect(response).to render_template(:start)
+    end
+  end
 
   describe 'GET new' do
     before { get :new }
