@@ -39,6 +39,8 @@ class CorrespondenceController < ApplicationController
     render :step_reply
   end
 
+  def confirmation
+    render :confirmation
   end
 
   private

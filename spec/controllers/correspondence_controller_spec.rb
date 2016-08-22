@@ -56,6 +56,11 @@ RSpec.describe CorrespondenceController, type: :controller do
     end
   end
 
+  describe 'GET :confirmation' do
+    before { get :confirmation}
+
+    it 'renders the :confirmation template' do
+      expect(response).to render_template(:confirmation)
     end
   end
 
