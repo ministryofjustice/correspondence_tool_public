@@ -20,6 +20,9 @@ feature 'A member of the public finds the the answer or is signposted to the cor
     click_link 'Continue'
     expect(page).to have_content 'Your details'
     fill_in 'Name', with: @name
+    click_link 'Continue'
+    fill_in 'correspondence[email]', with: @email
+    fill_in 'Email confirmation', with: @email
   end
 
   scenario 'member of the public wants to find out about prisons' do
@@ -33,6 +36,9 @@ feature 'A member of the public finds the the answer or is signposted to the cor
     click_link 'Continue'
     expect(page).to have_content 'Your details'
     fill_in 'Name', with: @name
+    click_link 'Continue'
+    fill_in 'correspondence[email]', with: @email
+    fill_in 'Email confirmation', with: @email
   end
 
   scenario 'member of the public wants to find out about something else' do
@@ -46,5 +52,8 @@ feature 'A member of the public finds the the answer or is signposted to the cor
     click_link 'Continue'
     expect(page).to have_content 'Your details'
     fill_in 'Name', with: @name
+    click_link 'Continue'
+    fill_in 'correspondence[email]', with: @email
+    fill_in 'Email confirmation', with: @email
   end
 end

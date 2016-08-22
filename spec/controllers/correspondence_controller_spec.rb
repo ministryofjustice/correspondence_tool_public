@@ -48,6 +48,14 @@ RSpec.describe CorrespondenceController, type: :controller do
     end
   end
 
+  describe 'GET :step_reply' do
+    before { get :step_reply}
+
+    it 'renders the :step_reply template' do
+      expect(response).to render_template(:step_reply)
+    end
+  end
+
     end
   end
 
