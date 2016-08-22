@@ -19,7 +19,7 @@
 
     p This service takes around 10 minutes.
 
-    = link_to "Start now", new_correspondence_path, {role:'button', class: 'button button-start'}
+    = link_to "Start now", question_about_correspondence_index_path, {role:'button', class: 'button button-start' , onclick: "ga('send', 'event', 'Question', 'Start')"}
 
     h2.heading-medium
       |  Before you start
