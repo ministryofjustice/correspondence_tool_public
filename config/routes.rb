@@ -4,6 +4,7 @@ resources :correspondence, only: [:new, :create] do
   get 'topic', action: 'step_topic', as: :step_topic, on: :collection
   #post 'about', action: 'about'
   get 'message', action: 'step_message', as: :step_message, on: :collection
+  get 'name', action: 'step_name', as: :step_name, on: :collection
 end
 
 root to: 'correspondence#start'
