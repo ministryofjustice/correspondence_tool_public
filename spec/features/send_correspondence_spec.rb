@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'A member of the public makes an FOI request' do
+feature 'A member of the public makes a request' do
 
   background do 
     @name = Faker::Name.name

@@ -1,0 +1,7 @@
+= render partial: 'layouts/header', locals: {page_heading: 'What is your question about?'}
+
+= form_for @correspondence do |f|
+  .no-legend
+    = f.radio_button_fieldset :topic,
+            choices: [:courts_and_tribunals, :prisons_and_probation, :something_else]
+  = f.submit 'Continue', class: 'button'

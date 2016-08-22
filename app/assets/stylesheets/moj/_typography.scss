@@ -49,3 +49,12 @@
 address {
   font-style: normal;
 }
+
+.no-legend{
+  @include clearfix;
+  margin-bottom: $gutter;
+  legend {
+    @include visually-hidden;
+  }
+
+}

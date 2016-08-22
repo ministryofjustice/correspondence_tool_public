@@ -19,6 +19,11 @@ class CorrespondenceController < ApplicationController
     render :start
   end
 
+  def about
+    @correspondence = Correspondence.new
+    render :about
+  end
+
   private
 
   def correspondence_params

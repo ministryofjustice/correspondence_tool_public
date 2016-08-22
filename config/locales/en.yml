@@ -28,9 +28,16 @@ en:
       default: "%d/%m/%Y %H:%M"
 
   helpers:
+    fieldset:
+      correspondence:
+        topic: What is your question about?
     label:
       correspondence:
         type: Type of correspondence
+        topic:
+          courts_and_tribunals: Courts and tribunals
+          prisons_and_probration: Prisons and probration
+          something_else: something else
     hint:
       correspondence:
         email: |
