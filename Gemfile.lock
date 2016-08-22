@@ -91,6 +91,8 @@ GEM
     faker (1.6.5)
       i18n (~> 0.5)
     ffi (1.9.14)
+    foreman (0.82.0)
+      thor (~> 0.19.1)
     formatador (0.2.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -297,6 +299,7 @@ DEPENDENCIES
   config
   factory_girl_rails
   faker
+  foreman
   govuk_elements_form_builder!
   govuk_elements_rails (>= 1.2.1)
   govuk_frontend_toolkit (>= 4.13.0)
