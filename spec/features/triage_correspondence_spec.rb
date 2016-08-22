@@ -25,6 +25,9 @@ feature 'A member of the public finds the the answer or is signposted to the cor
     fill_in 'Email confirmation', with: @email
     click_link 'Send'
     expect(page).to have_content('Thank you')
+    click_link 'Finish'
+    expect(page.current_path).to eq root_path
+
   end
 
   scenario 'member of the public wants to find out about prisons' do
@@ -43,6 +46,8 @@ feature 'A member of the public finds the the answer or is signposted to the cor
     fill_in 'Email confirmation', with: @email
     click_link 'Send'
     expect(page).to have_content('Thank you')
+    click_link 'Finish'
+    expect(page.current_path).to eq root_path
   end
 
   scenario 'member of the public wants to find out about something else' do
@@ -61,5 +66,8 @@ feature 'A member of the public finds the the answer or is signposted to the cor
     fill_in 'Email confirmation', with: @email
     click_link 'Send'
     expect(page).to have_content('Thank you')
+    click_link 'Finish'
+    expect(page.current_path).to eq root_path
   end
 end
+
