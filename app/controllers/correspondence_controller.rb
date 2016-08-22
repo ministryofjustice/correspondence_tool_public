@@ -24,6 +24,11 @@ class CorrespondenceController < ApplicationController
     render :step_topic
   end
 
+  def step_message
+    @correspondence = Correspondence.new
+    render :step_message
+  end
+
   end
 
   private

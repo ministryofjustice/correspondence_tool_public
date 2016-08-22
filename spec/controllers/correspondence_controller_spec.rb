@@ -32,6 +32,14 @@ RSpec.describe CorrespondenceController, type: :controller do
     end
   end
 
+  describe 'GET message for user to ask question' do
+    before { get :step_message }
+
+    it 'renders the :step_message template' do
+      expect(response).to render_template(:step_message)
+    end
+  end
+
     end
   end
 

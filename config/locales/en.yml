@@ -33,6 +33,7 @@ en:
         topic: What is your question about?
     label:
       correspondence:
+        message: What is your question?
         type: Type of correspondence
         topic:
           courts_and_tribunals: Courts and tribunals
@@ -42,3 +43,5 @@ en:
       correspondence:
         email: |
           We will only use this to send you a response.
+        message: |
+          We can only respond if you write in English or Welsh

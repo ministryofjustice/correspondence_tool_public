@@ -1,0 +1,7 @@
+= render partial: 'layouts/header', locals: {page_heading: 'About the Ministry of Justice'}
+
+= form_for Correspondence.new do |f|
+
+  = f.text_area :message
+
+  = link_to "Continue", step_name_correspondence_index_path , {class: 'button'}
