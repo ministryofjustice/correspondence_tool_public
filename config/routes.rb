@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 resources :correspondence, only: [:new, :create] do
-  get 'about', action: 'about', as: :question_about, on: :collection#
+  get 'topic', action: 'step_topic', as: :step_topic, on: :collection
   #post 'about', action: 'about'
 end
 

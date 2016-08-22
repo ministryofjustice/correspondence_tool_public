@@ -24,11 +24,14 @@ RSpec.describe CorrespondenceController, type: :controller do
     end
   end
 
-  describe 'GET about' do
-    before { get :about }
+  describe 'GET :step_topic' do
+    before { get :step_topic }
 
-    it 'renders the :about template' do
-      expect(response).to render_template(:about)
+    it 'renders the :step_topic template' do
+      expect(response).to render_template(:step_topic)
+    end
+  end
+
     end
   end
 

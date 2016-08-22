@@ -4,4 +4,4 @@
   .no-legend
     = f.radio_button_fieldset :topic,
             choices: [:courts_and_tribunals, :prisons_and_probation, :something_else]
-  = f.submit 'Continue', class: 'button'
+  = link_to "Continue", step_message_correspondence_index_path , {class: 'button'}
