@@ -1,15 +1,3 @@
-header.main-header {
-  @include container;
-  margin-bottom:$gutter;
-  h1{
-    @include span(8 of 12);
-    @include first;
-    @include heading-48;
-    font-weight: 700;
-  }
-
-}
-
 .confirmation-header {
   @include span(8 of 12);
   @include first;
@@ -56,4 +44,8 @@ header.main-header {
   @extend .error-summary;
   border-color: $button-colour;
 
+}
+
+address {
+  font-style: normal;
 }

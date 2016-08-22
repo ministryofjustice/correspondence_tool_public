@@ -15,6 +15,10 @@ class CorrespondenceController < ApplicationController
     end
   end
 
+  def start
+    render :start
+  end
+
   private
 
   def correspondence_params
