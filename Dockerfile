@@ -4,9 +4,11 @@ ENV PUMA_PORT 3000
 
 RUN touch /etc/inittab
 
-RUN apt-get update && apt-get install -y
+RUN apt-get update && apt-get upgrade -y
 
 EXPOSE $PUMA_PORT
+
+RUN gem install bundler
 
 RUN bundle exec rake assets:precompile RAILS_ENV=production \
   SECRET_KEY_BASE=required_but_does_not_matter_for_assets
