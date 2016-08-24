@@ -12,3 +12,4 @@ migrate)
     ;;
 esac
 bundle exec puma -d -C config/puma.rb
+tail -f /var/log/dmesg
