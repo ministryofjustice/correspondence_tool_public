@@ -5,16 +5,12 @@
 
 
 = form_for @correspondence do |f|
+    = f.radio_button_fieldset :topic, choices: Settings.correspondence_topics
+	br
+    = f.text_area :message
+
 	= f.text_field :name
 
 	= f.email_field :email
-
-    = f.email_field :email_confirmation
-
-    = f.collection_select :type, Settings.correspondence_types, :underscore, :humanize, {include_blank: "Please select an option"}
-
-    = f.collection_select :topic, Settings.correspondence_topics, :underscore, :humanize, {include_blank: "Please select an option"}
-
-    = f.text_area :message
 
 	= f.submit 'Send', {class:'button', onclick: "ga('send', 'event', 'Question', 'Sent')"}
