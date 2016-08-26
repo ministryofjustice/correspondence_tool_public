@@ -29,7 +29,9 @@ feature 'Submit a general enquiry' do
   scenario 'Without supplying a topic, name, email address or message' do
     visit 'correspondence/new'
     click_button 'Send'
-    error_messages.each { |error_message| expect(page).to have_content(error_message) }
+    error_messages.each do
+      |error_message| expect(page).to have_content(error_message)
+    end
   end
 
   scenario 'and refreshing the page, does not cause a routing error' do
