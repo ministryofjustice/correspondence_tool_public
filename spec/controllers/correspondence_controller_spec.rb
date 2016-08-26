@@ -15,11 +15,52 @@ RSpec.describe CorrespondenceController, type: :controller do
       }
     }
   end
+
   describe 'GET start' do
     before { get :start }
 
     it 'renders the :start template' do
       expect(response).to render_template(:start)
+    end
+  end
+
+  describe 'GET :step_topic' do
+    before { get :step_topic }
+
+    it 'renders the :step_topic template' do
+      expect(response).to render_template(:step_topic)
+    end
+  end
+
+  describe 'GET message for user to ask question' do
+    before { get :step_message }
+
+    it 'renders the :step_message template' do
+      expect(response).to render_template(:step_message)
+    end
+  end
+
+  describe 'GET :step_name' do
+    before { get :step_name}
+
+    it 'renders the :step_name template' do
+      expect(response).to render_template(:step_name)
+    end
+  end
+
+  describe 'GET :step_reply' do
+    before { get :step_reply}
+
+    it 'renders the :step_reply template' do
+      expect(response).to render_template(:step_reply)
+    end
+  end
+
+  describe 'GET :confirmation' do
+    before { get :confirmation}
+
+    it 'renders the :confirmation template' do
+      expect(response).to render_template(:confirmation)
     end
   end
 

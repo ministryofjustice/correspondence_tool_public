@@ -28,10 +28,20 @@ en:
       default: "%d/%m/%Y %H:%M"
 
   helpers:
+    fieldset:
+      correspondence:
+        topic: What is your question about?
     label:
       correspondence:
+        message: What is your question?
         type: Type of correspondence
+        topic:
+          courts_and_tribunals: Courts and tribunals
+          prisons_and_probration: Prisons and probration
+          something_else: something else
     hint:
       correspondence:
         email: |
           We will only use this to send you a response.
+        message: |
+          We can only respond if you write in English or Welsh

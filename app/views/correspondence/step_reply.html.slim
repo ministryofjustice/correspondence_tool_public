@@ -1,0 +1,9 @@
+= render partial: 'layouts/header', locals: {page_heading: 'Your details'}
+
+= form_for Correspondence.new do |f|
+
+  = f.email_field :email
+
+  = f.email_field :email_confirmation
+
+  = link_to "Send", confirmation_correspondence_index_path , {class: 'button'}

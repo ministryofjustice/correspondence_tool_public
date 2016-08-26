@@ -1,0 +1,7 @@
+= render partial: 'layouts/header', locals: {page_heading: 'Your details'}
+
+= form_for Correspondence.new do |f|
+
+  = f.text_field :name
+
+  = link_to "Continue", step_reply_correspondence_index_path , {class: 'button'}

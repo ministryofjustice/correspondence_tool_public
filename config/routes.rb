@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
 
-resources :correspondence, only: [:new, :create]
-
-get '/correspondence' => 'correspondence#new'
+resources :correspondence, only: [:new, :create] do
+  get 'topic', action: 'step_topic', as: :step_topic, on: :collection
+  #post 'about', action: 'about'
+  get 'message', action: 'step_message', as: :step_message, on: :collection
+  get 'name', action: 'step_name', as: :step_name, on: :collection
+  get 'reply', action: 'step_reply', as: :step_reply, on: :collection
+  get 'confirmation', action: 'confirmation', on: :collection
+end
 
 root to: 'correspondence#start'
 
