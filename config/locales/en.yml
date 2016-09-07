@@ -34,17 +34,6 @@ en:
     label:
       correspondence:
         name: Full name
-        email: Email
-        message: Message
-        topic:
-          courts_and_tribunals: |
-            courts and tribunals
-          prisons_and_probation: |
-            prisons and probation
-          legal_aid: |
-            legal aid
-          something_else: |
-            something else
     hint:
       correspondence:
         email: |
