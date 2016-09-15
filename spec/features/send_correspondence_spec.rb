@@ -19,7 +19,7 @@ feature 'Submit a general enquiry' do
     fill_in 'correspondence[name]',     with: name
     fill_in 'correspondence[email]',    with: email
     fill_in 'correspondence[message]',  with: message
-    choose 'prisons and probation'
+    choose 'Prisons and probation'
     click_button 'Send'
     expect(page).to have_content('Your message has been sent')
     click_link 'Finish'
