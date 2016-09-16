@@ -29,6 +29,7 @@ config/environments/*.local.yml
 config/secrets.yml
 
 .env
+**/.DS_Store
 
 # RubyMine
 .idea/*
