@@ -28,9 +28,12 @@ en:
       default: "%d/%m/%Y %H:%M"
 
   helpers:
+    fieldset:
+      correspondence:
+        topic: What would you like to contact us about?
     label:
       correspondence:
-        type: Type of correspondence
+        name: Full name
     hint:
       correspondence:
         email: |

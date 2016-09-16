@@ -3,8 +3,7 @@ correspondence_types:
   - freedom_of_information_request
 
 correspondence_topics:
-  - prisons
-  - courts
+  - courts_and_tribunals
+  - prisons_and_probation
   - legal_aid
-  - probation
-  - i_don't_know/more_than_one/other
+  - something_else

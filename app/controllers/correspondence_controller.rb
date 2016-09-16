@@ -5,7 +5,7 @@ class CorrespondenceController < ApplicationController
   end
 
   def create
-    @correspondence = Correspondence.new(correspondence_params)
+    @correspondence = Correspondence.new(general_enquiry_attributes)
 
     if @correspondence.valid?
       EmailCorrespondenceJob.perform_later(YAML.dump(@correspondence))
@@ -15,18 +15,18 @@ class CorrespondenceController < ApplicationController
     end
   end
 
-  def start
-    render :start
-  end
-
   private
+
+  def general_enquiry_attributes
+    correspondence_params.merge(
+      type: 'general_enquiries'
+    )
+  end
 
   def correspondence_params
     params.require(:correspondence).permit(
       :name,
       :email,
-      :email_confirmation,
-      :type,
       :topic,
       :message
       ) 
