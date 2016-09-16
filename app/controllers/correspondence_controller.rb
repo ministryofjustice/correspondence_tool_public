@@ -9,6 +9,15 @@ class CorrespondenceController < ApplicationController
 
     if @correspondence.valid?
       EmailCorrespondenceJob.perform_later(YAML.dump(@correspondence))
+      Rails.configuration.correspondence_logger.info(
+        [
+          DateTime.now.to_s,
+          @correspondence.name,
+          @correspondence.email,
+          @correspondence.topic,
+          @correspondence.message.gsub('\\', '\\\\').gsub("\n", '\\n').gsub("\r", '\\r')
+        ].join("\t")
+      )
       render 'correspondence/confirmation'
     else
       render :new
