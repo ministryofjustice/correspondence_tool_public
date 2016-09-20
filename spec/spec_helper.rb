@@ -23,6 +23,11 @@ RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
+  config.after(:suite) do # or :each or :all
+    File.delete(Settings.correspondence_log)
+    puts "\n------- TEST CORRESPONDENCE LOG DELETED --------"
+    puts 'To persist, remove lines 26-30 in spec_helper.rb'
+  end
 
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
