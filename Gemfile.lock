@@ -323,7 +323,7 @@ DEPENDENCIES
   config
   factory_girl_rails
   faker
-  foreman
+  foreman (~> 0.82.0)
   govuk_elements_form_builder!
   govuk_elements_rails (>= 1.2.1)
   govuk_frontend_toolkit (>= 4.13.0)
