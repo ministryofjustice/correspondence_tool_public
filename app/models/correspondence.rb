@@ -4,6 +4,9 @@ class Correspondence
   include ActiveModel::Validations
 
   validates_presence_of :name, :email, :type, :message, :topic
+
+  validates_format_of :email, with: /@/
+
   validates_inclusion_of :type,
     in: Settings.correspondence_types,
     if: Proc.new { |correspondence| correspondence.type.present? }
