@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'coffee-rails', '~> 4.2'
 gem 'config'
+gem 'foreman', '~> 0.82.0' # Used in dev & production
 gem 'govuk_template',         '~> 0.18.0'
 gem 'govuk_frontend_toolkit', '>= 4.13.0'
 gem 'govuk_elements_rails',   '>= 1.2.1'
@@ -44,7 +45,6 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'foreman', '~> 0.82.0'
   gem 'guard-livereload', '>= 2.5.2'
   gem 'guard-rspec'
   gem 'guard-rubocop'
