@@ -1,3 +1,5 @@
 Rails.application.configure do
-  config.correspondence_logger = ActiveSupport::Logger.new('correspondence.log')
+  filename = Rails.env.test? ? 'test_correspondence.log' : 'correspondence.log'
+  Settings.correspondence_log = File.join('log', filename)
+  config.correspondence_logger = ActiveSupport::Logger.new(Settings.correspondence_log)
 end

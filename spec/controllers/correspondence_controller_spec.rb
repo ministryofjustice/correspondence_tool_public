@@ -2,14 +2,19 @@ require 'rails_helper'
 
 RSpec.describe CorrespondenceController, type: :controller do
 
-  let(:external_user) { double 'external_user', name: Faker::Name.name, email: Faker::Internet.email }
+  let(:external_user) do
+    double 'external_user',
+    name: 'Member of public',
+    email: 'member_of_public@public.com'
+  end
+
   let(:params) do
     {
       correspondence: {
-        name: external_user.name,
-        email: external_user.email,
-        topic: "prisons_and_probation",
-        message: Faker::Lorem.paragraph(1)
+        name:     external_user.name,
+        email:    external_user.email,
+        topic:    "prisons_and_probation",
+        message:  'Question about prisons and probation from member of public'
       }
     }
   end
@@ -24,7 +29,10 @@ RSpec.describe CorrespondenceController, type: :controller do
 
   describe 'POST create' do
     context 'with valid params' do
-      before { post :create, params: params }
+      before do
+        @timestamp = DateTime.now.to_s
+        post :create, params: params
+      end
 
       it 'renders the confirmation template' do
         expect(response).to render_template(:confirmation)
@@ -36,7 +44,21 @@ RSpec.describe CorrespondenceController, type: :controller do
       end
 
       it 'and a job is enqueued' do
-        expect { post :create, params: params }.to have_enqueued_job(EmailCorrespondenceJob)
+        expect { post :create, params: params }
+          .to have_enqueued_job(EmailCorrespondenceJob)
+      end
+
+      it 'and the submission is logged' do
+        log = File.readlines(Settings.correspondence_log)
+        last_log_entry = JSON.parse(log.last)
+        user_input = last_log_entry["correspondence"]
+
+        expect(user_input["timestamp"]).to eq @timestamp
+        expect(user_input["name"]).to eq external_user.name
+        expect(user_input["email"]).to eq external_user.email
+        expect(user_input["topic"]).to eq 'prisons_and_probation'
+        expect(user_input["message"])
+          .to eq 'Question about prisons and probation from member of public'
       end
     end
 
