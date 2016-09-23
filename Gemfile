@@ -4,7 +4,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'config'
 gem 'govuk_template',         '~> 0.18.0'
 gem 'govuk_frontend_toolkit', '>= 4.13.0'
-gem 'govuk_elements_rails',   '>= 1.2.1'
+gem 'govuk_elements_rails',   '~> 1.2.1'
 gem 'govuk_elements_form_builder', git: 'https://github.com/ministryofjustice/govuk_elements_form_builder.git'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
@@ -23,7 +23,6 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem "foreman"
 
 group :test do
   gem 'capybara'
@@ -45,7 +44,7 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'foreman'
+  gem 'foreman', '~> 0.82.0'
   gem 'guard-livereload', '>= 2.5.2'
   gem 'guard-rspec'
   gem 'guard-rubocop'
