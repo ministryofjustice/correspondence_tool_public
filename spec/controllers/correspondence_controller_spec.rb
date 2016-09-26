@@ -11,9 +11,10 @@ RSpec.describe CorrespondenceController, type: :controller do
   let(:params) do
     {
       correspondence: {
-        name:     external_user.name,
-        email:    external_user.email,
-        topic:    "prisons_and_probation",
+        name:               external_user.name,
+        email:              external_user.email,
+        email_confirmation: external_user.email,
+        topic:              "prisons_and_probation",
         message:  'Question about prisons and probation from member of public'
       }
     }

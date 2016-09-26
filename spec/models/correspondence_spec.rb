@@ -23,6 +23,7 @@ RSpec.describe Correspondence, type: :model do
     it { should validate_presence_of :type }
     it { should validate_presence_of :topic }
     it { should validate_presence_of :message }
+    it { should validate_confirmation_of :email}
   
     it do
       should validate_inclusion_of(:topic).
