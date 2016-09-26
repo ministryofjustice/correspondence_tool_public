@@ -34,6 +34,7 @@ en:
     label:
       correspondence:
         name: Full name
+        email_confirmation: Confirm email
     hint:
       correspondence:
         email: |

@@ -46,6 +46,7 @@ class CorrespondenceController < ApplicationController
     params.require(:correspondence).permit(
       :name,
       :email,
+      :email_confirmation,
       :topic,
       :message
       ) 

@@ -3,7 +3,9 @@ class Correspondence
   include ActiveModel::Model
   include ActiveModel::Validations
 
-  validates_presence_of :name, :email, :type, :message, :topic
+  validates_presence_of :name, :email, :email_confirmation, :type, :message, :topic
+
+  validates :email, confirmation: { case_sensitive: false }
 
   validates_format_of :email, with: /@/
 
