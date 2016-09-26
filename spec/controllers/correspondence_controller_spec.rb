@@ -22,9 +22,7 @@ RSpec.describe CorrespondenceController, type: :controller do
   describe 'GET new' do
     before { get :new }
 
-    it 'renders the :new template' do
-      expect(response).to render_template(:new)
-    end
+    it { should render_template(:new) }
   end
 
   describe 'POST create' do
@@ -34,9 +32,7 @@ RSpec.describe CorrespondenceController, type: :controller do
         post :create, params: params
       end
 
-      it 'renders the confirmation template' do
-        expect(response).to render_template(:confirmation)
-      end
+      it { should render_template(:confirmation)}
 
       it 'sends #perorm_later to the EmailCorrespondenceJob' do
         expect(EmailCorrespondenceJob).to receive(:perform_later)
@@ -69,9 +65,8 @@ RSpec.describe CorrespondenceController, type: :controller do
         post :create, params: invalid_params
       end
 
-      it 'renders the :new template' do
-        expect(response).to render_template(:new)
-      end
+      it { should render_template(:new) }
+
     end
   end
 

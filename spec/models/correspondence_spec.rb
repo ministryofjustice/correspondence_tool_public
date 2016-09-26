@@ -1,13 +1,11 @@
 require 'rails_helper'
 
-Rails.describe Correspondence, type: :model do
+RSpec.describe Correspondence, type: :model do
 
-  let(:correspondence) { build :correspondence }
+  subject { build :correspondence }
 
-  describe 'has a factory' do
-    it 'that produces a valid object by default' do
-      expect(correspondence).to be_valid
-    end
+  describe 'test object instantiated by FactoryGirl' do
+    it { should be_valid }
   end
 
   describe 'each type' do
@@ -19,32 +17,24 @@ Rails.describe Correspondence, type: :model do
   end
 
   describe 'attributes' do
-    context 'mandatory' do
-      it 'name' do
-        correspondence.name = nil
-        expect(correspondence).not_to be_valid
-      end
 
-      it 'email' do
-        correspondence.email = nil
-        expect(correspondence).not_to be_valid
-      end
-
-      it 'type' do
-        correspondence.type = nil
-        expect(correspondence).not_to be_valid
-      end
-
-      it 'message' do
-        correspondence.message = nil
-        expect(correspondence).not_to be_valid
-      end
-
-      it 'topic' do
-        correspondence.topic = nil
-        expect(correspondence).not_to be_valid
-      end
+    it { should validate_presence_of :name }
+    it { should validate_presence_of :email }
+    it { should validate_presence_of :type }
+    it { should validate_presence_of :topic }
+    it { should validate_presence_of :message }
+  
+    it do
+      should validate_inclusion_of(:topic).
+        in_array(Settings.correspondence_topics)
     end
-  end
 
+    it do
+      should validate_inclusion_of(:type).
+        in_array(Settings.correspondence_types)
+    end
+
+    it { should allow_value('foo@bar.com').for :email }
+    it { should_not allow_value('foobar.com').for :email  }
+  end
 end
