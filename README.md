@@ -63,3 +63,13 @@ The docker containers use a symlink to your local machine so any changes you mak
 
 ####2. Do I have to rebuild the Docker Image after I made changes to the local files?
 No, as mentioned in question 1. the rails files are sync automatically with your local machine.
+
+##Production Environment Setup
+
+###Web Server Setup
+
+`public/500-nginx.html` provides a static 500 error for when the Rails application cannot be reached.
+
+`public/images` contains images required by the static 500 error.
+
+`public/files` contains the stylesheet required by the static 500 error.
