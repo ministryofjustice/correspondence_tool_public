@@ -31,10 +31,16 @@ en:
     fieldset:
       correspondence:
         topic: What would you like to contact us about?
+      feedback:
+        rating: |
+          Overall, how did you feel about the service you received today?
     label:
       correspondence:
         name: Full name
         email_confirmation: Confirm email
+      feedback:
+        comment: |
+          How could we improve this service?
     hint:
       correspondence:
         email: |
