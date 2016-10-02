@@ -4,11 +4,6 @@ feature 'Submit service feedback' do
 
     given(:rating)          { Settings.service_feedback.sample.humanize }
     given(:comment)         { Faker::Lorem.paragraphs[1] }
-    given(:error_messages) do
-      [
-        "Rating please select one option"
-      ]
-    end
 
   scenario 'Using valid inputs' do
     visit 'feedback/new'
@@ -22,9 +17,7 @@ feature 'Submit service feedback' do
   scenario 'Without a rating' do
     visit 'feedback/new'
     click_button 'Send'
-    error_messages.each do
-      |error_message| expect(page).to have_content(error_message)
-    end
+    expect(page).to have_content("Rating please select one option")
   end
 
 end

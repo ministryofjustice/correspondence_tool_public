@@ -2,17 +2,12 @@ require "rails_helper"
 
 RSpec.describe FeedbackMailer, type: :mailer do
 
-  def send_email
+  before(:each) do
     ActionMailer::Base.perform_deliveries = true
     ActionMailer::Base.deliveries = []
     @feedback = build(:feedback)
     FeedbackMailer.new_feedback(@feedback).deliver_now
     @mail = ActionMailer::Base.deliveries.first
-
-  end
-
-  before(:each) do
-    send_email
   end
 
   after(:each) do
