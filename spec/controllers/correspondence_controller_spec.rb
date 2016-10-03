@@ -67,7 +67,16 @@ RSpec.describe CorrespondenceController, type: :controller do
       end
 
       it { should render_template(:new) }
+    end
 
+    context 'when redis is down' do
+
+      before do
+        allow(EmailCorrespondenceJob).to receive(:perform_later).and_raise(Redis::CannotConnectError)
+        post :create, params: params
+      end
+
+        it { should respond_with 500 }
     end
   end
 

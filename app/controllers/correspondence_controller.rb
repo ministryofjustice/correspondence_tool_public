@@ -1,5 +1,9 @@
 class CorrespondenceController < ApplicationController
 
+  rescue_from Redis::CannotConnectError do
+    render :file => 'public/500-redis-down.html', :status => 500, :layout => false
+  end
+
   def new
     @correspondence = Correspondence.new
   end
