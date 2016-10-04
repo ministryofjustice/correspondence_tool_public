@@ -2,7 +2,11 @@ Rails.application.routes.draw do
 
 resources :correspondence, only: [:new, :create]
 
+resources :feedback, only: [:new, :create]
+
 get '/correspondence' => 'correspondence#new'
+
+get '/feedback' => 'feedback#new'
 
 root to: 'correspondence#new'
 

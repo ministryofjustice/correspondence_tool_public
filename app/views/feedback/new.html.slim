@@ -1,0 +1,22 @@
+= GovukElementsErrorsHelper.error_summary @feedback,
+  "#{pluralize(@feedback.errors.count, 'error')} prevented this form from being submitted:", ""
+
+= render partial: 'layouts/header', locals: {page_heading: 'Give feedback'}
+
+
+= form_for @feedback do |f|
+  .grid-row
+    .column-two-thirds
+      = f.radio_button_fieldset :rating, choices:  Settings.service_feedback
+
+  .grid-row
+    .column-two-thirds
+      = f.text_area :comment
+
+  .grid-row
+    .column-two-thirds
+      | Please don't include any personal or financial information, for example your National Insurance or credit card numbers.
+
+  .button-holder
+    = f.submit 'Send', {class:'button', onclick: "ga('send', 'event', 'Feedback', 'Sent')"}
+

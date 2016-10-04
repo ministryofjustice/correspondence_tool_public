@@ -7,3 +7,10 @@ correspondence_topics:
   - prisons_and_probation
   - legal_aid
   - something_else
+
+service_feedback:
+  - very_satisfied
+  - satisfied
+  - neither_satisfied_nor_dissatisfied
+  - dissatisfied
+  - very_dissatisfied

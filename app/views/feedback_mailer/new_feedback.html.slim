@@ -1,0 +1,11 @@
+h2
+  = "New Feedback"
+
+p
+  = "Rating: #{@feedback.rating.humanize}"
+
+p
+  = "Comment(Optional): #{@feedback.comment}"
+
+p
+  = "Submitted on #{l Time.now}"
