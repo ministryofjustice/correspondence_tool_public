@@ -1,12 +1,12 @@
 h2
-  = "New #{@correspondence.type}"
+  = "New #{@correspondence.type.humanize}"
 
 p
   = mail_to @correspondence.email, "#{@correspondence.name}(#{@correspondence.email})"
   |  submitted the following:
 
 
-h3 = "Topic: #{@correspondence.topic}"
+h3 = "Topic: #{@correspondence.topic.humanize}"
 
 p = @correspondence.message
 
