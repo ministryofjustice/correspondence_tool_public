@@ -45,3 +45,30 @@ en:
       correspondence:
         email: |
           We will only use this to send you a response.
+
+  button:
+    send: Send
+    finish: Finish
+
+  common:
+    error: error
+    phase_banner: |
+      This is a new service – your feedback will help us to improve it.
+    service_name: Contact the Ministry of Justice
+    summary_error: |
+      prevented this form from being submitted:
+
+  correspondence:
+    confirmation:
+      success: Your message has been sent
+      next_title:  What happens next
+      next_copy: We will respond to your question as soon as possible.
+      feedback_link: What did you think of this service?
+      feedback_time: (takes 30 seconds)
+
+  feedback:
+    new:
+      heading: Give feedback
+      data_warning: |
+        Please don't include any personal or financial information,
+        for example your National Insurance or credit card numbers.

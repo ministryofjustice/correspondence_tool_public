@@ -1,16 +1,16 @@
 .govuk-box-highlight
   h1.page-title.bold-large
     object type='image/svg+xml' data=image_path('icons/tick-white.svg') class="confirmation-tick"
-    | Your message has been sent
+    = t('.success')
 
 h2.heading-medium
-  | What happens next
+  = t('.next_title')
 p
-  | We will respond to your question as soon as possible.
+  = t('.next_copy')
 
 p
-  = link_to "What did you think of this service?", feedback_path
-  | (takes 30 seconds)
+  = link_to t('.feedback_link'), feedback_path
+  = t('.feedback_time')
 
 .button-holder
-  = link_to "Finish",root_path, {role: 'button', class: 'button-secondary'}
+  = link_to t('button.finish'),root_path, {role: 'button', class: 'button-secondary'}
