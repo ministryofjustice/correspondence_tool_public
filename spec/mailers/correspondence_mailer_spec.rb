@@ -39,11 +39,11 @@ RSpec.describe CorrespondenceMailer, type: :mailer do
     context 'and the subject contains' do
 
       it 'the type of correspondence' do
-        expect(@mail.subject).to include(@correspondence.type)
+        expect(@mail.subject).to include(@correspondence.type.humanize)
       end
 
       it 'the area of interest' do
-        expect(@mail.subject).to include(@correspondence.topic)
+        expect(@mail.subject).to include(@correspondence.topic.humanize)
       end
     end
 
