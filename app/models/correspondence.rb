@@ -9,7 +9,7 @@ class Correspondence < ActiveRecord::Base
 
   validates :email, confirmation: { case_sensitive: false }
 
-  validates_format_of :email, with: /@/,
+  validates_format_of :email, with: /\A.*@.*\z/,
     if: Proc.new { email.present? }
 
   validates_inclusion_of :category,
