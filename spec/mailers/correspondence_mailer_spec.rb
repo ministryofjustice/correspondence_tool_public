@@ -2,10 +2,10 @@ require "rails_helper"
 
 RSpec.describe CorrespondenceMailer, type: :mailer do
 
-  def send_email(correspondence_type='freedom_of_information_request')
+  def send_email(correspondence_category='freedom_of_information_request')
     ActionMailer::Base.perform_deliveries = true
     ActionMailer::Base.deliveries = []
-    @correspondence = build(:correspondence, type: correspondence_type)
+    @correspondence = build(:correspondence, category: correspondence_category)
     CorrespondenceMailer.new_correspondence(@correspondence).deliver_now
     @mail = ActionMailer::Base.deliveries.first
   end
@@ -38,8 +38,8 @@ RSpec.describe CorrespondenceMailer, type: :mailer do
 
     context 'and the subject contains' do
 
-      it 'the type of correspondence' do
-        expect(@mail.subject).to include(@correspondence.type.humanize)
+      it 'the category of correspondence' do
+        expect(@mail.subject).to include(@correspondence.category.humanize)
       end
 
       it 'the area of interest' do
@@ -52,7 +52,5 @@ RSpec.describe CorrespondenceMailer, type: :mailer do
         expect(@mail.html_part.body.to_s).to include(@correspondence.message)
       end
     end
-
   end
-
 end
