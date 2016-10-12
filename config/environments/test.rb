@@ -34,7 +34,7 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
-  config.action_mailer.default_url_options = { host: ENV['AAQ_EMAIL_DOMAIN'] }
+  config.action_mailer.default_url_options = { host: ENV.fetch('AAQ_EMAIL_DOMAIN') }
   config.action_mailer.asset_host = config.action_mailer.default_url_options[:host]
 
   config.active_job.queue_adapter = :test
