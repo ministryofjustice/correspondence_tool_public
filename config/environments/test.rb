@@ -33,7 +33,10 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
-  
+
+  config.action_mailer.default_url_options = { host: ENV.fetch('AAQ_EMAIL_DOMAIN') }
+  config.action_mailer.asset_host = config.action_mailer.default_url_options[:host]
+
   config.active_job.queue_adapter = :test
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
