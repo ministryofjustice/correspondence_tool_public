@@ -26,12 +26,12 @@ RSpec.describe CorrespondenceMailer, type: :mailer do
 
     context 'to the correct address for' do
       it 'freedom of information requests' do
-        expect(@mail.to).to eq [ ENV['FREEDOM_OF_INFORMATION_REQUEST_EMAIL'] ]
+        expect(@mail.to).to eq ['foi_request@localhost']
       end
 
       it 'general_enquiries' do
         send_email('general_enquiries')
-        expect(@mail.to).to eq [ ENV['GENERAL_ENQUIRIES_EMAIL'] ]
+        expect(@mail.to).to eq ['general_enquiries@localhost']
       end
 
     end
