@@ -1,9 +1,4 @@
-class Feedback
-
-  include ActiveModel::Model
-  include ActiveModel::Validations
-
-  attr_accessor :rating, :comment
+class Feedback < ActiveRecord::Base
 
   validates :rating, inclusion: { in:  Settings.service_feedback,
                                   message: "please select one option"}

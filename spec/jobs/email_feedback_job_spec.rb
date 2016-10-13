@@ -2,17 +2,24 @@ require 'rails_helper'
 
 RSpec.describe EmailFeedbackJob, type: :job do
   
-  let(:feedback) { build(:feedback) }
+  let(:feedback) { create(:feedback) }
+  subject        { EmailFeedbackJob.new }
 
-  describe '#perform_later' do
+  before do
+    ActiveJob::Base.queue_adapter = :test
+  end
 
-    before do
-      @feedback_yaml = YAML.dump(feedback)
-      ActiveJob::Base.queue_adapter = :test
+  describe '#perform' do
+    it 'sends an email' do
+      expect { subject.perform(feedback.id) }
+        .to change { ActionMailer::Base.deliveries.count }.by 1
     end
+  end
 
-    it 'accepts a serialised object and adds a job to the queue' do
-      expect { EmailFeedbackJob.perform_later(@feedback_yaml) }.to have_enqueued_job(EmailFeedbackJob)
+  describe '.perform_later' do
+    it 'accepts the ID of a feedback and enqueues an EmailFeedbackJob' do
+      expect { EmailFeedbackJob.perform_later(feedback.id) }
+        .to have_enqueued_job(EmailFeedbackJob)
     end
   end
 

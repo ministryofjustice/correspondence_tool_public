@@ -2,26 +2,14 @@ require 'rails_helper'
 
 RSpec.describe Feedback, type: :model do
 
-  let(:feedback) { build :feedback }
+  subject { build :feedback }
 
-  describe 'has a factory' do
-    it 'that produces a valid object by default' do
-      expect(feedback).to be_valid
-    end
-  end
-
+    it { should be_valid }
+    it { should validate_inclusion_of(:rating).in_array Settings.service_feedback }
 
   describe 'Feedback env variable is not null' do
     it 'has a specific email address associated' do
       expect(ENV["AAQ_FEEDBACK_EMAIL"]).not_to be nil
-    end
-  end
-
-  describe 'attributes' do
-
-    it do
-      should validate_inclusion_of(:rating).
-        in_array( Settings.service_feedback)
     end
   end
 
