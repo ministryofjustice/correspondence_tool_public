@@ -38,3 +38,32 @@ visit http://localhost:1080/ to view what emails have been sent locally.
 `public/images` contains images required by the static 500 error.
 
 `public/files` contains the stylesheet required by the static 500 error.
+
+### Environment Variables
+
+Certain settings are controlled by environment variables so that they can
+controlled by the deployment environment they are in (dev, staging, prod, etc)
+and so that secret or sensitive values aren't kept with the repository. See
+the `config/settings.yml` file for a full list, any variable there can be
+over-ridden with an environment variable with the same name but prefixed with
+`SETTINGS__`.
+
+* **SETTINGS__GA_TRACKING_ID** — the tracking ID used for Google
+  Analytics. Can be unset in which case it will be empty-string.
+* **SETTINGS__SENDGRID_USERNAME** — The username to use to login
+  to SendGrid. Note that SendGrid isn't used in local development (as
+  described above we use MailCatcher running on localhost:2050).
+* **SETTINGS__SENDGRID_PASSWORD** — The password for SendGrid. See above.
+* **SETTINGS__CORRESPONDENCE_EMAIL_FROM** — The email address
+  which will be used in the From address of email sent for correspondence and
+  feedback.
+* **SETTINGS__GENERAL_ENQUIRIES_EMAIL** — The email address to
+  send general correspondence emails to.
+* **SETTINGS__FREEDOM_OF_INFORMATION_REQUEST_EMAIL** — The email
+  address to send freedom of information request emails to. (Currently unused,
+  this should probably be removed.)
+* **SETTINGS__AAQ_FEEDBACK_EMAIL** — The email address to send
+  feedback to.
+* **SETTINGS__AAQ_EMAIL_URL** — The URL used for static assets
+  presented in the correspondence email.
+
