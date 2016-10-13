@@ -14,3 +14,6 @@ service_feedback:
   - neither_satisfied_nor_dissatisfied
   - dissatisfied
   - very_dissatisfied
+
+general_enquiries_email: general_enquiries@localhost
+freedom_of_information_request_email: foi_request@localhost
