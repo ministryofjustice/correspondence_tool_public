@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe EmailCorrespondenceJob, type: :job do
-  
+
   let(:correspondence) { build(:correspondence) }
 
   describe '#perform_later' do

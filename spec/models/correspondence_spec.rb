@@ -11,20 +11,20 @@ RSpec.describe Correspondence, type: :model do
   describe 'each type' do
     Settings.correspondence_types.each do |type|
       it 'has a specific email address associated' do
-        expect(ENV["#{type.upcase}_EMAIL"]).not_to be nil
+        expect(Settings["#{type}_email"]).not_to be nil
       end
     end
   end
 
   describe 'attributes' do
 
-    it { should validate_presence_of :name }
-    it { should validate_presence_of :email }
-    it { should validate_presence_of :type }
-    it { should validate_presence_of :topic }
-    it { should validate_presence_of :message }
+    it { should validate_presence_of     :name }
+    it { should validate_presence_of     :email }
+    it { should validate_presence_of     :type }
+    it { should validate_presence_of     :topic }
+    it { should validate_presence_of     :message }
     it { should validate_confirmation_of :email}
-  
+
     it do
       should validate_inclusion_of(:topic).
         in_array(Settings.correspondence_topics)

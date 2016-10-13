@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: ENV['CORRESPONDENCE_EMAIL_FROM']
+  default from: Settings.correspondence_email_from
   layout 'mailer'
 end
