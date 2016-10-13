@@ -33,7 +33,6 @@ Rails.application.configure do
   config.active_job.queue_adapter = :sidekiq
   config.action_mailer.delivery_method = :smtp
 
-  config.action_mailer.default_url_options = { host: ENV.fetch('AAQ_EMAIL_DOMAIN') }
   config.action_mailer.asset_host = config.action_mailer.default_url_options[:host]
 
   config.action_mailer.smtp_settings = {

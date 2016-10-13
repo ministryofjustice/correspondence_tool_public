@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe EmailCorrespondenceJob, type: :job do
-  
+
   let(:correspondence) { create(:correspondence) }
   subject              { EmailCorrespondenceJob.new }
 

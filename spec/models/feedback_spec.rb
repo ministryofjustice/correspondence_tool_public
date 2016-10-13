@@ -9,7 +9,7 @@ RSpec.describe Feedback, type: :model do
 
   describe 'Feedback env variable is not null' do
     it 'has a specific email address associated' do
-      expect(ENV["AAQ_FEEDBACK_EMAIL"]).not_to be nil
+      expect(Settings.aaq_feedback_email).not_to be nil
     end
   end
 

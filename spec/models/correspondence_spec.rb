@@ -9,7 +9,7 @@ RSpec.describe Correspondence, type: :model do
   describe 'each category' do
     Settings.correspondence_categories.each do |category|
       it 'has a specific email address associated' do
-        expect(ENV["#{category.upcase}_EMAIL"]).not_to be nil
+        expect(Settings["#{category}_email"]).not_to be nil
       end
     end
   end
@@ -22,7 +22,7 @@ RSpec.describe Correspondence, type: :model do
     it { should validate_presence_of      :topic }
     it { should validate_presence_of      :message }
     it { should validate_confirmation_of  :email}
-  
+
     it do
       should validate_inclusion_of(:topic).
         in_array(Settings.correspondence_topics)
