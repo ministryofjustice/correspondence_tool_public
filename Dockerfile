@@ -11,6 +11,7 @@ EXPOSE $PUMA_PORT
 RUN gem install bundler
 
 RUN bundle exec rake assets:precompile RAILS_ENV=production \
+  AAQ_EMAIL_DOMAIN=required_but_does_not_matter_for_assets \
   SECRET_KEY_BASE=required_but_does_not_matter_for_assets
 
 RUN bundle exec foreman export upstart /etc/init -a correspondence\
