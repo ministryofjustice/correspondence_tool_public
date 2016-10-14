@@ -20,6 +20,18 @@ RSpec.describe CorrespondenceController, type: :controller do
     }
   end
 
+  let(:invalid_params) do
+    {
+      correspondence: {
+        # no name
+        email:              external_user.email,
+        email_confirmation: external_user.email,
+        topic:              "prisons_and_probation",
+        message:  'Question about prisons and probation from member of public'
+      }
+    }
+  end
+
   describe 'GET new' do
     before { get :new }
 
@@ -29,34 +41,36 @@ RSpec.describe CorrespondenceController, type: :controller do
   describe 'POST create' do
     context 'with valid params' do 
 
-      it 'renders the :confirmation template' do
-        expect(post :create, params: params).to render_template(:confirmation)
+      it 'makes a DB entry' do
+        expect { post :create, params: params }
+          .to change { Correspondence.count }.by 1
       end
 
-      it 'sends #perorm_later to the EmailCorrespondenceJob' do
-        expect(EmailCorrespondenceJob).to receive(:perform_later)
-        post :create, params: params        
-      end
-
-      it 'enqueues a job' do
+      it 'enqueues an EmailCorrespondenceJob' do
         expect { post :create, params: params }
           .to have_enqueued_job(EmailCorrespondenceJob)
       end
 
-      it 'and a DB entry is made' do
-        expect { post :create, params: params }
-          .to change { Correspondence.count }.by 1
+      it 'renders the :confirmation template' do
+        expect(post :create, params: params).to render_template(:confirmation)
       end
     end
 
     context 'with invalid params' do
-      before do
-        invalid_params = params
-        invalid_params[:correspondence].delete(:name)
-        post :create, params: invalid_params
+
+      it 'does not make a DB entry' do
+        expect { post :create, params: invalid_params }
+          .to change { Correspondence.count }.by 0
       end
 
-      it { should render_template(:new) }
+      it 'does not enqueue an EmailCorrespondenceJob' do
+        expect { post :create, params: invalid_params }
+          .not_to have_enqueued_job(EmailCorrespondenceJob)
+      end
+
+      it 'renders the :new template' do
+        expect(post :create, params: invalid_params).to render_template(:new)
+      end
     end
 
     context 'when redis is down' do
