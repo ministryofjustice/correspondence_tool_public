@@ -31,6 +31,15 @@ Rails.application.configure do
   config.active_job.queue_adapter = :sidekiq
 
   config.action_mailer.asset_host = config.action_mailer.default_url_options[:host]
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.sendgrid.net',
+    port:                 587,
+    domain:               'digital.justice.gov.uk',
+    user_name:            Settings.sendgrid_username,
+    password:             Settings.sendgrid_password,
+    authentication:       :plain,
+    enable_starttls_auto: true
+  }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'

@@ -3,13 +3,9 @@ require_relative 'application'
 
 
 Rails.configuration.action_mailer.smtp_settings = {
-    :address              => "smtp.sendgrid.net",
-    :port                 => 587,
-    :domain               => 'digital.justice.gov.uk',
-    :user_name            => Settings.sendgrid_username,
-    :password             => Settings.sendgrid_password,
-    :authentication       => :plain,
-    :enable_starttls_auto => true
+  address: 'localhost',
+  port:    2050,
+  domain:  'digital.justice.gov.uk'
 }
 
 Rails.configuration.action_mailer.default_url_options = {
