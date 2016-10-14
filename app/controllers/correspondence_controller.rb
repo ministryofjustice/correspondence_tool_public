@@ -9,7 +9,7 @@ class CorrespondenceController < ApplicationController
   end
 
   def create
-    @correspondence = Correspondence.new(general_enquiry_attributes)
+    @correspondence = Correspondence.new(correspondence_params)
 
     if @correspondence.save
       EmailCorrespondenceJob.perform_later(@correspondence)
@@ -21,10 +21,11 @@ class CorrespondenceController < ApplicationController
 
   private
 
-  def general_enquiry_attributes
-    correspondence_params.merge(
-      category: 'general_enquiries'
-    )
+  def category_attribute
+    case params[:smoke_test]
+    when 'true' then 'smoke_test'
+    else 'general_enquiries'
+    end
   end
 
   def correspondence_params
@@ -33,7 +34,8 @@ class CorrespondenceController < ApplicationController
       :email,
       :email_confirmation,
       :topic,
-      :message
-      )
+      :message,
+      :smoke_test
+    ).merge({ category: category_attribute })
   end
 end

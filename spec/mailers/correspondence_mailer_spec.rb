@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe CorrespondenceMailer, type: :mailer do
 
-  def send_email(correspondence_category='freedom_of_information_request')
+  def send_email
     ActionMailer::Base.perform_deliveries = true
     ActionMailer::Base.deliveries = []
     @correspondence = build(:correspondence, category: correspondence_category)
@@ -19,19 +19,28 @@ RSpec.describe CorrespondenceMailer, type: :mailer do
   end
 
   describe '#new_correspondence' do
+    let(:correspondence_category) { 'general_enquiries' }
 
     it 'sends an email' do
       expect(ActionMailer::Base.deliveries.count).to eq 1
     end
 
-    context 'to the correct address for' do
-      it 'freedom of information requests' do
-        expect(@mail.to).to eq ['foi_request@localhost']
+    describe 'destination mail address' do
+      subject { @mail.to }
+
+      context 'when creating a general enquiry' do
+        let(:correspondence_category) { 'general_enquiries' }
+        it { is_expected.to include('general_enquiries@localhost') }
       end
 
-      it 'general_enquiries' do
-        send_email('general_enquiries')
-        expect(@mail.to).to eq ['general_enquiries@localhost']
+      context 'when creating a foi request' do
+        let(:correspondence_category) { 'freedom_of_information_request' }
+        it { is_expected.to include('foi_request@localhost') }
+      end
+
+      context 'when creating a smoke test' do
+        let(:correspondence_category) { 'smoke_test' }
+        it { is_expected.to include('smoketest@localhost') }
       end
 
     end

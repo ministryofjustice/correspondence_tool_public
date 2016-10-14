@@ -1,6 +1,7 @@
 correspondence_categories:
   - general_enquiries
   - freedom_of_information_request
+  - smoke_test
 
 correspondence_topics:
   - courts_and_tribunals

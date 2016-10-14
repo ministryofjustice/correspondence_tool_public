@@ -33,6 +33,7 @@ group :test do
   gem 'capybara'
   gem "codeclimate-test-reporter", require: nil
   gem 'i18n-tasks', '~> 0.9.5'
+  gem 'mechanize'
   gem 'rails-controller-testing'
   gem 'shoulda-matchers', '~> 3.1'
 end
