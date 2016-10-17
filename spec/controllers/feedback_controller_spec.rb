@@ -7,8 +7,17 @@ RSpec.describe FeedbackController, type: :controller do
   let(:params) do
     {
       feedback: {
-        rating:              feedback.rating,
-        comment:             feedback.comment
+        rating:   feedback.rating,
+        comment:  feedback.comment
+      }
+    }
+  end
+
+  let(:invalid_params) do
+    {
+      feedback: {
+        # no rating
+        comment:  feedback.comment
       }
     }
   end
@@ -21,44 +30,39 @@ RSpec.describe FeedbackController, type: :controller do
 
   describe 'POST create' do
     context 'with valid params' do
-      before do
-        @timestamp = DateTime.now.to_s
-        post :create, params: params
+
+      it 'makes a DB entry' do
+        expect { post :create, params: params }
+          .to change { Feedback.count }.by 1
       end
 
-      it 'redirects to the home page' do
-        expect(response).to redirect_to(correspondence_path)
-      end
-      it 'sends #perform_later to the EmailFeedbackJob' do
-        expect(EmailFeedbackJob).to receive(:perform_later)
-        post :create, params: params        
-      end
-
-      it 'and a job is enqueued' do
+      it 'enqueues an EmailFeedbackJob' do
         expect { post :create, params: params }
           .to have_enqueued_job(EmailFeedbackJob)
       end
 
-      it 'and the submission is logged' do
-        log = File.readlines(Settings.feedback_log)
-        last_log_entry = JSON.parse(log.last)
-        user_input = last_log_entry["feedback"]
-
-        expect(user_input["timestamp"]).to eq @timestamp
-        expect(user_input["rating"]).to eq feedback.rating.humanize
-        expect(user_input["comment"]).to eq feedback.comment
+      it 'redirects to the webform' do
+        expect(post :create, params: params)
+          .to redirect_to correspondence_path
       end
     end
 
     context 'with invalid params' do
-      before do
-        invalid_params = params
-        invalid_params[:feedback].delete(:rating)
-        post :create, params: invalid_params
+
+      it 'does not make a DB entry' do
+        expect { post :create, params: invalid_params }
+          .to change { Feedback.count }.by 0
       end
 
-      it { should render_template(:new) }
+      it 'does not enqueue an EmailFeedbackJob' do
+        expect { post :create, params: invalid_params }
+          .not_to have_enqueued_job(EmailFeedbackJob)
+      end
 
+      it 'renders the :new template' do
+        expect(post :create, params: invalid_params)
+          .to render_template(:new)
+      end
     end
   end
 
