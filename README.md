@@ -41,12 +41,12 @@ visit http://localhost:1080/ to view what emails have been sent locally.
 
 ### Environment Variables
 
-Certain settings are controlled by environment variables so that they can
-controlled by the deployment environment they are in (dev, staging, prod, etc)
-and so that secret or sensitive values aren't kept with the repository. See
-the `config/settings.yml` file for a full list, any variable there can be
-over-ridden with an environment variable with the same name but prefixed with
-`SETTINGS__`.
+Certain settings are defined by environment variables so that they can be
+specific to the deployment environment in which the app is running (dev,
+staging, prod, etc) and secret or sensitive values aren't kept within the
+repository. See the `config/settings.yml` file for a full list, any variable
+there can be over-ridden with an environment variable of the same name but
+prefixed with `SETTINGS__`.
 
 * **SETTINGS__GA_TRACKING_ID** — the tracking ID used for Google
   Analytics. Can be unset in which case it will be empty-string.
