@@ -4,9 +4,7 @@ RSpec.describe Correspondence, type: :model do
 
   subject { build :correspondence }
 
-  describe 'test object instantiated by FactoryGirl' do
-    it { should be_valid }
-  end
+  it { should be_valid }
 
   describe 'each category' do
     Settings.correspondence_categories.each do |category|
@@ -16,7 +14,7 @@ RSpec.describe Correspondence, type: :model do
     end
   end
 
-  describe 'attributes' do
+  describe 'validations' do
 
     it { should validate_presence_of      :name }
     it { should validate_presence_of      :email }
