@@ -4,72 +4,66 @@
 
 A simple application to allow public users to submit correspondence. A present this only forwards the request to a set email address.
 
-##Local development
+## Local development
 
-###Clone this repository change to the new directory
+### Clone this repository change to the new directory
 
 ```bash
 $ git clone git@github.com:ministryofjustice/correspondence_tool_public.git
 $ cd correspondence_tool_public
 ```
 
-### Setup Docker 
+### Setup MailCatcher
 
-The reason Docker is used in while in development is to overcome issues with Ruby,Rails, Postgres version conflicts and time to set these up for new developers.
+When developing or testing locally we use
+[MailCatcher](https://mailcatcher.me/) to capture mail being sent locally and
+view it locally. The development environment is already setup to use
+MailCatcher so install it and run it:
 
-Majority of the team uses Docker Toolbox. Docker for Mac is currently in beta but for the time being just use Docker Toolbox. [Download](https://www.docker.com/products/docker-toolbox) and follow the [installation instructions](https://docs.docker.com/toolbox/toolbox_install_mac/)
-
-###Build Docker Image and bring the Docker Containers up
-First build the initial docker image that will be used for the container.
-
-In the root directory of the project run the following
-
-```
-$ docker-compose build
-
-...Loads of installation output ...
-
-Successfully built -- Random image ID --
-
-$ docker-compose up
-
-...outputs the following
-Recreating correspondencetoolpublic_web_1
-Attaching to correspondencetoolpublic_web_1
-web_1  | Puma starting in single mode...
-web_1  | * Version 3.4.0 (ruby 2.3.1-p112), codename: Owl Bowl Brawl
-web_1  | * Min threads: 5, max threads: 5
-web_1  | * Environment: development
-web_1  | * Listening on tcp://0.0.0.0:3000
-web_1  | Use Ctrl-C to stop
-
+```bash
+$ gem install mailcatcher
+$ mailcatcher --smtp-port 2050
 ```
 
-To access the site you need to find the IP address of the docker machine.
+We run it on port 2050 because MacOS appears to be running the new
+`cloud-drive` process on default MailCatcher port (1025). Once run, you can
+visit http://localhost:1080/ to view what emails have been sent locally.
 
-```
-$ docker-machine ip
-192.168.99.100
-$ 
-```
-So if you open your favourite web browser and go to https://192.168.99.100:3000 (obviously substitute the ip with the docker machines ip)
+## Production Environment Setup
 
-You should be greeted with the services home page
-
-###Questions about Docker
-
-#### 1. Where should I make the changes?
-The docker containers use a symlink to your local machine so any changes you make to the project files will automatically be synced with the docker containers. However if you if you need to ```bundle install``` then its best to SSH into the docker container and run it from there. The reason for this is that it will then use the docker containers version of Ruby/Rails to install the gems.
-
-####2. Do I have to rebuild the Docker Image after I made changes to the local files?
-No, as mentioned in question 1. the rails files are sync automatically with your local machine.
-
-##Production Environment Setup
-
-###Web Server Setup
+### Web Server Setup
 
 `public/500-nginx.html` provides a static 500 error for when the Rails application cannot be reached.
 
 `public/images` contains images required by the static 500 error.
 
 `public/files` contains the stylesheet required by the static 500 error.
+
+### Environment Variables
+
+Certain settings are defined by environment variables so that they can be
+specific to the deployment environment in which the app is running (dev,
+staging, prod, etc) and secret or sensitive values aren't kept within the
+repository. See the `config/settings.yml` file for a full list, any variable
+there can be over-ridden with an environment variable of the same name but
+prefixed with `SETTINGS__`.
+
+* **SETTINGS__GA_TRACKING_ID** — the tracking ID used for Google
+  Analytics. Can be unset in which case it will be empty-string.
+* **SETTINGS__SENDGRID_USERNAME** — The username to use to login
+  to SendGrid. Note that SendGrid isn't used in local development (as
+  described above we use MailCatcher running on localhost:2050).
+* **SETTINGS__SENDGRID_PASSWORD** — The password for SendGrid. See above.
+* **SETTINGS__CORRESPONDENCE_EMAIL_FROM** — The email address
+  which will be used in the From address of email sent for correspondence and
+  feedback.
+* **SETTINGS__GENERAL_ENQUIRIES_EMAIL** — The email address to
+  send general correspondence emails to.
+* **SETTINGS__FREEDOM_OF_INFORMATION_REQUEST_EMAIL** — The email
+  address to send freedom of information request emails to. (Currently unused,
+  this should probably be removed.)
+* **SETTINGS__AAQ_FEEDBACK_EMAIL** — The email address to send
+  feedback to.
+* **SETTINGS__AAQ_EMAIL_URL** — The URL used for static assets
+  presented in the correspondence email.
+

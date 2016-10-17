@@ -2,7 +2,7 @@ class CorrespondenceMailer < ApplicationMailer
 
   def new_correspondence(correspondence)
     @correspondence = correspondence
-    mail to: ENV["#{@correspondence.category.upcase}_EMAIL"],
+    mail to: Settings["#{@correspondence.category}_email"],
          subject: "New #{@correspondence.category.humanize} - #{@correspondence.topic.humanize}"
   end
 

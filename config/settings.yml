@@ -14,3 +14,16 @@ service_feedback:
   - neither_satisfied_nor_dissatisfied
   - dissatisfied
   - very_dissatisfied
+
+# Variables below are meant to be over-ridden in non-local environments (dev,
+# staging, prod) with correct values. The values below are place-holders.
+ga_tracking_id: ''
+
+sendgrid_username: sendgrid
+sendgrid_password: password
+
+correspondence_email_from: correspondence_tool@localhost
+general_enquiries_email: general_enquiries@localhost
+freedom_of_information_request_email: foi_request@localhost
+aaq_feedback_email: feedback@localhost
+aaq_email_url: http://localhost/

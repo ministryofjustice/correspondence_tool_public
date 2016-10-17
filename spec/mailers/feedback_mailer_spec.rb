@@ -21,7 +21,7 @@ RSpec.describe FeedbackMailer, type: :mailer do
     end
 
     it 'should send to the correct address' do
-      expect(@mail.to).to eq [ ENV['AAQ_FEEDBACK_EMAIL'] ]
+      expect(@mail.to).to eq [ 'feedback@localhost' ]
     end
 
     it 'should have a subject that contains the rating' do
