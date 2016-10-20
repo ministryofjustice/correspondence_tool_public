@@ -5,11 +5,12 @@ class HeartbeatController < ApplicationController
 
   def ping
     version_info = {
-        'version_number'  => ENV['VERSION_NUMBER'] || "Not Available",
-        'build_date'      => ENV['BUILD_DATE'] || 'Not Available',
-        'commit_id'       => ENV['COMMIT_ID'] || 'Not Available',
-        'build_tag'       => ENV['BUILD_TAG'] || "Not Available"
-    }.to_json
+        version_number: Rails.application.config.version_number,
+        build_date:     Rails.application.config.build_date,
+        commit_id:      Rails.application.config.commit_id,
+        build_tag:      Rails.application.config.build_tag
+    }
+
     render json: version_info
   end
 
