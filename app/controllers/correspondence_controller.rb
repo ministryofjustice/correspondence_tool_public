@@ -42,7 +42,7 @@ class CorrespondenceController < ApplicationController
 
   def general_enquiry_attributes
     correspondence_params.merge(
-      type: 'general_enquiries'
+      category: 'general_enquiries'
     )
   end
 

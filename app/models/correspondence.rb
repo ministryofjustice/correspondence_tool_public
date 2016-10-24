@@ -8,20 +8,20 @@ class Correspondence
                         :name,
                         :email,
                         :email_confirmation,
-                        :type
+                        :category
 
   validates :email, confirmation: { case_sensitive: false }
 
   validates_format_of :email, with: /@/,
     if: Proc.new { email.present? }
 
-  validates_inclusion_of :type,
-    in: Settings.correspondence_types,
-    if: Proc.new { type.present? }
+  validates_inclusion_of :category,
+    in: Settings.correspondence_categories,
+    if: Proc.new { category.present? }
   validates_inclusion_of :topic,
     in: Settings.correspondence_topics,
     if: Proc.new { topic.present? }
 
-  attr_accessor :name, :email, :type, :topic, :message
+  attr_accessor :name, :email, :category, :topic, :message
 
 end

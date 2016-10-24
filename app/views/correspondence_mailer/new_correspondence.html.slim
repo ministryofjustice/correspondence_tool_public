@@ -1,5 +1,5 @@
 h2
-  = "New #{@correspondence.type.humanize}"
+  = "New #{@correspondence.category.humanize}"
 
 p
   = mail_to @correspondence.email, "#{@correspondence.name}(#{@correspondence.email})"
