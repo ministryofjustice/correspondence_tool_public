@@ -1,14 +1,13 @@
 language: ruby
 sudo: false
 cache: bundler
-#addons:
-#  postgresql: '9.4'
-#services:
-#  - postgresql
-#before_install:
-#- export TZ=Europe/London
-#before_script:
-#  - psql -c 'create database travis_ci_test;' -U postgres
-#  - cp config/database.yml.travis config/database.yml
-# Please don't add extra test commands here unless they are Travis only -- Jenkins will run this script too
-#script: bash ./runtests.sh
+addons:
+  postgresql: 9.4
+services:
+  - postgresql
+before_script:
+- psql -c 'create database correspondence_tool_public_test;' -U postgres
+script:
+- bundle exec rubocop
+- bundle exec rails db:create db:schema:load
+- bundle exec rails spec
