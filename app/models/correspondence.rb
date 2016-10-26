@@ -1,18 +1,15 @@
-class Correspondence
+class Correspondence < ActiveRecord::Base
 
-  include ActiveModel::Model
-  include ActiveModel::Validations
-
-  validates_presence_of :topic,
-                        :message,
-                        :name,
+  validates_presence_of :name,
                         :email,
                         :email_confirmation,
-                        :category
+                        :category,
+                        :topic,
+                        :message
 
   validates :email, confirmation: { case_sensitive: false }
 
-  validates_format_of :email, with: /@/,
+  validates_format_of :email, with: /\A.*@.*\z/,
     if: Proc.new { email.present? }
 
   validates_inclusion_of :category,
@@ -22,6 +19,10 @@ class Correspondence
     in: Settings.correspondence_topics,
     if: Proc.new { topic.present? }
 
-  attr_accessor :name, :email, :category, :topic, :message
-
+  jsonb_accessor :content,
+    name: :string,
+    email: :string,
+    category: :string,
+    topic: :string,
+    message: :text
 end

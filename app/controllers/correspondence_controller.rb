@@ -11,9 +11,8 @@ class CorrespondenceController < ApplicationController
   def create
     @correspondence = Correspondence.new(general_enquiry_attributes)
 
-    if @correspondence.valid?
+    if @correspondence.save
       EmailCorrespondenceJob.perform_later(YAML.dump(@correspondence))
-      log_correspondence
       render 'correspondence/confirmation'
     else
       render :new
@@ -21,24 +20,6 @@ class CorrespondenceController < ApplicationController
   end
 
   private
-
-  def log_correspondence
-    Rails.configuration.correspondence_logger.info(
-      {
-        correspondence:
-          {
-            timestamp: DateTime.now.to_s,
-            name:      @correspondence.name,
-            email:     @correspondence.email,
-            topic:     @correspondence.topic,
-            message:   @correspondence.message
-              .gsub('\\', '\\\\')
-              .gsub("\n", '\\n')
-              .gsub("\r", '\\r')
-          }
-      }.to_json
-    )
-  end
 
   def general_enquiry_attributes
     correspondence_params.merge(
@@ -53,7 +34,6 @@ class CorrespondenceController < ApplicationController
       :email_confirmation,
       :topic,
       :message
-      ) 
+      )
   end
-
 end

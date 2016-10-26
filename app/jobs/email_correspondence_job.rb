@@ -1,3 +1,5 @@
+require 'correspondence'
+
 class EmailCorrespondenceJob < ApplicationJob
 
   queue_as :mailers
