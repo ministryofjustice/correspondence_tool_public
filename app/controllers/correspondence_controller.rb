@@ -12,7 +12,7 @@ class CorrespondenceController < ApplicationController
     @correspondence = Correspondence.new(general_enquiry_attributes)
 
     if @correspondence.save
-      EmailCorrespondenceJob.perform_later(YAML.dump(@correspondence))
+      EmailCorrespondenceJob.perform_later(@correspondence)
       render 'correspondence/confirmation'
     else
       render :new
