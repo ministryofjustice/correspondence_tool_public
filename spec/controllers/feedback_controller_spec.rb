@@ -26,9 +26,10 @@ RSpec.describe FeedbackController, type: :controller do
           .to change { Feedback.count }.by 1
       end
 
-      it 'enqueues an EmailFeedbackJob' do
-        expect { post :create, params: params }
-          .to have_enqueued_job(EmailFeedbackJob)
+      it 'enqueues an EmailFeedbackJob with our feedback' do
+        post :create, params: params
+        feedback = Feedback.last
+        expect(EmailFeedbackJob).to have_been_enqueued.with(feedback)
       end
 
       it 'redirects to the webform' do

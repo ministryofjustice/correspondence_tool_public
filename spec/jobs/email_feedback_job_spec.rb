@@ -4,8 +4,11 @@ RSpec.describe EmailFeedbackJob, type: :job do
   let(:feedback) { create(:feedback) }
   subject        { EmailFeedbackJob.new }
 
-  before do
-    ActiveJob::Base.queue_adapter = :test
+  describe '.perform_later' do
+    it 'adds a job to our queue' do
+      expect { EmailFeedbackJob.perform_later(feedback) }
+        .to have_enqueued_job.on_queue('mailers')
+    end
   end
 
   describe '#perform' do
@@ -14,12 +17,4 @@ RSpec.describe EmailFeedbackJob, type: :job do
         .to change { ActionMailer::Base.deliveries.count }.by 1
     end
   end
-
-  describe '.perform_later' do
-    it 'adds a job to our queue' do
-      expect { EmailFeedbackJob.perform_later(feedback) }
-        .to have_enqueued_job(EmailFeedbackJob)
-    end
-  end
-
 end

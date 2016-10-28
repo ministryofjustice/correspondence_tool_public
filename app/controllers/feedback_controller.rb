@@ -7,7 +7,7 @@ class FeedbackController < ApplicationController
     @feedback = Feedback.new(feedback_params)
 
     if @feedback.save
-      EmailFeedbackJob.perform_later(YAML.dump(@feedback))
+      EmailFeedbackJob.perform_later(@feedback)
       redirect_to correspondence_url, notice: 'Feedback submitted'
     else
       render :new
@@ -22,5 +22,4 @@ class FeedbackController < ApplicationController
       :comment
     )
   end
-
 end
