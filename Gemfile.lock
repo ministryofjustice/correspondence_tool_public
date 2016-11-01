@@ -388,6 +388,7 @@ DEPENDENCIES
   jsonb_accessor (~> 1.0.0.beta.1)
   listen (~> 3.0.5)
   logstasher
+  mail
   mechanize
   pg (~> 0.18)
   premailer-rails (~> 1.9)
