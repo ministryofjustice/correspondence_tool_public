@@ -5,7 +5,8 @@ RSpec.describe Feedback, type: :model do
 
   it { should be_valid }
   it do
-    should validate_inclusion_of(:rating).in_array Settings.service_feedback
+    should validate_inclusion_of(:ease_of_use).in_array Settings.feedback_options
+    should validate_inclusion_of(:completeness).in_array Settings.feedback_options
   end
 
   describe 'Feedback env variable is not null' do

@@ -9,12 +9,12 @@ correspondence_topics:
   - legal_aid
   - something_else
 
-service_feedback:
-  - very_satisfied
-  - satisfied
-  - neither_satisfied_nor_dissatisfied
-  - dissatisfied
-  - very_dissatisfied
+feedback_options:
+  - strongly_agree
+  - agree
+  - neither_agree_nor_disagree
+  - disagree
+  - strongly_disagree
 
 # Variables below are meant to be over-ridden in non-local environments (dev,
 # staging, prod) with correct values. The values below are place-holders.

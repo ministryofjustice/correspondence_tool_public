@@ -24,10 +24,31 @@ RSpec.describe FeedbackMailer, type: :mailer do
       expect(@mail.to).to eq [ 'feedback@localhost' ]
     end
 
-    it 'should have a subject that contains the rating' do
-      expect(@mail.subject).to include(@feedback.rating.humanize)
+    describe 'and the subject contains' do
+      it 'the rating for ease of use' do
+        expect(@mail.subject).to include(@feedback.ease_of_use.humanize)
+      end
+
+      it 'the rating for completeness' do
+        expect(@mail.subject).to include(@feedback.completeness.humanize)
+      end
     end
 
-  end
+    describe 'and the body contains' do
+      it 'the rating for eash of use' do
+        expect(@mail.html_part.body.to_s).
+          to include(@feedback.ease_of_use.humanize)
+      end
 
+      it 'the rating for completeness' do
+        expect(@mail.html_part.body.to_s).
+          to include(@feedback.completeness.humanize)
+      end
+
+      it 'the comment' do
+        expect(@mail.html_part.body.to_s).
+          to include(@feedback.comment)
+      end
+    end
+  end
 end

@@ -7,7 +7,8 @@ RSpec.describe FeedbackController, type: :controller do
   let(:params) do
     {
       feedback: {
-        rating:  feedback.rating,
+        ease_of_use:  feedback.ease_of_use,
+        completeness: feedback.completeness,
         comment: feedback.comment
       }
     }
@@ -42,7 +43,7 @@ RSpec.describe FeedbackController, type: :controller do
       let(:params) do
         {
           feedback: {
-            # no rating
+            # no :ease_of_use or :completeness
             comment: feedback.comment
           }
         }

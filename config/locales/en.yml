@@ -20,6 +20,20 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    errors:
+      models:
+        feedback:
+          attributes:
+            ease_of_use:
+              inclusion: please select one option
+            completeness:
+              inclusion: please select one option
+    attributes:
+      feedback:
+        ease_of_use: This online service was easy to use
+        completeness: The online serice enabled me to give all the relevant information
+
   date:
     formats:
       default: "%d/%m/%Y"
@@ -32,8 +46,10 @@ en:
       correspondence:
         topic: What would you like to contact us about?
       feedback:
-        rating: |
-          Overall, how did you feel about the service you received today?
+        ease_of_use: |
+          This online service was easy to use
+        completeness: |
+          The online service enabled me to give all the relevant information
     label:
       correspondence:
         name: Full name
@@ -68,7 +84,9 @@ en:
 
   feedback:
     new:
+      error_summary: Please answer the statement(s) below
       heading: Give feedback
+      prompt: To what extent do you agree with the following statements?
       data_warning: |
         Please don't include any personal or financial information,
         for example your National Insurance or credit card numbers.
