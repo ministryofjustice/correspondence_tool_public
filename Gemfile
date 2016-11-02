@@ -10,15 +10,17 @@ gem 'govuk_elements_form_builder', git: 'https://github.com/ministryofjustice/go
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
+gem 'jsonb_accessor', '~> 1.0.0.beta.1'
+gem 'logstasher'
 gem 'premailer-rails', '~> 1.9'
 gem 'puma', '~> 3.0'
+gem 'pg', '~> 0.18'
 gem 'rails', '~> 5.0.0'
 gem 'sass-rails', '~> 5.0'
 gem 'sidekiq'
 gem 'slim-rails', '~> 3.1'
 gem 'susy', '~> 2.2.12'
 gem 'uglifier', '>= 1.3.0'
-gem 'logstasher'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

@@ -1,26 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe Correspondence, type: :model do
-
   subject { build :correspondence }
 
-  describe 'test object instantiated by FactoryGirl' do
-    it { should be_valid }
-  end
+  it { should be_valid }
 
-  describe 'each type' do
-    Settings.correspondence_types.each do |type|
+  describe 'each category' do
+    Settings.correspondence_categories.each do |category|
       it 'has a specific email address associated' do
-        expect(Settings["#{type}_email"]).not_to be nil
+        expect(Settings["#{category}_email"]).not_to be nil
       end
     end
   end
 
-  describe 'attributes' do
-
+  describe 'validations' do
     it { should validate_presence_of     :name }
     it { should validate_presence_of     :email }
-    it { should validate_presence_of     :type }
+    it { should validate_presence_of     :category }
     it { should validate_presence_of     :topic }
     it { should validate_presence_of     :message }
     it { should validate_confirmation_of :email}
@@ -31,8 +27,8 @@ RSpec.describe Correspondence, type: :model do
     end
 
     it do
-      should validate_inclusion_of(:type).
-        in_array(Settings.correspondence_types)
+      should validate_inclusion_of(:category).
+        in_array(Settings.correspondence_categories)
     end
 
     it { should allow_value('foo@bar.com').for :email }
