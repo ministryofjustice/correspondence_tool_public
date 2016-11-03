@@ -28,13 +28,15 @@ general_enquiries_email: general_enquiries@localhost
 freedom_of_information_request_email: foi_request@localhost
 smoke_test_email: smoketest@localhost
 smoke_tests:
+  protocol: !ruby/symbol pop3
   server: 'pop3.local'
   port: 995
   ssl: true
-  password: password
-  read_attempts: 1
-  first_read_wait: 1
-  read_retry_wait: 1
+  username: 'smoketest'
+  password: 'password'
+  read_attempts: 10
+  first_read_wait: 2
+  retry_read_wait: 3
 aaq_feedback_email: feedback@localhost
 aaq_email_url: http://localhost/
 
