@@ -7,8 +7,12 @@ create)
     bundle exec rails db:setup
     ;;
 migrate)
-    echo "running migrate and seed"
+    echo "running migrate"
     bundle exec rails db:migrate
+    ;;
+reset)
+    echo "running reset - db:drop and db:setup"
+    bundle exec rails db:reset
     ;;
 esac
 bundle exec puma -C config/puma.rb
