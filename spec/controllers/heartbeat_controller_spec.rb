@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+
+
 RSpec.describe HeartbeatController, type: :controller do
 
 
@@ -8,56 +10,29 @@ RSpec.describe HeartbeatController, type: :controller do
       allow(Rails).to receive(:env).and_return(double(development?: false, production?: true))
     end
 
-    after do
-      expect(response.status).not_to eq(301)
-    end
-
     it 'ping endpoint' do
       get :ping
+      expect(response.status).not_to eq(301)
     end
 
     it 'healthcheck endpoint' do
       get :healthcheck
+      expect(response.status).not_to eq(301)
     end
   end
 
   describe '#ping' do
-    context 'when environment variables not set' do
-      before do
-        Rails.application.config.version_number = "Not Available"
-        Rails.application.config.build_date     = "Not Available"
-        Rails.application.config.commit_id      = "Not Available"
-        Rails.application.config.build_tag      = "Not Available"
-        get :ping
-      end
+    it 'returns JSON with app information' do
+      get :ping
 
-      it 'returns "Not Available"' do
-        expect(JSON.parse(response.body).values)
-            .to eq( ["Not Available",
-                     "Not Available",
-                     "Not Available",
-                     "Not Available"])
-      end
-    end
-
-    context 'when environment variables set' do
-
-      before do
-        Rails.application.config.version_number = '123'
-        Rails.application.config.build_date     = '20150721'
-        Rails.application.config.commit_id      = 'afb12cb3'
-        Rails.application.config.build_tag      = 'test'
-
-        get :ping
-      end
-
-      it 'returns JSON with app information' do
-        expect(response.body).to eq({version_number: '123',
-                                     build_date:     '20150721',
-                                     commit_id:      'afb12cb3',
-                                     build_tag:      'test'
-                                    }.to_json)
-      end
+      ping_response = JSON.parse response.body
+      # Settings can be nil, and since we don't test Settings anywhere else we do it here.
+      expect(ping_response['build_date']).to_not be_nil
+      expect(ping_response['build_date']).to eq Settings.build_date
+      expect(ping_response['git_commit']).to_not be_nil
+      expect(ping_response['git_commit']).to eq Settings.git_commit
+      expect(ping_response['git_source']).to_not be_nil
+      expect(ping_response['git_source']).to eq Settings.git_source
     end
   end
 

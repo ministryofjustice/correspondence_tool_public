@@ -5,10 +5,9 @@ class HeartbeatController < ApplicationController
 
   def ping
     version_info = {
-        version_number: Rails.application.config.version_number,
-        build_date:     Rails.application.config.build_date,
-        commit_id:      Rails.application.config.commit_id,
-        build_tag:      Rails.application.config.build_tag
+        build_date: Settings.build_date,
+        git_commit: Settings.git_commit,
+        git_source: Settings.git_source
     }
 
     render json: version_info
