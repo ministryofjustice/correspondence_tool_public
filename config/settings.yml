@@ -27,3 +27,8 @@ general_enquiries_email: general_enquiries@localhost
 freedom_of_information_request_email: foi_request@localhost
 aaq_feedback_email: feedback@localhost
 aaq_email_url: http://localhost/
+
+# These are set in run.sh
+git_source:  Git Source Not Available
+build_date:  Build Date Not Available
+git_commit:  Git Commit Not Available
