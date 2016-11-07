@@ -74,6 +74,11 @@ send email, which may mean fiddling around with it's settings if you're
 testing smoke tests locally as those settings may point to a locally running
 `mailcatcher`.
 
+#### Jenkins Integration
+
+To ensure that the environment is setup correctly there is a script
+`run-smoketests.sh` that Jenkins can use to run the smoke tests.
+
 ### Environment Variables
 
 Certain settings are defined by environment variables so that they can be
