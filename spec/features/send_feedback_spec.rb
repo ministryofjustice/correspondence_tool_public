@@ -10,8 +10,8 @@ feature 'Submit service feedback' do
     choose rating
     fill_in 'feedback[comment]', with: comment
     click_button 'Send'
-    expect(current_path).to eq correspondence_path
-    expect(page).to have_content('Feedback submitted')
+    expect(current_path).to eq '/feedback'
+    expect(page).to have_content('Your feedback has been sent')
   end
 
   scenario 'Without a rating' do

@@ -72,3 +72,6 @@ en:
       data_warning: |
         Please don't include any personal or financial information,
         for example your National Insurance or credit card numbers.
+    confirmation:
+      success: Your feedback has been sent
+      moj_home: Return to the Ministry of Justice homepage
