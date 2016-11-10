@@ -3,6 +3,7 @@
 
 require 'optparse'
 require 'ostruct'
+require 'securerandom'
 
 begin
   require 'mail'
@@ -59,9 +60,8 @@ module SmokeTest
     parse_args(remaining_args)
     configure_mailer(options)
 
-    message = "This is smoky #{Process.pid} #{DateTime.now}"
     info 'Sending smoke test email'
-    result = send_smoke_test_email(@@site_url, message)
+    result = send_smoke_test_email(@@site_url)
 
     if result.code != '200'
       error "!!! HTTP Status: #{result.code}"
@@ -91,6 +91,10 @@ module SmokeTest
       first_read_wait: Settings['smoke_tests']['first_read_wait'],
       max_wait_time:   Settings['smoke_tests']['max_wait_time']
     )
+  end
+
+  def self.message
+    @@message ||= "This is smoky #{SecureRandom.uuid}"
   end
 
   def self.create_options(opts)
@@ -137,7 +141,7 @@ module SmokeTest
     end
   end
 
-  def self.send_smoke_test_email(site_url, message)
+  def self.send_smoke_test_email(site_url)
     agent = Mechanize.new
     if ENV.has_key? 'http_proxy'
       (proxy_host, proxy_port) = ENV['http_proxy'].split ':'
