@@ -32,9 +32,9 @@ RSpec.describe FeedbackController, type: :controller do
         expect(EmailFeedbackJob).to have_been_enqueued.with(feedback)
       end
 
-      it 'redirects to the webform' do
+      it 'renders the confirmation template' do
         expect(post :create, params: params)
-          .to redirect_to(correspondence_path)
+          .to render_template(:confirmation)
       end
     end
 

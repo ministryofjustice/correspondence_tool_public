@@ -8,7 +8,7 @@ class FeedbackController < ApplicationController
 
     if @feedback.save
       EmailFeedbackJob.perform_later(@feedback)
-      redirect_to correspondence_url, notice: 'Feedback submitted'
+      render 'feedback/confirmation'
     else
       render :new
     end
