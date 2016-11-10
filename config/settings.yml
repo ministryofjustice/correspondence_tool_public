@@ -34,9 +34,8 @@ smoke_tests:
   ssl: true
   username: 'smoketest'
   password: 'password'
-  read_attempts: 10
-  first_read_wait: 2
-  retry_read_wait: 3
+  first_read_wait: 3
+  max_wait_time: 600
 aaq_feedback_email: feedback@localhost
 aaq_email_url: http://localhost/
 

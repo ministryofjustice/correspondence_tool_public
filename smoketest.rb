@@ -39,21 +39,17 @@ mail_password:
     long:   '--mail-password=PASSWORD'
     help:   'Password to use with mail server.'
     envvar: 'SETTINGS__SMOKE_TESTS__PASSWORD'
-read_attempts:
-    short:  '-c'
-    long:   '--read-attempts=COUNT'
-    help:   'Number of times to attempt reading email.'
-    envvar: 'SETTINGS__SMOKE_TESTS__READ_ATTEMPTS'
 first_read_wait:
     short:  '-F'
     long:   '--first-read-wait=SECONDS'
     help:   'Time to wait before attempting to read mail.'
     envvar: 'SETTINGS__SMOKE_TESTS__FIRST_READ_WAIT'
-retry_read_wait:
-    short:  '-R'
-    long:   '--retry-read-wait=SECONDS'
-    help:   'Time to wait before retry reading email.'
-    envvar: 'SETTINGS__SMOKE_TESTS__RETRY_READ_WAIT'
+max_wait_time:
+    short:  '-w'
+    long:   '--max-wait-time=SECONDS'
+    type:   !ruby/class 'Numeric'
+    help:   'Maximum amount of time to wait for mail receipt.'
+    envvar: 'SETTINGS__SMOKE_TESTS__MAX_WAIT_TIME'
 EOYAML
 
 
@@ -77,9 +73,8 @@ module SmokeTest
 
     info "Checking for email with message: #{message}"
     unless check_for_email message:         message,
-                           read_attempts:   options.read_attempts,
                            first_read_wait: options.first_read_wait,
-                           retry_read_wait: options.retry_read_wait
+                           max_wait_time:   options.max_wait_time
       error '!!! Unable to find our email.'
       exit 3
     end
@@ -93,16 +88,16 @@ module SmokeTest
       mail_ssl:        Settings['smoke_tests']['ssl'],
       mail_username:   Settings['smoke_tests']['username'],
       mail_password:   Settings['smoke_tests']['password'],
-      read_attempts:   Settings['smoke_tests']['read_attempts'],
       first_read_wait: Settings['smoke_tests']['first_read_wait'],
-      retry_read_wait: Settings['smoke_tests']['retry_read_wait']
+      max_wait_time:   Settings['smoke_tests']['max_wait_time']
     )
   end
 
   def self.create_options(opts)
     CMDLINE_OPTIONS.each do |name, option|
       usage = "#{option['help']}  [#{options[name]}]  #{option['envvar']}"
-      opts.on(option['short'], option['long'], usage) do |val|
+      type = option.fetch('type', String)
+      opts.on(option['short'], option['long'], type, usage) do |val|
         options[name] = val
       end
     end
@@ -164,20 +159,22 @@ module SmokeTest
   end
 
   def self.check_for_email(message:,
-                           read_attempts:,
                            first_read_wait:,
-                           retry_read_wait:)
+                           max_wait_time:)
+    start_time = Time.now
     info "Waiting #{first_read_wait}s for mail delivery to do it's thing."
     sleep first_read_wait
-    read_attempts.times do |try|
+    try = 0
+    while(Time.now - start_time < max_wait_time) do
+      try += 1
       print "Email check #{try}: "
       if Mail.last(count: 3).detect { |mail| mail.body.include? message }
         info 'success'
         return true
-      else
-        info "failed. Sleeping #{retry_read_wait}s."
       end
-      sleep retry_read_wait
+      wait_time = 1 + ((Time.now - start_time) ** 0.5)
+      info 'failed. Sleeping %0.2fs.' % wait_time
+      sleep wait_time
     end
     return false
   end
