@@ -8,15 +8,19 @@ RSpec.describe CorrespondenceController, type: :controller do
     email: 'member_of_public@public.com'
   end
 
+  let(:correspondence_params) do
+    {
+      name:               external_user.name,
+      email:              external_user.email,
+      email_confirmation: external_user.email,
+      topic:              'prisons_and_probation',
+      message:            'Question about prisons and probation'
+    }
+  end
+
   let(:params) do
     {
-      correspondence: {
-        name:               external_user.name,
-        email:              external_user.email,
-        email_confirmation: external_user.email,
-        topic:              'prisons_and_probation',
-        message:            'Question about prisons and probation'
-      }
+      correspondence: correspondence_params
     }
   end
 
@@ -44,16 +48,33 @@ RSpec.describe CorrespondenceController, type: :controller do
       end
     end
 
-    context 'with invalid params' do
+    it 'defaults the category to general enquiry' do
+      post :create, params: params
+      expect(assigns(:correspondence).category).to eq 'general_enquiries'
+    end
+
+    context 'with smoke_test form field set to true' do
       let(:params) do
         {
-          correspondence: {
-            # no name
-            email:              external_user.email,
-            email_confirmation: external_user.email,
-            topic:              'prisons_and_probation',
-            message:            'Question about prisons and probation'
-          }
+          correspondence: correspondence_params,
+          smoke_test: true
+        }
+      end
+
+      it 'sets the category to smoke_test' do
+        post :create, params: params
+        expect(assigns(:correspondence).category).to eq 'smoke_test'
+      end
+    end
+
+    context 'with invalid params' do
+      let(:correspondence_params) do
+        {
+          # no name
+          email:              external_user.email,
+          email_confirmation: external_user.email,
+          topic:              'prisons_and_probation',
+          message:            'Question about prisons and probation'
         }
       end
 

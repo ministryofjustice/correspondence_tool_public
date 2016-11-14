@@ -1,6 +1,7 @@
 correspondence_categories:
   - general_enquiries
   - freedom_of_information_request
+  - smoke_test
 
 correspondence_topics:
   - courts_and_tribunals
@@ -25,6 +26,16 @@ sendgrid_password: password
 correspondence_email_from: correspondence_tool@localhost
 general_enquiries_email: general_enquiries@localhost
 freedom_of_information_request_email: foi_request@localhost
+smoke_test_email: smoketest@localhost
+smoke_tests:
+  protocol: !ruby/symbol pop3
+  server: 'pop3.local'
+  port: 995
+  ssl: true
+  username: 'smoketest'
+  password: 'password'
+  first_read_wait: 3
+  max_wait_time: 600
 aaq_feedback_email: feedback@localhost
 aaq_email_url: http://localhost/
 
