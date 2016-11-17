@@ -1,13 +1,19 @@
 = GovukElementsErrorsHelper.error_summary @feedback,
-  "#{pluralize(@feedback.errors.count, t('common.error'))} #{ t('common.summary_error')}", ""
+  t('.error_summary'), ""
 
 = render partial: 'layouts/header', locals: {page_heading: t('.heading')}
 
+p
+  = t('.prompt')
 
 = form_for @feedback do |f|
   .grid-row
     .column-two-thirds
-      = f.radio_button_fieldset :rating, choices:  Settings.service_feedback
+      = f.radio_button_fieldset :ease_of_use, choices:  Settings.feedback_options
+
+  .grid-row
+    .column-two-thirds
+      = f.radio_button_fieldset :completeness, choices:  Settings.feedback_options
 
   .grid-row
     .column-two-thirds
@@ -19,4 +25,3 @@
 
   .button-holder
     = f.submit t('button.send'), {class:'button', onclick: "ga('send', 'event', 'Feedback', 'Sent')"}
-

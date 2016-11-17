@@ -2,7 +2,10 @@ h2
   = "New Feedback"
 
 p
-  = "Rating: #{@feedback.rating.humanize}"
+  = "Ease of use: #{@feedback.ease_of_use.humanize}"
+
+p
+  = "Completeness: #{@feedback.completeness.humanize}"
 
 p
   = "Comment(Optional): #{@feedback.comment}"

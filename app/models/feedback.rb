@@ -1,10 +1,16 @@
 class Feedback < ActiveRecord::Base
-  validates :rating, inclusion: {
-              in:      Settings.service_feedback,
-              message: 'please select one option'
+# i18n-tasks-use t('activerecord.errors.models.feedback.attributes.completeness.inclusion')
+# i18n-tasks-use t('activerecord.errors.models.feedback.attributes.ease_of_use.inclusion')
+# i18n-tasks-use t('activerecord.attributes.feedback.completeness')
+# i18n-tasks-use t('activerecord.attributes.feedback.ease_of_use')
+
+  validates :ease_of_use, :completeness, inclusion: {
+              in:      Settings.feedback_options
             }
 
   jsonb_accessor :content,
-    rating: :string,
+    old_rating: [:string, store_key: :rating],
+    ease_of_use: :string,
+    completeness: :string,
     comment: :text
 end
