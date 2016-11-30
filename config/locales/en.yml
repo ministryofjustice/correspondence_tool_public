@@ -65,6 +65,7 @@ en:
   button:
     send: Send
     finish: Finish
+    start: Start now
 
   common:
     error: error
@@ -82,6 +83,21 @@ en:
       feedback_link: What did you think of this service?
       feedback_time: (takes 30 seconds)
 
+    start:
+      page_subheading: Before you start
+      court_info_title: If you want information about a court building
+      court_info_response_html: |
+        To check an address, contact details, directions and
+        disabled access information, use
+        <a href="https://www.gov.uk/find-court-tribunal"
+        onclick="ga('send', 'event', 'External Link', 'Visited Find a Court or Tribunal')">
+        find a court or tribunal</a>.
+      involved_title: If you’re involved in a court case
+      involved_response: |
+        Contact the court or tribunal direct - details will be on
+        letters from the court.
+      reply_title: If you're waiting for a reply
+      reply_response: It can take up to 1 month for us to respond.
   feedback:
     new:
       error_summary: Please answer the statement(s) below
