@@ -15,6 +15,13 @@ feature 'Submit a general enquiry' do
       ]
     end
 
+  scenario 'User should start at the service "Start page"' do
+    visit root_path
+    expect(page).to have_content('Before you start')
+    click_link 'Start now'
+    expect(page.current_path).to eq new_correspondence_path
+  end
+
   scenario 'Using valid inputs' do
     visit 'correspondence/new'
     fill_in 'correspondence[name]',               with: name

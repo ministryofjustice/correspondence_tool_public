@@ -1,0 +1,27 @@
+= render partial: 'layouts/header', locals: {page_heading: t('common.service_name')}
+
+h2.heading-large = t('.page_subheading')
+
+.grid-row
+  .column-two-thirds
+    ul.before-start
+      li
+        span.form-label-bold
+          = t('.reply_title')
+          span.visually-hidden ,
+        = t('.reply_response')
+      li
+        span.form-label-bold
+          = t('.involved_title')
+          span.visually-hidden ,
+        = t('.involved_response')
+
+      li
+        span.form-label-bold
+          = t('.court_info_title')
+          span.visually-hidden ,
+        = t('.court_info_response_html')
+
+.grid-row
+  .column-two-thirds
+    = link_to  t('button.start'), new_correspondence_path, class: 'button button-start'

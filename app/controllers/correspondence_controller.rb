@@ -4,6 +4,8 @@ class CorrespondenceController < ApplicationController
     render :file => 'public/500-redis-down.html', :status => 500, :layout => false
   end
 
+  def start; end
+
   def new
     @correspondence = Correspondence.new
   end
