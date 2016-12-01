@@ -147,7 +147,8 @@ module SmokeTest
       (proxy_host, proxy_port) = ENV['http_proxy'].split ':'
       agent.set_proxy proxy_host, proxy_port
     end
-    page = agent.get(site_url)
+    agent.get(site_url)
+    page = agent.click('Start now')
     form = page.form_with id: 'new_correspondence'
 
     form.field_with(name: 'correspondence[name]').value = 'Smoke Test'
