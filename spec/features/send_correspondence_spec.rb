@@ -11,7 +11,7 @@ feature 'Submit a general enquiry' do
         "Full name can't be blank",
         "Email can't be blank",
         "Confirm email can't be blank",
-        "Message can't be blank"
+        "What do you want to tell the Ministry of Justice? can't be blank"
       ]
     end
 

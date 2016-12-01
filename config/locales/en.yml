@@ -54,6 +54,8 @@ en:
       correspondence:
         name: Full name
         email_confirmation: Confirm email
+        message: |
+          What do you want to tell the Ministry of Justice?
       feedback:
         comment: |
           How could we improve this service?
@@ -61,6 +63,12 @@ en:
       correspondence:
         email: |
           We will only use this to send you a response.
+        message_html: |
+          <ul class="list-bullet">
+          <li>Write your concern clearly.</li>
+          <li>Explain any issues you may have.</li>
+          <li>Be clear about any action you’d like the ministry to take.</li>
+          </ul>
 
   button:
     send: Send
