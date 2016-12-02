@@ -13,7 +13,7 @@ RSpec.describe CorrespondenceController, type: :controller do
       name:               external_user.name,
       email:              external_user.email,
       email_confirmation: external_user.email,
-      topic:              'prisons_and_probation',
+      topic:              'prisons and probations',
       message:            'Question about prisons and probation'
     }
   end
@@ -73,7 +73,7 @@ RSpec.describe CorrespondenceController, type: :controller do
           # no name
           email:              external_user.email,
           email_confirmation: external_user.email,
-          topic:              'prisons_and_probation',
+          topic:              'prisons and probations',
           message:            'Question about prisons and probation'
         }
       end

@@ -29,6 +29,10 @@ en:
               inclusion: please select one option
             completeness:
               inclusion: please select one option
+        correspondence:
+          attributes:
+            topic:
+              blank: Please tell us what your query is about.
     attributes:
       feedback:
         ease_of_use: This online service was easy to use
@@ -43,8 +47,6 @@ en:
 
   helpers:
     fieldset:
-      correspondence:
-        topic: What would you like to contact us about?
       feedback:
         ease_of_use: |
           This online service was easy to use
@@ -54,6 +56,8 @@ en:
       correspondence:
         name: Full name
         email_confirmation: Confirm email
+        topic: |
+          What is your query about?
         message: |
           What do you want to tell the Ministry of Justice?
       feedback:

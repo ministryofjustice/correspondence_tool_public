@@ -3,18 +3,14 @@ correspondence_categories:
   - freedom_of_information_request
   - smoke_test
 
-correspondence_topics:
-  - courts_and_tribunals
-  - prisons_and_probation
-  - legal_aid
-  - something_else
-
 feedback_options:
   - strongly_agree
   - agree
   - neither_agree_nor_disagree
   - disagree
   - strongly_disagree
+
+correspondence_topic_max_length: 60
 
 # Variables below are meant to be over-ridden in non-local environments (dev,
 # staging, prod) with correct values. The values below are place-holders.

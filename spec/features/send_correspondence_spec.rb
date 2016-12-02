@@ -5,9 +5,10 @@ feature 'Submit a general enquiry' do
     given(:name)            { Faker::Name.name }
     given(:email)           { Faker::Internet.email }
     given(:message)         { Faker::Lorem.paragraphs[1] }
+    given(:topic)           { Faker::Hipster.sentence }
     given(:error_messages) do
       [
-        "Topic can't be blank",
+        "What is your query about? Please tell us what your query is about.",
         "Full name can't be blank",
         "Email can't be blank",
         "Confirm email can't be blank",
@@ -28,7 +29,7 @@ feature 'Submit a general enquiry' do
     fill_in 'correspondence[email]',              with: email
     fill_in 'correspondence[message]',            with: message
     fill_in 'correspondence[email_confirmation]', with: email
-    choose 'Prisons and probation'
+    fill_in 'correspondence[topic]',              with: topic
     click_button 'Send'
     expect(page).to have_content('Your message has been sent')
     click_link 'Finish'
@@ -49,7 +50,7 @@ feature 'Submit a general enquiry' do
     fill_in 'correspondence[email]',              with: email
     fill_in 'correspondence[message]',            with: message
     fill_in 'correspondence[email_confirmation]', with: 'mismatch@email.com'
-    choose 'Prisons and probation'
+    fill_in 'correspondence[topic]',              with: topic
     click_button 'Send'
     expect(page).to have_content("Confirm email doesn't match Email")
   end

@@ -1,4 +1,5 @@
 class Correspondence < ActiveRecord::Base
+# i18n-tasks-use t('activerecord.errors.models.correspondence.attributes.topic.blank')
 
   validates_presence_of :name,
                         :email,
@@ -15,9 +16,8 @@ class Correspondence < ActiveRecord::Base
   validates_inclusion_of :category,
     in: Settings.correspondence_categories,
     if: Proc.new { category.present? }
-  validates_inclusion_of :topic,
-    in: Settings.correspondence_topics,
-    if: Proc.new { topic.present? }
+  validates :topic,
+    length: { maximum: Settings.correspondence_topic_max_length }
 
   jsonb_accessor :content,
     name: :string,
