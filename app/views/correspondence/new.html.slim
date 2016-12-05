@@ -5,14 +5,14 @@
 
 
 = form_for @correspondence do |f|
-    = f.radio_button_fieldset :topic, choices: Settings.correspondence_topics
-	br
+    = f.text_field :topic, {maxlength: Settings.correspondence_topic_max_length}
+
     = f.text_area :message, {rows: 10}
 
-	= f.text_field :name
+    = f.text_field :name
 
-	= f.email_field :email
+    = f.email_field :email
 
-	= f.email_field :email_confirmation
+    = f.email_field :email_confirmation
 
-	= f.submit t('button.send'), {class:'button', onclick: "ga('send', 'event', 'Question', 'Sent')"}
+    = f.submit t('button.send'), {class:'button', onclick: "ga('send', 'event', 'Question', 'Sent')"}

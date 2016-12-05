@@ -17,14 +17,14 @@ RSpec.describe Correspondence, type: :model do
     it { should validate_presence_of     :name }
     it { should validate_presence_of     :email }
     it { should validate_presence_of     :category }
-    it { should validate_presence_of     :topic }
+    it do
+      should validate_presence_of(:topic).
+               with_message(
+                 'Please tell us what your query is about.'
+               )
+    end
     it { should validate_presence_of     :message }
     it { should validate_confirmation_of :email}
-
-    it do
-      should validate_inclusion_of(:topic).
-        in_array(Settings.correspondence_topics)
-    end
 
     it do
       should validate_inclusion_of(:category).
@@ -33,5 +33,6 @@ RSpec.describe Correspondence, type: :model do
 
     it { should allow_value('foo@bar.com').for :email }
     it { should_not allow_value('foobar.com').for :email  }
+    it { should validate_length_of(:topic).is_at_most(60) }
   end
 end

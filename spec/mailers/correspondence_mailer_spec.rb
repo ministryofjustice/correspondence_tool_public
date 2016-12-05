@@ -52,7 +52,7 @@ RSpec.describe CorrespondenceMailer, type: :mailer do
       end
 
       it 'the area of interest' do
-        expect(@mail.subject).to include(@correspondence.topic.humanize)
+        expect(@mail.subject).to include(@correspondence.topic)
       end
     end
 
