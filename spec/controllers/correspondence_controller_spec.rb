@@ -43,6 +43,12 @@ RSpec.describe CorrespondenceController, type: :controller do
           .to have_been_enqueued.with(Correspondence.last)
       end
 
+      it 'enqueues an EmailConfirmationJob' do
+        post :create, params: params
+        expect(EmailConfirmationJob)
+          .to have_been_enqueued.with(Correspondence.last)
+      end
+
       it 'renders the :confirmation template' do
         expect(post :create, params: params).to render_template(:confirmation)
       end
@@ -86,6 +92,11 @@ RSpec.describe CorrespondenceController, type: :controller do
       it 'does not enqueue an EmailCorrespondenceJob' do
         expect { post :create, params: params }
           .not_to have_enqueued_job(EmailCorrespondenceJob)
+      end
+
+      it 'does not enqueue an EmailConfirmationJob' do
+        expect { post :create, params: params }
+          .not_to have_enqueued_job(EmailConfirmationJob)
       end
 
       it 'renders the :new template' do

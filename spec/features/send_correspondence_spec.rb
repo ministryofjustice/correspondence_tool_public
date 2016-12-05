@@ -2,19 +2,29 @@ require 'rails_helper'
 
 feature 'Submit a general enquiry' do
 
-    given(:name)            { Faker::Name.name }
-    given(:email)           { Faker::Internet.email }
-    given(:message)         { Faker::Lorem.paragraphs[1] }
-    given(:topic)           { Faker::Hipster.sentence }
-    given(:error_messages) do
-      [
-        "What is your query about? Please tell us what your query is about.",
-        "Full name can't be blank",
-        "Email can't be blank",
-        "Confirm email can't be blank",
-        "What do you want to tell the Ministry of Justice? can't be blank"
-      ]
-    end
+  given(:name)            { Faker::Name.name                   }
+  given(:email)           { Faker::Internet.email              }
+  given(:message)         { Faker::Lorem.paragraphs[1]         }
+  given(:topic_input)     { Faker::Hipster.sentence(word_count=20) } # rubocop:disable UselessAssignment
+  given(:topic_stored)    { topic_input[0..59]                 }
+  given(:error_messages) do
+    [
+      "What is your query about? Please tell us what your query is about.",
+      "Full name can't be blank",
+      "Email can't be blank",
+      "Confirm email can't be blank",
+      "What do you want to tell the Ministry of Justice? can't be blank"
+    ]
+  end
+  given(:success_messages) do
+    [
+      "Your message has been sent",
+      "We've sent a confirmation email to #{email}",
+      "We will review your message.",
+      "If we're able to respond, we'll do so within 1 month.",
+      "We'll send any response to the above email."
+    ]
+  end
 
   scenario 'User should start at the service "Start page"' do
     visit root_path
@@ -24,6 +34,7 @@ feature 'Submit a general enquiry' do
   end
 
   scenario 'Using valid inputs' do
+
     visit 'correspondence/new'
     fill_in 'correspondence[name]',               with: name
     fill_in 'correspondence[email]',              with: email
@@ -31,7 +42,24 @@ feature 'Submit a general enquiry' do
     fill_in 'correspondence[email_confirmation]', with: email
     fill_in 'correspondence[topic]',              with: topic
     click_button 'Send'
-    expect(page).to have_content('Your message has been sent')
+
+    success_messages.each do
+      |success_message| expect(page).to have_content(success_message)
+    end
+
+    expect(Correspondence.count).to eq 1
+    expect(Correspondence.last).to have_attributes(
+      name: name,
+      email: email,
+      message: message,
+      topic: topic
+    )
+
+    expect(EmailCorrespondenceJob).to have_been_enqueued.with(Correspondence.last)
+    expect(EmailConfirmationJob).to have_been_enqueued.with(Correspondence.last)
+
+    click_link 'Return to the Ministry of Justice homepage'
+    expect(page.current_path).to eq root_path
   end
 
   scenario 'Without a topic, name, email address, confirm email or message' do
