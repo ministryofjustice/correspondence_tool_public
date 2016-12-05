@@ -12,4 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require vendor/polyfills/bind
+//= require govuk/selection-buttons
 //= require_tree .
+
+(function () {
+  'use strict';
+
+  var buttonSelector = 'label input[type=radio], label input[type=checkbox]';
+  var selectionButtons = new GOVUK.SelectionButtons(buttonSelector);
+
+  selectionButtons.setInitialState($(buttonSelector));
+
+}());
