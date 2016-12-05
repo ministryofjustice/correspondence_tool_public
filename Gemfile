@@ -3,9 +3,9 @@ source 'https://rubygems.org'
 gem 'coffee-rails', '~> 4.2'
 gem 'config'
 gem 'foreman', '~> 0.82.0' # Used in dev & production
-gem 'govuk_template',         '~> 0.18.0'
-gem 'govuk_frontend_toolkit', '>= 4.13.0'
-gem 'govuk_elements_rails',   '>= 1.2.1'
+gem 'govuk_template',         '~> 0.19.1'
+gem 'govuk_frontend_toolkit', '>= 5.0.2'
+gem 'govuk_elements_rails',   '>= 2.2.1'
 gem 'govuk_elements_form_builder', git: 'https://github.com/ministryofjustice/govuk_elements_form_builder.git'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
