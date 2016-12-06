@@ -75,8 +75,8 @@ en:
           </ul>
 
   button:
+    moj_home: Return to the Ministry of Justice homepage
     send: Send
-    finish: Finish
     start: Start now
 
   common:
