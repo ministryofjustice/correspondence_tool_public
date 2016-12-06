@@ -93,8 +93,12 @@ module SmokeTest
     )
   end
 
+  def self.uuid
+    @@uuid = SecureRandom.uuid
+  end
+
   def self.message
-    @@message ||= "This is smoky #{SecureRandom.uuid}"
+    @@message ||= "This is smoky #{uuid}"
   end
 
   def self.create_options(opts)
@@ -157,7 +161,8 @@ module SmokeTest
     form.field_with(name: 'correspondence[email_confirmation]')
       .value = 'correspondence-dev@digital.justice.gov.uk'
     form.field_with(name: 'correspondence[message]').value = message
-    form.radiobutton_with(name: 'correspondence[topic]', value: 'legal_aid').check
+    form.field_with(name: 'correspondence[topic]')
+      .value = 'This is smoke test #{uuid}'
     form.add_field!('smoke_test', :true)
 
     agent.submit form
