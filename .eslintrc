@@ -9,7 +9,8 @@
     "moj"        : true,
     "MOJ"        : true,
     "App"        : true,
-    "ActionCable": true
+    "ActionCable": true,
+    "GOVUK"      : true
   },
   "env": {
     "browser": true,
