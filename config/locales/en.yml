@@ -123,3 +123,14 @@ en:
     confirmation:
       success: Your feedback has been sent
 
+  page_title:
+    start_page: |
+      Start - Contact the Ministry of Justice
+    contact_form: |
+      Contact form - Contact the Ministry of Justice
+    contact_confirm: |
+      Contact confirmation - Contact the Ministry of Justice
+    feedback_form: |
+      Feedback form - Contact the Ministry of Justice
+    feedback_confirm: |
+      Feedback confirmation - Contact the Ministry of Justice
