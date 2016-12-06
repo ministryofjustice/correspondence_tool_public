@@ -91,7 +91,9 @@ en:
     confirmation:
       success: Your message has been sent
       next_title:  What happens next
-      next_copy: We will respond to your question as soon as possible.
+      next_copy_html: |
+        <p>We will review your message.</p>
+        <p>If we're able to respond, we'll do so within 1 month.</p>
       feedback_link: What did you think of this service?
       feedback_time: (takes 30 seconds)
 
@@ -120,4 +122,4 @@ en:
         for example your National Insurance or credit card numbers.
     confirmation:
       success: Your feedback has been sent
-      moj_home: Return to the Ministry of Justice homepage
+

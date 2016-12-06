@@ -4,14 +4,18 @@
       h1.page-title.bold-large
         = t('.success')
 
-h2.heading-medium
-  = t('.next_title')
-p
-  = t('.next_copy')
+.grid-row
+  .column-two-thirds
+    h2.heading-medium
+      = t('.next_title')
 
-p
-  = link_to t('.feedback_link'), feedback_path
-  = t('.feedback_time')
+.grid-row
+  .column-two-thirds
+    = t('.next_copy_html')
 
 .button-holder
+  div
+    = link_to t('.feedback_link'), feedback_path
+    = t('.feedback_time')
+  div
     = link_to t('button.moj_home'),'https://www.gov.uk/government/organisations/ministry-of-justice'
