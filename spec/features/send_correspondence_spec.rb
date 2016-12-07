@@ -5,7 +5,7 @@ feature 'Submit a general enquiry' do
   given(:name)            { Faker::Name.name                   }
   given(:email)           { Faker::Internet.email              }
   given(:message)         { Faker::Lorem.paragraphs[1]         }
-  given(:topic_input)     { Faker::Hipster.sentence(word_count=20) } # rubocop:disable UselessAssignment
+  given(:topic_input)     { Faker::Hipster.sentence(word_count=20)  } # rubocop:disable UselessAssignment
   given(:topic_stored)    { topic_input[0..59]                 }
   given(:error_messages) do
     [
@@ -40,7 +40,7 @@ feature 'Submit a general enquiry' do
     fill_in 'correspondence[email]',              with: email
     fill_in 'correspondence[message]',            with: message
     fill_in 'correspondence[email_confirmation]', with: email
-    fill_in 'correspondence[topic]',              with: topic
+    fill_in 'correspondence[topic]',              with: topic_input
     click_button 'Send'
 
     success_messages.each do
@@ -52,7 +52,7 @@ feature 'Submit a general enquiry' do
       name: name,
       email: email,
       message: message,
-      topic: topic
+      topic: topic_stored
     )
 
     expect(EmailCorrespondenceJob).to have_been_enqueued.with(Correspondence.last)
@@ -76,7 +76,7 @@ feature 'Submit a general enquiry' do
     fill_in 'correspondence[email]',              with: email
     fill_in 'correspondence[message]',            with: message
     fill_in 'correspondence[email_confirmation]', with: 'mismatch@email.com'
-    fill_in 'correspondence[topic]',              with: topic
+    fill_in 'correspondence[topic]',              with: topic_input
     click_button 'Send'
     expect(page).to have_content("Confirm email doesn't match Email")
   end

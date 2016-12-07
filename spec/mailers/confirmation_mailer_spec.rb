@@ -29,7 +29,7 @@ RSpec.describe ConfirmationMailer, type: :mailer do
     ]
   end
 
-  describe '#new_correspondence' do
+  describe '#new_confirmation' do
     let(:correspondence_category) { 'general_enquiries' }
 
     it 'sends an email' do
