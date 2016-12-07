@@ -7,6 +7,10 @@
   @include first;
 
   margin-top: $gutter-half;
+
+  div {
+    margin-bottom: $gutter;
+  }
 }
 .button-left-spacing{
   margin-left: $gutter;

@@ -1,7 +1,8 @@
-.govuk-box-highlight
-  h1.page-title.bold-large
-    object type='image/svg+xml' data=image_path('icons/tick-white.svg') class="confirmation-tick"
-    = t('.success')
+.grid-row
+  .column-two-thirds
+    .govuk-box-highlight
+      h1.page-title.bold-large
+        = t('.success')
 
 .button-holder
-  = link_to t('.moj_home'),'https://www.gov.uk/government/organisations/ministry-of-justice'
+  = link_to t('button.moj_home'),'https://www.gov.uk/government/organisations/ministry-of-justice'

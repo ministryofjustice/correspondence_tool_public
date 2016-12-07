@@ -32,8 +32,6 @@ feature 'Submit a general enquiry' do
     fill_in 'correspondence[topic]',              with: topic
     click_button 'Send'
     expect(page).to have_content('Your message has been sent')
-    click_link 'Finish'
-    expect(page.current_path).to eq root_path
   end
 
   scenario 'Without a topic, name, email address, confirm email or message' do
