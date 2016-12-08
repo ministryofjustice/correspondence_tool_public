@@ -5,7 +5,7 @@ feature 'Submit a general enquiry' do
   given(:name)            { Faker::Name.name                   }
   given(:email)           { Faker::Internet.email              }
   given(:message)         { Faker::Lorem.paragraphs[1]         }
-  given(:topic_input)     { Faker::Hipster.sentence(word_count=20)  } # rubocop:disable UselessAssignment
+  given(:topic_input)     { Faker::Hipster.sentence(word_count=20) } # rubocop:disable UselessAssignment
   given(:topic_stored)    { topic_input[0..59]                 }
   given(:error_messages) do
     [
@@ -58,8 +58,10 @@ feature 'Submit a general enquiry' do
     expect(EmailCorrespondenceJob).to have_been_enqueued.with(Correspondence.last)
     expect(EmailConfirmationJob).to have_been_enqueued.with(Correspondence.last)
 
-    click_link 'Return to the Ministry of Justice homepage'
-    expect(page.current_path).to eq root_path
+    expect(page).to have_link(
+      'Return to the Ministry of Justice homepage',
+      href: 'https://www.gov.uk/government/organisations/ministry-of-justice'
+    )
   end
 
   scenario 'Without a topic, name, email address, confirm email or message' do
