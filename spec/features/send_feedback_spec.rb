@@ -21,6 +21,11 @@ feature 'Submit service feedback' do
     expect(feedback.comment).to eq comment
     expect(feedback.ease_of_use).to eq ease_of_use
     expect(feedback.completeness).to eq completeness
+
+    expect(page).to have_link(
+      'Return to the Ministry of Justice homepage',
+      href: 'https://www.gov.uk/government/organisations/ministry-of-justice'
+    )
   end
 
   scenario 'Without a rating for ease of use or completeness' do

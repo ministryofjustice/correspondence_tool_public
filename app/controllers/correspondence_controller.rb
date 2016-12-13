@@ -15,6 +15,7 @@ class CorrespondenceController < ApplicationController
 
     if @correspondence.save
       EmailCorrespondenceJob.perform_later(@correspondence)
+      EmailConfirmationJob.perform_later(@correspondence)
       render 'correspondence/confirmation'
     else
       render :new
