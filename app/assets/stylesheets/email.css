@@ -57,3 +57,7 @@ p {
 td {
     padding-left: 60px;
 }
+
+.p--double-lines, .span--double-lines {
+    line-height: 2em;
+}

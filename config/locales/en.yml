@@ -92,10 +92,10 @@ en:
       success: Your message has been sent
       next_title:  What happens next
       next_copy_html: |
-        We've sent a confirmation email to %{email}<br><br>
-        We will review your message.<br><br>
-        If we're able to respond, we'll do so within 1 month.<br><br>
-        We'll send any response to the above email.<br><br>
+        <p class="p--double-lines">We've sent a confirmation email to <strong>%{email}</strong>.<br>
+        We will review your message.<br>
+        If we're able to respond, we'll do so within 1 month.<br>
+        We'll send any response to the above email.</p>
       feedback_link: What did you think of this service?
       feedback_time: (takes 30 seconds)
     start:
@@ -140,9 +140,10 @@ en:
   confirmation_mailer:
     new_confirmation:
       confirmation_html: |
-        <p>To %{full_name}<br><br>
-        Thank you for contacting the Ministry of Justice.<br><br>
+        <p class="p--double-lines">To %{full_name}<br>
+        Thank you for contacting the Ministry of Justice.<br>
         Our team will be checking what you have sent us shortly.<br>
-        We aim to get back to you within 1 month, if we are able to respond to you.<br><br>
-        MOJ team<br></p>
-        Do not reply to this email.  This address is not checked by the Ministry of Justice<br>
+        We aim to get back to you within 1 month, if we are able to respond to you.<br>
+        MOJ team</p>
+        <span class="p--double-lines">
+        Do not reply to this email.  This address is not checked by the Ministry of Justice</span>
