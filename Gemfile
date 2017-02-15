@@ -37,7 +37,9 @@ group :test do
   gem 'mail'
   gem 'mechanize'
   gem 'rails-controller-testing'
+  gem 'selenium-webdriver', '~> 3.0'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'site_prism', '~> 2.9'
 end
 
 group :development, :test do
