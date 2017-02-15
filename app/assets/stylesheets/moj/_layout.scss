@@ -16,3 +16,22 @@ body {
   @include span(6 of 12);
   @include first;
 }
+
+.sidebar {
+  @include grid-column( 1/3 );
+}
+.govuk-related-items {
+  border-top: 10px solid $govuk-blue;
+  padding-top: 5px;
+
+  .heading-medium {
+    margin-top: 0.3em;
+    margin-bottom: 0.5em;
+  }
+
+  li {
+    margin-bottom: 10px;
+    list-style-type: none;
+  }
+
+}
