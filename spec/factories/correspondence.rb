@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: correspondence
+#
+#  id         :integer          not null, primary key
+#  content    :jsonb
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 FactoryGirl.define do
   factory :correspondence do
     name { Faker::Name.name }

@@ -6,19 +6,36 @@ class CorrespondenceController < ApplicationController
 
   def start; end
 
-  def new
-    @correspondence = Correspondence.new
+  def create
+    creator = CorrespondenceCreator.new(correspondence_params)
+    @correspondence = creator.correspondence
+    case creator.result
+    when :success
+      render 'correspondence/confirmation'
+    when :no_op
+      redirect_to Settings.moj_home_page
+    when :validation_error
+      @search_api_client = GovUkSearchApi::Client.new(@correspondence.topic)
+      @search_result = @search_api_client.search
+      render :search
+    end
   end
 
-  def create
-    @correspondence = Correspondence.new(correspondence_params)
 
-    if @correspondence.save
-      EmailCorrespondenceJob.perform_later(@correspondence)
-      EmailConfirmationJob.perform_later(@correspondence)
-      render 'correspondence/confirmation'
+
+
+  def topic
+    @correspondence = Correspondence.new
+  end
+  
+  def search
+    @correspondence = Correspondence.new(topic: search_params[:topic])
+    if @correspondence.topic_present?
+      @correspondence = Correspondence.new(topic: search_params[:topic])
+      @search_api_client = GovUkSearchApi::Client.new(@correspondence.topic)
+      @search_result = @search_api_client.search
     else
-      render :new
+      render :topic
     end
   end
 
@@ -35,10 +52,14 @@ class CorrespondenceController < ApplicationController
     params.require(:correspondence).permit(
       :name,
       :email,
-      :email_confirmation,
       :topic,
       :message,
-      :smoke_test
+      :smoke_test,
+      :contact_requested
     ).merge({ category: category_attribute })
+  end
+
+  def search_params
+    params.require(:correspondence).permit(:topic)
   end
 end

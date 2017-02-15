@@ -15,7 +15,7 @@ module GovUkSearchApi
     end
 
     def link
-      @item_hash['link']
+      full_url?(@item_hash['link']) ? @item_hash['link'] :  'https://www.gov.uk' + @item_hash['link']
     end
 
     def meta_data
@@ -23,6 +23,10 @@ module GovUkSearchApi
     end
 
     private
+
+    def full_url?(link)
+      !!(link =~ /\Ahttp/)
+    end
 
     def display_type_and_date
       if display_type == 'News story'

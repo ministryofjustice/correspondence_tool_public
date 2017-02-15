@@ -1,9 +1,18 @@
+# == Schema Information
+#
+# Table name: correspondence
+#
+#  id         :integer          not null, primary key
+#  content    :jsonb
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Correspondence < ActiveRecord::Base
 # i18n-tasks-use t('activerecord.errors.models.correspondence.attributes.topic.blank')
 
   validates_presence_of :name,
                         :email,
-                        :email_confirmation,
                         :category,
                         :topic,
                         :message
@@ -19,10 +28,22 @@ class Correspondence < ActiveRecord::Base
   validates :topic,
     length: { maximum: Settings.correspondence_topic_max_length }
 
+  validates_inclusion_of :contact_requested,
+    in: %w(yes no),
+    if: Proc.new { contact_requested.present? }
+
+
   jsonb_accessor :content,
     name: :string,
     email: :string,
     category: :string,
     topic: :string,
-    message: :text
+    message: :text,
+    contact_requested: :string
+
+
+  def topic_present?
+    errors['topic'] << " can't be blank" unless topic.present?
+    topic.present?
+  end
 end

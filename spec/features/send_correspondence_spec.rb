@@ -1,34 +1,41 @@
 require 'rails_helper'
 
 feature 'Submit a general enquiry' do
-  given(:start_page){ StartPage.new }
+  #
+  # before do
+  #   @app ||= AskTool::Pages::Application.new
+  # end
 
-  given(:name)            { Faker::Name.name                   }
-  given(:email)           { Faker::Internet.email              }
-  given(:message)         { Faker::Lorem.paragraphs[1]         }
-  given(:topic_input)     { Faker::Hipster.sentence(word_count=20) } # rubocop:disable UselessAssignment
-  given(:topic_stored)    { topic_input[0..59]                 }
+
+  given(:name)               { Faker::Name.name                   }
+  given(:email)              { Faker::Internet.email              }
+  given(:message)            { Faker::Lorem.paragraphs[1]         }
+  given(:topic_with_results) { 'Visiting a prison'}
+
+  given(:topic_error) {
+   "What are you contacting the Ministry of Justice about? can't be blank"
+  }
+
   given(:error_messages) do
     [
-      "What is your query about? Please tell us what your query is about.",
       "Full name can't be blank",
       "Email can't be blank",
-      "Confirm email can't be blank",
-      "What do you want to tell the Ministry of Justice? can't be blank"
+      "Your message can't be blank"
     ]
   end
+
   given(:success_messages) do
     [
       "Your message has been sent",
       "We've sent a confirmation email to #{email}",
-      "We will review your message.",
-      "If we're able to respond, we'll do so within 1 month.",
-      "We'll send any response to the above email."
+      "The team will review your message and reply to the email shown above.",
+      "We aim to respond to you as soon as possible, but allow up to 4 weeks for complex cases or during busy periods"
     ]
   end
 
   scenario 'User should start at the service "Start page"' do
     start_page.load
+    expect(start_page.title).to eq "Start - Contact the Ministry of Justice\n"
 
     expect(start_page).to have_sidebar
     expect(start_page.sidebar).to have_find_a_court
@@ -37,18 +44,42 @@ feature 'Submit a general enquiry' do
     expect(start_page.sidebar.other_services.size).to eq 3
 
     start_page.start_button.click
-    expect(page.current_path).to eq new_correspondence_path
+    expect(topic_page).to be_displayed
+    expect(topic_page.title).to eq "Topic search - Contact the Ministry of Justice\n"
   end
 
-  scenario 'Using valid inputs' do
+  scenario 'self-service - searching govuk service' do
+    topic_page.load
+    expect(topic_page.title).to eq "Topic search - Contact the Ministry of Justice\n"
+    topic_page.search_govuk(topic_with_results)
 
-    visit 'correspondence/new'
-    fill_in 'correspondence[name]',               with: name
-    fill_in 'correspondence[email]',              with: email
-    fill_in 'correspondence[message]',            with: message
-    fill_in 'correspondence[email_confirmation]', with: email
-    fill_in 'correspondence[topic]',              with: topic_input
-    click_button 'Send'
+    expect(search_page).to be_displayed
+    expect(search_page.title).to eq "Contact form - Contact the Ministry of Justice\n"
+    expect(search_page.self_service.size).to eq 4
+  end
+
+  scenario 'Using valid inputs', js: true do
+    topic_page.load
+    expect(topic_page.title).to eq "Topic search - Contact the Ministry of Justice"
+    topic_page.search_govuk(topic_with_results)
+
+    expect(search_page).to be_displayed
+    expect(search_page.title).to eq "Contact form - Contact the Ministry of Justice"
+
+    expect(search_page).to have_self_serviced_radio
+
+    #If GOVUK API results helped the user
+    search_page.self_serviced_radio.click
+    search_page.wait_until_self_serviced_radio_copy_visible
+
+    #If GOVUK API results did not help the user
+    search_page.need_to_contact_radio.click
+    search_page.wait_until_need_to_contact_form_visible
+
+
+    search_page.send_correspondence(name,
+                                    email,
+                                    message)
 
     success_messages.each do
       |success_message| expect(page).to have_content(success_message)
@@ -59,9 +90,8 @@ feature 'Submit a general enquiry' do
       name: name,
       email: email,
       message: message,
-      topic: topic_stored
+      topic: topic_with_results
     )
-
     expect(EmailCorrespondenceJob).to have_been_enqueued.with(Correspondence.last)
     expect(EmailConfirmationJob).to have_been_enqueued.with(Correspondence.last)
 
@@ -72,28 +102,56 @@ feature 'Submit a general enquiry' do
   end
 
   scenario 'Without a topic, name, email address, confirm email or message' do
-    visit 'correspondence/new'
+    topic_page.load
+
+    expect(topic_page.title).to eq "Topic search - Contact the Ministry of Justice\n"
+
+    topic_page.search_govuk('')
+    expect(topic_page.text).to have_content(topic_error)
+
+    expect(search_page.title).to eq "Topic search - Contact the Ministry of Justice\n"
+
+    topic_page.search_govuk(topic_with_results)
+
+    expect(search_page.title).to eq "Contact form - Contact the Ministry of Justice\n"
+
+    search_page.need_to_contact_radio.click
+
+    search_page.wait_until_need_to_contact_form_visible
+
     click_button 'Send'
+
     error_messages.each do
       |error_message| expect(page).to have_content(error_message)
     end
   end
 
-  scenario 'With mismatching email and confirm email inputs' do
-    visit 'correspondence/new'
-    fill_in 'correspondence[name]',               with: name
-    fill_in 'correspondence[email]',              with: email
-    fill_in 'correspondence[message]',            with: message
-    fill_in 'correspondence[email_confirmation]', with: 'mismatch@email.com'
-    fill_in 'correspondence[topic]',              with: topic_input
-    click_button 'Send'
-    expect(page).to have_content("Confirm email doesn't match Email")
-  end
+  scenario 'A topic which returns zero results' do
+    topic_page.load
+    topic_page.search_govuk('AbccdefghijkLmnopqrstuvwxyz')
 
-  scenario 'and refreshing the page, does not cause a routing error' do
-    visit 'correspondence/new'
-    click_button 'Send'
-    expect{ visit current_path }.not_to raise_error
+    expect(search_page).to have_no_need_to_contact_radio
+    expect(search_page).to have_no_self_serviced_radio
+
+    expect(search_page).to have_need_to_contact_form
+
+    search_page.send_correspondence(name,
+                                    email,
+                                    message)
+
+    success_messages.each do
+      |success_message| expect(page).to have_content(success_message)
+    end
+
+    expect(Correspondence.count).to eq 1
+    expect(Correspondence.last).to have_attributes(
+                                       name: name,
+                                       email: email,
+                                       message: message,
+                                       topic: 'AbccdefghijkLmnopqrstuvwxyz'
+                                   )
+    expect(EmailCorrespondenceJob).to have_been_enqueued.with(Correspondence.last)
+    expect(EmailConfirmationJob).to have_been_enqueued.with(Correspondence.last)
   end
 end
 

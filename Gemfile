@@ -32,6 +32,7 @@ gem 'curb', '~> 0.9'
 
 group :test do
   gem 'capybara'
+  gem 'capybara-screenshot'
   gem "codeclimate-test-reporter", require: nil
   gem 'i18n-tasks', '~> 0.9.5'
   gem 'mail'
@@ -40,11 +41,13 @@ group :test do
   gem 'selenium-webdriver', '~> 3.0'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'site_prism', '~> 2.9'
+  gem 'poltergeist', '~> 1.13'
 end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'launchy', '~> 2.4', '>= 2.4.3'
   gem 'faker'
   gem 'factory_girl_rails'
   gem 'pry'
@@ -57,6 +60,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'brakeman'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'guard-livereload', '>= 2.5.2'
   gem 'guard-rspec'
@@ -66,6 +70,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console'
+  gem 'annotate'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

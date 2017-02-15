@@ -24,12 +24,6 @@ RSpec.describe CorrespondenceController, type: :controller do
     }
   end
 
-  describe 'GET new' do
-    before { get :new }
-
-    it { should render_template(:new) }
-  end
-
   describe 'POST create' do
     context 'with valid params' do
       it 'makes a DB entry' do
@@ -99,8 +93,8 @@ RSpec.describe CorrespondenceController, type: :controller do
           .not_to have_enqueued_job(EmailConfirmationJob)
       end
 
-      it 'renders the :new template' do
-        expect(post :create, params: params).to render_template(:new)
+      it 'renders the :search template' do
+        expect(post :create, params: params).to render_template(:search)
       end
     end
 

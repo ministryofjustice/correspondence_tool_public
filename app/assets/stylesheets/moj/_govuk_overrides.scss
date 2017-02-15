@@ -28,3 +28,11 @@
 strong {
   font-weight: 600;
 }
+
+.form-label, .gov_uk_date legend {
+  font-weight: bold;
+}
+
+.gov_uk_date .form-hint{
+  margin-bottom: 0;
+}

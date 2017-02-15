@@ -39,9 +39,13 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    annotate (2.6.5)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     arel (7.1.4)
     ast (2.3.0)
     awesome_print (1.7.0)
+    brakeman (3.5.0)
     builder (3.2.2)
     byebug (9.0.5)
     capybara (2.8.1)
@@ -51,8 +55,12 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-screenshot (1.0.14)
+      capybara (>= 1.0, < 3)
+      launchy
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
+    cliver (0.3.2)
     codeclimate-test-reporter (0.6.0)
       simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.1)
@@ -160,6 +168,8 @@ GEM
     jsonb_accessor (1.0.0.beta.1)
       activerecord (>= 5.0.0)
       pg (>= 0.18.1)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -203,6 +213,10 @@ GEM
     parser (2.3.1.2)
       ast (~> 2.2)
     pg (0.18.4)
+    poltergeist (1.13.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      websocket-driver (>= 0.2.0)
     powerpack (0.1.1)
     premailer (1.8.7)
       css_parser (>= 1.4.5)
@@ -374,9 +388,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
   awesome_print (~> 1.7)
+  brakeman
   byebug
   capybara
+  capybara-screenshot
   codeclimate-test-reporter
   coffee-rails (~> 4.2)
   config
@@ -395,11 +412,13 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   jsonb_accessor (~> 1.0.0.beta.1)
+  launchy (~> 2.4, >= 2.4.3)
   listen (~> 3.0.5)
   logstasher
   mail
   mechanize
   pg (~> 0.18)
+  poltergeist (~> 1.13)
   premailer-rails (~> 1.9)
   pry
   pry-byebug

@@ -55,4 +55,14 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # logstasher configuration - Uncomment this section inorder to see logstash style logs in the rails console
+  # (normal logs will still be sent to log/development.log)
+  #
+  # config.logstasher.enabled = true
+  # config.logstasher.suppress_app_log = false
+  # config.logstasher.source = 'correspondence-tool-public.dev'
+  # config.logstasher.backtrace = true
+  # config.logstasher.log_controller_parameters = true
+  # config.logstasher.logger = Logger.new STDOUT
 end

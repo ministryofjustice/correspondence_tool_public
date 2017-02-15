@@ -1,3 +1,7 @@
+gov_uk_search_api_url: https://www.gov.uk/api/search.json
+gov_uk_search_url: https://www.gov.uk/search
+moj_home_page: https://www.gov.uk/government/organisations/ministry-of-justice
+
 correspondence_categories:
   - general_enquiries
   - freedom_of_information_request

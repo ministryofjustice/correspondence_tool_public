@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: feedback
+#
+#  id         :integer          not null, primary key
+#  content    :jsonb
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Feedback < ActiveRecord::Base
 # i18n-tasks-use t('activerecord.errors.models.feedback.attributes.completeness.inclusion')
 # i18n-tasks-use t('activerecord.errors.models.feedback.attributes.ease_of_use.inclusion')
