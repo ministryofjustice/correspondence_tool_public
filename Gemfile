@@ -22,6 +22,7 @@ gem 'sidekiq'
 gem 'slim-rails', '~> 3.1'
 gem 'susy', '~> 2.2.12'
 gem 'uglifier', '>= 1.3.0'
+gem 'curb', '~> 0.9'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -50,6 +51,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.4'
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
+  gem 'awesome_print', '~> 1.7'
 end
 
 group :development do
