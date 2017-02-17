@@ -3,28 +3,37 @@
 
 = render partial: 'layouts/header', locals: {page_heading: t('common.service_name')}
 
-h2.heading-large = t('.page_subheading')
+.grid-row
+  section.column-two-thirds
 
+    h2.start-heading.start-heading--hint
+      = t('.service_hint')
+
+    = t('.opening_paragraphs_html')
+
+    h2{class="start-heading start-heading--reasons" aria-hidden="true"}
+      = "#{t('.reasons_heading_html')} :"
+
+    ul.list.list-bullet
+      = t('.reasons_not_to_reply_html', reasons_heading: t('.reasons_heading_html') )
+
+    = t('.closing_paragraphs_html')
+
+  section.sidebar
+    aside.govuk-related-items
+      h2.heading-medium
+        = t('.other_services')
+
+      ul.list
+        li
+          = link_to t('.find_a_court_label'), t('.find_a_court_link') ,
+                  {onclick:"ga('send', 'event', 'External Link', '#{ t('.find_a_court_event')}')"}
+        li
+          = link_to t('.find_a_prison_label'), t('.find_a_prison_link') ,
+                  {onclick:"ga('send', 'event', 'External Link', '#{ t('.find_a_prison_event')}')"}
+        li
+          = link_to t('.visiting_a_prison_label'), t('.visiting_a_prison_link') ,
+                  onclick: "ga('send', 'event', 'External Link', '#{ t('.visiting_a_prison_event')}')"
 .grid-row
   .column-two-thirds
-    ul.before-start
-      li
-        span.form-label-bold
-          = t('.reply_title')
-          span.visually-hidden ,
-        = t('.reply_response')
-      li
-        span.form-label-bold
-          = t('.involved_title')
-          span.visually-hidden ,
-        = t('.involved_response')
-
-      li
-        span.form-label-bold
-          = t('.court_info_title')
-          span.visually-hidden ,
-        = t('.court_info_response_html')
-
-.grid-row
-  .column-two-thirds
-    = link_to  t('button.start'), new_correspondence_path, class: 'button button-start'
+    = link_to  t('button.start'), new_correspondence_path, {class: 'button button-start'}

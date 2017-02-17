@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 feature 'Submit a general enquiry' do
+  given(:start_page){ StartPage.new }
 
   given(:name)            { Faker::Name.name                   }
   given(:email)           { Faker::Internet.email              }
@@ -27,9 +28,15 @@ feature 'Submit a general enquiry' do
   end
 
   scenario 'User should start at the service "Start page"' do
-    visit root_path
-    expect(page).to have_content('Before you start')
-    click_link 'Start now'
+    start_page.load
+
+    expect(start_page).to have_sidebar
+    expect(start_page.sidebar).to have_find_a_court
+    expect(start_page.sidebar).to have_find_a_prison
+    expect(start_page.sidebar).to have_visit_a_prison
+    expect(start_page.sidebar.other_services.size).to eq 3
+
+    start_page.start_button.click
     expect(page.current_path).to eq new_correspondence_path
   end
 
@@ -88,5 +95,5 @@ feature 'Submit a general enquiry' do
     click_button 'Send'
     expect{ visit current_path }.not_to raise_error
   end
-
 end
+

@@ -32,7 +32,7 @@
   }
 }
 
-.notice-summary{
+.notice-summary {
   @extend .error-summary;
   border-color: $button-colour;
 
@@ -48,4 +48,22 @@ address {
 
 .p--double-lines {
   line-height: 2em;
+}
+
+.start-heading{
+  margin-bottom: $gutter;
+}
+
+.start-heading--hint{
+  @include core-24;
+}
+
+.start-heading--reasons {
+  @include bold-24;
+  margin-top: $gutter * 1.5;
+  margin-bottom: $gutter-half;
+}
+
+.button-start {
+  margin-top: $gutter;
 }
