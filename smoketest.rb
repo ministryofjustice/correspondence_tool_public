@@ -159,9 +159,10 @@ module SmokeTest
     page = agent.submit form
 
     form = page.form_with id: 'new_correspondence'
-    form.field_with(name: 'correspondence[email]').value = 'Smoking Tester'
-    form.field_with(name: 'correspondence[email]')
-      .value = 'correspondence-dev@digital.justice.gov.uk'
+    form.radiobutton_with(id: 'correspondence_contact_requested_yes').click
+
+    form.field_with(name: 'correspondence[name]').value = 'Smoking Tester'
+    form.field_with(name: 'correspondence[email]').value = 'correspondence-dev@digital.justice.gov.uk'
     form.field_with(name: 'correspondence[message]').value = message
     form.add_field!('smoke_test', :true)
 
