@@ -47,6 +47,8 @@ en:
 
   helpers:
     fieldset:
+      correspondence:
+        contact_requested: Do you still need to contact the Ministry of Justice
       feedback:
         ease_of_use: |
           This online service was easy to use
@@ -56,23 +58,21 @@ en:
       correspondence:
         name: Full name
         email_confirmation: Confirm email
-        topic: |
-          What is your query about?
         message: |
-          What do you want to tell the Ministry of Justice?
+          Your message
+        topic:
+          What are you contacting the Ministry of Justice about?
       feedback:
         comment: |
           How could we improve this service?
     hint:
       correspondence:
         email: |
-          We will only use this to send you a response.
+          We'll send a confirmation and any response to this email
         message_html: |
-          <ul class="list-bullet">
-          <li>Write your concern clearly.</li>
-          <li>Explain any issues you may have.</li>
-          <li>Be clear about any action you’d like the ministry to take.</li>
-          </ul>
+          To ensure you get a response, focus on what you want to know and keep  your message short and simple
+        topic: |
+          Give a brief summary to find a quick answer
 
   button:
     moj_home: Return to the Ministry of Justice homepage
@@ -91,13 +91,14 @@ en:
     confirmation:
       success: Your message has been sent
       next_title:  What happens next
+      confirmation_sent_html: <p class="p--double-lines">We've sent a confirmation email to <strong>%{email}</strong>.<br>
       next_copy_html: |
-        <p class="p--double-lines">We've sent a confirmation email to <strong>%{email}</strong>.<br>
-        We will review your message.<br>
-        If we're able to respond, we'll do so within 1 month.<br>
-        We'll send any response to the above email.</p>
-      feedback_link: "What did you think of this service?"
-      feedback_time: "(takes 30 seconds)"
+        <p>The team will review your message and reply to the email shown above.<br></p>
+        <p>We aim to respond to you as soon as possible, but allow up to 4 weeks for
+        complex cases or during busy periods.</p>
+      feedback_prompt: Was this service helpful?
+      feedback_link: Provide feedback
+      feedback_time: (takes 30 seconds)
     start:
       closing_paragraphs_html: |
         <p>We are not able to provide legal advice.</p>
@@ -132,6 +133,9 @@ en:
       visiting_a_prison_link: "https://www.gov.uk/prison-visits"
       visiting_a_prison_event: "Visited Prison visits"
 
+    search:
+      more_results: 'More results'
+
   feedback:
     new:
       error_summary: Please answer the statement(s) below
@@ -146,6 +150,8 @@ en:
   page_title:
     start_page: |
       Start - Contact the Ministry of Justice
+    topic_search: |
+      Topic search - Contact the Ministry of Justice
     contact_form: |
       Contact form - Contact the Ministry of Justice
     contact_confirm: |

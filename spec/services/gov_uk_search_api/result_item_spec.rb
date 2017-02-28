@@ -21,7 +21,7 @@ module GovUkSearchApi
     describe '#link' do
       it 'extracts the link from the hash' do
         item = ResultItem.new(standard_item)
-        expect(item.link).to eq 'http://example.com'
+        expect(item.link).to eq 'https://www.gov.uk/organisations/example-ministry'
       end
     end
 
@@ -52,7 +52,7 @@ module GovUkSearchApi
       {
         'title' => 'Title of result item',
         'description' => 'This is a description paragraph',
-        'link' => 'http://example.com',
+        'link' => '/organisations/example-ministry',
         'organisations' => [
           {
             'title' => 'Ministry of Justice',
@@ -71,7 +71,7 @@ module GovUkSearchApi
       {
         'title' => 'Title of result item',
         'description' => 'This is a description paragraph',
-        'link' => 'http://example.com',
+        'link' => '/organisations/example-ministry',
         'display_type' => 'Correspondence',
         'organisations' => [
           {
@@ -90,7 +90,7 @@ module GovUkSearchApi
       {
         'title' => 'Title of result item',
         'description' => 'This is a description paragraph',
-        'link' => 'http://example.com',
+        'link' => '/organisations/example-ministry',
         'display_type' => 'News story',
         'public_timestamp' => '2017-02-03T16:53:00.000+00:00',
         'organisations' => [

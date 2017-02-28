@@ -9,6 +9,11 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rails'
+require 'capybara/poltergeist'
+
+Capybara.javascript_driver = :poltergeist
+
+Capybara.asset_host = 'http://localhost:3000'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -25,6 +30,9 @@ require 'capybara/rails'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
+
+# Load Site Prism
+Dir[Rails.root.join('spec/site_prism/**/*.rb')].each { |f| require f }
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Checks for pending migration and applies them before tests are run.
@@ -32,6 +40,8 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
+  config.include AskTool::Pages::Application
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

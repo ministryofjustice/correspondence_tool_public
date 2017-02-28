@@ -14,7 +14,9 @@
 //= require jquery_ujs
 //= require vendor/polyfills/bind
 //= require govuk/selection-buttons
-//= require_tree .
+//= require govuk/show-hide-content
+//= require moj
+//= require_tree ./modules
 
 (function () {
   'use strict';
@@ -24,4 +26,6 @@
 
   selectionButtons.setInitialState($(buttonSelector));
 
-}());
+  moj.init();
+}(GOVUK));
+

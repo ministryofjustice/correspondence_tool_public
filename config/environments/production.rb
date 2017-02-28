@@ -91,6 +91,7 @@ Rails.application.configure do
 
   config.logstasher.enabled = true
   config.logstasher.logger = Logger.new STDOUT
+  config.logstasher.source = 'correspondence-tool-public.production'
 
   # Do not dump schema after migrations.
   #config.active_record.dump_schema_after_migration = false

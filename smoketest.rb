@@ -155,14 +155,14 @@ module SmokeTest
     page = agent.click('Start now')
     form = page.form_with id: 'new_correspondence'
 
-    form.field_with(name: 'correspondence[name]').value = 'Smoke Test'
+    form.field_with(name: 'correspondence[topic]').value = 'Smoke Test'
+    page = agent.submit form
+
+    form = page.form_with id: 'new_correspondence'
+    form.field_with(name: 'correspondence[email]').value = 'Smoking Tester'
     form.field_with(name: 'correspondence[email]')
       .value = 'correspondence-dev@digital.justice.gov.uk'
-    form.field_with(name: 'correspondence[email_confirmation]')
-      .value = 'correspondence-dev@digital.justice.gov.uk'
     form.field_with(name: 'correspondence[message]').value = message
-    form.field_with(name: 'correspondence[topic]')
-      .value = 'This is smoke test #{uuid}'
     form.add_field!('smoke_test', :true)
 
     agent.submit form

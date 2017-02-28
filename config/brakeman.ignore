@@ -1,0 +1,25 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Cross Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "f56780e9986e10e79f21fad848034ee1738b7ca65845152199fbf0013b355d57",
+      "check_name": "LinkToHref",
+      "message": "Unsafe model attribute in link_to href",
+      "file": "app/views/correspondence/search.html.slim",
+      "line": 24,
+      "link": "http://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to(t(\".more_results\"), escape_once(GovUkSearchApi::Client.new(Correspondence.new(correspondence_params).topic).html_query_url))",
+      "render_path": [{"type":"controller","class":"CorrespondenceController","method":"create","line":22,"file":"app/controllers/correspondence_controller.rb"}],
+      "location": {
+        "type": "template",
+        "template": "correspondence/search"
+      },
+      "user_input": "Correspondence.new(correspondence_params)",
+      "confidence": "Medium",
+      "note": ""
+    }
+  ],
+  "updated": "2017-02-21 12:34:40 +0000",
+  "brakeman_version": "3.5.0"
+}

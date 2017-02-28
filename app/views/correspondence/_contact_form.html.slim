@@ -1,0 +1,6 @@
+= f.text_field :name
+= f.email_field :email
+= f.text_area :message, {rows: 10}
+
+= f.hidden_field :topic, value: @correspondence.topic
+= f.submit t('button.send'), {class:'button', onclick: "ga('send', 'event', 'Question', 'Sent')"}
