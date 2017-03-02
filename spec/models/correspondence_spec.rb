@@ -27,12 +27,7 @@ RSpec.describe Correspondence, type: :model do
     it { should validate_presence_of     :name }
     it { should validate_presence_of     :email }
     it { should validate_presence_of     :category }
-    it do
-      should validate_presence_of(:topic).
-               with_message(
-                 'Please tell us what your query is about.'
-               )
-    end
+    it { should validate_presence_of     :topic }
     it { should validate_presence_of     :message }
     it { should validate_confirmation_of :email}
 
@@ -44,6 +39,7 @@ RSpec.describe Correspondence, type: :model do
     it { should allow_value('foo@bar.com').for :email }
     it { should_not allow_value('foobar.com').for :email  }
     it { should validate_length_of(:topic).is_at_most(60) }
+    it { should validate_length_of(:message).is_at_most(5000) }
 
     it { should validate_inclusion_of(:contact_requested).in_array(['yes', 'no']) }
   end
@@ -75,6 +71,7 @@ RSpec.describe Correspondence, type: :model do
         expect(correspondence.errors[:topic]).to eq [" can't be blank"]
       end
     end
-
   end
+
+
 end
