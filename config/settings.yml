@@ -15,6 +15,7 @@ feedback_options:
   - strongly_disagree
 
 correspondence_topic_max_length: 60
+correspondence_message_max_length: 5000
 
 # Variables below are meant to be over-ridden in non-local environments (dev,
 # staging, prod) with correct values. The values below are place-holders.

@@ -27,6 +27,8 @@ class Correspondence < ActiveRecord::Base
     if: Proc.new { category.present? }
   validates :topic,
     length: { maximum: Settings.correspondence_topic_max_length }
+  validates :message,
+            length: { maximum: Settings.correspondence_message_max_length }
 
   validates_inclusion_of :contact_requested,
     in: %w(yes no),
