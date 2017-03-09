@@ -56,6 +56,7 @@ feature 'Submit a general enquiry' do
     expect(search_page).to be_displayed
     expect(search_page.title).to eq "Contact form - Contact the Ministry of Justice\n"
     expect(search_page.self_service.size).to eq 4
+    expect(search_page.self_service_ga_events.size).to eq 4
   end
 
   scenario 'Using valid inputs', js: true do
