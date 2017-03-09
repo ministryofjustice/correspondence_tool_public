@@ -20,11 +20,13 @@ p.original-message
       | The following information may help:
 
     ul.list
-      - @search_result.result_items.each do |item|
-        li = link_to item.title, item.link
+      - @search_result.result_items.each_with_index do |item, index|
+        li = link_to item.title, item.link,
+                {onclick: "ga('send', 'event', 'External Link - Results', '#{ index + 1 } - #{ item.title } - #{ item.link }')"}
 
       li.more-results
-        = link_to t('.more_results'), escape_once(@search_api_client.html_query_url)
+        = link_to t('.more_results'), escape_once(@search_api_client.html_query_url),
+                {onclick:"ga('send', 'event', 'External Link - Results', '#{ t('.more_results')}')"}
 
     = f.radio_button_fieldset :contact_requested
 

@@ -5,7 +5,7 @@ module AskTool
         set_url '/correspondence/search'
 
         elements :self_service, 'ul.list li'
-
+        elements :self_service_ga_events, 'ul.list li a[onclick]'
         element :self_serviced_radio, 'label[for="correspondence_contact_requested_no"]'
         element :self_serviced_radio_copy, '#correspondence_contact_requested_no_content'
 
