@@ -1,6 +1,12 @@
 = f.text_field :name
 = f.email_field :email
-= f.text_area :message, {rows: 10}
+= f.text_area :message, {rows: 10, 'aria-labelledby': 'correspondence_message correspondence_message_count' }
+
+#correspondence_message_count.char-counter.form-group{ data-maxlength= Settings.correspondence_message_max_length }
+  span#live-region-text {aria-live="polite"}
+    span.char-counter-count
+      = Settings.correspondence_message_max_length
+    = " characters remaining"
 
 = f.hidden_field :topic, value: @correspondence.topic
 = f.submit t('button.send'), {class:'button', onclick: "ga('send', 'event', 'Question', 'Sent')"}

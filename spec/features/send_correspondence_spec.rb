@@ -153,5 +153,32 @@ feature 'Submit a general enquiry' do
     expect(EmailCorrespondenceJob).to have_been_enqueued.with(Correspondence.last)
     expect(EmailConfirmationJob).to have_been_enqueued.with(Correspondence.last)
   end
+
+  scenario 'message character count updates when text is entered', js: true  do
+
+    input_within_maxlength = 'a' * rand(1..5000)
+    input_over_maxlength = 'a' * rand(5001..6000)
+
+    topic_page.load
+    topic_page.search_govuk(topic_with_results)
+
+    expect(search_page).to be_loaded
+
+    search_page.need_to_contact_radio.click
+
+    search_page.wait_until_need_to_contact_form_visible
+
+    expect(search_page.need_to_contact_form.counter.text).to eq "5000"
+
+    search_page.need_to_contact_form.message.set input_within_maxlength
+
+    expect(search_page.need_to_contact_form.counter.text).to eq "#{ 5000 - input_within_maxlength.length}"
+
+    search_page.need_to_contact_form.message.set input_over_maxlength
+
+    expect(search_page.need_to_contact_form.counter.text).to eq "#{ 5000 - input_over_maxlength.length}"
+
+
+  end
 end
 

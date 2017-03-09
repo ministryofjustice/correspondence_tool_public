@@ -74,3 +74,13 @@ address {
 .more-results {
   margin-top: $gutter;
 }
+
+.char-counter {
+  .js-enabled & {
+    display: block;
+  }
+}
+
+.char-counter--overlimit {
+  color: $error-colour;
+}
