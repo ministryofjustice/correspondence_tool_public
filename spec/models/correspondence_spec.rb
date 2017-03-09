@@ -27,7 +27,12 @@ RSpec.describe Correspondence, type: :model do
     it { should validate_presence_of     :name }
     it { should validate_presence_of     :email }
     it { should validate_presence_of     :category }
-    it { should validate_presence_of     :topic }
+    it do
+      should validate_presence_of(:topic).
+          with_message(
+              'Please tell us what your query is about.'
+          )
+    end
     it { should validate_presence_of     :message }
     it { should validate_confirmation_of :email}
 
