@@ -14,6 +14,7 @@ module AskTool
           element :name, '#correspondence_name'
           element :email, '#correspondence_email'
           element :message, '#correspondence_message'
+          element :counter, '.char-counter-count'
         end
 
         element :send_button, 'input[type="submit"][value="Send"]'
