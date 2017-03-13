@@ -351,6 +351,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stopwords-filter (0.4.1)
     susy (2.2.12)
       sass (>= 3.3.0, < 3.5)
     temple (0.7.7)
@@ -438,6 +439,7 @@ DEPENDENCIES
   slim-rails (~> 3.1)
   spring
   spring-watcher-listen (~> 2.0.0)
+  stopwords-filter
   susy (~> 2.2.12)
   tzinfo-data
   uglifier (>= 1.3.0)

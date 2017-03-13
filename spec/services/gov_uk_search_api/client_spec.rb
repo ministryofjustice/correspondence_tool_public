@@ -5,10 +5,11 @@ module GovUkSearchApi
   RSpec.describe Client, type: :model do
 
     let(:query) { 'Ministry of Justice' }
+    let(:filtered_query) { 'Ministry Justice' }
 
     describe '#search' do
 
-      let(:url_query) { "https://www.gov.uk/api/search.json?count=3&q=#{URI.encode(query)}" }
+      let(:url_query) { "https://www.gov.uk/api/search.json?count=3&q=#{URI.encode(filtered_query)}" }
 
       context 'successful call to API' do
         it 'calls Curl with the URI encoded query and the curl response and returns a Response object' do
@@ -40,10 +41,10 @@ module GovUkSearchApi
       end
     end
 
-    describe '#html_query_url' do
+    describe '#more_results_url' do
       it 'returns the html gov uk query url with encoded query' do
         client = Client.new(query)
-        expect(client.html_query_url).to eq 'https://www.gov.uk/search?q=Ministry%20of%20Justice'
+        expect(client.more_results_url).to eq 'https://www.gov.uk/search?q=Ministry%20Justice'
       end
     end
   end

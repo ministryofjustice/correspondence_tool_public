@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'coffee-rails', '~> 4.2'
 gem 'config'
+gem 'curb', '~> 0.9'
 gem 'foreman', '~> 0.82.0' # Used in dev & production
 gem 'govuk_template',         '~> 0.19.1'
 gem 'govuk_frontend_toolkit', '>= 5.0.2'
@@ -20,9 +21,10 @@ gem 'responders', '~> 2.3'
 gem 'sass-rails', '~> 5.0'
 gem 'sidekiq'
 gem 'slim-rails', '~> 3.1'
+# Used for the GOVUK Search API
+gem 'stopwords-filter', require: 'stopwords'
 gem 'susy', '~> 2.2.12'
 gem 'uglifier', '>= 1.3.0'
-gem 'curb', '~> 0.9'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
