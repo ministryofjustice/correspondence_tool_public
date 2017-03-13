@@ -9,7 +9,7 @@
       "file": "app/views/correspondence/search.html.slim",
       "line": 24,
       "link": "http://brakemanscanner.org/docs/warning_types/link_to_href",
-      "code": "link_to(t(\".more_results\"), escape_once(GovUkSearchApi::Client.new(Correspondence.new(correspondence_params).topic).html_query_url))",
+      "code": "link_to(t(\".more_results\"), escape_once(GovUkSearchApi::Client.new(Correspondence.new(correspondence_params).topic).more_results_url))",
       "render_path": [{"type":"controller","class":"CorrespondenceController","method":"create","line":22,"file":"app/controllers/correspondence_controller.rb"}],
       "location": {
         "type": "template",
