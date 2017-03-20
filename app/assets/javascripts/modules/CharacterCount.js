@@ -33,7 +33,7 @@ moj.Modules.CharacterCount = {
         self.updateRemaining($liveRegion,remaining);
 
       }
-    });
+    }).trigger('keyup');
   },
 
   updateRemaining : function ($liveRegion, charsLeft) {

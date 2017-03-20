@@ -181,5 +181,30 @@ feature 'Submit a general enquiry' do
 
 
   end
+
+
+  scenario 'message character count shows correct count on page load', js:true do
+    input_over_maxlength = 'a' * rand(5001..6000)
+
+    topic_page.load
+    topic_page.search_govuk(topic_with_results)
+
+    expect(search_page).to be_loaded
+
+    search_page.need_to_contact_radio.click
+
+    search_page.wait_until_need_to_contact_form_visible
+
+    expect(search_page.need_to_contact_form.counter.text).to eq "5000"
+
+    search_page.send_correspondence(name,
+                                    email,
+                                    input_over_maxlength)
+
+    search_page.wait_until_need_to_contact_form_visible
+
+    expect(search_page.need_to_contact_form.counter.text).to eq "#{ 5000 - input_over_maxlength.length}"
+
+  end
 end
 
