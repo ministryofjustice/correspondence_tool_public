@@ -24,6 +24,52 @@ RSpec.describe CorrespondenceController, type: :controller do
     }
   end
 
+  describe 'GET topic' do
+    it 'renders the topic form' do
+      expect(get :topic).to render_template(:topic)
+    end
+  end
+
+  describe 'GET search' do
+    context 'with a topic specified' do
+      let(:params) { {'correspondence'=>{'topic'=>'complaints about prisons'}, 'commit'=>'Send'} }
+
+      before(:each) do
+        search_client = double GovUkSearchApi::Client
+        @result = double 'GovUkSearchClient result'
+        expect(GovUkSearchApi::Client).to receive(:new).and_return(search_client)
+        expect(search_client).to receive(:search).and_return(@result)
+      end
+
+      it 'renders the search template' do
+        expect(get :search, params: params).to render_template(:search)
+      end
+
+      it 'instantiates a correspondence object with the search term' do
+        get :search, params: params
+        expect(assigns(:correspondence).topic).to eq 'complaints about prisons'
+      end
+
+      it 'calls the search client and stores results' do
+        get :search, params: params
+        expect(assigns(:search_result)).to eq @result
+      end
+    end
+
+    context 'with no topic specified' do
+      let(:params) { {'correspondence'=>{'topic'=>''}, 'commit'=>'Send'} }
+      it 're-renders the topic form' do
+        expect(get :search, params: params).to render_template(:topic)
+      end
+
+      it 'has a flash error message' do
+        get :search, params: params
+        expect(assigns(:correspondence).errors[:topic]).to include(" can't be blank")
+      end
+    end
+
+  end
+
   describe 'POST create' do
     context 'with valid params' do
       it 'makes a DB entry' do
