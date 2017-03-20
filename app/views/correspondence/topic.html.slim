@@ -6,7 +6,7 @@
 
 = render partial: 'layouts/header', locals: {page_heading: t('common.service_name')}
 
-= form_for @correspondence, url: correspondence_search_path do |f|
+= form_for @correspondence, url: correspondence_search_path, method: :get do |f|
 
   = f.text_field :topic, {maxlength: Settings.correspondence_topic_max_length}
 

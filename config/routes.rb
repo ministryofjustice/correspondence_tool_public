@@ -6,7 +6,7 @@ resources :feedback, only: [:new, :create]
 
 get '/correspondence' => 'correspondence#topic'
 get '/correspondence/topic' => 'correspondence#topic'
-post '/correspondence/search' => 'correspondence#search'
+get '/correspondence/search' => 'correspondence#search'
 
 get '/feedback' => 'feedback#new'
 
