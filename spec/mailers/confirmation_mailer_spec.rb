@@ -21,8 +21,10 @@ RSpec.describe ConfirmationMailer, type: :mailer do
   let(:expected_message)  do
     [ "To #{@correspondence.name}",
       'Thank you for contacting the Ministry of Justice.',
-      'Our team will be checking what you have sent us shortly.',
-      'We aim to get back to you within 1 month, if we are able to respond to you',
+      'We have received a request for information from someone who gave this email address.',
+      'If this was you, please click on the following link to athenticate the request:',
+      'Once you authenticate this request by clicking on the link above, our team will check what you have sent us.',
+      'We aim to get back to you within 1 month, if we are able to respond to you.',
       'MOJ team',
       'Do not reply to this email.',
       'This address is not checked by the Ministry of Justice'

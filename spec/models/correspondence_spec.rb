@@ -2,10 +2,12 @@
 #
 # Table name: correspondence
 #
-#  id         :integer          not null, primary key
-#  content    :jsonb
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id               :integer          not null, primary key
+#  content          :jsonb
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  uuid             :string
+#  authenticated_at :datetime
 #
 
 require 'rails_helper'
@@ -27,6 +29,7 @@ RSpec.describe Correspondence, type: :model do
     it { should validate_presence_of     :name }
     it { should validate_presence_of     :email }
     it { should validate_presence_of     :category }
+    it { should validate_presence_of     :uuid }
     it do
       should validate_presence_of(:topic).
           with_message(
@@ -76,6 +79,45 @@ RSpec.describe Correspondence, type: :model do
         expect(correspondence.errors[:topic]).to eq [" can't be blank"]
       end
     end
+  end
+
+  describe '#authenticated?' do
+    context 'unauthenticated' do
+      it 'returns false' do
+        correspondence = build :correspondence
+        expect(correspondence.authenticated?).to be false
+      end
+    end
+
+    context 'authenticated' do
+      it 'returns true' do
+        correspondence = build :correspondence, :authenticated
+        expect(correspondence.authenticated?).to be true
+      end
+    end
+  end
+
+  describe 'autenticate!' do
+    let(:frozen_time) { Time.new(2017, 4, 13, 22, 33, 44) }
+
+    context 'unauthenticated' do
+      it 'updates authenticated_at with current time' do
+        Timecop.freeze frozen_time do
+          correspondence = build :correspondence
+          correspondence.authenticate!
+          expect(correspondence.authenticated_at).to eq frozen_time
+        end
+      end
+    end
+
+    context 'authenticated' do
+      it 'does not update the authenticated at time' do
+        correspondence = build :correspondence, authenticated_at: frozen_time
+        correspondence.authenticate!
+        expect(correspondence.authenticated_at).to eq frozen_time
+      end
+    end
+
   end
 
 

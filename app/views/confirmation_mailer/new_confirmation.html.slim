@@ -1,1 +1,3 @@
-= t('.confirmation_html', full_name: @correspondence.name)
+= t('.confirmation_html',
+        full_name: @correspondence.name,
+        authentication_link: correspondence_authentication_url(@correspondence.uuid))
