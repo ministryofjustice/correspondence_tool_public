@@ -5,11 +5,11 @@ module AskTool
         set_url '/correspondence/topic'
 
         element :topic_field, '#correspondence_topic'
-        element :send_button, 'input[type="submit"][value="Send"]'
+        element :continue_button, 'input[type="submit"][value="Continue"]'
 
         def search_govuk(topic)
           topic_field.set topic
-          send_button.click
+          continue_button.click
         end
       end
     end
