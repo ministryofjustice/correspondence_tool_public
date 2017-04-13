@@ -78,6 +78,7 @@ en:
     moj_home: Return to the Ministry of Justice homepage
     send: Send
     start: Start now
+    continue: Continue
 
   common:
     error: error
