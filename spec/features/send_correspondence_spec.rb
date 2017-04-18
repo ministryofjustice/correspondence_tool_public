@@ -93,7 +93,6 @@ feature 'Submit a general enquiry' do
       message: message,
       topic: topic_with_results
     )
-    expect(EmailCorrespondenceJob).to have_been_enqueued.with(Correspondence.last)
     expect(EmailConfirmationJob).to have_been_enqueued.with(Correspondence.last)
 
     expect(page).to have_link(
@@ -151,7 +150,6 @@ feature 'Submit a general enquiry' do
                                        message: message,
                                        topic: 'AbccdefghijkLmnopqrstuvwxyz'
                                    )
-    expect(EmailCorrespondenceJob).to have_been_enqueued.with(Correspondence.last)
     expect(EmailConfirmationJob).to have_been_enqueued.with(Correspondence.last)
   end
 

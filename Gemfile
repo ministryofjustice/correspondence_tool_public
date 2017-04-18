@@ -44,6 +44,7 @@ group :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'site_prism', '~> 2.9'
   gem 'poltergeist', '~> 1.13'
+  gem 'timecop', '~> 0.8'
 end
 
 group :development, :test do

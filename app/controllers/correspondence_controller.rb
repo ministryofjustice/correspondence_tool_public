@@ -21,13 +21,10 @@ class CorrespondenceController < ApplicationController
     end
   end
 
-
-
-
   def topic
     @correspondence = Correspondence.new
   end
-  
+
   def search
     @correspondence = Correspondence.new(topic: search_params[:topic])
     if @correspondence.topic_present?
@@ -36,6 +33,18 @@ class CorrespondenceController < ApplicationController
       @search_result = @search_api_client.search
     else
       render :topic
+    end
+  end
+
+  def authenticate
+    @correspondence = Correspondence.where(uuid: params[:uuid]).first
+    if @correspondence.nil?
+      render file: '/public/404.html', status: 404, layout: false
+    elsif @correspondence.authenticated?
+      render template: 'correspondence/already_authenticated'
+    else
+      @correspondence.authenticate!
+      EmailCorrespondenceJob.perform_later(@correspondence)
     end
   end
 

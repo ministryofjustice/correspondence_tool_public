@@ -38,7 +38,7 @@ smoke_tests:
   first_read_wait: 3
   max_wait_time: 600
 aaq_feedback_email: feedback@localhost
-aaq_email_url: http://localhost/
+aaq_email_url: http://localhost:3000
 
 # These are set in run.sh
 git_source:  Git Source Not Available

@@ -2,10 +2,12 @@
 #
 # Table name: correspondence
 #
-#  id         :integer          not null, primary key
-#  content    :jsonb
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id               :integer          not null, primary key
+#  content          :jsonb
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  uuid             :string
+#  authenticated_at :datetime
 #
 
 class Correspondence < ActiveRecord::Base
@@ -15,7 +17,8 @@ class Correspondence < ActiveRecord::Base
                         :email,
                         :category,
                         :topic,
-                        :message
+                        :message,
+                        :uuid
 
   validates :email, confirmation: { case_sensitive: false }
 
@@ -47,5 +50,16 @@ class Correspondence < ActiveRecord::Base
   def topic_present?
     errors['topic'] << " can't be blank" unless topic.present?
     topic.present?
+  end
+
+  def authenticated?
+    !self.authenticated_at.nil?
+  end
+
+  def authenticate!
+    unless authenticated?
+      self.authenticated_at = Time.now
+      save!
+    end
   end
 end

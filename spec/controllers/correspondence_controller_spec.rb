@@ -67,7 +67,47 @@ RSpec.describe CorrespondenceController, type: :controller do
         expect(assigns(:correspondence).errors[:topic]).to include(" can't be blank")
       end
     end
+  end
 
+  describe 'GET authenticate' do
+
+    let!(:correspondence) { create :correspondence, uuid: '3cc98e93-d11c-42ad-832d-f40113d3ec27' }
+
+    context 'record not authenticated' do
+      it 'sets the authenticated_at date' do
+        Timecop.freeze(Time.new(2017, 4, 13, 12, 11, 10)) do
+          get :authenticate, params: {uuid: '3cc98e93-d11c-42ad-832d-f40113d3ec27'}
+          expect(correspondence.reload.authenticated_at).to eq Time.new(2017, 4, 13, 12, 11, 10)
+        end
+      end
+
+      it 'fires off an email to the team' do
+        expect(EmailCorrespondenceJob).to receive(:perform_later).with(correspondence)
+        get :authenticate, params: {uuid: '3cc98e93-d11c-42ad-832d-f40113d3ec27'}
+      end
+    end
+
+    context 'uuid not in database' do
+      it 'responds Not found' do
+        get :authenticate, params: {uuid: 'ffffffff-eeee-dddd-cccc-bbbbbbbbbbb'}
+        expect(response).to have_http_status(404)
+      end
+    end
+    context 'record already authenticated' do
+
+      let(:authenticated_time) { 20.minutes.ago }
+      before(:each) { correspondence.authenticated_at = authenticated_time }
+
+      it 'does not update the authenticated at date'do
+        get :authenticate, params: {uuid: '3cc98e93-d11c-42ad-832d-f40113d3ec27'}
+        expect(correspondence.authenticated_at).to eq authenticated_time
+      end
+
+      it 'does not resend the email' do
+        get :authenticate, params: {uuid: '3cc98e93-d11c-42ad-832d-f40113d3ec27'}
+        expect(EmailCorrespondenceJob).not_to receive(:perform_later)
+      end
+    end
   end
 
   describe 'POST create' do
@@ -75,12 +115,6 @@ RSpec.describe CorrespondenceController, type: :controller do
       it 'makes a DB entry' do
         expect { post :create, params: params }
           .to change { Correspondence.count }.by 1
-      end
-
-      it 'enqueues an EmailCorrespondenceJob' do
-        post :create, params: params
-        expect(EmailCorrespondenceJob)
-          .to have_been_enqueued.with(Correspondence.last)
       end
 
       it 'enqueues an EmailConfirmationJob' do
@@ -146,7 +180,7 @@ RSpec.describe CorrespondenceController, type: :controller do
 
     context 'when redis is down' do
       before do
-        allow(EmailCorrespondenceJob)
+        allow(EmailConfirmationJob)
           .to receive(:perform_later)
           .and_raise(Redis::CannotConnectError)
         post :create, params: params

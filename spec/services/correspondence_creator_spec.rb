@@ -35,12 +35,7 @@ describe CorrespondenceCreator do
         expect(creator.result).to eq :success
       end
 
-      it 'sends correspondence eamil' do
-        expect(EmailCorrespondenceJob).to receive(:perform_later).with(instance_of(Correspondence))
-        CorrespondenceCreator.new(params)
-      end
-
-      it 'sends confirmation eamil' do
+      it 'sends confirmation email' do
         expect(EmailConfirmationJob).to receive(:perform_later).with(instance_of(Correspondence))
         CorrespondenceCreator.new(params)
       end
@@ -49,6 +44,12 @@ describe CorrespondenceCreator do
         expect {
           CorrespondenceCreator.new(params)
         }.to change {Correspondence.count }.by(1)
+      end
+
+      it 'adds a uuid' do
+        allow(SecureRandom).to receive(:uuid).and_return('ffffffff-eeee-dddd-cccc-bbbbbbbbbbb')
+        CorrespondenceCreator.new(params)
+        expect(Correspondence.last.uuid).to eq 'ffffffff-eeee-dddd-cccc-bbbbbbbbbbb'
       end
     end
 
