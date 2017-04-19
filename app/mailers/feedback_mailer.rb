@@ -1,11 +1,13 @@
-class FeedbackMailer < ApplicationMailer
-
+class FeedbackMailer < GovukNotifyRails::Mailer
   def new_feedback(feedback)
-    @feedback = feedback
-    ease = @feedback.ease_of_use.humanize
-    complete = @feedback.completeness.humanize
-    mail to: Settings.aaq_feedback_email,
-         subject: "Ask Tool Feedback - Easy: #{ease} - Complete: #{complete}"
+    set_template Settings.new_feedback_notify_template
+
+    set_personalisation ease_of_use:    feedback.ease_of_use.humanize,
+                        completeness:   feedback.completeness.humanize,
+                        comment:        feedback.comment,
+                        when_submitted: feedback.created_at
+
+    mail to: Settings.aaq_feedback_email
   end
 
 end
