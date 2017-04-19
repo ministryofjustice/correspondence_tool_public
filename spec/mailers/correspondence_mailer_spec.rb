@@ -1,36 +1,43 @@
 require "rails_helper"
 
 RSpec.describe CorrespondenceMailer, type: :mailer do
-
-  def send_email
-    ActionMailer::Base.perform_deliveries = true
-    ActionMailer::Base.deliveries = []
-    @correspondence = build(:correspondence, category: correspondence_category)
-    CorrespondenceMailer.new_correspondence(@correspondence).deliver_now
-    @mail = ActionMailer::Base.deliveries.first
-  end
-
-  before(:each) do
-    send_email
-  end
-
-  after(:each) do
-    ActionMailer::Base.deliveries.clear
-  end
-
   describe '#new_correspondence' do
     let(:correspondence_category) { 'general_enquiries' }
+    let(:correspondence) { create :correspondence,
+                                  category: correspondence_category,
+                                  email: 'tester@localhost',
+                                  name: 'Testy McTest Face',
+                                  message: 'this is just a test',
+                                  created_at:
+                                    DateTime.new(2017, 3, 3, 15, 3, 57),
+                                  topic: 'testing correspondence mailing' }
+    let(:mail) { described_class.new_correspondence(correspondence)}
 
-    it 'sends an email' do
-      expect(ActionMailer::Base.deliveries.count).to eq 1
+    it 'sets the template' do
+      expect(mail.govuk_notify_template)
+        .to eq '29ad44f7-ba74-455c-9f8e-e2d72c933620'
+    end
+
+    it 'personalises the email' do
+      expect(mail.govuk_notify_personalisation)
+        .to eq({
+                 topic: 'testing correspondence mailing',
+                 category: 'General enquiries',
+                 correspondent_name: 'Testy McTest Face',
+                 correspondent_email: 'tester@localhost',
+                 message: 'this is just a test',
+                 when_submitted: '03/03/2017 15:03',
+               })
     end
 
     describe 'destination mail address' do
-      subject { @mail.to }
+      subject { mail.to }
 
       context 'when creating a general enquiry' do
         let(:correspondence_category) { 'general_enquiries' }
-        it { is_expected.to include('general_enquiries@localhost') }
+        it {
+          is_expected.to include('general_enquiries@localhost')
+        }
       end
 
       context 'when creating a foi request' do
@@ -43,23 +50,6 @@ RSpec.describe CorrespondenceMailer, type: :mailer do
         it { is_expected.to include('smoketest@localhost') }
       end
 
-    end
-
-    context 'and the subject contains' do
-
-      it 'the category of correspondence' do
-        expect(@mail.subject).to include(@correspondence.category.humanize)
-      end
-
-      it 'the area of interest' do
-        expect(@mail.subject).to include(@correspondence.topic)
-      end
-    end
-
-    context 'and the body contains' do
-      it 'a message from a member of the public' do
-        expect(@mail.html_part.body.to_s).to include(@correspondence.message)
-      end
     end
   end
 end
