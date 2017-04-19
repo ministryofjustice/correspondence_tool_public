@@ -14,7 +14,6 @@ class CorrespondenceCreator
 
   def create_correspondence(params)
     correspondence = Correspondence.new(params)
-    correspondence.uuid = SecureRandom.uuid
     if correspondence.save
       EmailConfirmationJob.perform_later(correspondence)
       @result = :success

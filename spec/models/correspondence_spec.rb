@@ -17,6 +17,36 @@ RSpec.describe Correspondence, type: :model do
 
   it { should be_valid }
 
+  describe 'uuid' do
+    let(:create_params) do
+      {
+        name: 'Same Mame',
+        email: 'same.mame@localhost',
+        category: 'general_enquiries',
+        topic: 'some name game',
+        message: 'This is some name game test.'
+      }
+    end
+
+    it { should have_readonly_attribute :uuid }
+
+    it 'sets a uuid' do
+      allow(SecureRandom)
+        .to receive(:uuid).and_return('ffffffff-eeee-dddd-cccc-bbbbbbbbbbb')
+      correspondence = described_class.create! create_params
+      expect(correspondence.uuid).to eq 'ffffffff-eeee-dddd-cccc-bbbbbbbbbbb'
+    end
+
+    it 'does not allow a caller to set uuid on creation' do
+      allow(SecureRandom)
+        .to receive(:uuid).and_return('ffffffff-eeee-dddd-cccc-bbbbbbbbbbb')
+      correspondence = described_class.create!(
+        create_params.merge(uuid: 'bbbbbbbbbbb-cccc-dddd-eeee-ffffffff')
+      )
+      expect(correspondence.uuid).to eq 'ffffffff-eeee-dddd-cccc-bbbbbbbbbbb'
+    end
+  end
+
   describe 'each category' do
     Settings.correspondence_categories.each do |category|
       it 'has a specific email address associated' do
@@ -29,7 +59,6 @@ RSpec.describe Correspondence, type: :model do
     it { should validate_presence_of     :name }
     it { should validate_presence_of     :email }
     it { should validate_presence_of     :category }
-    it { should validate_presence_of     :uuid }
     it do
       should validate_presence_of(:topic).
           with_message(

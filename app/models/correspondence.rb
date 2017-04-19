@@ -12,13 +12,13 @@
 
 class Correspondence < ActiveRecord::Base
 # i18n-tasks-use t('activerecord.errors.models.correspondence.attributes.topic.blank')
+  attr_readonly :uuid
 
   validates_presence_of :name,
                         :email,
                         :category,
                         :topic,
-                        :message,
-                        :uuid
+                        :message
 
   validates :email, confirmation: { case_sensitive: false }
 
@@ -46,6 +46,7 @@ class Correspondence < ActiveRecord::Base
     message: :text,
     contact_requested: :string
 
+  before_validation :set_uuid, on: :create
 
   def topic_present?
     errors['topic'] << " can't be blank" unless topic.present?
@@ -61,5 +62,11 @@ class Correspondence < ActiveRecord::Base
       self.authenticated_at = Time.now
       save!
     end
+  end
+
+  private
+
+  def set_uuid
+    self.uuid = SecureRandom.uuid
   end
 end
