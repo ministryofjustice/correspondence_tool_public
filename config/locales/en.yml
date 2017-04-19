@@ -163,17 +163,3 @@ en:
       Feedback confirmation - Contact the Ministry of Justice
     authentication_confirmation: |
       Authentication confirmation
-
-  confirmation_mailer:
-    new_confirmation:
-      confirmation_html: |
-        <p class="p--double-lines">To %{full_name}<br>
-        Thank you for contacting the Ministry of Justice.<br>
-        We have received a request for information from someone who gave this email address.</p>
-        <p>If this was you, please click on the following link to athenticate the request:</p>
-        <p><a href="%{authentication_link}">%{authentication_link}</a></p>
-        <p>Once you authenticate this request by clicking on the link above, our team will check what you have sent us.<br>
-        We aim to get back to you within 1 month, if we are able to respond to you.<br>
-        MOJ team</p>
-        <span class="p--double-lines">
-        Do not reply to this email.  This address is not checked by the Ministry of Justice</span>

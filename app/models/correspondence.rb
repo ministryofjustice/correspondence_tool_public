@@ -64,6 +64,10 @@ class Correspondence < ActiveRecord::Base
     end
   end
 
+  def confirmation_code
+    @confirmation_code ||= uuid.split('-')[1,2].join('-')
+  end
+
   private
 
   def set_uuid

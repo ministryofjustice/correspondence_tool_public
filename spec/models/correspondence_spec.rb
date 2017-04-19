@@ -13,21 +13,29 @@
 require 'rails_helper'
 
 RSpec.describe Correspondence, type: :model do
+  let(:create_params) do
+    {
+      name: 'Same Mame',
+      email: 'same.mame@localhost',
+      category: 'general_enquiries',
+      topic: 'some name game',
+      message: 'This is some name game test.'
+    }
+  end
+
   subject { build :correspondence }
 
   it { should be_valid }
 
-  describe 'uuid' do
-    let(:create_params) do
-      {
-        name: 'Same Mame',
-        email: 'same.mame@localhost',
-        category: 'general_enquiries',
-        topic: 'some name game',
-        message: 'This is some name game test.'
-      }
+  describe 'each category' do
+    Settings.correspondence_categories.each do |category|
+      it 'has a specific email address associated' do
+        expect(Settings["#{category}_email"]).not_to be nil
+      end
     end
+  end
 
+  describe 'uuid' do
     it { should have_readonly_attribute :uuid }
 
     it 'sets a uuid' do
@@ -47,11 +55,12 @@ RSpec.describe Correspondence, type: :model do
     end
   end
 
-  describe 'each category' do
-    Settings.correspondence_categories.each do |category|
-      it 'has a specific email address associated' do
-        expect(Settings["#{category}_email"]).not_to be nil
-      end
+  describe 'confirmation_code' do
+    it 'uses the UUID for the confirmation code' do
+      correspondence = described_class.create! create_params
+      allow(correspondence).to receive(:uuid)
+                                 .and_return('88888888-dead-beef-4444-cccccccccccc')
+      expect(correspondence.confirmation_code).to eq 'dead-beef'
     end
   end
 
