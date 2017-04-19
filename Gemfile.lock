@@ -117,6 +117,9 @@ GEM
     govuk_frontend_toolkit (5.0.2)
       rails (>= 3.1.0)
       sass (>= 3.2.0)
+    govuk_notify_rails (2.0.0)
+      notifications-ruby-client (>= 2.0.0)
+      rails (>= 4.1.0)
     govuk_template (0.19.1)
       rails (>= 3.1)
     guard (2.14.0)
@@ -168,6 +171,7 @@ GEM
     jsonb_accessor (1.0.0.beta.1)
       activerecord (>= 5.0.0)
       pg (>= 0.18.1)
+    jwt (1.5.6)
     launchy (2.4.3)
       addressable (~> 2.3)
     listen (3.0.8)
@@ -209,6 +213,8 @@ GEM
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    notifications-ruby-client (2.0.0)
+      jwt (~> 1.5)
     ntlm-http (0.1.1)
     parser (2.3.1.2)
       ast (~> 2.2)
@@ -406,6 +412,7 @@ DEPENDENCIES
   govuk_elements_form_builder
   govuk_elements_rails (>= 2.2.1)
   govuk_frontend_toolkit (>= 5.0.2)
+  govuk_notify_rails
   govuk_template (~> 0.19.1)
   guard-livereload (>= 2.5.2)
   guard-rspec
