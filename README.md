@@ -13,22 +13,6 @@ $ git clone git@github.com:ministryofjustice/correspondence_tool_public.git
 $ cd correspondence_tool_public
 ```
 
-### Setup MailCatcher
-
-When developing or testing locally we use
-[MailCatcher](https://mailcatcher.me/) to capture mail being sent locally and
-view it locally. The development environment is already setup to use
-MailCatcher so install it and run it:
-
-```bash
-$ gem install mailcatcher
-$ mailcatcher --smtp-port 2050
-```
-
-We run it on port 2050 because MacOS appears to be running the new
-`cloud-drive` process on default MailCatcher port (1025). Once run, you can
-visit http://localhost:1080/ to view what emails have been sent locally.
-
 ### Emails
 
 Emails are sent using the
@@ -64,7 +48,8 @@ $ export SETTINGS__CTS_EMAIL_PORT=5000
 Emails are sent using the
 [GOVUK Notify service](https://www.notifications.service.gov.uk). To configure
 this in the production environment ensure that the
-`SETTINGS__GOVUK_NOTIFY_API_KEY` environment variable is set with a production key.
+`SETTINGS__GOVUK_NOTIFY_API_KEY` environment variable is set with a production
+API key.
 
 ### Smoke Tests
 
