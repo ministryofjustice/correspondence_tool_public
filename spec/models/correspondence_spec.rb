@@ -27,8 +27,9 @@ RSpec.describe Correspondence, type: :model do
 
   it { should be_valid }
 
-  describe 'each category' do
+  describe 'each category except smoke_test' do
     Settings.correspondence_categories.each do |category|
+      next if category == 'smoke_test'
       it 'has a specific email address associated' do
         expect(Settings["#{category}_email"]).not_to be nil
       end
@@ -155,6 +156,44 @@ RSpec.describe Correspondence, type: :model do
         expect(correspondence.authenticated_at).to eq frozen_time
       end
     end
+
+  end
+
+  describe '.message search' do
+    before(:all) do
+      @c1 = create :correspondence, message: 'aa1'
+      @c2 = create :correspondence, message: 'abb1'
+      @c3 = create :correspondence, message: 'aa1'
+    end
+
+    after(:all) do
+      Correspondence.delete_all
+    end
+
+    describe '.all_by_message' do
+      it 'returns a collection of the correspondence items with the specified message' do
+        expect(Correspondence.all_by_message('aa1')).to match_array [ @c1, @c3 ]
+      end
+
+      it 'returns an empty collection if there are no records with the specified message' do
+        expect(Correspondence.all_by_message('zz1')).to be_empty
+      end
+    end
+
+    describe '.first_by_message' do
+      it 'returns just one correspondence item' do
+        expect(Correspondence.first_by_message('aa1')).to be_instance_of(Correspondence)
+      end
+
+      it 'returns one of the items with the specified message' do
+        expect(Correspondence.first_by_message('aa1').message).to eq 'aa1'
+      end
+
+      it 'returns nil if there is no record with the specified message' do
+        expect(Correspondence.first_by_message('xx3')).to be_nil
+      end
+    end
+
 
   end
 

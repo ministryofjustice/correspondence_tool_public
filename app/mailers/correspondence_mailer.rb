@@ -11,8 +11,12 @@ class CorrespondenceMailer < GovukNotifyRails::Mailer
                         correspondent_email: correspondence.email,
                         message:             correspondence.message,
                         when_submitted:      l(correspondence.created_at)
-
-    mail to: Settings["#{correspondence.category}_email"]
+    if correspondence.category == 'smoke_test'
+      to_address = Settings.smoke_tests.username
+    else
+      to_address = Settings["#{correspondence.category}_email"]
+    end
+    mail to: to_address
   end
 
 end

@@ -424,8 +424,8 @@ DEPENDENCIES
   launchy (~> 2.4, >= 2.4.3)
   listen (~> 3.0.5)
   logstasher
-  mail
-  mechanize
+  mail (~> 2.6.4)
+  mechanize (~> 2.7.5)
   pg (~> 0.18)
   poltergeist (~> 1.13)
   premailer-rails (~> 1.9)

@@ -47,7 +47,7 @@ RSpec.describe CorrespondenceMailer, type: :mailer do
 
       context 'when creating a smoke test' do
         let(:correspondence_category) { 'smoke_test' }
-        it { is_expected.to include('smoketest@localhost') }
+        it { is_expected.to include(Settings.smoke_tests.username) }
       end
 
     end
