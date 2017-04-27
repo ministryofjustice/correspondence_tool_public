@@ -102,7 +102,6 @@ prefixed with `SETTINGS__`.
 * **SETTINGS__AAQ_FEEDBACK_EMAIL** — The email address to send feedback to.
 * **SETTINGS__AAQ_EMAIL_URL** — The URL used for static assets presented in
   the correspondence email.
-* **SETTINGS__SMOKE_TEST_EMAIL** — Email address to send smoke tests to.
 * **SETTINGS__SMOKE_TESTS__PROTOCOL** — Protocol to use when connecting to
   mail server, :pop3 or :imap.
 * **SETTINGS__SMOKE_TESTS__SERVER** — Mail server to connect with to check for
@@ -112,6 +111,6 @@ prefixed with `SETTINGS__`.
 * **SETTINGS__SMOKE_TESTS__SSL** — Whether to use SSL when connecting to the
   mail server or not. true/false
 * **SETTINGS__SMOKE_TESTS__USERNAME** — Username to use when connecting to
-  mail server.
+  mail server (and the email address to which to send smoketest emails).
 * **SETTINGS__SMOKE_TESTS__PASSWORD** — Password to use when connecting to
   mail server.
