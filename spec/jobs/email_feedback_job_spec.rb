@@ -1,8 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe EmailFeedbackJob, type: :job do
-  let(:feedback) { create(:feedback) }
-  subject        { EmailFeedbackJob.new }
+  let(:mail_double) { double('Mail::Message', deliver_now: true)}
+  let(:feedback)    { create(:feedback) }
+  subject           { EmailFeedbackJob.new }
+
+  before do
+    allow(FeedbackMailer).to receive(:new_feedback)
+                               .and_return(mail_double)
+  end
 
   describe '.perform_later' do
     it 'adds a job to our queue' do
@@ -13,8 +19,8 @@ RSpec.describe EmailFeedbackJob, type: :job do
 
   describe '#perform' do
     it 'sends an email' do
-      expect { subject.perform(feedback.id) }
-        .to change { ActionMailer::Base.deliveries.count }.by 1
+      subject.perform(feedback.id)
+      expect(mail_double).to have_received(:deliver_now)
     end
   end
 end

@@ -71,19 +71,19 @@ RSpec.describe CorrespondenceController, type: :controller do
 
   describe 'GET authenticate' do
 
-    let!(:correspondence) { create :correspondence, uuid: '3cc98e93-d11c-42ad-832d-f40113d3ec27' }
+    let!(:correspondence) { create :correspondence }
 
     context 'record not authenticated' do
       it 'sets the authenticated_at date' do
         Timecop.freeze(Time.new(2017, 4, 13, 12, 11, 10)) do
-          get :authenticate, params: {uuid: '3cc98e93-d11c-42ad-832d-f40113d3ec27'}
+          get :authenticate, params: {uuid: correspondence.uuid}
           expect(correspondence.reload.authenticated_at).to eq Time.new(2017, 4, 13, 12, 11, 10)
         end
       end
 
       it 'fires off an email to the team' do
         expect(EmailCorrespondenceJob).to receive(:perform_later).with(correspondence)
-        get :authenticate, params: {uuid: '3cc98e93-d11c-42ad-832d-f40113d3ec27'}
+        get :authenticate, params: {uuid: correspondence.uuid}
       end
     end
 

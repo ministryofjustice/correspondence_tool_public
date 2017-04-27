@@ -45,12 +45,6 @@ describe CorrespondenceCreator do
           CorrespondenceCreator.new(params)
         }.to change {Correspondence.count }.by(1)
       end
-
-      it 'adds a uuid' do
-        allow(SecureRandom).to receive(:uuid).and_return('ffffffff-eeee-dddd-cccc-bbbbbbbbbbb')
-        CorrespondenceCreator.new(params)
-        expect(Correspondence.last.uuid).to eq 'ffffffff-eeee-dddd-cccc-bbbbbbbbbbb'
-      end
     end
 
     context 'Invalid params' do

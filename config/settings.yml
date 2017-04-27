@@ -44,3 +44,8 @@ aaq_email_url: http://localhost:3000
 git_source:  Git Source Not Available
 build_date:  Build Date Not Available
 git_commit:  Git Commit Not Available
+
+govuk_notify_api_key: 'never-put-real-api-key-here-use-env-vars'
+new_correspondence_notify_template: '29ad44f7-ba74-455c-9f8e-e2d72c933620'
+correspondence_confirmation_notify_template: 'cfa41a99-a4d0-4a7f-8c69-3d5f097397a0'
+new_feedback_notify_template: '2ddca175-7284-4343-9408-a7db23975269'

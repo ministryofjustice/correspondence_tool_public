@@ -13,21 +13,25 @@ $ git clone git@github.com:ministryofjustice/correspondence_tool_public.git
 $ cd correspondence_tool_public
 ```
 
-### Setup MailCatcher
+### Emails
 
-When developing or testing locally we use
-[MailCatcher](https://mailcatcher.me/) to capture mail being sent locally and
-view it locally. The development environment is already setup to use
-MailCatcher so install it and run it:
+Emails are sent using the
+[GOVUK Notify service](https://www.notifications.service.gov.uk).
+Configuration relies on an API key which is not stored with the project, as even
+the test API key can be used to access account information. To do local testing
+you need to have an account that is attached to the "Track a query" service, and
+a "Team and whitelist" API key generated from the GOVUK Notify service website.
+See the instructions in the `.env.example` file for how to setup the correct
+environment variable to override the `govuk_notify_api_key` setting.
 
-```bash
-$ gem install mailcatcher
-$ mailcatcher --smtp-port 2050
+The urls generated in the mail use the `cts_email_host` and `cts_mail_port`
+configuration variables from the `settings.yml`. These can be overridden by
+setting the appropriate environment variables, e.g.
+
 ```
-
-We run it on port 2050 because MacOS appears to be running the new
-`cloud-drive` process on default MailCatcher port (1025). Once run, you can
-visit http://localhost:1080/ to view what emails have been sent locally.
+$ export SETTINGS__CTS_EMAIL_HOST=localhost
+$ export SETTINGS__CTS_EMAIL_PORT=5000
+```
 
 ## Production Environment Setup
 
@@ -38,6 +42,14 @@ visit http://localhost:1080/ to view what emails have been sent locally.
 `public/images` contains images required by the static 500 error.
 
 `public/files` contains the stylesheet required by the static 500 error.
+
+### Emails
+
+Emails are sent using the
+[GOVUK Notify service](https://www.notifications.service.gov.uk). To configure
+this in the production environment ensure that the
+`SETTINGS__GOVUK_NOTIFY_API_KEY` environment variable is set with a production
+API key.
 
 ### Smoke Tests
 
@@ -90,10 +102,8 @@ prefixed with `SETTINGS__`.
 
 * **SETTINGS__GA_TRACKING_ID** — the tracking ID used for Google
   Analytics. Can be unset in which case it will be empty-string.
-* **SETTINGS__SENDGRID_USERNAME** — The username to use to login to
-  SendGrid. Note that SendGrid isn't used in local development (as described
-  above we use MailCatcher running on localhost:2050).
-* **SETTINGS__SENDGRID_PASSWORD** — The password for SendGrid. See above.
+* **SETTINGS__GOVUK_NOTIFY_API_KEY** — Production API key for the GOVUK Notify
+  service.
 * **SETTINGS__CORRESPONDENCE_EMAIL_FROM** — The email address which will be
   used in the From address of email sent for correspondence and feedback.
 * **SETTINGS__GENERAL_ENQUIRIES_EMAIL** — The email address to send general

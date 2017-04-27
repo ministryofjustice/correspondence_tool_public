@@ -1,68 +1,35 @@
 require "rails_helper"
 
 RSpec.describe ConfirmationMailer, type: :mailer do
-
-  def send_email
-    ActionMailer::Base.perform_deliveries = true
-    ActionMailer::Base.deliveries = []
-    @correspondence = build(:correspondence, category: correspondence_category)
-    ConfirmationMailer.new_confirmation(@correspondence).deliver_now
-    @mail = ActionMailer::Base.deliveries.first
-  end
-
-  before(:each) do
-    send_email
-  end
-
-  after(:each) do
-    ActionMailer::Base.deliveries.clear
-  end
-
-  let(:expected_message)  do
-    [ "To #{@correspondence.name}",
-      'Thank you for contacting the Ministry of Justice.',
-      'We have received a request for information from someone who gave this email address.',
-      'If this was you, please click on the following link to athenticate the request:',
-      'Once you authenticate this request by clicking on the link above, our team will check what you have sent us.',
-      'We aim to get back to you within 1 month, if we are able to respond to you.',
-      'MOJ team',
-      'Do not reply to this email.',
-      'This address is not checked by the Ministry of Justice'
-    ]
-  end
-
   describe '#new_confirmation' do
-    let(:correspondence_category) { 'general_enquiries' }
+    let(:correspondence) { create :correspondence,
+                                  category: 'general_enquiries',
+                                  email: 'tester@localhost',
+                                  name: 'Testy McTest Face',
+                                  message: 'this is just a test',
+                                  created_at:
+                                    DateTime.new(2017, 3, 3, 15, 3, 57),
+                                  topic: 'testing correspondence mailing' }
+    let(:mail) { described_class.new_confirmation(correspondence) }
 
-    it 'sends an email' do
-      expect(ActionMailer::Base.deliveries.count).to eq 1
+    it 'sets the template' do
+      expect(mail.govuk_notify_template)
+        .to eq 'cfa41a99-a4d0-4a7f-8c69-3d5f097397a0'
     end
 
-    describe 'sender email address' do
-      subject { @mail.from }
-
-      it { is_expected.to include('noreply@digital.justice.gov.uk') }
-
+    it 'personalises the email' do
+      expect(mail.govuk_notify_personalisation)
+        .to eq({
+                 name: 'Testy McTest Face',
+                 authentication_link:
+                   "http://localhost:3000/correspondence/authenticate/" \
+                   + correspondence.uuid,
+                 confirmation_code: correspondence.confirmation_code,
+               })
     end
 
-    describe 'destination mail address' do
-      subject { @mail.to }
-
-      it { is_expected.to include(@correspondence.email) }
-    end
-
-    describe 'and the subject' do
-      it 'confirms receipt of the message' do
-        expect(@mail.subject).to include('We have received your enquiry')
-      end
-    end
-
-    describe 'and the body' do
-      it 'contains a message from a member of the public' do
-        expected_message.each do |line|
-          expect(@mail.html_part.body.to_s).to include(line)
-        end
-      end
+    it 'sets the To address' do
+      expect(mail.to).to include 'tester@localhost'
     end
   end
 end
