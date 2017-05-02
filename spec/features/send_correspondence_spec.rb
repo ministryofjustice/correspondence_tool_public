@@ -26,10 +26,10 @@ feature 'Submit a general enquiry' do
 
   given(:success_messages) do
     [
-      "Your message has been sent",
-      "We've sent a confirmation email to #{email}",
-      "The team will review your message and reply to the email shown above.",
-      "We aim to respond to you as soon as possible, but allow up to 4 weeks for complex cases or during busy periods"
+      "One more step...",
+      "We've sent an email to #{email}",
+      "Click the link in the email to send your message.",
+      "The message will not be sent until you click the link in the email."
     ]
   end
 
@@ -94,11 +94,6 @@ feature 'Submit a general enquiry' do
       topic: topic_with_results
     )
     expect(EmailConfirmationJob).to have_been_enqueued.with(Correspondence.last)
-
-    expect(page).to have_link(
-      'Return to the Ministry of Justice homepage',
-      href: 'https://www.gov.uk/government/organisations/ministry-of-justice'
-    )
   end
 
   scenario 'Without a topic, name, email address, confirm email or message' do

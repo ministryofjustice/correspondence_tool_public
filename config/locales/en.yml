@@ -90,13 +90,14 @@ en:
 
   correspondence:
     confirmation:
-      success: Your message has been sent
-      next_title:  What happens next
-      confirmation_sent_html: <p class="p--double-lines">We've sent a confirmation email to <strong>%{email}</strong>.<br>
       next_copy_html: |
-        <p>The team will review your message and reply to the email shown above.<br></p>
-        <p>We aim to respond to you as soon as possible, but allow up to 4 weeks for
-        complex cases or during busy periods.</p>
+        <p>We've sent an email to <strong>%{email}</strong></p>
+        <p>Click the link in the email to send your message.</p>
+        <p><strong>The message will not be sent until you click the link in the email.</strong></p>
+
+    authenticate:
+      next_title:  What happens next
+      success: Your message has been sent
       feedback_prompt: Was this service helpful?
       feedback_link: Provide feedback
       feedback_time: (takes 30 seconds)
