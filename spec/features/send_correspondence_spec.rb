@@ -28,8 +28,9 @@ feature 'Submit a general enquiry' do
     [
       "One more step...",
       "We've sent an email to #{email}",
-      "Click the link in the email to send your message.",
-      "The message will not be sent until you click the link in the email."
+      "Go to your inbox and click the link in the email.",
+      "You must click the linik in your email to send your message to the Ministry of Justice.",
+      "This is to check that your email address is valid."
     ]
   end
 

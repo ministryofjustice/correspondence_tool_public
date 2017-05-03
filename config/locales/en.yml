@@ -93,8 +93,9 @@ en:
       one_more_step: One more step...
       next_copy_html: |
         <p>We've sent an email to <strong>%{email}</strong></p>
-        <p>Click the link in the email to send your message.</p>
-        <p><strong>The message will not be sent until you click the link in the email.</strong></p>
+        <p>Go to your inbox and click the link in the email.</p>
+        <p><strong>You must click the linik in your email to send your message to the Ministry of Justice.</strong></p>
+        <p>This is to check that your email address is valid.</p>
 
     authenticate:
       next_title:  What happens next
