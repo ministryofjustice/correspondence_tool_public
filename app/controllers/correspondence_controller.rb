@@ -40,8 +40,6 @@ class CorrespondenceController < ApplicationController
     @correspondence = Correspondence.where(uuid: params[:uuid]).first
     if @correspondence.nil?
       render file: '/public/404.html', status: 404, layout: false
-    elsif @correspondence.authenticated?
-      render template: 'correspondence/already_authenticated'
     else
       @correspondence.authenticate!
       EmailCorrespondenceJob.perform_later(@correspondence)

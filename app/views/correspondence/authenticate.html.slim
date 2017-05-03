@@ -4,7 +4,29 @@
 = render partial: 'layouts/header', locals: {page_heading: t('common.service_name')}
 
 
-h2.heading-medium
-  | Thank you for authenticating your request.
+.grid-row
+  .column-two-thirds
+    .govuk-box-highlight
+      h1.page-title.bold-large
+        = t('.success')
 
-| Your request will now be actioned by one of our teams.
+.grid-row
+  .column-two-thirds
+    h2.heading-medium
+      = t('.next_title')
+
+.grid-row
+  .column-two-thirds
+    p= t('.we_will_reply')
+    p= t('.reply_timescale')
+
+
+.button-holder
+  div
+    = t('.feedback_prompt')
+    = ' '
+    = link_to t('.feedback_link'), feedback_path
+    = ' '
+    = t('.feedback_time')
+  div
+    = link_to t('button.moj_home'), Settings.moj_home_page

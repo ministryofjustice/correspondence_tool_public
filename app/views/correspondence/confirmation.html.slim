@@ -1,32 +1,21 @@
 - content_for :page_title do
   = t('page_title.contact_confirm')
 
-.grid-row
-  .column-two-thirds
-    h1.page-title.bold-large Contact the Ministry of Justice
+= render partial: 'layouts/header', locals: {page_heading: t('.one_more_step') }
 
-.grid-row
-  .column-two-thirds
-    .govuk-box-highlight
-      h1.page-title.bold-large
-        = t('.success')
-.grid-row
-  .column-two-thirds
-    = t('.confirmation_sent_html', email: @correspondence.email)
+/.grid-row
+/  .column-two-thirds
+/    .govuk-box-highlight
+/      h1.page-title.bold-large
+/        = t('.success')
 
-.grid-row
-  .column-two-thirds
-    h2.heading-medium
-      = t('.next_title')
+
+/.grid-row
+/  .column-two-thirds
+/    = t('.confirmation_sent_html', email: @correspondence.email)
+
 
 .grid-row
   .column-two-thirds
     = t('.next_copy_html', email: @correspondence.email)
 
-.button-holder
-  div
-    = t('.feedback_prompt')
-    = link_to t('.feedback_link'), feedback_path
-    = t('.feedback_time')
-  div
-    = link_to t('button.moj_home'), Settings.moj_home_page
