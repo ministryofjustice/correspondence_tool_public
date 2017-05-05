@@ -68,6 +68,14 @@ class Correspondence < ActiveRecord::Base
     @confirmation_code ||= uuid.split('-')[1,2].join('-')
   end
 
+  def self.all_by_message(message)
+    self.where('content @> ?', {message: message}.to_json)
+  end
+
+  def self.first_by_message(message)
+    all_by_message(message).first
+  end
+
   private
 
   def set_uuid

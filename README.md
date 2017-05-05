@@ -53,38 +53,26 @@ API key.
 
 ### Smoke Tests
 
-Smoke tests try sending a piece of correspondence and test for it's receipt in
-an accessible mailbox. This is typically not a production mailbox
-(i.e. general_enquiries or foi mailbox) so a separate email address has to be
-setup which can be accessed from wherever the tests will run.
+The smoke test runs through the process of filling out a correspondence item and 
+submitting it, checking that the authentication email is received, clicking the 
+authentication link, and checking that the confirmation mail to DACU is recieved.
 
-Use the script `smoketest.rb` to run smoke tests, for example to test the app
-running locally with foreman:
 
-```bash
-$ RAILS_ENV=test ./smoketest.rb -s pop.server -U user_login -P user_password http://localhost:5000
+To run the smoke test, set the following environement variables:
+
+```
+    SETTINGS__SMOKE_TESTS__SITE_URL    # usually http://localhost:3000 for testing
+    SETTINGS__SMOKE_TESTS__SERVER      # the namne of the POP server
+    SETTINGS__SMOKE_TESTS__USERNAME    # the email address to use for smoke tests
+    SETTINGS__SMOKE_TESTS__PASSWORD    # The password for the smoketest email account
 ```
 
-Or in an environment where the SETTINGS environment variables are set correctly:
+and then run
 
-```bash
-$ RAILS_ENV=test ./smoketest.rb http://localhost:5000
+```
+    rake smoke
 ```
 
-See the script's usage information for more info about settings and
-environment variables:
-
-```bash
-$ RAILS_ENV=test ./smoketest.rb -h
-```
-
-As this script uses a couple of gems that (currently) are only needed for
-testing, we need to ensure the RAILS_ENV is set to `test` to pull those gems
-in. Keep in mind that as we'll be testing sending correspondence through the
-server given on the command-line, that process will have to be configured to
-send email, which may mean fiddling around with it's settings if you're
-testing smoke tests locally as those settings may point to a locally running
-`mailcatcher`.
 
 #### Jenkins Integration
 

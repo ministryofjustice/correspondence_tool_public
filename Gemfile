@@ -13,7 +13,10 @@ gem 'govuk_notify_rails'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'jsonb_accessor', '~> 1.0.0.beta.1'
+gem 'listen', '~> 3.0.5'
 gem 'logstasher'
+gem 'mail', '~> 2.6.4'
+gem 'mechanize', '~> 2.7.5'
 gem 'premailer-rails', '~> 1.9'
 gem 'puma', '~> 3.0'
 gem 'pg', '~> 0.18'
@@ -38,8 +41,6 @@ group :test do
   gem 'capybara-screenshot'
   gem "codeclimate-test-reporter", require: nil
   gem 'i18n-tasks', '~> 0.9.5'
-  gem 'mail'
-  gem 'mechanize'
   gem 'rails-controller-testing'
   gem 'selenium-webdriver', '~> 3.0'
   gem 'shoulda-matchers', '~> 3.1'
@@ -69,7 +70,7 @@ group :development do
   gem 'guard-livereload', '>= 2.5.2'
   gem 'guard-rspec'
   gem 'guard-rubocop'
-  gem 'listen', '~> 3.0.5'
+
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
