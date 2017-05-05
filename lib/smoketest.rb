@@ -75,10 +75,14 @@ class Smoketest
 
 
   def check_confirmation_mail_recieved(uuid)
-    link = "#{@site_url}/correspondence/authenticate/#{uuid}"
+    link = "/correspondence/authenticate/#{uuid}"
     info "Checking for confirmation mail with link #{link}"
-    check_mail_received_with_contents(link)
-    link
+    mail = check_mail_received_with_contents(link)
+    if mail == false
+      puts "!!! ERROR Unable to find authentication mail"
+      exit 4
+    end
+    "#{@site_url}#{link}"
   end
 
   def check_new_correspondence_item_mail(message)
