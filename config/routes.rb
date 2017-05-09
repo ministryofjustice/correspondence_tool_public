@@ -8,6 +8,7 @@ get '/correspondence' => 'correspondence#topic'
 get '/correspondence/topic' => 'correspondence#topic'
 get '/correspondence/search' => 'correspondence#search'
 get '/correspondence/authenticate/:uuid' => 'correspondence#authenticate', as: 'correspondence_authentication'
+get '/correspondence/confirmation/:id' => 'correspondence#confirmation', as: 'correspondence_confirmation'
 
 
 get '/feedback' => 'feedback#new'

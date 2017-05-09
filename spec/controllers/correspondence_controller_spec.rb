@@ -123,8 +123,10 @@ RSpec.describe CorrespondenceController, type: :controller do
           .to have_been_enqueued.with(Correspondence.last)
       end
 
-      it 'renders the :confirmation template' do
-        expect(post :create, params: params).to render_template(:confirmation)
+      it 'redirects to the confirmation action' do
+        post :create, params: params
+        correspondence = Correspondence.last
+        expect(response).to redirect_to(correspondence_confirmation_path(correspondence))
       end
     end
 
@@ -187,6 +189,14 @@ RSpec.describe CorrespondenceController, type: :controller do
       end
 
       it { should respond_with 500 }
+    end
+  end
+
+  describe 'GET confirmation' do
+    it 'assigns the correspondence item' do
+      item = create :correspondence
+      get :confirmation, params: { id: item.id }
+      expect(assigns(:correspondence)).to eq item
     end
   end
 end
