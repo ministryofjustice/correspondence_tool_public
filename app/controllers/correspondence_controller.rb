@@ -11,7 +11,7 @@ class CorrespondenceController < ApplicationController
     @correspondence = creator.correspondence
     case creator.result
     when :success
-      render 'correspondence/confirmation'
+      redirect_to correspondence_confirmation_path(@correspondence)
     when :no_op
       redirect_to Settings.moj_home_page
     when :validation_error
@@ -19,6 +19,10 @@ class CorrespondenceController < ApplicationController
       @search_result = @search_api_client.search
       render :search
     end
+  end
+
+  def confirmation
+    @correspondence = Correspondence.find(params[:id])
   end
 
   def topic
