@@ -37,7 +37,7 @@ smoke_tests:
   password: 'password'
   site_url: 'http://localhost:3000'
   first_read_wait: 3
-  max_wait_time: 240
+  max_wait_time: 600
 aaq_feedback_email: feedback@localhost
 aaq_email_url: http://localhost:3000
 
