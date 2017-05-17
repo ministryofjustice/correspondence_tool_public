@@ -29,7 +29,7 @@ feature 'Submit a general enquiry' do
       "One more step...",
       "We've sent an email to #{email}",
       "Go to your inbox and click the link in the email.",
-      "You must click the linik in your email to send your message to the Ministry of Justice.",
+      "You must click the link in your email to send your message to the Ministry of Justice.",
       "This is to check that your email address is valid."
     ]
   end
