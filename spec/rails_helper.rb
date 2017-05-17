@@ -1,5 +1,7 @@
 require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
+CodeClimate::TestReporter.start do
+  add_filter "/config/"
+end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
