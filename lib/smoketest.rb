@@ -54,7 +54,7 @@ class Smoketest
     form.field_with(name: 'correspondence[message]').value = @message
     form.add_field!('smoke_test', :true)
     response = agent.submit form
-    puts "Correspondence item with message data #{@message_uuid} submitted."
+    puts "Correspondence item with message data #{@message_uuid} submitted at #{Time.now.strftime('%H:%M:%S')}."
 
     if response.code != '200'
       error "!!! HTTP Status: #{result.code} when submitting correspondence item"
@@ -81,13 +81,21 @@ class Smoketest
     if mail == false
       puts "!!! ERROR Unable to find authentication mail"
       exit 4
+    else
+      puts "Confirmation mail detected at #{Time.now.strftime('%H:%M:%S')}"
     end
     "#{@site_url}#{link}"
   end
 
   def check_new_correspondence_item_mail(message)
     info "Checking for mail to DACU wil message: #{message}"
-    check_mail_received_with_contents(message)
+    mail = check_mail_received_with_contents(message)
+    if mail == false
+      puts "!!! ERROR Unable to find DACU mail"
+      exit 4
+    else
+      puts "DACU mail detected at #{Time.now.strftime('%H:%M:%S')}"
+    end
   end
 
   def check_mail_received_with_contents(contents)
@@ -103,7 +111,7 @@ class Smoketest
         info 'success'
         return mail
       end
-      wait_time = 1 + ((Time.now - start_time) ** 0.5)
+      wait_time = try + ((Time.now - start_time) ** 0.5)
       info 'failed. Sleeping %0.2fs.' % wait_time
       sleep wait_time
     end
