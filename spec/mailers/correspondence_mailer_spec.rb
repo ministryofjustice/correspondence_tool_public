@@ -36,7 +36,7 @@ RSpec.describe CorrespondenceMailer, type: :mailer do
       context 'when creating a general enquiry' do
         let(:correspondence_category) { 'general_enquiries' }
         it {
-          is_expected.to include('general_enquiries@localhost')
+          is_expected.to include(Settings.general_enquiries_email)
         }
       end
 

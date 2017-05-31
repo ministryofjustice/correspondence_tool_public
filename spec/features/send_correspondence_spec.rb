@@ -94,7 +94,7 @@ feature 'Submit a general enquiry' do
       message: message,
       topic: topic_with_results
     )
-    expect(EmailConfirmationJob).to have_been_enqueued.with(Correspondence.last)
+    expect(ActionMailer::DeliveryJob).to have_been_enqueued.with('ConfirmationMailer', 'new_confirmation', 'deliver_now', Correspondence.last)
   end
 
   scenario 'Without a topic, name, email address, confirm email or message' do
@@ -146,7 +146,7 @@ feature 'Submit a general enquiry' do
                                        message: message,
                                        topic: 'AbccdefghijkLmnopqrstuvwxyz'
                                    )
-    expect(EmailConfirmationJob).to have_been_enqueued.with(Correspondence.last)
+    expect(ActionMailer::DeliveryJob).to have_been_enqueued.with('ConfirmationMailer', 'new_confirmation', 'deliver_now', Correspondence.last)
   end
 
   scenario 'message character count updates when text is entered', js: true  do

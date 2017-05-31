@@ -24,6 +24,8 @@ RSpec.describe CorrespondenceController, type: :controller do
     }
   end
 
+  let(:mail) { double 'Action::Mailer Mail'}
+
   describe 'GET topic' do
     it 'renders the topic form' do
       expect(get :topic).to render_template(:topic)
@@ -82,7 +84,8 @@ RSpec.describe CorrespondenceController, type: :controller do
       end
 
       it 'fires off an email to the team' do
-        expect(EmailCorrespondenceJob).to receive(:perform_later).with(correspondence)
+        expect(CorrespondenceMailer).to receive(:new_correspondence).with(correspondence).and_return(mail)
+        expect(mail).to receive(:deliver_later)
         get :authenticate, params: {uuid: correspondence.uuid}
       end
     end
@@ -105,7 +108,7 @@ RSpec.describe CorrespondenceController, type: :controller do
 
       it 'does not resend the email' do
         get :authenticate, params: {uuid: '3cc98e93-d11c-42ad-832d-f40113d3ec27'}
-        expect(EmailCorrespondenceJob).not_to receive(:perform_later)
+        expect(CorrespondenceMailer).not_to receive(:new_correspondence)
       end
     end
   end
@@ -118,9 +121,9 @@ RSpec.describe CorrespondenceController, type: :controller do
       end
 
       it 'enqueues an EmailConfirmationJob' do
+        expect(ConfirmationMailer).to receive(:new_confirmation).with(instance_of(Correspondence)).and_return(mail)
+        expect(mail).to receive(:deliver_later)
         post :create, params: params
-        expect(EmailConfirmationJob)
-          .to have_been_enqueued.with(Correspondence.last)
       end
 
       it 'redirects to the confirmation action' do
@@ -165,14 +168,14 @@ RSpec.describe CorrespondenceController, type: :controller do
           .not_to change { Correspondence.count }
       end
 
-      it 'does not enqueue an EmailCorrespondenceJob' do
-        expect { post :create, params: params }
-          .not_to have_enqueued_job(EmailCorrespondenceJob)
+      it 'does not send an Correspondence mail' do
+        expect(CorrespondenceMailer).not_to receive(:new_correspondence)
+        post :create, params: params
       end
 
-      it 'does not enqueue an EmailConfirmationJob' do
-        expect { post :create, params: params }
-          .not_to have_enqueued_job(EmailConfirmationJob)
+      it 'does not enqueue an Confirmation mail' do
+        expect(ConfirmationMailer).not_to receive(:new_confirmation)
+        post :create, params: params
       end
 
       it 'renders the :search template' do
@@ -182,8 +185,8 @@ RSpec.describe CorrespondenceController, type: :controller do
 
     context 'when redis is down' do
       before do
-        allow(EmailConfirmationJob)
-          .to receive(:perform_later)
+        allow(ConfirmationMailer)
+          .to receive(:new_confirmation)
           .and_raise(Redis::CannotConnectError)
         post :create, params: params
       end

@@ -46,7 +46,7 @@ class CorrespondenceController < ApplicationController
       render file: '/public/404.html', status: 404, layout: false
     else
       @correspondence.authenticate!
-      EmailCorrespondenceJob.perform_later(@correspondence)
+      CorrespondenceMailer.new_correspondence(@correspondence).deliver_later
     end
   end
 

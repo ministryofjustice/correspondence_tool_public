@@ -3,9 +3,13 @@ require 'rails_helper'
 describe CorrespondenceCreator do
 
   describe '.new' do
+
+    let(:mail) { double 'ActionMailer Mail' }
+
     context 'no radio button selected' do
 
       let(:params) { { 'contact_requested' => 'no' } }
+
 
       it 'returns :no_op' do
         creator = CorrespondenceCreator.new(params)
@@ -36,7 +40,8 @@ describe CorrespondenceCreator do
       end
 
       it 'sends confirmation email' do
-        expect(EmailConfirmationJob).to receive(:perform_later).with(instance_of(Correspondence))
+        expect(ConfirmationMailer).to receive(:new_confirmation).with(instance_of(Correspondence)).and_return(mail)
+        expect(mail).to receive(:deliver_later)
         CorrespondenceCreator.new(params)
       end
 
