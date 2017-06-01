@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe FeedbackController, type: :controller do
 
   let(:feedback) { build :feedback }
+  let(:mail) { double 'ActionMailer Mail'}
 
   let(:params) do
     {
@@ -28,9 +29,11 @@ RSpec.describe FeedbackController, type: :controller do
       end
 
       it 'enqueues an EmailFeedbackJob with our feedback' do
+
+        # FeedbackMailer.new_feedback(@feedback).deliver_later
+        expect(FeedbackMailer).to receive(:new_feedback).with(instance_of(Feedback)).and_return(mail)
+        expect(mail).to receive(:deliver_later)
         post :create, params: params
-        feedback = Feedback.last
-        expect(EmailFeedbackJob).to have_been_enqueued.with(feedback)
       end
 
       it 'renders the confirmation template' do
@@ -55,8 +58,8 @@ RSpec.describe FeedbackController, type: :controller do
       end
 
       it 'does not enqueue an EmailFeedbackJob' do
-        expect { post :create, params: params }
-          .not_to have_enqueued_job(EmailFeedbackJob)
+        expect(FeedbackMailer).not_to receive(:new_feedback)
+        post :create, params: params
       end
 
       it 'renders the :new template' do

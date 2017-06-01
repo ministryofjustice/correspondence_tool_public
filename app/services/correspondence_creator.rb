@@ -15,7 +15,7 @@ class CorrespondenceCreator
   def create_correspondence(params)
     correspondence = Correspondence.new(params)
     if correspondence.save
-      EmailConfirmationJob.perform_later(correspondence)
+      ConfirmationMailer.new_confirmation(correspondence).deliver_later
       @result = :success
     else
       @result = :validation_error

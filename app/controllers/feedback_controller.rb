@@ -7,7 +7,7 @@ class FeedbackController < ApplicationController
     @feedback = Feedback.new(feedback_params)
 
     if @feedback.save
-      EmailFeedbackJob.perform_later(@feedback)
+      FeedbackMailer.new_feedback(@feedback).deliver_later
       render 'feedback/confirmation'
     else
       render :new
