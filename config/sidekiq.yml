@@ -1,5 +1,9 @@
 ---
-:concurrency: 10
+:concurrency: 5
+production:
+  :concurrency: 10
+staging:
+  :concurrency: 10
 :logfile: ./log/sidekiq.log
 :queues:
-  - mailers
+  - correspondence_tool_public_mailers

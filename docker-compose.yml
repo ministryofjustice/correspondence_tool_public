@@ -1,13 +1,46 @@
 version: '2'
 services:
+  db:
+    image: postgres:9.5-alpine
+    volumes:
+      - postgresql-data-volume:/var/lib/postgresql/data
+  redis:
+    image: redis:alpine
   web:
     build:
+      args:
+        development_mode: "true"
       context: .
-      dockerfile: Dockerfile.development
+    container_name: ctp_web
     environment:
+      DATABASE_URL: postgres://postgres@db/correspondence_tool_public_development
+      DOCKER_STATE: development-setup
       RAILS_ENV: development
-    command: bundle exec puma -b tcp://0.0.0.0:3000
+      REDIS_URL: redis://redis/
     volumes:
       - .:/usr/src/app
+      - ~/.aws:/root/.aws
     ports:
       - "3000:3000"
+    depends_on:
+      - db
+      - redis
+  mails:
+    build:
+      args:
+        development_mode: "true"
+        PUMA_PORT: ""
+      context: .
+    container_name: ctp_mailers
+    entrypoint: ./run-sidekiq.sh
+    environment:
+      DATABASE_URL: postgres://postgres@db/correspondence_tool_public_development
+      RAILS_ENV: development
+      REDIS_URL: redis://redis/
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - db
+      - redis
+volumes:
+  postgresql-data-volume:
