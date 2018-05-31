@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/thoughtbot/shoulda-matchers.git
+  revision: c0960bd72dd41c4e9bd8b4375254f539776bfe95
+  specs:
+    shoulda-matchers (3.1.2)
+      activesupport (>= 4.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -75,7 +82,7 @@ GEM
     config (1.3.0)
       activesupport (>= 3.0)
       deep_merge (~> 1.1.1)
-    connection_pool (2.2.0)
+    connection_pool (2.2.2)
     crass (1.0.3)
     css_parser (1.4.5)
       addressable
@@ -242,7 +249,7 @@ GEM
       pry (~> 0.10)
     puma (3.11.4)
     rack (2.0.1)
-    rack-protection (1.5.5)
+    rack-protection (2.0.1)
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -279,7 +286,7 @@ GEM
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
     rb-readline (0.5.4)
-    redis (3.3.1)
+    redis (4.0.1)
     request_store (1.3.1)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
@@ -327,13 +334,11 @@ GEM
       rubyzip (~> 1.0)
       websocket (~> 1.0)
     shellany (0.0.1)
-    shoulda-matchers (3.1.1)
-      activesupport (>= 4.0.0)
-    sidekiq (4.2.1)
+    sidekiq (5.1.3)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
-      rack-protection (~> 1.5)
-      redis (~> 3.2, >= 3.2.1)
+      rack-protection (>= 1.5.0)
+      redis (>= 3.3.5, < 5)
     simplecov (0.12.0)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -445,8 +450,8 @@ DEPENDENCIES
   rubocop-rspec
   sass-rails (~> 5.0)
   selenium-webdriver (~> 3.0)
-  shoulda-matchers (~> 3.1)
-  sidekiq
+  shoulda-matchers!
+  sidekiq (~> 5.1)
   site_prism (~> 2.9)
   slim-rails (~> 3.1)
   spring
