@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/thoughtbot/shoulda-matchers.git
+  revision: c0960bd72dd41c4e9bd8b4375254f539776bfe95
+  specs:
+    shoulda-matchers (3.1.2)
+      activesupport (>= 4.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -75,7 +82,7 @@ GEM
     config (1.3.0)
       activesupport (>= 3.0)
       deep_merge (~> 1.1.1)
-    connection_pool (2.2.0)
+    connection_pool (2.2.2)
     crass (1.0.3)
     css_parser (1.4.5)
       addressable
@@ -219,7 +226,7 @@ GEM
       jwt (~> 1.5)
     ntlm-http (0.1.1)
     parallel (1.12.1)
-    parser (2.5.0.5)
+    parser (2.5.1.0)
       ast (~> 2.4.0)
     pg (0.18.4)
     poltergeist (1.13.0)
@@ -240,9 +247,9 @@ GEM
     pry-byebug (3.4.0)
       byebug (~> 9.0)
       pry (~> 0.10)
-    puma (3.6.0)
+    puma (3.11.4)
     rack (2.0.1)
-    rack-protection (1.5.5)
+    rack-protection (2.0.1)
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -279,7 +286,7 @@ GEM
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
     rb-readline (0.5.4)
-    redis (3.3.1)
+    redis (4.0.1)
     request_store (1.3.1)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
@@ -304,15 +311,15 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
-    rubocop (0.53.0)
+    rubocop (0.56.0)
       parallel (~> 1.10)
       parser (>= 2.5)
       powerpack (~> 0.1)
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
-    rubocop-rspec (1.7.0)
-      rubocop (>= 0.42.0)
+    rubocop-rspec (1.25.1)
+      rubocop (>= 0.53.0)
     ruby-progressbar (1.9.0)
     rubyzip (1.2.1)
     sass (3.4.22)
@@ -327,13 +334,11 @@ GEM
       rubyzip (~> 1.0)
       websocket (~> 1.0)
     shellany (0.0.1)
-    shoulda-matchers (3.1.1)
-      activesupport (>= 4.0.0)
-    sidekiq (4.2.1)
+    sidekiq (5.1.3)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
-      rack-protection (~> 1.5)
-      redis (~> 3.2, >= 3.2.1)
+      rack-protection (>= 1.5.0)
+      redis (>= 3.3.5, < 5)
     simplecov (0.12.0)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -441,12 +446,12 @@ DEPENDENCIES
   rb-readline (~> 0.5.4)
   responders (~> 2.3)
   rspec-rails (~> 3.4)
-  rubocop
+  rubocop (~> 0.56.0)
   rubocop-rspec
   sass-rails (~> 5.0)
   selenium-webdriver (~> 3.0)
-  shoulda-matchers (~> 3.1)
-  sidekiq
+  shoulda-matchers!
+  sidekiq (~> 5.1)
   site_prism (~> 2.9)
   slim-rails (~> 3.1)
   spring
@@ -459,4 +464,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.16.0
+   1.16.2
