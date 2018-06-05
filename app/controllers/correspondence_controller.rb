@@ -50,6 +50,10 @@ class CorrespondenceController < ApplicationController
     end
   end
 
+  def t_and_c
+    render
+  end
+
   private
 
   def category_attribute
