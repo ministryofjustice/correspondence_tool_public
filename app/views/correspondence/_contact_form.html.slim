@@ -4,9 +4,14 @@
 
 #correspondence_message_count.char-counter.form-group{ data-maxlength= Settings.correspondence_message_max_length }
   span#live-region-text {aria-live="polite"}
+
     span.char-counter-count
       = Settings.correspondence_message_max_length
     = " characters remaining"
+p
+  = "By using this service you agree to these "
+  = link_to "terms and conditions", correspondence_t_and_c_path, target:"_blank"
+  = ". Please read them carefully."
 
 = f.hidden_field :topic, value: @correspondence.topic
 = f.submit t('button.send'), {class:'button', onclick: "ga('send', 'event', 'Question', 'Sent')"}
