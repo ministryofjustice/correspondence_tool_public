@@ -163,6 +163,12 @@ feature 'Submit a general enquiry' do
 
     search_page.wait_until_need_to_contact_form_visible
 
+    expect(search_page.need_to_contact_form).to have_text('By using this service you agree to these')
+
+    expect(search_page.need_to_contact_form).to have_text('. Please read them carefully.')
+
+    expect(search_page.need_to_contact_form).to have_link('terms and conditions', href: '/correspondence/t_and_c')
+
     expect(search_page.need_to_contact_form.counter.text).to eq "5000"
 
     search_page.need_to_contact_form.message.set input_within_maxlength
