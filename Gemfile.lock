@@ -228,7 +228,7 @@ GEM
     parallel (1.12.1)
     parser (2.5.1.0)
       ast (~> 2.4.0)
-    pg (0.18.4)
+    pg (1.0.0)
     poltergeist (1.13.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
@@ -435,7 +435,7 @@ DEPENDENCIES
   logstasher
   mail (~> 2.6.4)
   mechanize (~> 2.7.5)
-  pg (~> 0.18)
+  pg (~> 1.0)
   poltergeist (~> 1.13)
   premailer-rails (~> 1.9)
   pry
