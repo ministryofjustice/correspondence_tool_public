@@ -33,3 +33,6 @@ config/secrets.yml
 
 # RubyMine
 .idea/*
+
+# ignore local coverage files
+/coverage/*

@@ -70,8 +70,8 @@ GEM
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     cliver (0.3.2)
-    codeclimate-test-reporter (0.6.0)
-      simplecov (>= 0.7.1, < 1.0.0)
+    codeclimate-test-reporter (1.0.8)
+      simplecov (<= 0.13)
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
     config (1.3.0)
@@ -330,11 +330,11 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
-    simplecov (0.12.0)
+    simplecov (0.13.0)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
-    simplecov-html (0.10.0)
+    simplecov-html (0.10.2)
     site_prism (2.9)
       addressable (>= 2.3.3, < 3.0)
       capybara (>= 2.1, < 3.0)
@@ -402,7 +402,7 @@ DEPENDENCIES
   byebug
   capybara
   capybara-screenshot
-  codeclimate-test-reporter
+  codeclimate-test-reporter (~> 1.0)
   config
   curb (~> 0.9)
   factory_girl_rails
