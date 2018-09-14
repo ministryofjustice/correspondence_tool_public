@@ -45,7 +45,7 @@ group :test do
   gem 'selenium-webdriver', '~> 3.0'
   gem 'shoulda-matchers', :git => 'https://github.com/thoughtbot/shoulda-matchers.git'
   gem 'site_prism', '~> 2.9'
-  gem 'poltergeist', '~> 1.13'
+  gem 'poltergeist', '~> 1.18'
   gem 'timecop', '~> 0.8'
 end
 
