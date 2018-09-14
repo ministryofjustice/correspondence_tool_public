@@ -79,8 +79,6 @@ GEM
       deep_merge (~> 1.1.1)
     connection_pool (2.2.2)
     crass (1.0.4)
-    css_parser (1.4.5)
-      addressable
     curb (0.9.3)
     deep_merge (1.1.1)
     diff-lcs (1.2.5)
@@ -147,7 +145,6 @@ GEM
       guard (~> 2.0)
       rubocop (~> 0.20)
     highline (1.7.8)
-    htmlentities (4.3.4)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     http_parser.rb (0.6.0)
@@ -232,12 +229,6 @@ GEM
       cliver (~> 0.3.1)
       websocket-driver (>= 0.2.0)
     powerpack (0.1.2)
-    premailer (1.8.7)
-      css_parser (>= 1.4.5)
-      htmlentities (>= 4.0.0)
-    premailer-rails (1.9.4)
-      actionmailer (>= 3, < 6)
-      premailer (~> 1.7, >= 1.7.9)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -436,7 +427,6 @@ DEPENDENCIES
   mechanize (~> 2.7.6)
   pg (~> 0.18)
   poltergeist (~> 1.18)
-  premailer-rails (~> 1.9)
   pry
   pry-byebug
   puma (~> 3.0)
