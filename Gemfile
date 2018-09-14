@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'coffee-rails', '~> 4.2'
 gem 'config'
 gem 'curb', '~> 0.9'
 gem 'foreman', '~> 0.82.0' # Used in dev & production
