@@ -46,7 +46,7 @@ group :test do
   gem 'shoulda-matchers', :git => 'https://github.com/thoughtbot/shoulda-matchers.git'
   gem 'site_prism', '~> 2.9'
   gem 'poltergeist', '~> 1.18'
-  gem 'timecop', '~> 0.8'
+  gem 'timecop', '~> 0.9'
 end
 
 group :development, :test do
