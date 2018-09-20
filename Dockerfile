@@ -46,6 +46,6 @@ RUN bundle config --global frozen 1 \
 
 COPY . .
 
-RUN bundle exec rake assets:precompile SECRET_KEY_BASE=required_but_does_not_matter_for_assets
+RUN RAILS_ENV=production bundle exec rake assets:clean assets:precompile SECRET_KEY_BASE=required_but_does_not_matter_for_assets
 
 ENTRYPOINT ["./run.sh"]
