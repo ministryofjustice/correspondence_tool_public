@@ -40,7 +40,7 @@ group :test do
   gem 'codeclimate-test-reporter', '~> 1.0'
   gem 'i18n-tasks', '~> 0.9.5'
   gem 'rails-controller-testing'
-  gem 'selenium-webdriver', '~> 3.0'
+  gem 'selenium-webdriver', '~> 3.14'
   gem 'shoulda-matchers', :git => 'https://github.com/thoughtbot/shoulda-matchers.git'
   gem 'site_prism', '~> 2.9'
   gem 'poltergeist', '~> 1.18'
