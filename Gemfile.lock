@@ -73,7 +73,7 @@ GEM
     codeclimate-test-reporter (1.0.8)
       simplecov (<= 0.13)
     coderay (1.1.2)
-    concurrent-ruby (1.0.5)
+    concurrent-ruby (1.1.4)
     config (1.3.0)
       activesupport (>= 3.0)
       deep_merge (~> 1.1.1)
@@ -180,7 +180,7 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
     logstash-event (1.2.02)
-    logstasher (1.2.2)
+    logstasher (1.3.0)
       activesupport (>= 4.0)
       logstash-event (~> 1.2.0)
       request_store
@@ -237,7 +237,7 @@ GEM
       pry (~> 0.10)
     public_suffix (3.0.3)
     puma (3.11.4)
-    rack (2.0.5)
+    rack (2.0.6)
     rack-protection (2.0.1)
       rack
     rack-test (0.6.3)
