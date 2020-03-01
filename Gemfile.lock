@@ -237,7 +237,7 @@ GEM
       byebug (~> 9.0)
       pry (~> 0.10)
     public_suffix (3.0.3)
-    puma (3.11.4)
+    puma (3.12.4)
     rack (2.0.8)
     rack-protection (2.0.1)
       rack
@@ -429,7 +429,7 @@ DEPENDENCIES
   poltergeist (~> 1.18)
   pry
   pry-byebug
-  puma (~> 3.0)
+  puma (~> 3.12)
   rails (~> 5.0.7)
   rails-controller-testing
   rb-readline (~> 0.5.4)
