@@ -116,7 +116,7 @@ Layout/InitialIndentation:
     Checks the indentation of the first non-blank non-comment line in a file.
   Enabled: false
 
-Layout/FirstParameterIndentation:
+Layout/IndentFirstArgument:
   Description: 'Checks the indentation of the first parameter in a method call.'
   Enabled: false
 
@@ -129,13 +129,13 @@ Layout/IndentationWidth:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#spaces-indentation'
   Enabled: false
 
-Layout/IndentArray:
+Layout/IndentFirstArrayElement:
   Description: >-
                  Checks the indentation of the first element in an array
                  literal.
   Enabled: false
 
-Layout/IndentHash:
+Layout/IndentFirstHashElement:
   Description: 'Checks the indentation of the first key in a hash literal.'
   Enabled: false
 
@@ -401,7 +401,7 @@ Lint/UnderscorePrefixedVariableName:
   Description: 'Do not use prefix `_` for a variable that is used.'
   Enabled: true
 
-Lint/UnneededCopDisableDirective:
+Lint/RedundantCopDisableDirective:
   Description: >-
                  Checks for rubocop:disable comments that can be removed.
                  Note: this cop is not disabled when disabling all cops.
@@ -1110,11 +1110,11 @@ Style/UnlessElse:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-else-with-unless'
   Enabled: false
 
-Style/UnneededCapitalW:
+Style/RedundantCapitalW:
   Description: 'Checks for %W when interpolation is not needed.'
   Enabled: false
 
-Style/UnneededPercentQ:
+Style/RedundantPercentQ:
   Description: 'Checks for %q/%Q when single quotes or double quotes would do.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#percent-q'
   Enabled: false
