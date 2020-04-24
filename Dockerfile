@@ -10,6 +10,11 @@ ENV APP_GIT_COMMIT=${COMMIT_ID}
 ENV APP_BUILD_DATE=${BUILD_DATE}
 ENV APP_BUILD_TAG=${BUILD_TAG}
 
+RUN addgroup --gid 1000 --system appgroup && \
+    adduser --uid 1000 --system appuser --ingroup appgroup
+
+# set WORKDIR
+RUN mkdir -p /usr/src/app && mkdir -p /usr/src/app/tmp
 WORKDIR /usr/src/app
 
 ENV PUMA_PORT 3000
@@ -45,15 +50,12 @@ RUN apt-get update && apt-get install -y less \
 
 COPY Gemfile Gemfile.lock ./
 
-COPY Gemfile* ./
-RUN gem install bundler -v 1.17.1
-RUN bundle install
-COPY . .
+#COPY Gemfile* ./
+#RUN gem install bundler -v 1.16.2
+#RUN bundle install
+#COPY . .
 
 RUN RAILS_ENV=production bundle exec rake assets:clean assets:precompile SECRET_KEY_BASE=required_but_does_not_matter_for_assets
-
-RUN addgroup -g 1000 -S appgroup \
-    && adduser -u 1000 -S appuser -G appgroup
 
 # non-root/appuser should own only what they need to
 RUN chown -R appuser:appgroup log tmp db

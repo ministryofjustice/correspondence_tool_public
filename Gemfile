@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'config'
+gem 'curb', '~> 0.9'
 gem 'foreman', '~> 0.82.0' # Used in dev & production
 gem 'govuk_template',         '~> 0.19.1'
 gem 'govuk_frontend_toolkit', '>= 5.0.2'
