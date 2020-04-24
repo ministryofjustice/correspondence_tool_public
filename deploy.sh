@@ -10,9 +10,9 @@ p() {
 function _deploy() {
 
   # Define variables for use in the script
-  team_name=peoplefinder
-  ecr_repo_name=peoplefinder-ecr
-  component=peoplefinder
+  team_name=contact-moj
+  ecr_repo_name=contact-moj-ecr
+  component=contact-moj
 
   context='live-1'
 
@@ -32,13 +32,13 @@ function _deploy() {
     # build the app to get an image tag
     ./build.sh
     ...many lines of output...
-    Image created with tag: peoplefinder-cloud-deploy-6bece953
+    Image created with tag: contact-moj-cloud-deploy-6bece953
 
     # deploy image-tag to development
-    ./deploy.sh peoplefinder-CT-1234-cloud-deploy-6bece953 development
+    ./deploy.sh contact-moj-CT-1234-cloud-deploy-6bece953 development
 
     # deploy latest image of master to production
-    ./deploy.sh peoplefinder-master-6bece953 production
+    ./deploy.sh contact-moj-master-6bece953 production
     "
 
   # Ensure the script is called with two arguments
@@ -49,7 +49,7 @@ function _deploy() {
   fi
 
   # Ensure that the first argument is a reasonable image name
-  if [[ "$1" =~ ^pf- ]]
+  if [[ "$1" =~ ^cmoj- ]]
   then
     image_tag=$1
   else
@@ -84,7 +84,7 @@ function _deploy() {
 
   namespace=$component-${environment}
   p "--------------------------------------------------"
-  p "Deploying People Finder to kubernetes cluster: $context"
+  p "Deploying Contact MOJ to kubernetes cluster: $context"
   p "Environment: \e[32m$environment\e[0m"
   p "Docker image: \e[32m$image_tag\e[0m"
   p "Target namespace: \e[32m$namespace\e[0m"
@@ -114,13 +114,13 @@ function _deploy() {
   # kubectl config use-context ${context}
 
   # Apply config map updates
-  kubectl apply \
-    -f config/kubernetes/${environment}/env-configmap.yaml -n $namespace
+  #kubectl apply \
+   # -f config/kubernetes/${environment}/env-configmap.yaml -n $namespace
 
   # Apply image specific config
   kubectl set image -f config/kubernetes/${environment}/deployment.yaml \
           webapp=${docker_image_tag} \
-          jobs=${docker_image_tag} --local --output yaml | kubectl apply -n $namespace -f -
+           --local --output yaml | kubectl apply -n $namespace -f -
 
   # Apply non-image specific config
   kubectl apply \
@@ -130,39 +130,13 @@ function _deploy() {
     -n $namespace
 
   #Add cron jobs if production
-  if [[ $environment == "production" ]]
-  then
-    kubectl set image -f config/kubernetes/${environment}/cron-person-notifier.yaml \
-            jobs=${docker_image_tag} --local --output yaml | kubectl apply -n $namespace -f -
-
-    kubectl set image -f config/kubernetes/${environment}/cron-team-description-notifier.yaml \
-            jobs=${docker_image_tag} --local --output yaml | kubectl apply -n $namespace -f -
-
-    kubectl set image -f config/kubernetes/${environment}/cron-never-logged-in-notifier.yaml \
-            jobs=${docker_image_tag} --local --output yaml | kubectl apply -n $namespace -f -
-
-    kubectl set image -f config/kubernetes/${environment}/cron-person-update-reminder.yaml \
-            jobs=${docker_image_tag} --local --output yaml | kubectl apply -n $namespace -f -
-
-    kubectl set image -f config/kubernetes/${environment}/cron-user-behaviour-report.yaml \
-            jobs=${docker_image_tag} --local --output yaml | kubectl apply -n $namespace -f -
-
-    kubectl set image -f config/kubernetes/${environment}/cron-profile-completions-report.yaml \
-            jobs=${docker_image_tag} --local --output yaml | kubectl apply -n $namespace -f -
-
-    kubectl set image -f config/kubernetes/${environment}/cron-profile-changed-report.yaml \
-            jobs=${docker_image_tag} --local --output yaml | kubectl apply -n $namespace -f -
-  
-    kubectl set image -f config/kubernetes/${environment}/cron-total-profiles-report.yaml \
-            jobs=${docker_image_tag} --local --output yaml | kubectl apply -n $namespace -f -
-
-    kubectl set image -f config/kubernetes/${environment}/cron-profile-percentage-report.yaml \
-              jobs=${docker_image_tag} --local --output yaml | kubectl apply -n $namespace -f -
+  #if [[ $environment == "production" ]]
+  #then
     
-    kubectl set image -f config/kubernetes/${environment}/cron-photo-profiles-report.yaml \
-            jobs=${docker_image_tag} --local --output yaml | kubectl apply -n $namespace -f -
+    #kubectl set image -f config/kubernetes/${environment}/cron-photo-profiles-report.yaml \
+     #       jobs=${docker_image_tag} --local --output yaml | kubectl apply -n $namespace -f -
 
-  fi
+  #fi
 }
 
 _deploy $@
