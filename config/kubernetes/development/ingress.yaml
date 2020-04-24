@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: contact-moj-ingress
-  namespace: contact-moj-production
+  namespace: contact-moj-development
 spec:
   tls:
     - hosts:
