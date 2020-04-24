@@ -1,5 +1,15 @@
 FROM ruby:2.5
 
+# expect/add ping environment variables
+ARG VERSION_NUMBER
+ARG COMMIT_ID
+ARG BUILD_DATE
+ARG BUILD_TAG
+ENV APPVERSION=${VERSION_NUMBER}
+ENV APP_GIT_COMMIT=${COMMIT_ID}
+ENV APP_BUILD_DATE=${BUILD_DATE}
+ENV APP_BUILD_TAG=${BUILD_TAG}
+
 WORKDIR /usr/src/app
 
 ENV PUMA_PORT 3000
@@ -35,17 +45,19 @@ RUN apt-get update && apt-get install -y less \
 
 COPY Gemfile Gemfile.lock ./
 
-# Set this to any value ("1", "true", etc) to enable development mode.
-# e.g. docker build --build-arg development_mode=1 ...
-ARG development_mode
-
-RUN echo "development_mode=$development_mode"
-
-RUN bundle config --global frozen 1 \
-    && bundle install ${development:+--with="test development"}
-
+COPY Gemfile* ./
+RUN gem install bundler -v 1.17.1
+RUN bundle install
 COPY . .
 
 RUN RAILS_ENV=production bundle exec rake assets:clean assets:precompile SECRET_KEY_BASE=required_but_does_not_matter_for_assets
+
+RUN addgroup -g 1000 -S appgroup \
+    && adduser -u 1000 -S appuser -G appgroup
+
+# non-root/appuser should own only what they need to
+RUN chown -R appuser:appgroup log tmp db
+
+USER 1000
 
 ENTRYPOINT ["./run.sh"]
