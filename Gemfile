@@ -52,7 +52,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'launchy', '~> 2.4', '>= 2.4.3'
   gem 'faker'
-  gem 'factory_girl_rails'
+  gem 'factory_bot'
   gem 'pry'
   gem 'pry-byebug'
   gem 'rb-readline', '~> 0.5.4'

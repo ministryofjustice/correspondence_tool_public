@@ -132,11 +132,8 @@ GEM
     erubi (1.9.0)
     eventmachine (1.2.7)
     execjs (2.7.0)
-    factory_girl (4.9.0)
-      activesupport (>= 3.0.0)
-    factory_girl_rails (4.9.0)
-      factory_girl (~> 4.9.0)
-      railties (>= 3.0.0)
+    factory_bot (5.2.0)
+      activesupport (>= 4.2.0)
     faker (2.11.0)
       i18n (>= 1.6, < 2)
     ffi (1.12.2)
@@ -444,7 +441,7 @@ DEPENDENCIES
   codeclimate-test-reporter (~> 1.0)
   config
   curb (~> 0.9)
-  factory_girl_rails
+  factory_bot
   faker
   foreman (~> 0.82.0)
   govuk_elements_form_builder (= 0.1.1)
