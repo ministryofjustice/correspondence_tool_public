@@ -79,7 +79,7 @@ GEM
       deep_merge (~> 1.1.1)
     connection_pool (2.2.2)
     crass (1.0.5)
-    curb (0.9.6)
+    curb (0.9.10)
     deep_merge (1.1.1)
     diff-lcs (1.2.5)
     docile (1.1.5)
@@ -404,7 +404,7 @@ DEPENDENCIES
   capybara-screenshot
   codeclimate-test-reporter (~> 1.0)
   config
-  curb (~> 0.9)
+  curb (~> 0.9.10)
   factory_girl_rails
   faker
   foreman (~> 0.82.0)
