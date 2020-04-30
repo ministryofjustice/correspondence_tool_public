@@ -4,7 +4,7 @@
 - content_for :head do
   meta name="format-detection" content="telephone=no" /
 
-  = stylesheet_link_tag "application", media: "all"
+  = stylesheet_link_tag "application", media: "all", skip_pipeline: true
 
 - content_for :body_classes do
   = "controller-" + controller.controller_name
