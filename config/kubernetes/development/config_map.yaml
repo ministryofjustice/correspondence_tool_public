@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+  DB_PORT: 5432
+  RAILS_ENV: production
+  SETTINGS__GA_TRACKING_ID: UA-37377084-56
+  SETTINGS__AAQ_EMAIL_URL: https://development.contact-moj.service.justice.gov.uk
+  SETTINGS__AAQ_FEEDBACK_EMAIL: staff.tools.test@digital.justice.gov.uk
+  SETTINGS__CORRESPONDENCE_EMAIL_FROM: correspondence-tool@digital.justice.gov.uk
+  SETTINGS__GENERAL_ENQUIRIES_EMAIL: moj.correspondence@gmail.com
+kind: ConfigMap
+metadata:
+  name: environment-variables

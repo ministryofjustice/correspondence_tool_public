@@ -24,6 +24,9 @@ spec:
           ports:
             - containerPort: 3000
           command: ["./run.sh"]
+          envFrom:
+            - configMapRef:
+                name: environment-variables
           env:
             - name: RAILS_SERVE_STATIC_FILES
               value: 'true'

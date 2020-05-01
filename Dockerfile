@@ -17,9 +17,9 @@ RUN addgroup --gid 1000 --system appgroup && \
 RUN mkdir -p /usr/src/app && mkdir -p /usr/src/app/tmp
 WORKDIR /usr/src/app
 
-ENV PUMA_PORT 3000
+#ENV PUMA_PORT 3000
 
-EXPOSE $PUMA_PORT
+#EXPOSE $PUMA_PORT
 
 RUN apt-get update && apt-get install -y apt-transport-https && \
     rm -rf /var/lib/apt/lists/*

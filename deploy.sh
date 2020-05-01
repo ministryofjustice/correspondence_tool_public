@@ -114,8 +114,8 @@ function _deploy() {
   # kubectl config use-context ${context}
 
   # Apply config map updates
-  #kubectl apply \
-   # -f config/kubernetes/${environment}/env-configmap.yaml -n $namespace
+  kubectl apply \
+    -f config/kubernetes/${environment}/config_map.yaml -n $namespace
 
   # Apply image specific config
   kubectl set image -f config/kubernetes/${environment}/deployment.yaml \
