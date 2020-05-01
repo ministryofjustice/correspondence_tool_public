@@ -1,0 +1,34 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: contact-moj
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: contact-moj
+  template:
+    metadata:
+      labels:
+        app: contact-moj
+    spec:
+      containers:
+        - name: webapp
+          imagePullPolicy: Always
+          image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/correspondence/contact-moj-ecr:latest
+          ports:
+            - containerPort: 3000
+          command: ["./run.sh"]
+          env:
+            - name: RAILS_SERVE_STATIC_FILES
+              value: 'true'
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: SECRET_KEY_BASE
