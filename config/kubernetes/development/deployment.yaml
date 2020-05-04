@@ -27,13 +27,11 @@ spec:
             - configMapRef:
                 name: environment-variables
           env:
-            - name: RAILS_SERVE_STATIC_FILES
-              value: 'true'
-            - name: DB_HOST
+            - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
-                  key: rds_instance_address
-                  name: contact-moj-rds-output
+                  name: app-secrets
+                  key: SECRET_KEY_BASE
             - name: DB_HOST
               valueFrom:
                 secretKeyRef:
