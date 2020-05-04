@@ -1,6 +1,6 @@
 apiVersion: v1
 data:
-  RAILS_ENV: production
+  RAILS_ENV: development
   SETTINGS__GA_TRACKING_ID: UA-37377084-56
   SETTINGS__AAQ_EMAIL_URL: https://development.contact-moj.service.justice.gov.uk
   SETTINGS__AAQ_FEEDBACK_EMAIL: staff.tools.test@digital.justice.gov.uk
