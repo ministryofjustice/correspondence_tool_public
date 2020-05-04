@@ -10,7 +10,7 @@ p() {
 function _deploy() {
 
   # Define variables for use in the script
-  team_name=contact-moj
+  team_name=correspondence
   ecr_repo_name=contact-moj-ecr
   component=contact-moj
 
