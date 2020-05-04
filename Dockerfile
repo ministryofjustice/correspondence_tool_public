@@ -63,4 +63,3 @@ RUN chown -R appuser:appgroup log tmp db
 USER 1000
 
 ENTRYPOINT ["./run.sh"]
-© 2020 GitHub, Inc.

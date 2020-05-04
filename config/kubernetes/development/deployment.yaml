@@ -20,7 +20,6 @@ spec:
       containers:
         - name: webapp
           imagePullPolicy: Always
-          image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/correspondence/contact-moj-ecr:latest
           ports:
             - containerPort: 3000
           command: ["./run.sh"]
@@ -28,10 +27,38 @@ spec:
             - configMapRef:
                 name: environment-variables
           env:
-            - name: RAILS_SERVE_STATIC_FILES
-              value: 'true'
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
                   name: app-secrets
                   key: SECRET_KEY_BASE
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: rds_instance_address
+                  name: contact-moj-rds-output
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: database_name
+                  name: contact-moj-rds-output
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: database_password
+                  name: contact-moj-rds-output
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: database_username
+                  name: contact-moj-rds-output
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: contact-moj-elasticache-redis-output
+                  key: url
+            - name: REDIS_AUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: contact-moj-elasticache-redis-output
+                  key: auth_token

@@ -10,7 +10,7 @@ p() {
 function _deploy() {
 
   # Define variables for use in the script
-  team_name=contact-moj
+  team_name=correspondence
   ecr_repo_name=contact-moj-ecr
   component=contact-moj
 
@@ -112,8 +112,8 @@ function _deploy() {
   # kubectl config use-context ${context}
 
   # Apply config map updates
-  #kubectl apply \
-   # -f config/kubernetes/${environment}/env-configmap.yaml -n $namespace
+  kubectl apply \
+    -f config/kubernetes/${environment}/configmap.yaml -n $namespace
 
   # Apply image specific config
   kubectl set image -f config/kubernetes/${environment}/deployment.yaml \
