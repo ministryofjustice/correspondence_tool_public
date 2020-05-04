@@ -20,7 +20,6 @@ spec:
       containers:
         - name: webapp
           imagePullPolicy: Always
-          image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/correspondence/contact-moj-ecr:latest
           ports:
             - containerPort: 3000
           command: ["./run.sh"]
