@@ -32,6 +32,70 @@ spec:
                 secretKeyRef:
                   name: app-secrets
                   key: SECRET_KEY_BASE
+            - name: SESSION_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: SESSION_SECRET_KEY
+            - name: SETTINGS__GOVUK_NOTIFY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: SETTINGS__GOVUK_NOTIFY_API_KEY
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: rds_instance_address
+                  name: contact-moj-rds-output
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: database_name
+                  name: contact-moj-rds-output
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: database_password
+                  name: contact-moj-rds-output
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: database_username
+                  name: contact-moj-rds-output
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: contact-moj-elasticache-redis-output
+                  key: url
+            - name: REDIS_AUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: contact-moj-elasticache-redis-output
+                  key: auth_token
+        - name: jobs
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          command: ["./run-sidekiq.sh"]
+          envFrom:
+            - configMapRef:
+                name: environment-variables
+          env:
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: SECRET_KEY_BASE
+            - name: SESSION_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: SESSION_SECRET_KEY
+            - name: SETTINGS__GOVUK_NOTIFY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: SETTINGS__GOVUK_NOTIFY_API_KEY
             - name: DB_HOST
               valueFrom:
                 secretKeyRef:

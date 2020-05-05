@@ -6,7 +6,7 @@ data:
   SETTINGS__AAQ_EMAIL_URL: https://development.contact-moj.service.justice.gov.uk
   SETTINGS__AAQ_FEEDBACK_EMAIL: staff.tools.test@digital.justice.gov.uk
   SETTINGS__CORRESPONDENCE_EMAIL_FROM: correspondence-tool@digital.justice.gov.uk
-  SETTINGS__GENERAL_ENQUIRIES_EMAIL: moj.correspondence@gmail.com
+  SETTINGS__GENERAL_ENQUIRIES_EMAIL: staff.tools.test@digital.justice.gov.uk
 kind: ConfigMap
 metadata:
   name: environment-variables
