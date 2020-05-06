@@ -23,6 +23,28 @@ spec:
           ports:
             - containerPort: 3000
           command: ["./run.sh"]
+          readinessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 3000
+              httpHeaders:
+                - name: X-Forwarded-Proto
+                  value: https
+                - name: X-Forwarded-Ssl
+                  value: "on"
+            initialDelaySeconds: 40
+            periodSeconds: 60
+          livenessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 3000
+              httpHeaders:
+                - name: X-Forwarded-Proto
+                  value: https
+                - name: X-Forwarded-Ssl
+                  value: "on"
+            initialDelaySeconds: 40
+            periodSeconds: 60          
           envFrom:
             - configMapRef:
                 name: environment-variables
@@ -37,11 +59,6 @@ spec:
                 secretKeyRef:
                   name: app-secrets
                   key: SESSION_SECRET_KEY
-            - name: SETTINGS__GOVUK_NOTIFY_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: app-secrets
-                  key: SETTINGS__GOVUK_NOTIFY_API_KEY
             - name: DB_HOST
               valueFrom:
                 secretKeyRef:
