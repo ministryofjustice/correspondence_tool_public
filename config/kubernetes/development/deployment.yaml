@@ -98,11 +98,6 @@ spec:
             - configMapRef:
                 name: environment-variables
           env:
-            - name: SECRET_KEY_BASE
-              valueFrom:
-                secretKeyRef:
-                  name: app-secrets
-                  key: SECRET_KEY_BASE
             - name: SESSION_SECRET_KEY
               valueFrom:
                 secretKeyRef:
