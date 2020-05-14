@@ -1,0 +1,3 @@
+config/kubernetes/development/secrets.yaml filter=git-crypt diff=git-crypt
+config/kubernetes/production/secrets.yaml filter=git-crypt diff=git-crypt
+config/kubernetes/staging/secrets.yaml filter=git-crypt diff=git-crypt
