@@ -20,7 +20,7 @@ gem 'puma', '~> 3.0'
 gem 'pg', '~> 0.18'
 gem 'rails', '~> 5.0.7'
 gem 'responders', '~> 2.3'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 6.0'
 gem 'sidekiq', '~> 5.1'
 gem 'slim-rails', '~> 3.1'
 # Used for the GOVUK Search API
