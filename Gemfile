@@ -21,7 +21,7 @@ gem 'pg', '~> 0.18'
 gem 'rails', '~> 5.0.7'
 gem 'responders', '~> 2.3'
 gem 'sass-rails', '~> 5.0'
-gem 'sidekiq', '~> 5.1'
+gem 'sidekiq', '~> 6.0'
 gem 'slim-rails', '~> 3.1'
 # Used for the GOVUK Search API
 gem 'stopwords-filter', require: 'stopwords'
