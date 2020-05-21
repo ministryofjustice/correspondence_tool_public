@@ -19,16 +19,16 @@ gem 'listen', '~> 3.1.5'
 gem 'logstasher'
 gem 'mail', '~> 2.7.0'
 gem 'mechanize', '~> 2.7.6'
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 4.3'
 gem 'pg', '~> 1.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.2'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'responders', '~> 2.3'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 6.0'
 gem 'sidekiq', '~> 5.1'
-gem 'slim-rails', '~> 3.1'
+gem 'slim-rails', '~> 3.2'
 # Used for the GOVUK Search API
 gem 'stopwords-filter', require: 'stopwords'
 gem 'susy', '~> 2.2.14'
@@ -49,7 +49,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'selenium-webdriver', '~> 3.14'
   gem 'shoulda-matchers', :git => 'https://github.com/thoughtbot/shoulda-matchers.git'
-  gem 'site_prism', '~> 2.17'
+  gem 'site_prism', '~> 3.1'
   gem 'poltergeist', '~> 1.18'
   gem 'timecop', '~> 0.9'
 end
