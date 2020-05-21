@@ -1,0 +1,140 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: contact-moj
+spec:
+  replicas: 4
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: contact-moj
+  template:
+    metadata:
+      labels:
+        app: contact-moj
+    spec:
+      containers:
+        - name: webapp
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          command: ["./run.sh"]
+          readinessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 3000
+              httpHeaders:
+                - name: X-Forwarded-Proto
+                  value: https
+                - name: X-Forwarded-Ssl
+                  value: "on"
+            initialDelaySeconds: 40
+            periodSeconds: 60
+          livenessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 3000
+              httpHeaders:
+                - name: X-Forwarded-Proto
+                  value: https
+                - name: X-Forwarded-Ssl
+                  value: "on"
+            initialDelaySeconds: 40
+            periodSeconds: 60          
+          envFrom:
+            - configMapRef:
+                name: environment-variables
+          env:
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: SECRET_KEY_BASE
+            - name: SESSION_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: SESSION_SECRET_KEY
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: rds_instance_address
+                  name: contact-moj-rds-output
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: database_name
+                  name: contact-moj-rds-output
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: database_password
+                  name: contact-moj-rds-output
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: database_username
+                  name: contact-moj-rds-output
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: contact-moj-elasticache-redis-output
+                  key: url
+            - name: REDIS_AUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: contact-moj-elasticache-redis-output
+                  key: auth_token
+        - name: jobs
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          command: ["./run-sidekiq.sh"]
+          envFrom:
+            - configMapRef:
+                name: environment-variables
+          env:
+            - name: SESSION_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: SESSION_SECRET_KEY
+            - name: SETTINGS__GOVUK_NOTIFY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: SETTINGS__GOVUK_NOTIFY_API_KEY
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: rds_instance_address
+                  name: contact-moj-rds-output
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: database_name
+                  name: contact-moj-rds-output
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: database_password
+                  name: contact-moj-rds-output
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: database_username
+                  name: contact-moj-rds-output
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: contact-moj-elasticache-redis-output
+                  key: url
+            - name: REDIS_AUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: contact-moj-elasticache-redis-output
+                  key: auth_token

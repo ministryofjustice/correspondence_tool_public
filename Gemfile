@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.1'
 
 gem 'config'
-gem 'curb', '~> 0.9'
+gem 'curb', '~> 0.9.10'
 gem 'foreman', '~> 0.82.0' # Used in dev & production
 gem 'govuk_template',         '~> 0.24.1'
 gem 'govuk_frontend_toolkit', '5.0.2'
