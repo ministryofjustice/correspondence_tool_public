@@ -20,19 +20,20 @@ gem 'logstasher'
 gem 'mail', '~> 2.7.0'
 gem 'mechanize', '~> 2.7.6'
 gem 'puma', '~> 4.3'
-gem 'pg', '~> 0.18'
+gem 'pg', '~> 1.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.2'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'responders', '~> 2.3'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 6.0'
 gem 'sidekiq', '~> 5.1'
-gem 'slim-rails', '~> 3.1'
+gem 'slim-rails', '~> 3.2'
 # Used for the GOVUK Search API
 gem 'stopwords-filter', require: 'stopwords'
 gem 'susy', '~> 2.2.14'
 gem 'uglifier', '>= 1.3.0'
+gem 'sprockets', '~> 3.7.2'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -58,7 +59,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'launchy', '~> 2.4', '>= 2.4.3'
   gem 'faker'
-  gem 'factory_bot'
+  gem 'factory_bot_rails'
   gem 'pry'
   gem 'pry-byebug'
   gem 'rb-readline', '~> 0.5.4'

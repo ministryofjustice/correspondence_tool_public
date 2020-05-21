@@ -8,20 +8,20 @@ Layout/AccessModifierIndentation:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#indent-public-private-protected'
   Enabled: false
 
-Layout/AlignArray:
+Layout/ArrayAlignment:
   Description: >-
                  Align the elements of an array literal if they span more than
                  one line.
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#align-multiline-arrays'
   Enabled: false
 
-Layout/AlignHash:
+Layout/HashAlignment:
   Description: >-
                  Align the elements of a hash literal if they span more than
                  one line.
   Enabled: false
 
-Layout/AlignParameters:
+Layout/ParameterAlignment:
   Description: >-
                  Align the parameters of a method call if they span more
                  than one line.
@@ -129,13 +129,13 @@ Layout/IndentationWidth:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#spaces-indentation'
   Enabled: false
 
-Layout/IndentArray:
+Layout/FirstArrayElementIndentation:
   Description: >-
                  Checks the indentation of the first element in an array
                  literal.
   Enabled: false
 
-Layout/IndentHash:
+Layout/FirstHashElementIndentation:
   Description: 'Checks the indentation of the first key in a hash literal.'
   Enabled: false
 
@@ -259,12 +259,12 @@ Layout/SpaceInsideStringInterpolation:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#string-interpolation'
   Enabled: false
 
-Layout/Tab:
+Layout/IndentationStyle:
   Description: 'No hard tabs.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#spaces-indentation'
   Enabled: false
 
-Layout/TrailingBlankLines:
+Layout/TrailingEmptyLines:
   Description: 'Checks trailing blank lines and final newline.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#newline-eof'
   Enabled: false
@@ -326,10 +326,6 @@ Lint/EmptyInterpolation:
   Description: 'Checks for empty string interpolation.'
   Enabled: true
 
-Lint/EndInMethod:
-  Description: 'END blocks should not be placed inside method definitions.'
-  Enabled: true
-
 Lint/EnsureReturn:
   Description: 'Do not use return in an ensure block.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-return-ensure'
@@ -339,7 +335,7 @@ Lint/FormatParameterMismatch:
   Description: 'The number of parameters to format/sprint must match the fields.'
   Enabled: true
 
-Lint/HandleExceptions:
+Lint/SuppressedException:
   Description: "Don't suppress exception."
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#dont-hide-exceptions'
   Enabled: true
@@ -392,7 +388,7 @@ Lint/ShadowingOuterLocalVariable:
                  for block arguments or block local variables.
   Enabled: true
 
-Lint/StringConversionInInterpolation:
+Lint/RedundantStringCoercion:
   Description: 'Checks for Object#to_s usage in string interpolation.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-to-s'
   Enabled: true
@@ -401,7 +397,7 @@ Lint/UnderscorePrefixedVariableName:
   Description: 'Do not use prefix `_` for a variable that is used.'
   Enabled: true
 
-Lint/UnneededCopDisableDirective:
+Lint/RedundantCopDisableDirective:
   Description: >-
                  Checks for rubocop:disable comments that can be removed.
                  Note: this cop is not disabled when disabling all cops.
@@ -711,10 +707,6 @@ Style/BlockDelimiters:
                 always ugly).
                 Prefer {...} over do...end for single-line blocks.
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#single-line-blocks'
-  Enabled: false
-
-Style/BracesAroundHashParameters:
-  Description: 'Enforce braces style around hash parameters.'
   Enabled: false
 
 Style/CaseEquality:
@@ -1110,11 +1102,11 @@ Style/UnlessElse:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-else-with-unless'
   Enabled: false
 
-Style/UnneededCapitalW:
+Style/RedundantCapitalW:
   Description: 'Checks for %W when interpolation is not needed.'
   Enabled: false
 
-Style/UnneededPercentQ:
+Style/RedundantPercentQ:
   Description: 'Checks for %q/%Q when single quotes or double quotes would do.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#percent-q'
   Enabled: false
