@@ -129,7 +129,7 @@ RSpec.describe CorrespondenceController, type: :controller do
       it 'redirects to the confirmation action' do
         post :create, params: params
         correspondence = Correspondence.last
-        expect(response).to redirect_to(correspondence_confirmation_path(correspondence))
+        expect(response).to redirect_to(correspondence_confirmation_path(correspondence.uuid))
       end
     end
 
