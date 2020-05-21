@@ -22,7 +22,7 @@ class CorrespondenceController < ApplicationController
   end
 
   def confirmation
-    @correspondence = Correspondence.find(params[:id])
+    @correspondence = Correspondence.find_by_uuid(params[:uuid])
   end
 
   def topic

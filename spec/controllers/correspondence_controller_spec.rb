@@ -198,7 +198,7 @@ RSpec.describe CorrespondenceController, type: :controller do
   describe 'GET confirmation' do
     it 'assigns the correspondence item' do
       item = create :correspondence
-      get :confirmation, params: { id: item.id }
+      get :confirmation, params: { uuid: item.uuid }
       expect(assigns(:correspondence)).to eq item
     end
   end
