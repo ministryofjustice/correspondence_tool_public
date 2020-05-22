@@ -10,6 +10,7 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
 require "sprockets/railtie"
+require "active_storage/engine"
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -18,7 +19,7 @@ Bundler.require(*Rails.groups)
 
 module CorrespondenceToolPublic
   class Application < Rails::Application
-
+    
     config.ga_tracking_id = Settings.ga_tracking_id
 
     # Settings in config/environments/* take precedence over those specified here.
@@ -26,7 +27,7 @@ module CorrespondenceToolPublic
     # -- all .rb files in that directory are automatically loaded.
 
     config.generators do |g|
-      g.factory_girl false
+      g.factory_bot false
     end
 
     ActionView::Base.default_form_builder = GovukElementsFormBuilder::FormBuilder

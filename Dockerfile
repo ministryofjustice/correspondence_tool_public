@@ -1,4 +1,4 @@
-FROM ruby:2.5
+FROM ruby:2.5.8
 
 # expect/add ping environment variables
 ARG VERSION_NUMBER

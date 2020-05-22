@@ -11,7 +11,7 @@ class CorrespondenceController < ApplicationController
     @correspondence = creator.correspondence
     case creator.result
     when :success
-      redirect_to correspondence_confirmation_path(@correspondence)
+      redirect_to correspondence_confirmation_path(@correspondence.uuid)
     when :no_op
       redirect_to Settings.moj_home_page
     when :validation_error
@@ -22,7 +22,7 @@ class CorrespondenceController < ApplicationController
   end
 
   def confirmation
-    @correspondence = Correspondence.find(params[:id])
+    @correspondence = Correspondence.find_by_uuid(params[:uuid])
   end
 
   def topic

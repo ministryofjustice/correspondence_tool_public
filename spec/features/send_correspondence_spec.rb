@@ -167,7 +167,7 @@ feature 'Submit a general enquiry' do
 
     expect(search_page.need_to_contact_form).to have_text('. Please read them carefully.')
 
-    expect(search_page.need_to_contact_form).to have_link('terms and conditions', href: '/correspondence/t_and_c')
+    expect(search_page).to have_link('terms and conditions', href: '/correspondence/t_and_c')
 
     expect(search_page.need_to_contact_form.counter.text).to eq "5000"
 
