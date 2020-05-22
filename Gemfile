@@ -1,12 +1,15 @@
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+ruby '2.5.1'
 
 gem 'config'
 gem 'curb', '~> 0.9.10'
 gem 'foreman', '~> 0.82.0' # Used in dev & production
 gem 'govuk_template',         '~> 0.24.1'
-gem 'govuk_frontend_toolkit', '>= 5.0.2'
-gem 'govuk_elements_rails',   '>= 2.2.1'
-gem 'govuk_elements_form_builder'
+gem 'govuk_frontend_toolkit', '5.0.2'
+gem 'govuk_elements_rails',   '2.2.1'
+gem 'govuk_elements_form_builder', '0.1.1'
 gem 'govuk_notify_rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
@@ -16,17 +19,21 @@ gem 'listen', '~> 3.1.5'
 gem 'logstasher'
 gem 'mail', '~> 2.7.0'
 gem 'mechanize', '~> 2.7.6'
-gem 'puma', '~> 3.0'
-gem 'pg', '~> 0.18'
-gem 'rails', '~> 5.0.7'
+gem 'puma', '~> 4.3'
+gem 'pg', '~> 1.2'
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '~> 5.2.4', '>= 5.2.4.2'
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.1.0', require: false
 gem 'responders', '~> 2.3'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 6.0'
 gem 'sidekiq', '~> 5.1'
-gem 'slim-rails', '~> 3.1'
+gem 'slim-rails', '~> 3.2'
 # Used for the GOVUK Search API
 gem 'stopwords-filter', require: 'stopwords'
 gem 'susy', '~> 2.2.14'
 gem 'uglifier', '>= 1.3.0'
+gem 'sprockets', '~> 3.7.2'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -42,7 +49,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'selenium-webdriver', '~> 3.14'
   gem 'shoulda-matchers', :git => 'https://github.com/thoughtbot/shoulda-matchers.git'
-  gem 'site_prism', '~> 2.17'
+  gem 'site_prism', '~> 3.1'
   gem 'poltergeist', '~> 1.18'
   gem 'timecop', '~> 0.9'
 end
@@ -52,7 +59,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'launchy', '~> 2.4', '>= 2.4.3'
   gem 'faker'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'pry'
   gem 'pry-byebug'
   gem 'rb-readline', '~> 0.5.4'

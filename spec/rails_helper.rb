@@ -39,7 +39,7 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.include AskTool::Pages::Application
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
