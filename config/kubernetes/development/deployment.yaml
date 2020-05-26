@@ -44,7 +44,7 @@ spec:
                 - name: X-Forwarded-Ssl
                   value: "on"
             initialDelaySeconds: 40
-            periodSeconds: 60          
+            periodSeconds: 60
           envFrom:
             - configMapRef:
                 name: environment-variables
@@ -98,6 +98,11 @@ spec:
             - configMapRef:
                 name: environment-variables
           env:
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: SECRET_KEY_BASE
             - name: SESSION_SECRET_KEY
               valueFrom:
                 secretKeyRef:
