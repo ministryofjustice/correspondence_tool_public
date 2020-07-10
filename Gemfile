@@ -32,7 +32,7 @@ gem 'slim-rails', '~> 3.2'
 gem 'stopwords-filter', require: 'stopwords'
 gem 'susy', '~> 2.2.14'
 gem 'uglifier', '>= 1.3.0'
-gem 'sprockets', '~> 3.7.2'
+gem 'sprockets', '~> 4.0.2'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
