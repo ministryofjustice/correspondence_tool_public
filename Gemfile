@@ -63,7 +63,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rb-readline', '~> 0.5.4'
   gem 'rspec-rails', '~> 3.4'
-  gem 'rubocop', '~> 0.59.0', require: false
+  gem 'rubocop', '~> 0.89.1', require: false
   gem 'rubocop-rspec', require: false
   gem 'awesome_print', '~> 1.7'
 end
