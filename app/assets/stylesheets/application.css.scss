@@ -35,9 +35,9 @@
 @import 'elements/phase-banner';
 @import 'elements/components';
 
-
 // grid system
 @import "susy";
+@import "moj/alert_banner";
 @import "moj/config";
 
 // custom mixins & helpers
