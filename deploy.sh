@@ -40,7 +40,7 @@ function _deploy() {
     "
 
   # Ensure the script is called with two arguments
-  if [ $# -lt 2 ] || [ $# -gt 2 ]
+  if [ $# -lt 2 ] || [ $# -gt 3 ]
   then
     echo "$usage"
     return 0
@@ -77,7 +77,7 @@ function _deploy() {
     return 0
   fi
 
-  # Confirm what's going to happen and ask for confirmation
+  # Confirm what's going to happen and ask for confirmation if not circle ci
   docker_image_tag=${docker_registry}:${image_tag}
 
   namespace=$component-${environment}
@@ -88,28 +88,27 @@ function _deploy() {
   p "Target namespace: \e[32m$namespace\e[0m"
   p "--------------------------------------------------"
 
-  if [[ $environment == "production" ]]
+  if [[ "$3" != "circleci" ]]
   then
-    read -p "Do you wish to deploy this image to production? (Enter 'deploy' to continue): " confirmation_message
-    if [[ $confirmation_message == "deploy" ]]
+    if [[ $environment == "production" ]]
     then
-      p "Deploying app to production..."
+      read -p "Do you wish to deploy this image to production? (Enter 'deploy' to continue): " confirmation_message
+      if [[ $confirmation_message == "deploy" ]]
+      then
+        p "Deploying app to production..."
+      else
+        return 0
+      fi
     else
-      return 0
-    fi
-  else
-    read -p "Do you wish to deploy this image to $environment? (Enter Y to continue): " confirmation_message
-    if [[ $confirmation_message =~ ^[Yy]$ ]]
-    then
-      p "Deploying app to $environment..."
-    else
-      return 0
+      read -p "Do you wish to deploy this image to $environment? (Enter Y to continue): " confirmation_message
+      if [[ $confirmation_message =~ ^[Yy]$ ]]
+      then
+        p "Deploying app to $environment..."
+      else
+        return 0
+      fi
     fi
   fi
-
-  # Set context for following operations
-  # kubectl config set-context ${context} --namespace=$namespace
-  # kubectl config use-context ${context}
 
   # Apply config map updates
   kubectl apply \
@@ -127,15 +126,6 @@ function _deploy() {
     -f config/kubernetes/${environment}/ingress.yaml \
     -f config/kubernetes/${environment}/secrets.yaml \
     -n $namespace
-
-  #Add cron jobs if production
-  #if [[ $environment == "production" ]]
-  #then
-
-    #kubectl set image -f config/kubernetes/${environment}/cron-photo-profiles-report.yaml \
-     #       jobs=${docker_image_tag} --local --output yaml | kubectl apply -n $namespace -f -
-
-  #fi
 }
 
 _deploy $@
