@@ -20,6 +20,7 @@
   = csrf_meta_tags
   #page
     = render partial: 'layouts/phase_banner'
+    = render partial: 'layouts/alert_banner'
   .primary-nav-bar
   main#content
     = render partial: 'layouts/flashes' unless flash.empty?
@@ -41,5 +42,11 @@
     (window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
     ga('create', '#{Rails.configuration.ga_tracking_id}', 'auto');
     ga('send', 'pageview');
+
+- content_for :footer_support_links do
+  ul
+    li
+      a.govuk-footer__link href="/accessibility"
+        = t('common.accessibility')
 
 = render template: 'layouts/govuk_template'

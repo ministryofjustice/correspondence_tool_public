@@ -12,6 +12,7 @@ get '/correspondence/authenticate/:uuid' => 'correspondence#authenticate', as: '
 get '/correspondence/confirmation/:uuid' => 'correspondence#confirmation', as: 'correspondence_confirmation'
 
 get '/feedback' => 'feedback#new'
+get '/accessibility' => 'pages#accessibility'
 
 get 'ping',           to: 'heartbeat#ping', format: :json
 
