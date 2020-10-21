@@ -31,13 +31,6 @@ RUN . /etc/os-release ; release="${VERSION#* (}" ; release="${release%)}" ; \
 # Or by adding build args to the docker-compose file.
 ARG additional_packages
 
-RUN apt-get update && apt-get install -y less \
-                                         nodejs \
-                                         runit \
-                                         postgresql-client-9.5 \
-                                         $additional_packages && \
-    rm -rf /var/lib/apt/lists/*
-
 COPY Gemfile Gemfile.lock ./
 
 COPY Gemfile* ./
@@ -45,7 +38,15 @@ RUN gem install bundler -v 1.16.2
 RUN bundle config --global frozen 1 && \
     bundle config --path=vendor/bundle && \
     bundle install --without development test
+
 COPY . .
+
+RUN apt-get update && apt-get install -y less \
+	nodejs \
+	runit \
+	postgresql-client-9.5 \
+	$additional_packages && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN RAILS_ENV=production bundle exec rake assets:clean assets:precompile SECRET_KEY_BASE=required_but_does_not_matter_for_assets
 
