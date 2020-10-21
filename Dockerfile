@@ -42,7 +42,9 @@ COPY Gemfile Gemfile.lock ./
 
 COPY Gemfile* ./
 RUN gem install bundler -v 1.16.2
-RUN bundle install
+RUN bundle config --global frozen 1 && \
+    bundle config --path=vendor/bundle && \
+    bundle install --without development test
 COPY . .
 
 RUN RAILS_ENV=production bundle exec rake assets:clean assets:precompile SECRET_KEY_BASE=required_but_does_not_matter_for_assets
