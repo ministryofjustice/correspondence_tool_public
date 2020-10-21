@@ -14,10 +14,13 @@ RUN bundle config --global frozen 1 && \
     bundle install --without development test
 
 RUN apt-get update && apt-get install -y apt-transport-https && \
-	less \
+    rm -rf /var/lib/apt/lists/*
+    
+RUN apt-get update && apt-get install -y less \
 	nodejs \
 	runit \
 	postgresql-client-9.5 \
+	$additional_packages && \
     rm -rf /var/lib/apt/lists/*
 
 COPY . .
