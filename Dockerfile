@@ -1,15 +1,5 @@
 FROM ruby:2.5.8
 
-# expect/add ping environment variables
-ARG VERSION_NUMBER
-ARG COMMIT_ID
-ARG BUILD_DATE
-ARG BUILD_TAG
-ENV APP_VERSION=${VERSION_NUMBER}
-ENV APP_GIT_COMMIT=${COMMIT_ID}
-ENV APP_BUILD_DATE=${BUILD_DATE}
-ENV APP_BUILD_TAG=${BUILD_TAG}
-
 RUN addgroup --gid 1000 --system appgroup && \
     adduser --uid 1000 --system appuser --ingroup appgroup
 
@@ -61,5 +51,15 @@ RUN RAILS_ENV=production bundle exec rake assets:clean assets:precompile SECRET_
 RUN chown -R appuser:appgroup log tmp db
 
 USER 1000
+
+# expect/add ping environment variables
+ARG VERSION_NUMBER
+ARG COMMIT_ID
+ARG BUILD_DATE
+ARG BUILD_TAG
+ENV APP_VERSION=${VERSION_NUMBER}
+ENV APP_GIT_COMMIT=${COMMIT_ID}
+ENV APP_BUILD_DATE=${BUILD_DATE}
+ENV APP_BUILD_TAG=${BUILD_TAG}
 
 ENTRYPOINT ["./run.sh"]

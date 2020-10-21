@@ -39,7 +39,7 @@ function _deploy() {
     ./deploy.sh contact-moj-master-6bece953 production
     "
 
-  # Ensure the script is called with two arguments
+  # Ensure the script is called with two or three arguments
   if [ $# -lt 2 ] || [ $# -gt 3 ]
   then
     echo "$usage"
