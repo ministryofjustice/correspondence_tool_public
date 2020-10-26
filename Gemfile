@@ -24,7 +24,7 @@ gem "rack", ">= 2.1.4"
 gem 'rails', '~> 5.2.4', '>= 5.2.4.2'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'responders', '~> 2.3'
+gem 'responders', '~> 3.0'
 gem 'sass-rails', '~> 6.0'
 gem 'sidekiq', '~> 6.0'
 gem 'slim-rails', '~> 3.2'
