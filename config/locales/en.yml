@@ -163,12 +163,14 @@ en:
     contact_form: |
       Contact form - Contact the Ministry of Justice
     contact_confirm: |
-      Contact confirmation - Contact the Ministry of Justice
+      Please confirm your Email address - Contact the Ministry of Justice
     feedback_form: |
       Feedback form - Contact the Ministry of Justice
     feedback_confirm: |
       Feedback confirmation - Contact the Ministry of Justice
     authentication_confirmation: |
-      Authentication confirmation
+      Your message has been sent - Contact the Ministry of Justice
     terms_and_conditions: |
-      Terms and conditions and privacy policy
+      Terms and conditions and privacy policy - Contact the Ministry of Justice
+    accessibility_statement: |
+      Accessibility statement - Contact the Ministry of Justice
