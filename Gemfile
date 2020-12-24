@@ -12,7 +12,7 @@ gem 'govuk_notify_rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
-gem 'jsonb_accessor', '~> 1.0.0'
+gem 'jsonb_accessor', '~> 1.1.0'
 gem 'listen', '~> 3.1.5'
 gem 'logstasher'
 gem 'mail', '~> 2.7.0'
@@ -24,7 +24,7 @@ gem "rack", ">= 2.1.4"
 gem 'rails', '~> 5.2.4', '>= 5.2.4.2'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'responders', '~> 2.3'
+gem 'responders', '~> 3.0'
 gem 'sass-rails', '~> 6.0'
 gem 'sidekiq', '~> 6.0'
 gem 'slim-rails', '~> 3.2'
@@ -62,7 +62,7 @@ group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
   gem 'rb-readline', '~> 0.5.4'
-  gem 'rspec-rails', '~> 3.4'
+  gem 'rspec-rails', '~> 4.0'
   gem 'rubocop', '~> 0.59.0', require: false
   gem 'rubocop-rspec', require: false
   gem 'awesome_print', '~> 1.7'
