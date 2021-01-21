@@ -85,7 +85,7 @@ GEM
       dry-validation (~> 1.0, >= 1.0.0)
     connection_pool (2.2.3)
     crass (1.0.6)
-    curb (0.9.10)
+    curb (0.9.11)
     deep_merge (1.2.1)
     diff-lcs (1.4.4)
     docile (1.1.5)
@@ -453,7 +453,7 @@ DEPENDENCIES
   capybara-screenshot
   codeclimate-test-reporter (~> 1.0)
   config
-  curb (~> 0.9.10)
+  curb (~> 0.9.11)
   factory_bot_rails
   faker
   foreman (~> 0.82.0)
