@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y apt-transport-https && \
 RUN apt-get update && apt-get install -y less \
 	nodejs \
 	runit \
-	postgresql-client-9.5 \
+	postgresql-client-12 \
 	$additional_packages && \
     rm -rf /var/lib/apt/lists/*
 
