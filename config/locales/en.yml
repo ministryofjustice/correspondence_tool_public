@@ -82,7 +82,7 @@ en:
 
   common:
     accessibility: Accessibility
-    alert_banner_html: "This service will be down for essential maintenance between 12pm and 2pm on Monday 8th February. You will not have access during this period. <br><br>We are unable to respond to documents sent by post because of coronavirus (COVID-19). When using this online contact form please be aware that responses will take longer than usual."
+    alert_banner_html: "We are unable to respond to documents sent by post because of coronavirus (COVID-19). When using this online contact form please be aware that responses will take longer than usual."
     error: error
     phase_banner: |
       This is a new service – your feedback will help us to improve it.
