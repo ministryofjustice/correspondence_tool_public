@@ -9,7 +9,7 @@ module GovUkSearchApi
 
     describe '#search' do
 
-      let(:url_query) { "https://www.gov.uk/api/search.json?count=3&q=#{URI.encode(filtered_query)}" }
+      let(:url_query) { "https://www.gov.uk/api/search.json?count=3&q=#{ERB::Util.url_encode(filtered_query)}" }
 
       context 'successful call to API' do
         it 'calls Curl with the URI encoded query and the curl response and returns a Response object' do

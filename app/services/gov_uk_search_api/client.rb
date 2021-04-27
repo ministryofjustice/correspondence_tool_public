@@ -10,7 +10,7 @@ module GovUkSearchApi
 
       filter = Stopwords::Snowball::Filter.new "en"
       filtered_words = filter.filter(@original_query.split)
-      @filtered_query = URI.encode(filtered_words.join(' '))
+      @filtered_query = ERB::Util.url_encode(filtered_words.join(' '))
     end
 
     def search
