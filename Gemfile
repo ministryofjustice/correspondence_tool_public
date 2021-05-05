@@ -16,7 +16,7 @@ gem 'jsonb_accessor', '~> 1.1.0'
 gem 'listen', '~> 3.4.1'
 gem 'logstasher'
 gem 'mail', '~> 2.7.0'
-gem 'mechanize', '~> 2.7.7'
+gem 'mechanize', '~> 2.8'
 gem 'puma', '~> 5.1'
 gem 'pg', '~> 1.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -63,8 +63,10 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rb-readline', '~> 0.5.4'
   gem 'rspec-rails', '~> 4.0'
-  gem 'rubocop', '~> 0.59.0', require: false
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'rubocop-performance', require: false
   gem 'awesome_print', '~> 1.7'
 end
 

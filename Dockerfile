@@ -1,4 +1,4 @@
-FROM ruby:2.5.8
+FROM ruby:2.7.2
 
 RUN addgroup --gid 1000 --system appgroup && \
     adduser --uid 1000 --system appuser --ingroup appgroup
@@ -8,7 +8,7 @@ RUN mkdir -p /usr/src/app && mkdir -p /usr/src/app/tmp
 WORKDIR /usr/src/app
 
 COPY Gemfile* ./
-RUN gem install bundler -v 1.16.2
+RUN gem install bundler -v 2.2.15
 RUN bundle config --global frozen 1 && \
     bundle config --path=vendor/bundle && \
     bundle install --without development test
@@ -23,7 +23,7 @@ RUN . /etc/os-release ; release="${VERSION#* (}" ; release="${release%)}" ; \
 
 RUN apt-get update && apt-get install -y apt-transport-https && \
     rm -rf /var/lib/apt/lists/*
-    
+
 RUN apt-get update && apt-get install -y less \
 	nodejs \
 	runit \

@@ -1,3 +1,7 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+
 AllCops:
   DisabledByDefault: true
 
@@ -142,6 +146,11 @@ Layout/FirstHashElementIndentation:
 Layout/LeadingCommentSpace:
   Description: 'Comments should start with a space.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#hash-space'
+  Enabled: false
+
+Layout/LineLength:
+  Description: 'Limit lines to 80 characters.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#80-character-limits'
   Enabled: false
 
 Layout/MultilineBlockLayout:
@@ -294,6 +303,10 @@ Lint/AssignmentInCondition:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#safe-assignment-in-condition'
   Enabled: true
 
+Lint/BinaryOperatorWithIdenticalOperands:
+  Description: 'Checks for comparison of something with itself.'
+  Enabled: true
+
 Lint/CircularArgumentReference:
   Description: "Don't refer to the keyword argument in the default value."
   Enabled: true
@@ -330,6 +343,11 @@ Lint/EnsureReturn:
   Description: 'Do not use return in an ensure block.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-return-ensure'
   Enabled: true
+
+Lint/FlipFlop:
+  Description: 'Checks for flip flops'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-flip-flops'
+  Enabled: false
 
 Lint/FormatParameterMismatch:
   Description: 'The number of parameters to format/sprint must match the fields.'
@@ -427,10 +445,6 @@ Lint/UselessAssignment:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#underscore-unused-vars'
   Enabled: true
 
-Lint/UselessComparison:
-  Description: 'Checks for comparison of something with itself.'
-  Enabled: true
-
 Lint/UselessElseWithoutRescue:
   Description: 'Checks for useless `else` in `begin..end` without `rescue`.'
   Enabled: true
@@ -469,11 +483,6 @@ Metrics/CyclomaticComplexity:
                  A complexity metric that is strongly correlated to the number
                  of test cases needed to validate a method.
   Enabled: true
-
-Metrics/LineLength:
-  Description: 'Limit lines to 80 characters.'
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#80-character-limits'
-  Enabled: false
 
 Metrics/MethodLength:
   Description: 'Avoid methods longer than 30 lines of code.'
@@ -575,13 +584,6 @@ Performance/FlatMap:
 Performance/ReverseEach:
   Description: 'Use `reverse_each` instead of `reverse.each`.'
   Reference: 'https://github.com/JuanitoFatas/fast-ruby#enumerablereverseeach-vs-enumerablereverse_each-code'
-  Enabled: true
-
-Performance/Sample:
-  Description: >-
-                  Use `sample` instead of `shuffle.first`,
-                  `shuffle.last`, and `shuffle[Fixnum]`.
-  Reference: 'https://github.com/JuanitoFatas/fast-ruby#arrayshufflefirst-vs-arraysample-code'
   Enabled: true
 
 Performance/Size:
@@ -792,11 +794,6 @@ Style/EndBlock:
 Style/EvenOdd:
   Description: 'Favor the use of Fixnum#even? && Fixnum#odd?'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#predicate-methods'
-  Enabled: false
-
-Style/FlipFlop:
-  Description: 'Checks for flip flops'
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-flip-flops'
   Enabled: false
 
 Style/For:
@@ -1022,6 +1019,13 @@ Style/RescueModifier:
   Description: 'Avoid using rescue in its modifier form.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-rescue-modifiers'
   Enabled: false
+
+Style/Sample:
+  Description: >-
+                  Use `sample` instead of `shuffle.first`,
+                  `shuffle.last`, and `shuffle[Fixnum]`.
+  Reference: 'https://github.com/JuanitoFatas/fast-ruby#arrayshufflefirst-vs-arraysample-code'
+  Enabled: true
 
 Style/SelfAssignment:
   Description: >-
