@@ -67,7 +67,7 @@ group :development, :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'rubocop-performance', require: false
-  gem 'awesome_print', '~> 1.7'
+  gem 'awesome_print', '~> 1.9'
 end
 
 group :development do
