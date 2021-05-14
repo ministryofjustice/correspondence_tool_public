@@ -3,8 +3,8 @@ FROM ruby:2.7.2-alpine
 RUN addgroup --gid 1000 --system appgroup && \
     adduser --uid 1000 --system appuser --ingroup appgroup
 
-# Note: .ruby-gemdeps libc-dev gcc libxml2-dev libxslt-dev make  postgresql-dev build-base curl-dev with bundle install issues. 
-RUN apk add --no-cache --virtual .ruby-gemdeps libc-dev gcc libxml2-dev libxslt-dev make  postgresql-dev build-base curl-dev git nodejs zip postgresql-client runit
+# Note: .ruby-gemdeps libc-dev gcc libxml2-dev libxslt-dev make postgresql-dev build-base curl-dev with bundle install issues. 
+RUN apk add --no-cache --virtual .ruby-gemdeps libc-dev gcc libxml2-dev libxslt-dev make postgresql-dev build-base curl-dev git nodejs zip postgresql-client runit
 
 # set WORKDIR
 RUN mkdir -p /usr/src/app && mkdir -p /usr/src/app/tmp
@@ -17,7 +17,7 @@ RUN gem install bundler -v 2.2.15
 RUN bundle config --global frozen 1 && \
     bundle config --path=vendor/bundle && \
     bundle install --without development test
-    
+
 COPY . .
 
 RUN RAILS_ENV=production bundle exec rake assets:clean assets:precompile SECRET_KEY_BASE=required_but_does_not_matter_for_assets
