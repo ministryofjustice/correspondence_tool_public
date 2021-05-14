@@ -33,6 +33,8 @@ gem 'stopwords-filter', require: 'stopwords'
 gem 'susy', '~> 2.2.14'
 gem 'uglifier', '>= 1.3.0'
 gem 'sprockets', '~> 3.7.2'
+# Alpine does not include zoneinfo files (probably) - it asked for tinfo-data, so bundle the tzinfo-data gem
+gem 'tzinfo-data'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -83,6 +85,3 @@ group :development do
   gem 'web-console'
   gem 'annotate'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
