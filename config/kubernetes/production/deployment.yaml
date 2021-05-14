@@ -22,7 +22,7 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
-          command: ["./run.sh"]
+          command: ["./config/docker/run.sh"]
           readinessProbe:
             httpGet:
               path: /ping
@@ -93,7 +93,7 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
-          command: ["./run-sidekiq.sh"]
+          command: ["./config/docker/run-sidekiq.sh"]
           envFrom:
             - configMapRef:
                 name: environment-variables

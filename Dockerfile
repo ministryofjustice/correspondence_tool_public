@@ -23,7 +23,8 @@ COPY . .
 RUN RAILS_ENV=production bundle exec rake assets:clean assets:precompile SECRET_KEY_BASE=required_but_does_not_matter_for_assets
 
 # non-root/appuser should own only what they need to
-RUN chown -R appuser:appgroup log tmp db
+RUN chown -R appuser:appgroup ./*
+RUN chmod +x /usr/src/app/config/docker/*
 USER 1000
 
 ENV PUMA_PORT 3000
