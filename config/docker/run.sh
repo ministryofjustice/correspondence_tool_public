@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Make these available via Settings in the app
 export SETTINGS__GIT_COMMIT="$APP_GIT_COMMIT"
