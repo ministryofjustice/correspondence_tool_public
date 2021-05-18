@@ -93,9 +93,9 @@ references:
   restore_cache: &restore_cache
     restore_cache:
       keys:
-        - correspondence-tool-staff-{{ checksum "Gemfile.lock" }}
+        - correspondence-tool-public-{{ checksum "Gemfile.lock" }}
         # fallback to using the latest cache if no exact match is found
-        - correspondence-tool-staff-
+        - correspondence-tool-public-
 
   install_dependencies: &install_dependencies
     run:
@@ -107,7 +107,7 @@ references:
 
   save_cache: &save_cache
     save_cache:
-      key: correspondence-tool-staff-{{ checksum "Gemfile.lock" }}
+      key: correspondence-tool-public-{{ checksum "Gemfile.lock" }}
       paths:
         - vendor/bundle
 
