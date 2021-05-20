@@ -6,7 +6,7 @@ gem 'curb', '~> 0.9.11'
 gem 'foreman', '~> 0.82.0' # Used in dev & production
 gem 'govuk_template', '~> 0.24.1'
 gem 'govuk_frontend_toolkit', '5.0.2'
-gem 'govuk_elements_rails', '2.2.1'
+gem 'govuk_elements_rails', '3.0.1'
 gem 'govuk_elements_form_builder', '0.1.1'
 gem 'govuk_notify_rails', '>= 2.1.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
