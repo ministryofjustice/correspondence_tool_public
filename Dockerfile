@@ -13,7 +13,7 @@ WORKDIR /usr/src/app
 RUN apk -U upgrade
 
 COPY Gemfile* ./
-RUN gem install bundler -v 2.2.15
+RUN gem install bundler -v 2.1.4
 RUN bundle config --global frozen 1 && \
     bundle config --path=vendor/bundle && \
     bundle install --without development test
