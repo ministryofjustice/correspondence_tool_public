@@ -32,7 +32,7 @@ gem 'slim-rails', '~> 3.2', '>= 3.2.0'
 gem 'stopwords-filter', require: 'stopwords'
 gem 'susy', '~> 2.2.14'
 gem 'uglifier', '>= 1.3.0'
-gem 'sprockets', '~> 3.7.2'
+gem 'sprockets', '~> 4.0.2'
 # Alpine does not include zoneinfo files (probably) - it asked for tinfo-data, so bundle the tzinfo-data gem
 gem 'tzinfo-data'
 # Use Redis adapter to run Action Cable in production
