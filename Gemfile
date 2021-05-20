@@ -3,8 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'config'
 gem 'curb', '~> 0.9.11'
-gem 'foreman', '~> 0.82.0' # Used in dev & production
-gem 'govuk_template', '~> 0.24.1'
+gem 'foreman', '~> 0.87.2' # Used in dev & production
+gem 'govuk_template', '~> 0.26.0'
 gem 'govuk_frontend_toolkit', '5.0.2'
 gem 'govuk_elements_rails', '2.2.1'
 gem 'govuk_elements_form_builder', '0.1.1'
@@ -12,8 +12,8 @@ gem 'govuk_notify_rails', '>= 2.1.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.11'
 gem 'jquery-rails', '>= 4.4.0'
-gem 'jsonb_accessor', '~> 1.1.0'
-gem 'listen', '~> 3.4.1'
+gem 'jsonb_accessor', '~> 1.3.2'
+gem 'listen', '~> 3.5.1'
 gem 'logstasher'
 gem 'mail', '~> 2.7.0'
 gem 'mechanize', '~> 2.8', '>= 2.8.1'
@@ -64,7 +64,7 @@ group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
   gem 'rb-readline', '~> 0.5.4'
-  gem 'rspec-rails', '~> 4.1', '>= 4.1.2'
+  gem 'rspec-rails', '~> 5.0'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
