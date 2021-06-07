@@ -17,7 +17,7 @@ gem 'listen', '~> 3.5.1'
 gem 'logstasher'
 gem 'mail', '~> 2.7.0'
 gem 'mechanize', '~> 2.8', '>= 2.8.1'
-gem 'puma', '~> 5.3', '>= 5.3.1'
+gem 'puma', '~> 5.3'
 gem 'pg', '~> 1.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rack", ">= 2.1.4"
