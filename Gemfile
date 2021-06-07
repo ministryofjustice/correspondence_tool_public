@@ -35,6 +35,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'sprockets', '~> 3.7.2'
 # Alpine does not include zoneinfo files (probably) - it asked for tinfo-data, so bundle the tzinfo-data gem
 gem 'tzinfo-data'
+gem 'webdrivers', '~> 4.4'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -44,14 +45,14 @@ gem 'tzinfo-data'
 
 group :test do
   gem 'capybara', '>= 3.35.3'
-  gem 'capybara-screenshot', '>= 1.0.25'
+  gem 'capybara-selenium'
+  gem 'capybara-screenshot'
   gem 'codeclimate-test-reporter', '~> 1.0'
   gem 'i18n-tasks', '~> 0.9.34'
   gem 'rails-controller-testing', '>= 1.0.5'
   gem 'selenium-webdriver', '~> 3.14'
   gem 'shoulda-matchers', :git => 'https://github.com/thoughtbot/shoulda-matchers.git'
   gem 'site_prism', '~> 3.7', '>= 3.7.1'
-  gem 'poltergeist', '~> 1.18', '>= 1.18.1'
   gem 'timecop', '~> 0.9'
 end
 
