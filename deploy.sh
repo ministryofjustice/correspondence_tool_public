@@ -35,8 +35,8 @@ function _deploy() {
     Image created with tag: contact-moj-cloud-deploy-6bece953
     # deploy image-tag to development
     ./deploy.sh contact-moj-CT-1234-cloud-deploy-6bece953 development
-    # deploy latest image of master to production
-    ./deploy.sh contact-moj-master-6bece953 production
+    # deploy latest image of main to production
+    ./deploy.sh contact-moj-main-6bece953 production
     "
 
   # Ensure the script is called with two or three arguments
