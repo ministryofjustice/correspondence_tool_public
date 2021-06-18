@@ -48,17 +48,9 @@ spec:
           envFrom:
             - configMapRef:
                 name: environment-variables
+            - secretRef:
+                name: app-secrets
           env:
-            - name: SECRET_KEY_BASE
-              valueFrom:
-                secretKeyRef:
-                  name: app-secrets
-                  key: SECRET_KEY_BASE
-            - name: SESSION_SECRET_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: app-secrets
-                  key: SESSION_SECRET_KEY
             - name: DB_HOST
               valueFrom:
                 secretKeyRef:
@@ -97,22 +89,9 @@ spec:
           envFrom:
             - configMapRef:
                 name: environment-variables
+            - secretRef:
+                name: app-secrets    
           env:
-            - name: SECRET_KEY_BASE
-              valueFrom:
-                secretKeyRef:
-                  name: app-secrets
-                  key: SECRET_KEY_BASE
-            - name: SESSION_SECRET_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: app-secrets
-                  key: SESSION_SECRET_KEY
-            - name: SETTINGS__GOVUK_NOTIFY_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: app-secrets
-                  key: SETTINGS__GOVUK_NOTIFY_API_KEY
             - name: DB_HOST
               valueFrom:
                 secretKeyRef:
