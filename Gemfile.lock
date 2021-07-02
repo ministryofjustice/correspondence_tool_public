@@ -443,7 +443,7 @@ GEM
       selenium-webdriver (>= 3.0, < 4.0)
     webrick (1.7.0)
     webrobots (0.1.2)
-    websocket-driver (0.7.5)
+    websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     xpath (3.2.0)
