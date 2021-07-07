@@ -1,4 +1,5 @@
 version: "2"
+
 plugins:
   brakeman:
     enabled: true
@@ -18,21 +19,7 @@ plugins:
     enabled: true
   rubocop:
     enabled: true
-ratings:
-  paths:
-  - Gemfile.lock
-  - "**.erb"
-  - "**.slim"
-  - "**.rb"
-  - "**.rhtml"
-  - "**.slim"
-  - "**.css"
-  - "**.inc"
-  - "**.js"
-  - "**.jsx"
-  - "**.module"
-  - "**.php"
-  - "**.py"
+    channel: rubocop-0-92
 exclude_paths:
 - config/
 - db/
