@@ -21,7 +21,6 @@ references:
           PGUSER: postgres
           PGHOST: 127.0.0.1
           POSTGRES_DB: correspondence_tool_public_test
-          CC_TEST_REPORTER_ID: eb3e0d8d6d9ce6d599b24df269c05b104ac8cdd6e25a1fa8cc9f1203c458b7bd
 
       - image: circleci/postgres:9.5-alpine
         environment:
