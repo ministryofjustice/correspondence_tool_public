@@ -40,6 +40,10 @@ RSpec.describe HeartbeatController, type: :controller do
     before do
       allow(Sidekiq::ProcessSet)
           .to receive(:new).and_return(instance_double(Sidekiq::ProcessSet, size: 1))
+      allow(Sidekiq::RetrySet)
+          .to receive(:new).and_return(instance_double(Sidekiq::RetrySet, size: 0))
+      allow(Sidekiq::DeadSet)
+          .to receive(:new).and_return(instance_double(Sidekiq::DeadSet, size: 0))
     end
 
     context 'when a problem exists' do
@@ -48,6 +52,8 @@ RSpec.describe HeartbeatController, type: :controller do
             .to receive(:active?).and_raise(PG::ConnectionBad)
         allow(Sidekiq::ProcessSet)
             .to receive(:new).and_return(instance_double(Sidekiq::ProcessSet, size: 0))
+        allow(Sidekiq::DeadSet)
+            .to receive(:new).and_return(instance_double(Sidekiq::DeadSet, size: 1))
 
         connection = double('connection')
         allow(connection).to receive(:info).and_raise(Redis::CannotConnectError)
