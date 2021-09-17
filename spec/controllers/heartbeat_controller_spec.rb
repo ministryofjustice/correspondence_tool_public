@@ -69,8 +69,7 @@ RSpec.describe HeartbeatController, type: :controller do
       it 'returns the expected response report' do
         expect(response.body).to eq({checks: { database: false,
                                                redis: false,
-                                               sidekiq: false,
-                                               sidekiq_queue: false
+                                               sidekiq: false
         }}.to_json)
       end
     end
@@ -92,8 +91,7 @@ RSpec.describe HeartbeatController, type: :controller do
       it 'returns the expected response report' do
         expect(response.body).to eq({checks: { database: true,
                                                redis: true,
-                                               sidekiq: true,
-                                               sidekiq_queue: true
+                                               sidekiq: true
         }}.to_json)
       end
     end

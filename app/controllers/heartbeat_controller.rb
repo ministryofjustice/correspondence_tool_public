@@ -19,7 +19,6 @@ class HeartbeatController < ApplicationController
         database: database_alive?,
         redis: redis_alive?,
         sidekiq: sidekiq_alive?,
-        sidekiq_queue: sidekiq_queue_healthy?,
     }
 
     status = :bad_gateway unless checks.values.all?
