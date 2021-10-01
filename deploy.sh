@@ -30,11 +30,11 @@ function _deploy() {
     # build the app to get an image tag
     ./build.sh
     ...many lines of output...
-    Image created with tag: contact-moj-cloud-deploy-6bece953
+    Image created with tag: cmoj-cloud-deploy-6bece953
     # deploy image-tag to development
-    ./deploy.sh contact-moj-CT-1234-cloud-deploy-6bece953 development
+    ./deploy.sh cmoj-CT-1234-cloud-deploy-6bece953 development
     # deploy latest image of main to production
-    ./deploy.sh contact-moj-main-6bece953 production
+    ./deploy.sh cmoj-main-6bece953 production
     "
 
   # Ensure the script is called with two or three arguments
