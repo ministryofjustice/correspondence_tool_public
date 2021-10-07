@@ -1,6 +1,8 @@
 #global-header .header-wrapper {
   .header-global {
-    @include span(4 of 12);
+    width: percentage(4 / 12);
+    float: left;
+    margin-left: percentage(0.18/12);
     .header-logo {
       width:auto;
       .content {
@@ -13,7 +15,7 @@
     float: right;
   }
   .header-proposition {
-    @include span(8 at 5 of 12 no-gutters);
+    width: percentage(8 / (5 / 12));
   }
 }
 

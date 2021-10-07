@@ -6,19 +6,20 @@ body {
 }
 
 .container {
-  @include container;
+  width: 100%;
 }
 
 #page {
   @extend %site-width-container;
 }
 .body-content {
-  @include span(6 of 12);
-  @include first;
+  width: percentage(6 / 12);
+  padding-left: 0;
 }
 
 .sidebar {
-  @include grid-column( 1/3 );
+  width: percentage( 1/3 );
+  float: right;
 }
 .govuk-related-items {
   border-top: 10px solid $govuk-blue;
