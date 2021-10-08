@@ -70,7 +70,8 @@ en:
         email: |
           We'll send a confirmation and any response to this email
         message_html: |
-          To ensure you get a response, focus on what you want to know and keep  your message short and simple
+          Please keep a copy of your message elsewhere for your own records.<br>
+          To ensure you get a response, focus on what you want to know and <br>keep  your message short and simple.
         topic: |
           Give a brief summary to find a quick answer
 
