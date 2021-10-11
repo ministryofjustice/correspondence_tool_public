@@ -1,8 +1,8 @@
 #global-header .header-wrapper {
+  max-width: 960px; 
   .header-global {
-    width: percentage(4 / 12);
+    width: 33%;
     float: left;
-    margin-left: percentage(0.18/12);
     .header-logo {
       width:auto;
       .content {
@@ -15,7 +15,6 @@
     float: right;
   }
   .header-proposition {
-    width: percentage(8 / (5 / 12));
   }
 }
 
