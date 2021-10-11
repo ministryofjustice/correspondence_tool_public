@@ -5,10 +5,6 @@ body {
   background: #fff;
 }
 
-.container {
-  width: 100%;
-}
-
 #page {
   @extend %site-width-container;
 }
