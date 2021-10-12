@@ -30,7 +30,6 @@ gem 'sidekiq', '~> 6.2'
 gem 'slim-rails', '~> 3.2', '>= 3.2.0'
 # Used for the GOVUK Search API
 gem 'stopwords-filter', require: 'stopwords'
-gem 'susy', '~> 2.2.14'
 gem 'uglifier', '>= 1.3.0'
 gem 'sprockets', '~> 3.7.2'
 # Alpine does not include zoneinfo files (probably) - it asked for tinfo-data, so bundle the tzinfo-data gem
