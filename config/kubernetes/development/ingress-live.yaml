@@ -21,3 +21,4 @@ spec:
             backend:
               serviceName: contact-moj-service
               servicePort: 3000
+              
