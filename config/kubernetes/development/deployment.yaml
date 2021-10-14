@@ -122,3 +122,56 @@ spec:
                 secretKeyRef:
                   name: contact-moj-elasticache-redis-output
                   key: auth_token
+        - name: metrics
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9394
+          command: ['sh', '-c', 'bundle exec prometheus_exporter --bind 0.0.0.0']
+          livenessProbe:
+            httpGet:
+              path: /metrics
+              port: 9394
+            initialDelaySeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /metrics
+              port: 9394
+            initialDelaySeconds: 10
+            periodSeconds: 60
+          envFrom:
+            - configMapRef:
+                name: environment-variables
+            - secretRef:
+                name: app-secrets
+          env:
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: rds_instance_address
+                  name: contact-moj-rds-output
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: database_name
+                  name: contact-moj-rds-output
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: database_password
+                  name: contact-moj-rds-output
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: database_username
+                  name: contact-moj-rds-output
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: contact-moj-elasticache-redis-output
+                  key: url
+            - name: REDIS_AUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: contact-moj-elasticache-redis-output
+                  key: auth_token

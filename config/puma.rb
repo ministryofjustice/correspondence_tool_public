@@ -46,3 +46,18 @@ end
   
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
+
+# Activerecord Connection Pool Metrics
+on_worker_boot do
+    require 'prometheus_exporter/instrumentation'
+    PrometheusExporter::Instrumentation::ActiveRecord.start(
+      custom_labels: { type: "puma_worker" }, #optional params
+      config_labels: [:database, :host] #optional params
+    )
+end
+
+# # Per-process stats
+# after_fork do
+#     require 'prometheus_exporter/instrumentation'
+#     PrometheusExporter::Instrumentation::Process.start(type: "web")
+# end
