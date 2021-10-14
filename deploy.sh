@@ -166,6 +166,7 @@ function _deploy() {
       kubectl set image -f config/kubernetes/${environment}/deployment.yaml \
           webapp=${docker_image_tag} \
           jobs=${docker_image_tag} \
+          metrics=${docker_image_tag} \
            --local --output yaml | kubectl apply -n $namespace -f -
 
       #Non-image specific
