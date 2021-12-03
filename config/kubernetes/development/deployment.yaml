@@ -122,3 +122,20 @@ spec:
                 secretKeyRef:
                   name: contact-moj-elasticache-redis-output
                   key: auth_token
+        - name: metrics
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9394
+          command: ['sh', '-c', 'bundle exec prometheus_exporter --bind 0.0.0.0']
+          livenessProbe:
+            httpGet:
+              path: /metrics
+              port: 9394
+            initialDelaySeconds: 10
+            periodSeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /metrics
+              port: 9394
+            initialDelaySeconds: 10
+            periodSeconds: 60

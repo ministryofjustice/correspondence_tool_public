@@ -31,7 +31,7 @@ workers ENV.fetch("WEB_CONCURRENCY") { 2 }
 # before forking the application. This takes advantage of Copy On Write
 # process behavior so workers use less memory.
 #
-# preload_app!
+preload_app!
 
 # The code in the `on_worker_boot` will be called if you are using
 # clustered mode by specifying a number of `workers`. After each worker
@@ -46,3 +46,16 @@ end
   
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
+
+# Activerecord Connection Pool Metrics
+after_worker_boot do
+    require 'prometheus_exporter/instrumentation'
+    require 'prometheus_exporter/client'
+    PrometheusExporter::Instrumentation::Puma.start
+    PrometheusExporter::Instrumentation::Process.start(type: 'web')
+
+    PrometheusExporter::Instrumentation::ActiveRecord.start(
+      custom_labels: { type: 'puma_worker' },
+      config_labels: [:database, :host]
+    )
+end
