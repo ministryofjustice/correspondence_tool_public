@@ -16,7 +16,7 @@ gem 'jsonb_accessor', '~> 1.3.2'
 gem 'listen', '~> 3.7.0'
 gem 'logstasher'
 gem 'mail', '~> 2.7.0'
-gem 'mechanize', '~> 2.8', '>= 2.8.1'
+gem 'mechanize', '~> 2.8'
 gem 'puma', '~> 5.5'
 gem 'pg', '~> 1.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -34,7 +34,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'sprockets', '~> 3.7.2'
 # Alpine does not include zoneinfo files (probably) - it asked for tinfo-data, so bundle the tzinfo-data gem
 gem 'tzinfo-data'
-gem 'webdrivers', '~> 4.4'
+gem 'webdrivers', '~> 4.7'
 gem 'prometheus_exporter'
 
 group :test do
