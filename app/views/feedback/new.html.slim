@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('page_title.feedback_form')
 
-= GovukElementsErrorsHelper.error_summary @feedback,
+= GovukElementsErrorsLocalHelper.error_summary @feedback,
   t('.error_summary'), ""
 
 = render partial: 'layouts/header', locals: {page_heading: t('.heading')}

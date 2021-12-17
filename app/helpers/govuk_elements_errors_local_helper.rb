@@ -18,10 +18,6 @@ module GovukElementsErrorsLocalHelper
     errors_present?(object)
   end
 
-  def self.child_errors_present? object
-    attributes(object).any? { |child| errors_exist?(child) }
-  end
-
   def self.attributes object, parent_object=nil
     return [] if object == parent_object
     parent_object ||= object
@@ -144,28 +140,8 @@ module GovukElementsErrorsLocalHelper
       scope: 'helpers.label').presence
   end
 
-  def self.parents_list object, child_to_parents
-    if parent == child_to_parents[object]
-      [].tap do |parents|
-        while parent && !parents.include?(parent)
-          parents.unshift parent # prepends parent to front of parents
-          parent = child_to_parents[parent]
-        end
-      end
-    end
-  end
-
   def self.object_prefixes object, child_to_parents
-    parents = parents_list object, child_to_parents
-
-    if parents.present?
-      root = parents.shift
-      prefixes = [underscore_name(root)]
-      parents.each { |p| prefixes << "#{underscore_name p}_attributes" }
-      prefixes << "#{underscore_name object}_attributes"
-    else
-      prefixes = [underscore_name(object)]
-    end
+    prefixes = [underscore_name(object)]
   end
 
   # `underscore` changes '::' to '/' to convert namespaces to paths
