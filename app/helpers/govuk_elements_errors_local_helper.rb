@@ -145,7 +145,7 @@ module GovukElementsErrorsLocalHelper
   end
 
   def self.parents_list object, child_to_parents
-    if parent = child_to_parents[object]
+    if parent == child_to_parents[object]
       [].tap do |parents|
         while parent && !parents.include?(parent)
           parents.unshift parent # prepends parent to front of parents
