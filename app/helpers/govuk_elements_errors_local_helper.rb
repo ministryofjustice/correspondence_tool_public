@@ -18,44 +18,6 @@ module GovukElementsErrorsLocalHelper
     errors_present?(object)
   end
 
-  def self.attributes object, parent_object=nil
-    return [] if object == parent_object
-    parent_object ||= object
-
-    child_objects = attribute_objects object
-    nested_child_objects = child_objects.map { |o| attributes(o, parent_object) }
-    (child_objects + nested_child_objects).flatten - [object]
-  end
-
-  def self.attribute_objects object
-    object.
-      instance_variables.
-      map { |var| instance_variable(object, var) }.
-      compact
-  end
-
-  def self.array_to_parent list, object, child_to_parents={}, parent_object
-    list.each do |child|
-      child_to_parents[child] = object
-      child_to_parent child, child_to_parents, parent_object
-    end
-  end
-
-  def self.child_to_parent object, child_to_parents={}, parent_object=nil
-    return child_to_parents if object == parent_object
-    parent_object ||= object
-    attribute_objects(object).each do |child|
-      if child.is_a?(Array)
-        array_to_parent(child, object, child_to_parents, parent_object)
-      else
-        child_to_parents[child] = object
-        child_to_parent child, child_to_parents, parent_object
-      end
-    end
-
-    child_to_parents
-  end
-
   def self.instance_variable object, var
     field = var.to_s.sub('@','').to_sym
     if object.respond_to?(field)
@@ -101,22 +63,21 @@ module GovukElementsErrorsLocalHelper
 
   def self.error_summary_list object
     content_tag(:ul, class: 'error-summary-list') do
-      child_to_parents = child_to_parent(object)
-      messages = error_summary_messages(object, child_to_parents)
+      messages = error_summary_messages(object)
       messages.flatten.join('').html_safe
     end
   end
 
-  def self.error_summary_messages object, child_to_parents
+  def self.error_summary_messages object
     object.errors.keys.map do |attribute|
-      error_summary_message object, attribute, child_to_parents
+      error_summary_message object, attribute
     end
   end
 
-  def self.error_summary_message object, attribute, child_to_parents
+  def self.error_summary_message object, attribute
     messages = object.errors.full_messages_for attribute
     messages.map do |message|
-      object_prefixes = object_prefixes object, child_to_parents
+      object_prefixes = object_prefixes object
       link = link_to_error(object_prefixes, attribute)
       message.sub! default_label(attribute), localized_label(object_prefixes, attribute)
       content_tag(:li, content_tag(:a, message, href: link))
@@ -140,8 +101,8 @@ module GovukElementsErrorsLocalHelper
       scope: 'helpers.label').presence
   end
 
-  def self.object_prefixes object, child_to_parents
-    prefixes = [underscore_name(object)]
+  def self.object_prefixes object
+    [underscore_name(object)]
   end
 
   # `underscore` changes '::' to '/' to convert namespaces to paths
