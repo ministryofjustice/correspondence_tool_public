@@ -69,7 +69,7 @@ module GovukElementsErrorsLocalHelper
   end
 
   def self.error_summary_messages object
-    object.errors.keys.map do |attribute|
+    object.errors.attribute_names.map do |attribute|
       error_summary_message object, attribute
     end
   end
