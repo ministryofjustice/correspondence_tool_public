@@ -43,7 +43,7 @@ group :test do
   gem 'capybara-screenshot'
   gem 'i18n-tasks', '~> 0.9.34'
   gem 'rails-controller-testing', '>= 1.0.5'
-  gem 'selenium-webdriver', '~> 3.14'
+  gem 'selenium-webdriver', '~> 4.1'
   gem 'shoulda-matchers', :git => 'https://github.com/thoughtbot/shoulda-matchers.git'
   gem 'site_prism', '~> 3.7', '>= 3.7.1'
   gem 'timecop', '~> 0.9'
