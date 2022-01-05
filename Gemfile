@@ -41,7 +41,7 @@ group :test do
   gem 'capybara', '>= 3.35.3'
   gem 'capybara-selenium'
   gem 'capybara-screenshot'
-  gem 'i18n-tasks', '~> 0.9.34'
+  gem 'i18n-tasks', '~> 0.9.37'
   gem 'rails-controller-testing', '>= 1.0.5'
   gem 'selenium-webdriver', '~> 3.14'
   gem 'shoulda-matchers', :git => 'https://github.com/thoughtbot/shoulda-matchers.git'

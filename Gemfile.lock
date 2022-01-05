@@ -185,7 +185,7 @@ GEM
     http_parser.rb (0.6.0)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (0.9.34)
+    i18n-tasks (0.9.37)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       erubi
@@ -416,9 +416,9 @@ GEM
       sprockets (>= 3.0.0)
     stopwords-filter (0.5.0)
     temple (0.8.2)
-    terminal-table (3.0.1)
+    terminal-table (3.0.2)
       unicode-display_width (>= 1.1.1, < 3)
-    thor (1.1.0)
+    thor (1.2.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
     timecop (0.9.4)
@@ -475,7 +475,7 @@ DEPENDENCIES
   guard-livereload (>= 2.5.2)
   guard-rspec
   guard-rubocop
-  i18n-tasks (~> 0.9.34)
+  i18n-tasks (~> 0.9.37)
   jbuilder (~> 2.11)
   jquery-rails (>= 4.4.0)
   jsonb_accessor (~> 1.3.2)
