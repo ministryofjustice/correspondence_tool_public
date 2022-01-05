@@ -26,7 +26,7 @@ gem 'rails', '~> 5.2.6'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'responders', '~> 3.0', '>= 3.0.1'
 gem 'sass-rails', '~> 6.0', '>= 6.0.0'
-gem 'sidekiq', '~> 6.2'
+gem 'sidekiq', '~> 6.3'
 gem 'slim-rails', '~> 3.3'
 # Used for the GOVUK Search API
 gem 'stopwords-filter', require: 'stopwords'
@@ -41,11 +41,11 @@ group :test do
   gem 'capybara', '>= 3.35.3'
   gem 'capybara-selenium'
   gem 'capybara-screenshot'
-  gem 'i18n-tasks', '~> 0.9.34'
+  gem 'i18n-tasks', '~> 0.9.37'
   gem 'rails-controller-testing', '>= 1.0.5'
-  gem 'selenium-webdriver', '~> 3.14'
+  gem 'selenium-webdriver', '~> 4.1.0'
   gem 'shoulda-matchers', :git => 'https://github.com/thoughtbot/shoulda-matchers.git'
-  gem 'site_prism', '~> 3.7', '>= 3.7.1'
+  gem 'site_prism', '~> 3.7'
   gem 'timecop', '~> 0.9'
   gem 'simplecov', '~> 0.17.1'
 end
