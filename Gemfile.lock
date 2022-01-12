@@ -58,7 +58,7 @@ GEM
     ast (2.4.2)
     awesome_print (1.9.2)
     bindex (0.8.1)
-    bootsnap (1.9.3)
+    bootsnap (1.9.4)
       msgpack (~> 1.0)
     brakeman (5.2.0)
     builder (3.2.4)
