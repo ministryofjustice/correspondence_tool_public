@@ -129,7 +129,7 @@ function _deploy() {
     fi
 
     # Deploy to Live cluster
-    if [ $environment == "development" ] || [ $environment == "staging"]
+    if [ $environment == "development" ] || [ $environment == "staging" ]
     then
       p "--------------------------------------------------"
       p "Deploying Contact MOJ to kubernetes cluster: Live"
