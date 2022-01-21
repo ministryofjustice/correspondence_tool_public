@@ -47,7 +47,7 @@ group :test do
   gem 'shoulda-matchers', :git => 'https://github.com/thoughtbot/shoulda-matchers.git'
   gem 'site_prism', '~> 3.7'
   gem 'timecop', '~> 0.9'
-  gem 'simplecov', '~> 0.17.1'
+  gem 'simplecov', '~> 0.21.2'
 end
 
 group :development, :test do
