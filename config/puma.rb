@@ -4,8 +4,10 @@
 # the maximum value specified for Puma. Default is set to 5 threads for minimum
 # and maximum; this matches the default thread size of Active Record.
 #
-threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
-threads threads_count, threads_count
+
+max_threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
+min_threads_count = ENV.fetch("RAILS_MIN_THREADS") { max_threads_count }
+threads min_threads_count, max_threads_count
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 #
@@ -49,6 +51,7 @@ plugin :tmp_restart
 
 # Activerecord Connection Pool Metrics
 after_worker_boot do
+  if Rails.env.production?
     require 'prometheus_exporter/instrumentation'
     require 'prometheus_exporter/client'
     PrometheusExporter::Instrumentation::Puma.start
@@ -58,4 +61,5 @@ after_worker_boot do
       custom_labels: { type: 'puma_worker' },
       config_labels: [:database, :host]
     )
+  end
 end

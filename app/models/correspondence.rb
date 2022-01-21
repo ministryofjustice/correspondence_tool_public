@@ -49,7 +49,7 @@ class Correspondence < ActiveRecord::Base
   before_validation :set_uuid, on: :create
 
   def topic_present?
-    errors['topic'] << " can't be blank" unless topic.present?
+    errors.add('topic', " can't be blank") unless topic.present?
     topic.present?
   end
 
