@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'config'
-gem 'curb', '~> 0.9.11'
+gem 'curb', '~> 1.0.0'
 gem 'foreman', '~> 0.87.2' # Used in dev & production
 gem 'govuk_template', '~> 0.26.0'
 gem 'govuk_frontend_toolkit', '9.0.1'
@@ -21,7 +21,7 @@ gem 'puma', '~> 5.5'
 gem 'pg', '~> 1.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rack", ">= 2.1.4"
-gem 'rails', '~> 5.2.6'
+gem 'rails', '~> 6.1'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'responders', '~> 3.0', '>= 3.0.1'
