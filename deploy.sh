@@ -140,12 +140,12 @@ function _deploy() {
 
       if [ $environment == "development" ]
       then
-        $live_token = $KUBE_ENV_LIVE_DEVELOPMENT_TOKEN
+        live_token=$KUBE_ENV_LIVE_DEVELOPMENT_TOKEN
       fi
 
       if [ $environment == "staging" ]
       then
-        $live_token = $KUBE_ENV_LIVE_STAGING_TOKEN
+        live_token=$KUBE_ENV_LIVE_STAGING_TOKEN
       fi
 
       if [[ "$3" == "circleci" ]]
