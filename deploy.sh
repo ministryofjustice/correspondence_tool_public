@@ -129,7 +129,7 @@ function _deploy() {
     fi
 
     # Deploy to Live cluster
-    if [ $environment == "development" ]
+    if [ $environment == "development" ] || [ $environment == "staging" ]
     then
       p "--------------------------------------------------"
       p "Deploying Contact MOJ to kubernetes cluster: Live"
@@ -138,13 +138,23 @@ function _deploy() {
       p "Target namespace: \e[32m$namespace\e[0m"
       p "--------------------------------------------------"
 
+      if [ $environment == "development" ]
+      then
+        live_token=$KUBE_ENV_LIVE_DEVELOPMENT_TOKEN
+      fi
+
+      if [ $environment == "staging" ]
+      then
+        live_token=$KUBE_ENV_LIVE_STAGING_TOKEN
+      fi
+
       if [[ "$3" == "circleci" ]]
       then
         #authenticate to live cluster
         p "Authenticating to live..."
-        echo -n $KUBE_ENV_LIVE_DEVELOPMENT_CACERT | base64 -d > ./live_ca.crt
+        echo -n $KUBE_ENV_LIVE_CACERT | base64 -d > ./live_ca.crt
         kubectl config set-cluster $KUBE_ENV_LIVE_CLUSTER_NAME --certificate-authority=./live_ca.crt --server=https://$KUBE_ENV_LIVE_CLUSTER_NAME
-        kubectl config set-credentials circleci --token=$KUBE_ENV_LIVE_DEVELOPMENT_TOKEN
+        kubectl config set-credentials circleci --token=$live_token
         kubectl config set-context $KUBE_ENV_LIVE_CLUSTER_NAME --cluster=$KUBE_ENV_LIVE_CLUSTER_NAME --user=circleci --namespace=$namespace
         kubectl config use-context $KUBE_ENV_LIVE_CLUSTER_NAME
         kubectl config current-context
