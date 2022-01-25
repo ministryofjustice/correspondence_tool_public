@@ -123,64 +123,66 @@ function _deploy() {
     -f config/kubernetes/${environment}/ingress.yaml \
     -n $namespace
 
-    if [ $environment == "production" ]
-    then
-      kubectl apply -f config/kubernetes/${environment}/cronjob-delete-old-ecr-images.yaml -n $namespace
-    fi
+  # Deploy to Live cluster
+  p "--------------------------------------------------"
+  p "Deploying Contact MOJ to kubernetes cluster: Live"
+  p "Environment: \e[32m$environment\e[0m"
+  p "Docker image: \e[32m$image_tag\e[0m"
+  p "Target namespace: \e[32m$namespace\e[0m"
+  p "--------------------------------------------------"
 
-    # Deploy to Live cluster
-    if [ $environment == "development" ] || [ $environment == "staging" ]
-    then
-      p "--------------------------------------------------"
-      p "Deploying Contact MOJ to kubernetes cluster: Live"
-      p "Environment: \e[32m$environment\e[0m"
-      p "Docker image: \e[32m$image_tag\e[0m"
-      p "Target namespace: \e[32m$namespace\e[0m"
-      p "--------------------------------------------------"
+  if [ $environment == "development" ]
+  then
+    live_token=$KUBE_ENV_LIVE_DEVELOPMENT_TOKEN
+  fi
 
-      if [ $environment == "development" ]
-      then
-        live_token=$KUBE_ENV_LIVE_DEVELOPMENT_TOKEN
-      fi
+  if [ $environment == "staging" ]
+  then
+    live_token=$KUBE_ENV_LIVE_STAGING_TOKEN
+  fi
 
-      if [ $environment == "staging" ]
-      then
-        live_token=$KUBE_ENV_LIVE_STAGING_TOKEN
-      fi
+  if [ $environment == "production" ]
+  then
+    live_token=$KUBE_ENV_LIVE_PRODUCTION_TOKEN
+  fi
 
-      if [[ "$3" == "circleci" ]]
-      then
-        #authenticate to live cluster
-        p "Authenticating to live..."
-        echo -n $KUBE_ENV_LIVE_CACERT | base64 -d > ./live_ca.crt
-        kubectl config set-cluster $KUBE_ENV_LIVE_CLUSTER_NAME --certificate-authority=./live_ca.crt --server=https://$KUBE_ENV_LIVE_CLUSTER_NAME
-        kubectl config set-credentials circleci --token=$live_token
-        kubectl config set-context $KUBE_ENV_LIVE_CLUSTER_NAME --cluster=$KUBE_ENV_LIVE_CLUSTER_NAME --user=circleci --namespace=$namespace
-        kubectl config use-context $KUBE_ENV_LIVE_CLUSTER_NAME
-        kubectl config current-context
-        kubectl --namespace=$namespace get pods
-      fi
-      
-      #deploy to live cluster
-      p "Authenticated, deploying to live..."
+  if [[ "$3" == "circleci" ]]
+  then
+    #authenticate to live cluster
+    p "Authenticating to live..."
+    echo -n $KUBE_ENV_LIVE_CACERT | base64 -d > ./live_ca.crt
+    kubectl config set-cluster $KUBE_ENV_LIVE_CLUSTER_NAME --certificate-authority=./live_ca.crt --server=https://$KUBE_ENV_LIVE_CLUSTER_NAME
+    kubectl config set-credentials circleci --token=$live_token
+    kubectl config set-context $KUBE_ENV_LIVE_CLUSTER_NAME --cluster=$KUBE_ENV_LIVE_CLUSTER_NAME --user=circleci --namespace=$namespace
+    kubectl config use-context $KUBE_ENV_LIVE_CLUSTER_NAME
+    kubectl config current-context
+    kubectl --namespace=$namespace get pods
+  fi
+  
+  #deploy to live cluster
+  p "Authenticated, deploying to live..."
 
-      #configmap
-      kubectl apply \
-        -f config/kubernetes/${environment}/configmap.yaml -n $namespace
+  #configmap
+  kubectl apply \
+    -f config/kubernetes/${environment}/configmap.yaml -n $namespace
 
-      #deployment
-      kubectl set image -f config/kubernetes/${environment}/deployment.yaml \
-          webapp=${docker_image_tag} \
-          jobs=${docker_image_tag} \
-          metrics=${docker_image_tag} \
-           --local --output yaml | kubectl apply -n $namespace -f -
+  #deployment
+  kubectl set image -f config/kubernetes/${environment}/deployment.yaml \
+      webapp=${docker_image_tag} \
+      jobs=${docker_image_tag} \
+      metrics=${docker_image_tag} \
+       --local --output yaml | kubectl apply -n $namespace -f -
 
-      #Non-image specific
-      kubectl apply \
-        -f config/kubernetes/${environment}/service.yaml \
-        -f config/kubernetes/${environment}/ingress-live.yaml \
-        -n $namespace
-    fi
+  #Non-image specific
+  kubectl apply \
+    -f config/kubernetes/${environment}/service.yaml \
+    -f config/kubernetes/${environment}/ingress-live.yaml \
+    -n $namespace
+
+  if [ $environment == "production" ]
+  then
+    kubectl apply -f config/kubernetes/${environment}/cronjob-delete-old-ecr-images.yaml -n $namespace
+  fi
 }
 
 _deploy $@

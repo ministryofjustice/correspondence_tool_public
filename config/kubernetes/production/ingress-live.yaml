@@ -4,8 +4,8 @@ metadata:
   name: contact-moj-ingress
   namespace: contact-moj-production
   annotations:
-    external-dns.alpha.kubernetes.io/set-identifier: contact-moj-ingress-contact-moj-production-blue
-    external-dns.alpha.kubernetes.io/aws-weight: "100"
+    external-dns.alpha.kubernetes.io/set-identifier: contact-moj-ingress-contact-moj-production-green
+    external-dns.alpha.kubernetes.io/aws-weight: "0"
 spec:
   tls:
     - hosts:
