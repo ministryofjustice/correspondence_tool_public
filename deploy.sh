@@ -106,31 +106,6 @@ function _deploy() {
     fi
   fi
 
-  # Apply config map updates
-  kubectl apply \
-    -f config/kubernetes/${environment}/configmap.yaml -n $namespace
-
-  # Apply image specific config
-  kubectl set image -f config/kubernetes/${environment}/deployment.yaml \
-          webapp=${docker_image_tag} \
-          jobs=${docker_image_tag} \
-          metrics=${docker_image_tag} \
-           --local --output yaml | kubectl apply -n $namespace -f -
-
-  # Apply non-image specific config
-  kubectl apply \
-    -f config/kubernetes/${environment}/service.yaml \
-    -f config/kubernetes/${environment}/ingress.yaml \
-    -n $namespace
-
-  # Deploy to Live cluster
-  p "--------------------------------------------------"
-  p "Deploying Contact MOJ to kubernetes cluster: Live"
-  p "Environment: \e[32m$environment\e[0m"
-  p "Docker image: \e[32m$image_tag\e[0m"
-  p "Target namespace: \e[32m$namespace\e[0m"
-  p "--------------------------------------------------"
-
   if [ $environment == "development" ]
   then
     live_token=$KUBE_ENV_LIVE_DEVELOPMENT_TOKEN
