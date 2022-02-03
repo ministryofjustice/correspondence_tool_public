@@ -78,7 +78,7 @@ function _deploy() {
 
   namespace=$component-${environment}
   p "--------------------------------------------------"
-  p "Deploying Contact MOJ to kubernetes cluster: Live1"
+  p "Deploying Contact MOJ to kubernetes cluster: Live"
   p "Environment: \e[32m$environment\e[0m"
   p "Docker image: \e[32m$image_tag\e[0m"
   p "Target namespace: \e[32m$namespace\e[0m"
