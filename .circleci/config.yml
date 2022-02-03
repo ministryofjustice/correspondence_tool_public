@@ -159,8 +159,6 @@ references:
     run:
       name: Deploy to Development environment
       command: |
-        setup-kube-auth
-        kubectl config use-context development
         build_tag=`cat /tmp/workspace/build_tag`
         ./deploy.sh $build_tag development circleci
         echo "export BUILD_TAG=${build_tag}" >> $BASH_ENV
@@ -170,8 +168,6 @@ references:
     run:
       name: Deploy to Staging environment
       command: |
-        setup-kube-auth
-        kubectl config use-context staging
         build_tag=`cat /tmp/workspace/build_tag`
         ./deploy.sh $build_tag staging circleci
         echo "export BUILD_TAG=${build_tag}" >> $BASH_ENV
@@ -181,8 +177,6 @@ references:
     run:
       name: Deploy to production environment
       command: |
-        setup-kube-auth
-        kubectl config use-context production
         build_tag=`cat /tmp/workspace/build_tag`
         ./deploy.sh $build_tag production circleci
         echo "export BUILD_TAG=${build_tag}" >> $BASH_ENV
