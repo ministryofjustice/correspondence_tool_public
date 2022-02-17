@@ -153,11 +153,6 @@ function _deploy() {
     -f config/kubernetes/${environment}/service.yaml \
     -f config/kubernetes/${environment}/ingress-live.yaml \
     -n $namespace
-
-  if [ $environment == "production" ]
-  then
-    kubectl apply -f config/kubernetes/${environment}/cronjob-delete-old-ecr-images.yaml -n $namespace
-  fi
 }
 
 _deploy $@
