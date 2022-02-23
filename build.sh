@@ -15,7 +15,7 @@ function _build() {
   component=contact-moj
 
   region='eu-west-2'
-  aws_profile='ecr-live-1-contact-moj'
+  aws_profile='ecr-live-contact-moj'
 
   git_remote_url="https://github.com/ministryofjustice/correspondence_tool_public.git";
   docker_endpoint=754256621582.dkr.ecr.eu-west-2.amazonaws.com

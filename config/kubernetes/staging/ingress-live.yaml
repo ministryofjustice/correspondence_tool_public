@@ -2,19 +2,19 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: contact-moj-ingress
-  namespace: contact-moj-development
+  namespace: contact-moj-staging
   annotations:
     nginx.ingress.kubernetes.io/auth-type: basic
     nginx.ingress.kubernetes.io/auth-secret: app-secrets
-    external-dns.alpha.kubernetes.io/set-identifier: contact-moj-ingress-contact-moj-development-blue
-    external-dns.alpha.kubernetes.io/aws-weight: "0"
+    external-dns.alpha.kubernetes.io/set-identifier: contact-moj-ingress-contact-moj-staging-green
+    external-dns.alpha.kubernetes.io/aws-weight: "100"
 spec:
   tls:
     - hosts:
-        - development.contact-moj.service.justice.gov.uk
+        - staging.contact-moj.service.justice.gov.uk
       secretName: contact-moj-certificate
   rules:
-    - host: development.contact-moj.service.justice.gov.uk
+    - host: staging.contact-moj.service.justice.gov.uk
       http:
         paths:
           - path: /
