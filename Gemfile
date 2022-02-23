@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'config'
-gem 'curb', '~> 0.9.11'
+gem 'curb', '~> 1.0.0'
 gem 'foreman', '~> 0.87.2' # Used in dev & production
 gem 'govuk_template', '~> 0.26.0'
 gem 'govuk_frontend_toolkit', '9.0.1'
@@ -13,11 +13,11 @@ gem 'govuk_notify_rails', '>= 2.1.2'
 gem 'jbuilder', '~> 2.11'
 gem 'jquery-rails', '>= 4.4.0'
 gem 'jsonb_accessor', '~> 1.3.2'
-gem 'listen', '~> 3.7.0'
+gem 'listen', '~> 3.7.1'
 gem 'logstasher'
 gem 'mail', '~> 2.7.0'
 gem 'mechanize', '~> 2.8'
-gem 'puma', '~> 5.5'
+gem 'puma', '~> 5.6'
 gem 'pg', '~> 1.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rack", ">= 2.1.4"
@@ -26,7 +26,7 @@ gem 'rails', '~> 6.1'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'responders', '~> 3.0', '>= 3.0.1'
 gem 'sass-rails', '~> 6.0', '>= 6.0.0'
-gem 'sidekiq', '~> 6.2'
+gem 'sidekiq', '~> 6.4'
 gem 'slim-rails', '~> 3.3'
 # Used for the GOVUK Search API
 gem 'stopwords-filter', require: 'stopwords'
@@ -34,7 +34,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'sprockets', '~> 3.7.2'
 # Alpine does not include zoneinfo files (probably) - it asked for tinfo-data, so bundle the tzinfo-data gem
 gem 'tzinfo-data'
-gem 'webdrivers', '~> 4.7'
+gem 'webdrivers', '~> 5.0'
 gem 'prometheus_exporter'
 
 group :test do
@@ -44,10 +44,10 @@ group :test do
   gem 'i18n-tasks', '~> 0.9.37'
   gem 'rails-controller-testing', '>= 1.0.5'
   gem 'selenium-webdriver', '~> 4.1.0'
-  gem 'shoulda-matchers', :git => 'https://github.com/thoughtbot/shoulda-matchers.git'
+  gem 'shoulda-matchers'
   gem 'site_prism', '~> 3.7'
   gem 'timecop', '~> 0.9'
-  gem 'simplecov', '~> 0.17.1'
+  gem 'simplecov', '~> 0.21.2'
 end
 
 group :development, :test do
