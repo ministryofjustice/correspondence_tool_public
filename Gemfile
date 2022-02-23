@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'config'
-gem 'curb', '~> 0.9.11'
+gem 'curb', '~> 1.0.0'
 gem 'foreman', '~> 0.87.2' # Used in dev & production
 gem 'govuk_template', '~> 0.26.0'
 gem 'govuk_frontend_toolkit', '9.0.1'
