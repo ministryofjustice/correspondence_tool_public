@@ -44,7 +44,7 @@ group :test do
   gem 'i18n-tasks', '~> 0.9.37'
   gem 'rails-controller-testing', '>= 1.0.5'
   gem 'selenium-webdriver', '~> 4.1.0'
-  gem 'shoulda-matchers', :git => 'https://github.com/thoughtbot/shoulda-matchers.git'
+  gem 'shoulda-matchers'
   gem 'site_prism', '~> 3.7'
   gem 'timecop', '~> 0.9'
   gem 'simplecov', '~> 0.17.1'
