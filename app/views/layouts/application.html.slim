@@ -20,7 +20,7 @@
   = csrf_meta_tags
   #page
     = render partial: 'layouts/phase_banner'
-    = render partial: 'layouts/alert_banner'
+    /= render partial: 'layouts/alert_banner'
   .primary-nav-bar
   main#content
     = render partial: 'layouts/flashes' unless flash.empty?
