@@ -12,13 +12,13 @@ gem 'govuk_notify_rails', '>= 2.1.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.11'
 gem 'jquery-rails', '>= 4.4.0'
-gem 'jsonb_accessor', '~> 1.3.2'
+gem 'jsonb_accessor', '~> 1.3.4'
 gem 'listen', '~> 3.7.1'
 gem 'logstasher'
 gem 'mail', '~> 2.7.0'
 gem 'mechanize', '~> 2.8'
 gem 'puma', '~> 5.6'
-gem 'pg', '~> 1.2'
+gem 'pg', '~> 1.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rack", ">= 2.1.4"
 gem 'rails', '~> 6.1.4.7'
@@ -59,7 +59,7 @@ group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
   gem 'rb-readline', '~> 0.5.4'
-  gem 'rspec-rails', '~> 5.0'
+  gem 'rspec-rails', '~> 5.1'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
