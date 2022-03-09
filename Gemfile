@@ -18,7 +18,7 @@ gem 'logstasher'
 gem 'mail', '~> 2.7.0'
 gem 'mechanize', '~> 2.8'
 gem 'puma', '~> 5.6'
-gem 'pg', '~> 1.2'
+gem 'pg', '~> 1.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rack", ">= 2.1.4"
 gem 'rails', '~> 6.1.4.7'
