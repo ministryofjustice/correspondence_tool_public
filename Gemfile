@@ -12,7 +12,7 @@ gem 'govuk_notify_rails', '>= 2.1.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.11'
 gem 'jquery-rails', '>= 4.4.0'
-gem 'jsonb_accessor', '~> 1.3.2'
+gem 'jsonb_accessor', '~> 1.3.4'
 gem 'listen', '~> 3.7.1'
 gem 'logstasher'
 gem 'mail', '~> 2.7.0'
