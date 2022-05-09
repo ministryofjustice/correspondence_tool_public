@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'config'
-gem 'curb', '~> 1.0.0'
+gem 'curb', '~> 1.0.1'
 gem 'foreman', '~> 0.87.2' # Used in dev & production
 gem 'govuk_template', '~> 0.26.0'
 gem 'govuk_frontend_toolkit', '9.0.1'
@@ -27,7 +27,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'responders', '~> 3.0', '>= 3.0.1'
 gem 'sass-rails', '~> 6.0', '>= 6.0.0'
 gem 'sidekiq', '~> 6.4'
-gem 'slim-rails', '~> 3.3'
+gem 'slim-rails', '~> 3.4'
 # Used for the GOVUK Search API
 gem 'stopwords-filter', require: 'stopwords'
 gem 'uglifier', '>= 1.3.0'
