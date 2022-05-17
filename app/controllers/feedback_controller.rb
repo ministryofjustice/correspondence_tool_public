@@ -8,7 +8,7 @@ class FeedbackController < ApplicationController
 
     if @feedback.save
       FeedbackMailer.new_feedback(@feedback).deliver_later
-      render 'feedback/confirmation'
+      render :confirmation
     else
       render :new
     end
