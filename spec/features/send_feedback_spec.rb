@@ -7,13 +7,13 @@ feature 'Submit service feedback' do
     given(:comment)       { Faker::Lorem.paragraphs[1] }
 
   scenario 'Using valid inputs' do
-    visit 'feedback/new'
+    visit feedback_path
     choose 'feedback_ease_of_use_' + ease_of_use
     choose 'feedback_completeness_' + completeness
     fill_in 'feedback[comment]', with: comment
     click_button 'Send'
 
-    expect(current_path).to eq '/feedback'
+    expect(current_path).to eq feedback_path
     expect(page).to have_content('Your feedback has been sent')
 
     feedback = Feedback.last
@@ -29,10 +29,10 @@ feature 'Submit service feedback' do
   end
 
   scenario 'Without a rating for ease of use or completeness' do
-    visit 'feedback/new'
+    visit feedback_path
     click_button 'Send'
     expect(page).to have_content("This online service was easy to use please select one option")
-    expect(page).to have_content("The online serice enabled me to give all the relevant information please select one option")
+    expect(page).to have_content("The online service enabled me to give all the relevant information please select one option")
   end
 
 end
