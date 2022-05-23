@@ -21,7 +21,7 @@ gem 'puma', '~> 5.6'
 gem 'pg', '~> 1.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rack", ">= 2.1.4"
-gem 'rails', '~> 6.1.5.1'
+gem 'rails', '~> 6.1'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'responders', '~> 3.0', '>= 3.0.1'

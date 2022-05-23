@@ -29,7 +29,7 @@ Capybara.register_driver :headless_chrome do |app|
     options.add_argument('--window-size=1980,2080')
     options.add_argument('--enable-features=NetworkService,NetworkServiceInProcess')
   end
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+  Capybara::Selenium::Driver.new(app, browser: :chrome, capabilities: options)
 end
 
 Capybara.default_max_wait_time = 4
