@@ -20,7 +20,6 @@ gem 'mechanize', '~> 2.8'
 gem 'puma', '~> 5.6'
 gem 'pg', '~> 1.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rack", ">= 2.1.4"
 gem 'rails', '~> 6.1'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -41,7 +40,7 @@ group :test do
   gem 'capybara', '>= 3.35.3'
   gem 'capybara-selenium'
   gem 'capybara-screenshot'
-  gem 'i18n-tasks', '~> 0.9.37'
+  gem 'i18n-tasks', '~> 1.0.10'
   gem 'rails-controller-testing', '>= 1.0.5'
   gem 'selenium-webdriver', '~> 4.1.0'
   gem 'shoulda-matchers'
@@ -57,7 +56,7 @@ group :development, :test do
   gem 'faker'
   gem 'factory_bot_rails', '>= 6.2.0'
   gem 'pry'
-  gem 'pry-byebug'
+  gem 'pry-byebug', '>= 3.9.0'
   gem 'rb-readline', '~> 0.5.4'
   gem 'rspec-rails', '~> 5.1'
   gem 'rubocop', require: false
