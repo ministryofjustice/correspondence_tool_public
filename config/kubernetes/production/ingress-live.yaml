@@ -4,10 +4,6 @@ metadata:
   name: contact-moj-ingress
   namespace: contact-moj-production
   annotations:
-    kubernetes.io/ingress.class: "modsec01"
-    nginx.ingress.kubernetes.io/enable-modsecurity: "true"
-    nginx.ingress.kubernetes.io/modsecurity-snippet: |
-      SecRuleEngine On
     external-dns.alpha.kubernetes.io/set-identifier: contact-moj-ingress-contact-moj-production-green
     external-dns.alpha.kubernetes.io/aws-weight: "100"
 spec:
