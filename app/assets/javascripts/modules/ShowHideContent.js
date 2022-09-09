@@ -21,6 +21,18 @@ moj.Modules.ShowHideContent = {
       var showHideTarget = element.getAttribute('for') + '_content';
       element.setAttribute('data-target', showHideTarget);
     });
+
+    // Temporary emergency override to patch Chrome issue that prevents form showing
+    if(navigator.userAgent.indexOf('Chrome')>-1) {
+      $('#correspondence_contact_requested_yes').click(function(){
+        $('#correspondence_contact_requested_yes_content').removeClass('js-hidden');
+      });
+      $('#correspondence_contact_requested_no').click(function(){
+        $('#correspondence_contact_requested_yes_content').addClass('js-hidden');
+      });
+    }
+    // End temporary fix
+
   }
 
 };
