@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: contact-moj-ingress
@@ -9,6 +9,7 @@ metadata:
     external-dns.alpha.kubernetes.io/set-identifier: contact-moj-ingress-contact-moj-staging-green
     external-dns.alpha.kubernetes.io/aws-weight: "100"
 spec:
+  ingressClassName: default
   tls:
     - hosts:
         - staging.contact-moj.service.justice.gov.uk
