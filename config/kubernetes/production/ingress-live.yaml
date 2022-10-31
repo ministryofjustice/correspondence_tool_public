@@ -16,6 +16,10 @@ spec:
       http:
         paths:
           - path: /
+            pathType: ImplementationSpecific
             backend:
-              serviceName: contact-moj-service
-              servicePort: 3000
+              service:
+                name: contact-moj-service
+                port: 
+                  number: 3000
+                
