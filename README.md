@@ -88,8 +88,6 @@ repository. See the `config/settings.yml` file for a full list, any variable
 there can be over-ridden with an environment variable of the same name but
 prefixed with `SETTINGS__`.
 
-* **SETTINGS__GA_TRACKING_ID** — the tracking ID used for Google
-  Analytics. Can be unset in which case it will be empty-string.
 * **SETTINGS__GOVUK_NOTIFY_API_KEY** — Production API key for the GOVUK Notify
   service.
 * **SETTINGS__CORRESPONDENCE_EMAIL_FROM** — The email address which will be
