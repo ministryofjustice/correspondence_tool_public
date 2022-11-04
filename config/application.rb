@@ -43,8 +43,6 @@ module CorrespondenceToolPublic
     # Make `form_with` generate id attributes for any generated HTML tags.
     config.action_view.form_with_generates_ids = true
     
-    config.ga_tracking_id = Settings.ga_tracking_id
-
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

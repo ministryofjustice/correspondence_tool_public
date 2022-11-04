@@ -19,7 +19,6 @@ correspondence_message_max_length: 5000
 
 # Variables below are meant to be over-ridden in non-local environments (dev,
 # staging, prod) with correct values. The values below are place-holders.
-ga_tracking_id: ''
 
 sendgrid_username: sendgrid
 sendgrid_password: password
