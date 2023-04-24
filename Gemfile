@@ -25,7 +25,7 @@ gem 'rails', '~> 6.1'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'responders', '~> 3.0', '>= 3.0.1'
 gem 'sass-rails', '~> 6.0', '>= 6.0.0'
-gem 'sidekiq', '~> 6.4'
+gem 'sidekiq', '~> 7.0'
 gem 'slim-rails', '~> 3.4'
 # Used for the GOVUK Search API
 gem 'stopwords-filter', require: 'stopwords'
