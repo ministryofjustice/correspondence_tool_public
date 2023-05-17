@@ -1,9 +1,9 @@
-FROM ruby:2.7.2-alpine
+FROM ruby:3.2.2-alpine
 
 RUN addgroup --gid 1000 --system appgroup && \
     adduser --uid 1000 --system appuser --ingroup appgroup
 
-# Note: .ruby-gemdeps libc-dev gcc libxml2-dev libxslt-dev make postgresql-dev build-base curl-dev with bundle install issues. 
+# Note: .ruby-gemdeps libc-dev gcc libxml2-dev libxslt-dev make postgresql-dev build-base curl-dev with bundle install issues.
 RUN apk add --no-cache --virtual .ruby-gemdeps libc-dev gcc libxml2-dev libxslt-dev make postgresql-dev build-base curl-dev git nodejs zip postgresql-client runit
 
 # set WORKDIR
@@ -13,7 +13,7 @@ WORKDIR /usr/src/app
 RUN apk -U upgrade
 
 COPY Gemfile* ./
-RUN gem install bundler -v 2.1.4
+RUN gem install bundler -v 2.4.13
 RUN bundle config --global frozen 1 && \
     bundle config --path=vendor/bundle && \
     bundle install --without development test

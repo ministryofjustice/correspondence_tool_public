@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  slack: circleci/slack@3.4.2
+  slack: cimg/slack@3.4.2
 
 references:
   defaults: &defaults
@@ -11,7 +11,7 @@ references:
 # Sets up the docker images and environment variables that we use
   test_container_config: &test_container_config
     docker:
-      - image: circleci/ruby:2.7.2-node-browsers-legacy
+      - image: cimg/ruby:3.2.2-node-browsers-legacy
         environment:
           RAILS_ENV: test
           RACK_ENV: test
@@ -22,7 +22,7 @@ references:
           PGHOST: 127.0.0.1
           POSTGRES_DB: correspondence_tool_public_test
 
-      - image: circleci/postgres:9.5-alpine
+      - image: cimg/postgres:9.5-alpine
         environment:
           PG_PASSWORD: ""
           PG_USER: postgres
@@ -54,7 +54,7 @@ references:
     run:
       name: Install bundler
       command: |
-        gem install bundler -v 2.2.15
+        gem install bundler -v 2.4.13
 
   check_bundler_version: &check_bundler_version
     run:
