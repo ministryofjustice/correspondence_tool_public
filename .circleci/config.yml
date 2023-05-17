@@ -22,7 +22,7 @@ references:
           PGHOST: 127.0.0.1
           POSTGRES_DB: correspondence_tool_public_test
 
-      - image: cimg/postgres:9.5
+      - image: circleci/postgres:9.5-alpine
         environment:
           PG_PASSWORD: ""
           PG_USER: postgres
