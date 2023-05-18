@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+ruby '3.2.2'
+
 gem 'config'
 gem 'curb', '~> 1.0.0'
 gem 'foreman', '~> 0.87.2' # Used in dev & production
@@ -17,6 +19,7 @@ gem 'listen', '~> 3.8.0'
 gem 'logstasher'
 gem 'mail', '~> 2.7.0'
 gem 'mechanize', '~> 2.8'
+gem 'net-smtp', require: false
 gem 'puma', '~> 5.6'
 gem 'pg', '~> 1.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -28,7 +31,7 @@ gem 'sass-rails', '~> 6.0', '>= 6.0.0'
 gem 'sidekiq', '~> 6.4'
 gem 'slim-rails', '~> 3.4'
 # Used for the GOVUK Search API
-gem 'stopwords-filter', require: 'stopwords'
+gem 'stopwords-filter2', require: 'stopwords'
 gem 'uglifier', '>= 1.3.0'
 gem 'sprockets', '~> 3.7.2'
 # Alpine does not include zoneinfo files (probably) - it asked for tinfo-data, so bundle the tzinfo-data gem
@@ -50,13 +53,10 @@ group :test do
 end
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
   gem 'launchy', '~> 2.4', '>= 2.4.3'
   gem 'faker'
   gem 'factory_bot_rails', '>= 6.2.0'
-  gem 'pry'
-  gem 'pry-byebug', '>= 3.9.0'
+  gem 'debug', '>= 1.0.0'
   gem 'rb-readline', '~> 0.5.4'
   gem 'rspec-rails', '~> 5.1'
   gem 'rubocop', require: false
