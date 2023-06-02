@@ -3,14 +3,16 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.2'
 
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.1.0', require: false
 gem 'config'
 gem 'curb', '~> 1.0.0'
 gem 'foreman', '~> 0.87.2' # Used in dev & production
-gem 'govuk_template', '~> 0.26.0'
-gem 'govuk_frontend_toolkit', '9.0.1'
-gem 'govuk_elements_rails', '2.2.1'
 gem 'govuk_elements_form_builder', '0.1.1'
+gem 'govuk_elements_rails', '2.2.1'
+gem 'govuk_frontend_toolkit', '9.0.1'
 gem 'govuk_notify_rails', '>= 2.1.2'
+gem 'govuk_template', '~> 0.26.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.11'
 gem 'jquery-rails', '>= 4.4.0'
@@ -20,24 +22,22 @@ gem 'logstasher'
 gem 'mail', '~> 2.7.0'
 gem 'mechanize', '~> 2.8'
 gem 'net-smtp', require: false
-gem 'puma', '~> 5.6'
 gem 'pg', '~> 1.3'
+gem 'prometheus_exporter'
+gem 'puma', '~> 5.6'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1', '>= 6.1.7.3'
-# Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
 gem 'responders', '~> 3.0', '>= 3.0.1'
 gem 'sass-rails', '~> 6.0', '>= 6.0.0'
 gem 'sidekiq', '~> 6.4'
 gem 'slim-rails', '~> 3.6'
+gem 'sprockets', '~> 3.7.2'
 # Used for the GOVUK Search API
 gem 'stopwords-filter2', require: 'stopwords'
-gem 'uglifier', '>= 1.3.0'
-gem 'sprockets', '~> 3.7.2'
 # Alpine does not include zoneinfo files (probably) - it asked for tinfo-data, so bundle the tzinfo-data gem
 gem 'tzinfo-data'
+gem 'uglifier', '>= 1.3.0'
 gem 'webdrivers', '~> 5.0'
-gem 'prometheus_exporter'
 
 group :test do
   gem 'capybara', '>= 3.35.3'
@@ -47,35 +47,34 @@ group :test do
   gem 'rails-controller-testing', '>= 1.0.5'
   gem 'selenium-webdriver', '~> 4.1.0'
   gem 'shoulda-matchers'
+  gem 'simplecov', '~> 0.21.2'
   gem 'site_prism', '~> 3.7'
   gem 'timecop', '~> 0.9'
-  gem 'simplecov', '~> 0.21.2'
 end
 
 group :development, :test do
-  gem 'launchy', '~> 2.4', '>= 2.4.3'
-  gem 'faker'
-  gem 'factory_bot_rails', '>= 6.2.0'
+  gem 'awesome_print', '~> 1.7'
   gem 'debug', '>= 1.0.0'
+  gem 'factory_bot_rails', '>= 6.2.0'
+  gem 'faker'
+  gem 'launchy', '~> 2.4', '>= 2.4.3'
   gem 'rb-readline', '~> 0.5.4'
   gem 'rspec-rails', '~> 5.1'
   gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
-  gem 'rubocop-performance', require: false
-  gem 'awesome_print', '~> 1.7'
 end
 
 group :development do
+  gem 'annotate'
   gem 'brakeman'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'guard-livereload', '>= 2.5.2'
   gem 'guard-rspec'
   gem 'guard-rubocop'
-
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.1'
   gem 'web-console', '>= 3.7.0'
-  gem 'annotate'
 end
