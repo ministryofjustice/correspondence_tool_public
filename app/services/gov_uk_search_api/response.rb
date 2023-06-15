@@ -4,7 +4,7 @@ module GovUkSearchApi
 
     def initialize(query, curl_response_or_error_hash)
       @query = query
-      if curl_response_or_error_hash.instance_of?(Curl::Easy)
+      if curl_response_or_error_hash.class == Curl::Easy # rubocop:disable Style/ClassEqualityComparison
         populate_from_curl_response(curl_response_or_error_hash)
       else
         populate_from_error_hash(curl_response_or_error_hash)
