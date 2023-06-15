@@ -33,13 +33,13 @@ RSpec.describe CorrespondenceMailer, type: :mailer do
     end
 
     describe "destination mail address" do
-      subject { mail.to }
+      subject(:email) { mail.to }
 
       context "when creating a general enquiry" do
         let(:correspondence_category) { "general_enquiries" }
 
         it {
-          expect(subject).to include(Settings.general_enquiries_email)
+          expect(email).to include(Settings.general_enquiries_email)
         }
       end
 

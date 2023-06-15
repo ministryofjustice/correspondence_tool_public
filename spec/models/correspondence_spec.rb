@@ -13,7 +13,7 @@
 require "rails_helper"
 
 RSpec.describe Correspondence, type: :model do
-  subject { build :correspondence }
+  subject(:correspondence) { build :correspondence }
 
   let(:create_params) do
     {
@@ -72,7 +72,7 @@ RSpec.describe Correspondence, type: :model do
     it { is_expected.to validate_presence_of     :category }
 
     it do
-      expect(subject).to validate_presence_of(:topic)
+      expect(correspondence).to validate_presence_of(:topic)
           .with_message(
             "Please tell us what your query is about.",
           )
@@ -82,7 +82,7 @@ RSpec.describe Correspondence, type: :model do
     it { is_expected.to validate_confirmation_of :email }
 
     it do
-      expect(subject).to validate_inclusion_of(:category)
+      expect(correspondence).to validate_inclusion_of(:category)
         .in_array(Settings.correspondence_categories)
     end
 
@@ -95,7 +95,7 @@ RSpec.describe Correspondence, type: :model do
   end
 
   describe "#topic_present?" do
-    context "topic present" do
+    context "when topic present" do
       let(:correspondence) { build :correspondence, topic: "My topic" }
 
       it "returns true" do
@@ -108,7 +108,7 @@ RSpec.describe Correspondence, type: :model do
       end
     end
 
-    context "topic absent" do
+    context "when topic absent" do
       let(:correspondence) { build :correspondence, topic: "" }
 
       it "returns false" do
@@ -123,14 +123,14 @@ RSpec.describe Correspondence, type: :model do
   end
 
   describe "#authenticated?" do
-    context "unauthenticated" do
+    context "when unauthenticated" do
       it "returns false" do
         correspondence = build :correspondence
         expect(correspondence.authenticated?).to be false
       end
     end
 
-    context "authenticated" do
+    context "when authenticated" do
       it "returns true" do
         correspondence = build :correspondence, :authenticated
         expect(correspondence.authenticated?).to be true
@@ -141,7 +141,7 @@ RSpec.describe Correspondence, type: :model do
   describe "autenticate!" do
     let(:frozen_time) { Time.zone.local(2017, 4, 13, 22, 33, 44) }
 
-    context "unauthenticated" do
+    context "when unauthenticated" do
       it "updates authenticated_at with current time" do
         Timecop.freeze frozen_time do
           correspondence = build :correspondence
@@ -151,7 +151,7 @@ RSpec.describe Correspondence, type: :model do
       end
     end
 
-    context "authenticated" do
+    context "when uthenticated" do
       it "does not update the authenticated at time" do
         correspondence = build :correspondence, authenticated_at: frozen_time
         correspondence.authenticate!
@@ -161,19 +161,14 @@ RSpec.describe Correspondence, type: :model do
   end
 
   describe ".message search" do
-    before(:all) do
-      @c1 = create :correspondence, message: "aa1"
-      @c2 = create :correspondence, message: "abb1"
-      @c3 = create :correspondence, message: "aa1"
-    end
-
-    after(:all) do
-      described_class.delete_all
-    end
+    let!(:c1) { create :correspondence, message: "aa1" }
+    let!(:c2) { create :correspondence, message: "abb1" }
+    let!(:c3) { create :correspondence, message: "aa1" }
 
     describe ".all_by_message" do
       it "returns a collection of the correspondence items with the specified message" do
-        expect(described_class.all_by_message("aa1")).to match_array [@c1, @c3]
+        expect(described_class.all_by_message("aa1")).to match_array [c1, c3]
+        expect(described_class.all_by_message("abb1")).to match_array [c2]
       end
 
       it "returns an empty collection if there are no records with the specified message" do

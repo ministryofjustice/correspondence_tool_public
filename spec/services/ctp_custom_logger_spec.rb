@@ -2,10 +2,10 @@ require_relative "../rails_helper"
 
 describe CtpCustomLogger do
   before do
-    allow(Rails).to receive_message_chain("configuration.logstasher.source").and_return("ctp-test")
+    allow(Rails).to receive_message_chain("configuration.logstasher.source").and_return("ctp-test") # rubocop:disable RSpec/MessageChain
   end
 
-  context "log level methods" do
+  context "with log level methods" do
     it "writes the expected debug message to rails logger" do
       expect(Rails.logger).to receive(:debug).with({ event: "test", message: "my message", log_level: "debug", source: "ctp-test" }.to_json)
       described_class.debug({ event: "test", message: "my message" })
@@ -32,7 +32,7 @@ describe CtpCustomLogger do
     end
   end
 
-  context "non-log level methods" do
+  context "with non-log level methods" do
     it "raises method not knwon" do
       expect {
         described_class.invalid_method "this param", "that param"

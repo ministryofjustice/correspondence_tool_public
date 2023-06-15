@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe HeartbeatController, type: :controller do
   describe "ping and heartbeat do not force ssl" do
     before do
-      allow(Rails).to receive(:env).and_return(double(development?: false, production?: true))
+      allow(Rails).to receive(:env).and_return(double(development?: false, production?: true))  # rubocop:disable RSpec/VerifiedDoubles
     end
 
     it "ping endpoint" do
@@ -51,7 +51,7 @@ RSpec.describe HeartbeatController, type: :controller do
         allow(Sidekiq::DeadSet)
             .to receive(:new).and_return(instance_double(Sidekiq::DeadSet, size: 1))
 
-        connection = double("connection")
+        connection = double("connection") # rubocop:disable RSpec/VerifiedDoubles
         allow(connection).to receive(:info).and_raise(Redis::CannotConnectError)
         allow(Sidekiq).to receive(:redis).and_yield(connection)
 
@@ -73,7 +73,7 @@ RSpec.describe HeartbeatController, type: :controller do
       before do
         allow(ActiveRecord::Base.connection).to receive(:active?).and_return(true)
 
-        connection = double("connection", info: {})
+        connection = double("connection", info: {}) # rubocop:disable RSpec/VerifiedDoubles
         allow(Sidekiq).to receive(:redis).and_yield(connection)
 
         get :healthcheck

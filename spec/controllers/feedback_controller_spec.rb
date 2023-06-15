@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe FeedbackController, type: :controller do
   let(:feedback) { build :feedback }
-  let(:mail) { double "ActionMailer Mail" }
+  let(:mail) { instance_double ActionMailer::MessageDelivery }
 
   let(:params) do
     {
@@ -29,7 +29,7 @@ RSpec.describe FeedbackController, type: :controller do
 
       it "enqueues an EmailFeedbackJob with our feedback" do
         # FeedbackMailer.new_feedback(@feedback).deliver_later
-        expect(FeedbackMailer).to receive(:new_feedback).with(instance_of(Feedback)).and_return(mail)
+        allow(FeedbackMailer).to receive(:new_feedback).with(instance_of(Feedback)).and_return(mail)
         expect(mail).to receive(:deliver_later)
         post :create, params:
       end

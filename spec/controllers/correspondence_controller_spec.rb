@@ -2,9 +2,10 @@ require "rails_helper"
 
 RSpec.describe CorrespondenceController, type: :controller do
   let(:external_user) do
-    double "external_user",
-           name: "Member of public",
-           email: "member_of_public@public.com"
+    OpenStruct.new(
+      name: "Member of public",
+      email: "member_of_public@public.com",
+    )
   end
 
   let(:correspondence_params) do
@@ -23,7 +24,7 @@ RSpec.describe CorrespondenceController, type: :controller do
     }
   end
 
-  let(:mail) { double "Action::Mailer Mail" }
+  let(:mail) { instance_double ActionMailer::MessageDelivery }
 
   describe "GET topic" do
     it "renders the topic form" do
@@ -34,12 +35,12 @@ RSpec.describe CorrespondenceController, type: :controller do
   describe "GET search" do
     context "with a topic specified" do
       let(:params) { { "correspondence" => { "topic" => "complaints about prisons" }, "commit" => "Send" } }
+      let(:result) { "GovUkSearchClient result" }
 
       before do
-        search_client = double GovUkSearchApi::Client
-        @result = double "GovUkSearchClient result"
-        expect(GovUkSearchApi::Client).to receive(:new).and_return(search_client)
-        expect(search_client).to receive(:search).and_return(@result)
+        search_client = instance_double GovUkSearchApi::Client
+        allow(GovUkSearchApi::Client).to receive(:new).and_return(search_client)
+        allow(search_client).to receive(:search).and_return(result)
       end
 
       it "renders the search template" do
@@ -53,7 +54,7 @@ RSpec.describe CorrespondenceController, type: :controller do
 
       it "calls the search client and stores results" do
         get(:search, params:)
-        expect(assigns(:search_result)).to eq @result
+        expect(assigns(:search_result)).to eq result
       end
     end
 
@@ -74,7 +75,7 @@ RSpec.describe CorrespondenceController, type: :controller do
   describe "GET authenticate" do
     let!(:correspondence) { create :correspondence }
 
-    context "record not authenticated" do
+    context "when record not authenticated" do
       it "sets the authenticated_at date" do
         Timecop.freeze(Time.zone.local(2017, 4, 13, 12, 11, 10)) do
           get :authenticate, params: { uuid: correspondence.uuid }
@@ -83,20 +84,20 @@ RSpec.describe CorrespondenceController, type: :controller do
       end
 
       it "fires off an email to the team" do
-        expect(CorrespondenceMailer).to receive(:new_correspondence).with(correspondence).and_return(mail)
+        allow(CorrespondenceMailer).to receive(:new_correspondence).with(correspondence).and_return(mail)
         expect(mail).to receive(:deliver_later)
         get :authenticate, params: { uuid: correspondence.uuid }
       end
     end
 
-    context "uuid not in database" do
+    context "when uuid not in database" do
       it "responds Not found" do
         get :authenticate, params: { uuid: "ffffffff-eeee-dddd-cccc-bbbbbbbbbbb" }
         expect(response).to have_http_status(:not_found)
       end
     end
 
-    context "record already authenticated" do
+    context "when record already authenticated" do
       let(:authenticated_time) { 20.minutes.ago }
 
       before { correspondence.authenticated_at = authenticated_time }
@@ -121,7 +122,7 @@ RSpec.describe CorrespondenceController, type: :controller do
       end
 
       it "enqueues an EmailConfirmationJob" do
-        expect(ConfirmationMailer).to receive(:new_confirmation).with(instance_of(Correspondence)).and_return(mail)
+        allow(ConfirmationMailer).to receive(:new_confirmation).with(instance_of(Correspondence)).and_return(mail)
         expect(mail).to receive(:deliver_later)
         post :create, params:
       end

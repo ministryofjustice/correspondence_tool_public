@@ -8,19 +8,19 @@ module GovUkSearchApi
     describe "#search" do
       let(:url_query) { "https://www.gov.uk/api/search.json?count=3&q=#{ERB::Util.url_encode(filtered_query)}" }
 
-      context "successful call to API" do
+      context "when successful call to API" do
         it "calls Curl with the URI encoded query and the curl response and returns a Response object" do
-          curl_easy = double Curl::Easy
-          response = double Response
-          expect(Curl).to receive(:get).with(url_query).and_return(curl_easy)
-          expect(Response).to receive(:new).with(query, curl_easy).and_return(response)
+          curl_easy = instance_double Curl::Easy
+          response = instance_double Response
+          allow(Curl).to receive(:get).with(url_query).and_return(curl_easy)
+          allow(Response).to receive(:new).with(query, curl_easy).and_return(response)
 
           actual_response = described_class.new(query).search
           expect(actual_response).to eq response
         end
       end
 
-      context "Unsuccessful_call to API" do
+      context "when unsuccessful_call to API" do
         it "instantiates an empty result with error details" do
           expect(Curl).to receive(:get).with(url_query).and_raise(Curl::Err::GotNothingError, "No data")
           response = described_class.new(query).search

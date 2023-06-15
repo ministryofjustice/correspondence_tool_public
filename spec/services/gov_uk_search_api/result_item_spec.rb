@@ -24,21 +24,21 @@ module GovUkSearchApi
     end
 
     describe "#meta_data" do
-      context "no display type" do
+      context "with no display type" do
         it "returns just the organisation acronyms" do
           item = described_class.new(standard_item)
           expect(item.meta_data).to eq "MOJ, HMCTS"
         end
       end
 
-      context "display type without public timestamp" do
+      context "with display type without public timestamp" do
         it "returns the display type and organisation acronyms" do
           item = described_class.new(correspondence_item)
           expect(item.meta_data).to eq "Correspondence MOJ, HMCTS"
         end
       end
 
-      context "display type of news story" do
+      context "with display type of news story" do
         it "returns News Story with publication date and organisation acronyms" do
           item = described_class.new(news_story_item)
           expect(item.meta_data).to eq "News story 3 Feb 2017 MOJ, HMCTS"

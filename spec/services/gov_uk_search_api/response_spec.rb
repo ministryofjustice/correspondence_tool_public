@@ -1,7 +1,7 @@
 require "#{File.dirname(__FILE__)}/../../rails_helper"
 
 describe GovUkSearchApi::Response do
-  context "created from a Curl::Easy response" do
+  context "when created from a Curl::Easy response" do
     let(:json_body) do
       {
         "results" => [
@@ -31,17 +31,18 @@ describe GovUkSearchApi::Response do
       end
     end
 
-    context "result_items" do
+    describe "result_items" do
+      let(:ri_1) { "Result item 1" }
+      let(:ri_2) { "Result item 2" }
+
       before do
-        @ri_1 = double "Result item 1"
-        @ri_2 = double "Result item 2"
-        expect(GovUkSearchApi::ResultItem).to receive(:new).with("item_1_key_1" => "item_1_value_1").and_return(@ri_1)
-        expect(GovUkSearchApi::ResultItem).to receive(:new).with("item_2_key_1" => "item_2_value_1").and_return(@ri_2)
+        allow(GovUkSearchApi::ResultItem).to receive(:new).with("item_1_key_1" => "item_1_value_1").and_return(ri_1)
+        allow(GovUkSearchApi::ResultItem).to receive(:new).with("item_2_key_1" => "item_2_value_1").and_return(ri_2)
       end
 
       describe "#result_items" do
         it "returns an array of result items created from the json response" do
-          expect(response.result_items).to eq [@ri_1, @ri_2]
+          expect(response.result_items).to eq [ri_1, ri_2]
         end
       end
 
@@ -53,7 +54,7 @@ describe GovUkSearchApi::Response do
     end
   end
 
-  context "created from an error hash" do
+  context "when created from an error hash" do
     it "has an item count of zero" do
       response = described_class.new("My Query", error_hash)
       expect(response.num_items).to eq 0

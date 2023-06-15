@@ -7,6 +7,10 @@ class CtpCustomLogger
     end
   end
 
+  def self.respond_to_missing?(method, *args)
+    %i[debug info warn error fatal].include?(method) || super
+  end
+
   def self.log(log_level, options)
     new_options = options.merge(log_level:, source: Rails.configuration.logstasher.source)
     Rails.logger.__send__(log_level, new_options.to_json)

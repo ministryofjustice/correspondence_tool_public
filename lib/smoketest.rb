@@ -2,6 +2,7 @@ require "mail"
 require "mechanize"
 require "securerandom"
 
+# rubocop:disable Rails/Exit
 class Smoketest
   def initialize
     puts "Smoketest running in #{Rails.env} mode!"
@@ -108,7 +109,7 @@ private
         return mail
       end
       wait_time = try + ((Time.zone.now - start_time)**0.5)
-      info "failed. Sleeping %0.2fs." % wait_time
+      info sprintf("failed. Sleeping %0.2fs.", wait_time)
       sleep wait_time
     end
     false
@@ -174,3 +175,4 @@ private
     @env_vars_ok = false
   end
 end
+# rubocop:enable Rails/Exit

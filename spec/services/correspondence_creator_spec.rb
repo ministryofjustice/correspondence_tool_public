@@ -2,9 +2,9 @@ require "rails_helper"
 
 describe CorrespondenceCreator do
   describe ".new" do
-    let(:mail) { double "ActionMailer Mail" }
+    let(:mail) { instance_double ActionMailer::MessageDelivery }
 
-    context "no radio button selected" do
+    context "when no radio button selected" do
       let(:params) { { "contact_requested" => "no" } }
 
       it "returns :no_op" do
@@ -19,7 +19,7 @@ describe CorrespondenceCreator do
       end
     end
 
-    context "valid correspondence object created" do
+    context "when valid correspondence object created" do
       let(:params) do
         {
           "name" => "Joe",
@@ -36,7 +36,7 @@ describe CorrespondenceCreator do
       end
 
       it "sends confirmation email" do
-        expect(ConfirmationMailer).to receive(:new_confirmation).with(instance_of(Correspondence)).and_return(mail)
+        allow(ConfirmationMailer).to receive(:new_confirmation).with(instance_of(Correspondence)).and_return(mail)
         expect(mail).to receive(:deliver_later)
         described_class.new(params)
       end
@@ -48,7 +48,7 @@ describe CorrespondenceCreator do
       end
     end
 
-    context "Invalid params" do
+    context "with invalid params" do
       let(:params) do
         { "name" => "Joe" }
       end
