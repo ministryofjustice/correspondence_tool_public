@@ -59,10 +59,7 @@ group :development, :test do
   gem 'launchy', '~> 2.4', '>= 2.4.3'
   gem 'rb-readline', '~> 0.5.4'
   gem 'rspec-rails', '~> 5.1'
-  gem 'rubocop', require: false
-  gem 'rubocop-performance', require: false
-  gem 'rubocop-rails', require: false
-  gem 'rubocop-rspec', require: false
+  gem 'rubocop-govuk', require: false
 end
 
 group :development do
