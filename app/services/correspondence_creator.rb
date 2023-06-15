@@ -1,16 +1,15 @@
 class CorrespondenceCreator
-
   attr_reader :result, :correspondence
 
   def initialize(params)
-    if params['contact_requested'] == 'no'
+    if params["contact_requested"] == "no"
       @result = :no_op
     else
       @correspondence = create_correspondence(params)
     end
   end
 
-  private
+private
 
   def create_correspondence(params)
     correspondence = Correspondence.new(params)

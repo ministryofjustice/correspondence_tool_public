@@ -14,8 +14,7 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym 'RESTful'
 # end
- ActiveSupport::Inflector.inflections(:en) do |inflect|
-    inflect.uncountable 'correspondence'
-    inflect.uncountable 'feedback'
- end
- 
+ActiveSupport::Inflector.inflections(:en) do |inflect|
+  inflect.uncountable "correspondence"
+  inflect.uncountable "feedback"
+end

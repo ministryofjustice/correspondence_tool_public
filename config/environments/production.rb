@@ -22,7 +22,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -35,13 +35,13 @@ Rails.application.configure do
 
   config.action_mailer.asset_host = config.action_mailer.default_url_options[:host]
   config.action_mailer.smtp_settings = {
-    address:              'smtp.sendgrid.net',
-    port:                 587,
-    domain:               'digital.justice.gov.uk',
-    user_name:            Settings.sendgrid_username,
-    password:             Settings.sendgrid_password,
-    authentication:       :plain,
-    enable_starttls_auto: true
+    address: "smtp.sendgrid.net",
+    port: 587,
+    domain: "digital.justice.gov.uk",
+    user_name: Settings.sendgrid_username,
+    password: Settings.sendgrid_password,
+    authentication: :plain,
+    enable_starttls_auto: true,
   }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
@@ -105,9 +105,8 @@ Rails.application.configure do
   #   config.logger    = ActiveSupport::TaggedLogging.new(logger)
   # end
   config.logstasher.enabled = true
-  config.logstasher.logger = Logger.new STDOUT
-  config.logstasher.source = 'correspondence-tool-public.production'
-
+  config.logstasher.logger = Logger.new $stdout
+  config.logstasher.source = "correspondence-tool-public.production"
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false

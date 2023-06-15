@@ -1,4 +1,4 @@
-require_relative 'boot'
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
@@ -19,7 +19,6 @@ Bundler.require(*Rails.groups)
 
 module CorrespondenceToolPublic
   class Application < Rails::Application
-
     # Use AES-256-GCM authenticated encryption for encrypted cookies.
     # Also, embed cookie expiry in signed or encrypted cookies for increased security.
     #
@@ -42,7 +41,7 @@ module CorrespondenceToolPublic
 
     # Make `form_with` generate id attributes for any generated HTML tags.
     config.action_view.form_with_generates_ids = true
-    
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

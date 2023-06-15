@@ -1,63 +1,58 @@
 class HeartbeatController < ApplicationController
-  require 'sidekiq/api'
+  require "sidekiq/api"
 
   respond_to :json
 
   def ping
     version_info = {
-        build_date: Settings.build_date,
-        git_commit: Settings.git_commit,
-        git_source: Settings.git_source
+      build_date: Settings.build_date,
+      git_commit: Settings.git_commit,
+      git_source: Settings.git_source,
     }
 
     render json: version_info
   end
 
-
   def healthcheck
     checks = {
-        database: database_alive?,
-        redis: redis_alive?,
-        sidekiq: sidekiq_alive?,
+      database: database_alive?,
+      redis: redis_alive?,
+      sidekiq: sidekiq_alive?,
     }
 
     status = :bad_gateway unless checks.values.all?
-    render status: status, json: {
-        checks: checks
+    render status:, json: {
+      checks:,
     }
   end
 
-  private
+private
 
   def redis_alive?
-    begin
-      Sidekiq.redis { |conn| conn.info }
-      true
-    rescue
-      false
-    end
+    Sidekiq.redis(&:info)
+    true
+  rescue StandardError
+    false
   end
 
   def sidekiq_alive?
     ps = Sidekiq::ProcessSet.new
-    !ps.size.zero?
-  rescue
+    !ps.empty?
+  rescue StandardError
     false
   end
 
   def sidekiq_queue_healthy?
     dead = Sidekiq::DeadSet.new
     retries = Sidekiq::RetrySet.new
-    dead.size.zero? && retries.size.zero?
-  rescue
+    dead.empty? && retries.empty?
+  rescue StandardError
     false
   end
 
   def database_alive?
-    begin
-      ActiveRecord::Base.connection.active?
-    rescue PG::ConnectionBad
-      false
-    end
+    ActiveRecord::Base.connection.active?
+  rescue PG::ConnectionBad
+    false
   end
 end

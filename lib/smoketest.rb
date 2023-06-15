@@ -1,11 +1,8 @@
-require 'mail'
-require 'mechanize'
-require 'securerandom'
-
-
+require "mail"
+require "mechanize"
+require "securerandom"
 
 class Smoketest
-
   def initialize
     puts "Smoketest running in #{Rails.env} mode!"
     @env_vars_ok = true
@@ -31,34 +28,34 @@ class Smoketest
     puts "!!! SMOKETEST SUCCESSFUL"
   end
 
-  private
+private
 
   def submit_new_correspondence_item
     agent = Mechanize.new
-    if ENV.has_key? 'http_proxy'
-      (proxy_host, proxy_port) = ENV['http_proxy'].split ':'
+    if ENV.key? "http_proxy"
+      (proxy_host, proxy_port) = ENV["http_proxy"].split ":"
       agent.set_proxy proxy_host, proxy_port
     end
     agent.get(@site_url)
-    page = agent.click('Start now')
-    form = page.form_with id: 'new_correspondence'
+    page = agent.click("Start now")
+    form = page.form_with id: "new_correspondence"
 
-    form.field_with(name: 'correspondence[topic]').value = 'Smoke Test'
+    form.field_with(name: "correspondence[topic]").value = "Smoke Test"
     page = agent.submit form
 
-    form = page.form_with id: 'new_correspondence'
-    form.radiobutton_with(id: 'correspondence_contact_requested_yes').click
+    form = page.form_with id: "new_correspondence"
+    form.radiobutton_with(id: "correspondence_contact_requested_yes").click
 
-    form.field_with(name: 'correspondence[name]').value = 'Smoking Tester'
-    form.field_with(name: 'correspondence[email]').value = @mailbox
-    form.field_with(name: 'correspondence[message]').value = @message
-    form.add_field!('smoke_test', :true)
+    form.field_with(name: "correspondence[name]").value = "Smoking Tester"
+    form.field_with(name: "correspondence[email]").value = @mailbox
+    form.field_with(name: "correspondence[message]").value = @message
+    form.add_field!("smoke_test", true)
     response = agent.submit form
-    puts "Correspondence item with message data #{@message_uuid} submitted at #{Time.now.strftime('%H:%M:%S')}."
+    puts "Correspondence item with message data #{@message_uuid} submitted at #{Time.zone.now.strftime('%H:%M:%S')}."
 
-    if response.code != '200'
+    if response.code != "200"
       error "!!! HTTP Status: #{result.code} when submitting correspondence item"
-      result.response.each_pair { |header,value| error "#{header}: #{value}" }
+      result.response.each_pair { |header, value| error "#{header}: #{value}" }
       error result.pretty_inspect
       exit 2
     end
@@ -69,10 +66,9 @@ class Smoketest
   end
 
   def extract_uuid_from_page(page)
-    div = page.search('div.uuid')
-    div.attr('data-uuid').text
+    div = page.search("div.uuid")
+    div.attr("data-uuid").text
   end
-
 
   def check_confirmation_mail_recieved(uuid)
     link = "/correspondence/authenticate/#{uuid}"
@@ -82,7 +78,7 @@ class Smoketest
       puts "!!! ERROR Unable to find authentication mail"
       exit 4
     else
-      puts "Confirmation mail detected at #{Time.now.strftime('%H:%M:%S')}"
+      puts "Confirmation mail detected at #{Time.zone.now.strftime('%H:%M:%S')}"
     end
     "#{@site_url}#{link}"
   end
@@ -94,28 +90,28 @@ class Smoketest
       puts "!!! ERROR Unable to find DACU mail"
       exit 4
     else
-      puts "DACU mail detected at #{Time.now.strftime('%H:%M:%S')}"
+      puts "DACU mail detected at #{Time.zone.now.strftime('%H:%M:%S')}"
     end
   end
 
   def check_mail_received_with_contents(contents)
-    start_time = Time.now
+    start_time = Time.zone.now
     info "Waiting #{Settings.smoke_tests.first_read_wait}s for mail delivery to do it's thing."
     sleep Settings.smoke_tests.first_read_wait
     try = 0
-    while(Time.now - start_time < Settings.smoke_tests.max_wait_time) do
+    while Time.zone.now - start_time < Settings.smoke_tests.max_wait_time
       try += 1
       print "Email check #{try}: "
       mail = Mail.last(count: 3).detect { |m| m.body.include?(contents) }
       if mail
-        info 'success'
+        info "success"
         return mail
       end
-      wait_time = try + ((Time.now - start_time) ** 0.5)
-      info 'failed. Sleeping %0.2fs.' % wait_time
+      wait_time = try + ((Time.zone.now - start_time)**0.5)
+      info "failed. Sleeping %0.2fs." % wait_time
       sleep wait_time
     end
-    return false
+    false
   end
 
   def info(message)
@@ -128,11 +124,11 @@ class Smoketest
     mailbox_password = @mailbox_password.clone
     Mail.defaults do
       retriever_method :pop3,
-                       address:    pop_mail_server,
-                       port:       Settings.smoke_tests.port,
+                       address: pop_mail_server,
+                       port: Settings.smoke_tests.port,
                        enable_ssl: Settings.smoke_tests.ssl,
-                       user_name:  mailbox,
-                       password:   mailbox_password
+                       user_name: mailbox,
+                       password: mailbox_password
     end
   end
 
@@ -140,9 +136,9 @@ class Smoketest
     agent = Mechanize.new
     response = agent.get(authentication_link)
 
-    if response.code != '200'
+    if response.code != "200"
       error "!!! HTTP Status: #{result.code} when clicking on authentication link"
-      result.response.each_pair { |header,value| error "#{header}: #{value}" }
+      result.response.each_pair { |header, value| error "#{header}: #{value}" }
       error result.pretty_inspect
       exit 2
     end
@@ -156,16 +152,16 @@ class Smoketest
 
   def check_settings
     if Settings.smoke_tests.username.nil?
-      missing_env_var('SMOKE_TESTS__USERNAME')
+      missing_env_var("SMOKE_TESTS__USERNAME")
     end
     if Settings.smoke_tests.password.nil?
-      missing_env_var('SMOKE_TESTS__PASSWORD')
+      missing_env_var("SMOKE_TESTS__PASSWORD")
     end
     if Settings.smoke_tests.server.nil?
-      missing_env_var('SMOKE_TESTS__SERVER')
+      missing_env_var("SMOKE_TESTS__SERVER")
     end
     if Settings.smoke_tests.site_url.nil?
-      missing_env_var('SMOKE_TESTS__SITE_URL')
+      missing_env_var("SMOKE_TESTS__SITE_URL")
     end
     unless @env_vars_ok
       puts "Fix environment variables before proceeding"
@@ -173,13 +169,8 @@ class Smoketest
     end
   end
 
-
   def missing_env_var(var)
     info "!!! ERROR - Environment variable SETTINGS__#{var} not set!"
     @env_vars_ok = false
   end
-
 end
-
-
-
