@@ -8,7 +8,7 @@ namespace :sidekiq do
     queue_names.each do |qn|
       q = Sidekiq::Queue.new(qn)
       puts "Queue name: #{qn}"
-      if q.empty?
+      if q.size.zero? # rubocop:disable Style/ZeroLengthPredicate
         puts "   No queued jobs"
       else
         q.each do |job|
