@@ -1,7 +1,7 @@
 version: '2'
 services:
   db:
-    image: postgres:9.5-alpine
+    image: postgres:12.15-alpine
     volumes:
       - postgresql-data-volume:/var/lib/postgresql/data
   redis:
