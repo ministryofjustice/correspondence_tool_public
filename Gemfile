@@ -56,21 +56,16 @@ group :development, :test do
   gem "debug", ">= 1.0.0"
   gem "factory_bot_rails", ">= 6.2.0"
   gem "faker"
-  gem "launchy", "~> 2.4", ">= 2.4.3"
-  gem "rb-readline", "~> 0.5.4"
   gem "rspec-rails", "~> 5.1"
   gem "rubocop-govuk", require: false
 end
 
 group :development do
   gem "annotate"
+  gem "better_errors"
+  gem "binding_of_caller"
   gem "brakeman"
-  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem "guard-livereload", ">= 2.5.2"
-  gem "guard-rspec"
-  gem "guard-rubocop"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.1"
-  gem "web-console", ">= 3.7.0"
 end
