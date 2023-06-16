@@ -151,7 +151,7 @@ RSpec.describe Correspondence, type: :model do
       end
     end
 
-    context "when uthenticated" do
+    context "when authenticated" do
       it "does not update the authenticated at time" do
         correspondence = build :correspondence, authenticated_at: frozen_time
         correspondence.authenticate!
