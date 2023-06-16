@@ -2,9 +2,9 @@ module AskTool
   module Pages
     module Correspondence
       class TopicPage < SitePrism::Page
-        set_url '/correspondence/topic'
+        set_url "/correspondence/topic"
 
-        element :topic_field, '#correspondence_topic'
+        element :topic_field, "#correspondence_topic"
         element :continue_button, 'input[type="submit"][value="Continue"]'
 
         def search_govuk(topic)
@@ -15,4 +15,3 @@ module AskTool
     end
   end
 end
-

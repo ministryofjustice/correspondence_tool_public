@@ -19,7 +19,7 @@ Rails.application.configure do
   # Configure public file server for tests with Cache-Control for performance.
   config.public_file_server.enabled = true
   config.public_file_server.headers = {
-    'Cache-Control' => "public, max-age=#{1.hour.to_i}"
+    "Cache-Control" => "public, max-age=#{1.hour.to_i}",
   }
 
   # Show full error reports and disable caching.
@@ -61,6 +61,5 @@ Rails.application.configure do
   config.action_mailer.asset_host = config.action_mailer.default_url_options[:host]
 
   config.active_job.queue_adapter = :test
-  Capybara.server = :puma, { Silent: true } 
-
+  Capybara.server = :puma, { Silent: true }
 end

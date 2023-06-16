@@ -1,19 +1,18 @@
-require 'simplecov'
+require "simplecov"
 SimpleCov.start
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+ENV["RAILS_ENV"] ||= "test"
+require File.expand_path("../config/environment", __dir__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
-require 'spec_helper'
-require 'rspec/rails'
-require 'capybara/rails'
-require 'capybara/rspec'
-require 'webdrivers'
+require "spec_helper"
+require "rspec/rails"
+require "capybara/rails"
+require "capybara/rspec"
+require "webdrivers"
 
-Capybara.asset_host = 'http://localhost:3000'
-
+Capybara.asset_host = "http://localhost:3000"
 
 Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
@@ -22,12 +21,12 @@ end
 Capybara.register_driver :headless_chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new
   unless ENV["CHROME_DEBUG"]
-    options.add_argument('--headless')
-    options.add_argument('--disable-gpu')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--start-maximized')
-    options.add_argument('--window-size=1980,2080')
-    options.add_argument('--enable-features=NetworkService,NetworkServiceInProcess')
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--start-maximized")
+    options.add_argument("--window-size=1980,2080")
+    options.add_argument("--enable-features=NetworkService,NetworkServiceInProcess")
   end
   Capybara::Selenium::Driver.new(app, browser: :chrome, capabilities: options)
 end
@@ -36,7 +35,6 @@ Capybara.default_max_wait_time = 4
 Capybara.javascript_driver = :headless_chrome
 
 Capybara.server = :puma, { Silent: true }
-
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -55,8 +53,8 @@ Capybara.server = :puma, { Silent: true }
 #
 
 # Load Site Prism
-Dir[Rails.root.join('spec/site_prism/**/*.rb')].each { |f| require f }
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join("spec/site_prism/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -66,7 +64,7 @@ RSpec.configure do |config|
   config.include AskTool::Pages::Application
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_path = Rails.root.join("spec/fixtures")
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -101,4 +99,4 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-require 'ap'
+require "ap"

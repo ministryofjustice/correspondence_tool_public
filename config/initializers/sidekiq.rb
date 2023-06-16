@@ -1,25 +1,25 @@
 Sidekiq.configure_client do |config|
-  config.redis = { :size => 1 }
+  config.redis = { size: 1 }
 end
 
 Sidekiq.configure_server do |config|
   config.on :startup do
-    require 'prometheus_exporter/instrumentation'
+    require "prometheus_exporter/instrumentation"
 
     # Activerecord Connection Pool Metrics
     PrometheusExporter::Instrumentation::ActiveRecord.start(
-      custom_labels: { type: "sidekiq" }, #optional params
-      config_labels: [:database, :host] #optional params
+      custom_labels: { type: "sidekiq" }, # optional params
+      config_labels: %i[database host], # optional params
     )
 
     # To monitor Queue size and latency:
     PrometheusExporter::Instrumentation::SidekiqQueue.start
     # To monitor Sidekiq process info:
-    PrometheusExporter::Instrumentation::Process.start type: 'sidekiq'
+    PrometheusExporter::Instrumentation::Process.start type: "sidekiq"
   end
 
   config.server_middleware do |chain|
-    require 'prometheus_exporter/instrumentation'
+    require "prometheus_exporter/instrumentation"
     # Including Sidekiq metrics (how many jobs ran? how many failed? how long did they take? how many are dead? how many were restarted?)
     chain.add PrometheusExporter::Instrumentation::Sidekiq
   end
@@ -30,5 +30,4 @@ Sidekiq.configure_server do |config|
   at_exit do
     PrometheusExporter::Client.default.stop(wait_timeout_seconds: 10)
   end
-
 end

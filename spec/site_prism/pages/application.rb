@@ -1,7 +1,6 @@
 module AskTool
   module Pages
     module Application
-
       # def initialize
       #   @pages = {}
       # end
@@ -21,7 +20,6 @@ module AskTool
       def topic_page
         pages[:topic] ||= AskTool::Pages::Correspondence::TopicPage.new
       end
-
     end
   end
 end

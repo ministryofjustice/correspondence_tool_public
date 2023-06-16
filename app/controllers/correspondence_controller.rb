@@ -1,7 +1,6 @@
 class CorrespondenceController < ApplicationController
-
   rescue_from Redis::CannotConnectError do
-    render :file => 'public/500-redis-down.html', :status => 500, :layout => false
+    render file: "public/500-redis-down.html", status: :internal_server_error, layout: false
   end
 
   def start; end
@@ -43,7 +42,7 @@ class CorrespondenceController < ApplicationController
   def authenticate
     @correspondence = Correspondence.where(uuid: params[:uuid]).first
     if @correspondence.nil?
-      render file:  Rails.root.join('public/404.html'), status: 404, layout: false
+      render file: Rails.root.join("public/404.html"), status: :not_found, layout: false
     else
       @correspondence.authenticate!
       CorrespondenceMailer.new_correspondence(@correspondence).deliver_later
@@ -54,12 +53,12 @@ class CorrespondenceController < ApplicationController
     render
   end
 
-  private
+private
 
   def category_attribute
     case params[:smoke_test]
-    when 'true' then 'smoke_test'
-    else 'general_enquiries'
+    when "true" then "smoke_test"
+    else "general_enquiries"
     end
   end
 
@@ -70,7 +69,7 @@ class CorrespondenceController < ApplicationController
       :topic,
       :message,
       :smoke_test,
-      :contact_requested
+      :contact_requested,
     ).merge({ category: category_attribute })
   end
 

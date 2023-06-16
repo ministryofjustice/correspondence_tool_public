@@ -14,13 +14,13 @@ class FeedbackController < ApplicationController
     end
   end
 
-  private
+private
 
   def feedback_params
     params.require(:feedback).permit(
       :ease_of_use,
       :completeness,
-      :comment
+      :comment,
     )
   end
 end
