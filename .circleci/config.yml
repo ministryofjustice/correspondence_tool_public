@@ -198,12 +198,18 @@ jobs:
       # Authenticate to the ECR repository using the standard command
       - run: |
           aws ecr get-login-password --region $ECR_REGION | docker login --username AWS --password-stdin ${AWS_ECR_REGISTRY_ID}.dkr.ecr.${ECR_REGION}.amazonaws.com
+      - attach_workspace:
+          at: /tmp/workspace
       # Build and push your Docker image
       - aws-ecr/build-image:
           push-image: true
           tag: ${CIRCLE_SHA1}
           region: $ECR_REGION # this will use the env var
           repo: $ECR_REPOSITORY # this will use the env var
+      - persist_to_workspace:
+          root: workspace
+          paths:
+            - build_tag
 
   build_main_and_push_to_ecr:
     <<: *deploy_container_config
