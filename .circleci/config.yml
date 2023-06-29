@@ -189,7 +189,7 @@ jobs:
 
   build_branch_and_push_to_ecr:
     executor: aws-ecr/default # use the aws-ecr/default executor to start the docker daemon
-    <<: *defaults
+    working_directory: ~/contact-moj
     steps:
       - checkout
       # Authenticate to AWS using OIDC v2 with the AWS CLI
