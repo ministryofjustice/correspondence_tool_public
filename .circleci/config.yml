@@ -358,7 +358,7 @@ workflows:
       - deploy_branch_to_staging_approval:
           type: approval
           requires:
-            - scan_image
+            - build_branch_and_push_to_ecr
       - deploy_branch_to_staging:
           requires:
             - deploy_branch_to_staging_approval
