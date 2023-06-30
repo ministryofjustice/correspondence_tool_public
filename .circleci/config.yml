@@ -182,9 +182,7 @@ jobs:
     resource_class: small
     working_directory: ~/contact-moj
     steps:
-      - run: |
-        echo "SKIPPING TESTS"
-      # - checkout
+      - checkout
       # - *restore_cache
       # - *install_bundler
       # - *check_bundler_version
