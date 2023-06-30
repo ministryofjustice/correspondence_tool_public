@@ -143,16 +143,15 @@ references:
     run:
       name: Deploy to Development environment
       command: |
-        ./deploy.sh ${CIRCLE_SHA1} development circleci
-        echo "export BUILD_TAG=${CIRCLE_SHA1}" >> $BASH_ENV
+        ./deploy.sh ${CIRCLE_TAG} development circleci
+        echo "export BUILD_TAG=${CIRCLE_TAG}" >> $BASH_ENV
         source $BASH_ENV
 
   deploy_to_staging: &deploy_to_staging
     run:
       name: Deploy to Staging environment
       command: |
-        build_tag=`cat /tmp/workspace/build_tag`
-        ./deploy.sh $build_tag staging circleci
+        ./deploy.sh ${CIRCLE_TAG} staging circleci
         echo "export BUILD_TAG=${build_tag}" >> $BASH_ENV
         source $BASH_ENV
 
@@ -160,8 +159,7 @@ references:
     run:
       name: Deploy to production environment
       command: |
-        build_tag=`cat /tmp/workspace/build_tag`
-        ./deploy.sh $build_tag production circleci
+        ./deploy.sh ${CIRCLE_TAG} production circleci
         echo "export BUILD_TAG=${build_tag}" >> $BASH_ENV
         source $BASH_ENV
 
@@ -199,38 +197,37 @@ jobs:
           aws ecr get-login-password --region $ECR_REGION | docker login --username AWS --password-stdin ${AWS_ECR_REGISTRY_ID}.dkr.ecr.${ECR_REGION}.amazonaws.com
       - aws-ecr/build-image:
           push-image: true
-          tag: ${CIRCLE_SHA1}
+          tag: ${CIRCLE_TAG}
           region: $ECR_REGION # this will use the env var
           repo: $ECR_REPOSITORY # this will use the env var
 
   build_main_and_push_to_ecr:
-    <<: *deploy_container_config
-    <<: *defaults
+    executor: aws-ecr/default # use the aws-ecr/default executor to start the docker daemon
     steps:
       - checkout
-      - attach_workspace:
-          at: /tmp/workspace
-      - setup_remote_docker:
-          docker_layer_caching: true
-      - *configure_aws_profile
-      - *build_and_push_docker_image
-      - persist_to_workspace:
-          root: workspace
-          paths:
-            - build_tag
+      # Authenticate to AWS using OIDC v2 with the AWS CLI
+      - aws-cli/setup:
+          role_arn: $ECR_ROLE_TO_ASSUME # this will use the env var
+          region: $ECR_REGION # this will use the env var
+      # Authenticate to the ECR repository using the standard command
+      - run: |
+          aws ecr get-login-password --region $ECR_REGION | docker login --username AWS --password-stdin ${AWS_ECR_REGISTRY_ID}.dkr.ecr.${ECR_REGION}.amazonaws.com
+      - aws-ecr/build-image:
+          push-image: true
+          tag: ${CIRCLE_TAG}
+          region: $ECR_REGION # this will use the env var
+          repo: $ECR_REPOSITORY # this will use the env var
 
   dev_deployment_tasks: &do_dev_deployment_tasks
     <<: *deploy_container_config
     <<: *defaults
     steps:
       - checkout
-      - attach_workspace:
-          at: /tmp/workspace
       - *install_expect
       - *deploy_to_dev
       - slack/notify:
           color: '#1d990c'
-          message: '${CIRCLE_USERNAME} deployed *${BUILD_TAG}* to *Development*'
+          message: '${CIRCLE_USERNAME} deployed *${CIRCLE_TAG}* to *Development*'
           webhook: ${SLACK_WEBHOOK}
 
   deploy_branch_to_dev: *do_dev_deployment_tasks
@@ -241,13 +238,11 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - attach_workspace:
-          at: /tmp/workspace
       - *install_expect
       - *deploy_to_staging
       - slack/notify:
           color: '#1d990c'
-          message: '${CIRCLE_USERNAME} deployed *${BUILD_TAG}* to *Staging*'
+          message: '${CIRCLE_USERNAME} deployed *${CIRCLE_TAG}* to *Staging*'
           webhook: ${SLACK_WEBHOOK}
 
   deploy_branch_to_staging: *do_staging_deployment_tasks
@@ -258,18 +253,16 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - attach_workspace:
-          at: /tmp/workspace
       - *install_expect
       - *deploy_to_production
       - slack/notify:
           color: '#1d990c'
           mentions: 'staff-tools-team'
-          message: '${CIRCLE_USERNAME} deployed *${BUILD_TAG}* to *Production*'
+          message: '${CIRCLE_USERNAME} deployed *${CIRCLE_TAG}* to *Production*'
           webhook: ${SLACK_WEBHOOK_SS_CIRCLECI}
       - slack/notify:
           color: '#1d990c'
-          message: '${CIRCLE_USERNAME} deployed *${BUILD_TAG}* to *Production*'
+          message: '${CIRCLE_USERNAME} deployed *${CIRCLE_TAG}* to *Production*'
           webhook: ${SLACK_WEBHOOK}
 
 workflows:
