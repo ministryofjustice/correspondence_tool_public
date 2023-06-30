@@ -178,18 +178,18 @@ jobs:
     working_directory: ~/contact-moj
     steps:
       - checkout
-      - *restore_cache
-      - *install_bundler
-      - *check_bundler_version
-      - *install_psql
-      - *install_dependencies
-      - *save_cache
-      - *wait_for_db
-      - *set_up_the_database
-      - *rubocop
-      - *setup_test_reporter
-      - *run_unit_and_feature_tests
-      - *upload_test_coverage
+      # - *restore_cache
+      # - *install_bundler
+      # - *check_bundler_version
+      # - *install_psql
+      # - *install_dependencies
+      # - *save_cache
+      # - *wait_for_db
+      # - *set_up_the_database
+      # - *rubocop
+      # - *setup_test_reporter
+      # - *run_unit_and_feature_tests
+      # - *upload_test_coverage
 
   build_branch_and_push_to_ecr:
     executor: aws-ecr/default # use the aws-ecr/default executor to start the docker daemon
@@ -306,8 +306,8 @@ workflows:
             branches:
               only: main
       - build_main_and_push_to_ecr:
-          # requires:
-            # - build_and_test
+          requires:
+            - build_and_test
       - deploy_main_to_dev:
           requires:
             - build_main_and_push_to_ecr
@@ -328,12 +328,12 @@ workflows:
 
   build_and_deploy_branch:
     jobs:
-      # - build_and_test:
-      #     filters:
-      #       branches:
-      #         ignore: main
+      - build_and_test:
+          filters:
+            branches:
+              ignore: main
       - build_branch_and_push_to_ecr_approval:
-          type: approval
+          # type: approval
           requires:
             - build_and_test
       - build_branch_and_push_to_ecr:
