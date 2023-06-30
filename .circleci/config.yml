@@ -244,6 +244,7 @@ jobs:
   scan_image:
     <<: *deploy_container_config
     steps:
+      - checkout
       - attach_workspace:
           at: /tmp/workspace
       - *scan_for_vulnerabilities
