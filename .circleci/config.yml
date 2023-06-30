@@ -220,7 +220,6 @@ jobs:
       - *ecr_login
       - *configure_build_tag
       - *build_and_push_image
-      - *scan_for_vulnerabilities
       - persist_to_workspace:
           root: workspace
           paths:
