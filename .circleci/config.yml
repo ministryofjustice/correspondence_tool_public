@@ -314,9 +314,12 @@ workflows:
       - build_main_and_push_to_ecr:
           requires:
             - build_and_test
-      - deploy_main_to_dev:
+      - scan_image:
           requires:
             - build_main_and_push_to_ecr
+      - deploy_main_to_dev:
+          requires:
+            - scan_image
       - deploy_main_to_staging_approval:
           type: approval
           requires:
@@ -345,13 +348,10 @@ workflows:
       - build_branch_and_push_to_ecr:
           requires:
             - build_branch_and_push_to_ecr_approval
-      - scan_image:
-          requires:
-            - build_branch_and_push_to_ecr
       - deploy_branch_to_dev_approval:
           type: approval
           requires:
-            - scan_image
+            - build_branch_and_push_to_ecr
       - deploy_branch_to_dev:
           requires:
             - deploy_branch_to_dev_approval
