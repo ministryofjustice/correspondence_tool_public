@@ -350,7 +350,7 @@ workflows:
       - deploy_branch_to_dev_approval:
           type: approval
           requires:
-            - build_branch_and_push_to_ecr
+            - scan_image
       - deploy_branch_to_dev:
           requires:
             - deploy_branch_to_dev_approval
