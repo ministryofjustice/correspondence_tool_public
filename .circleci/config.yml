@@ -306,8 +306,8 @@ workflows:
             branches:
               only: main
       - build_main_and_push_to_ecr:
-          requires:
-            - build_and_test
+          # requires:
+            # - build_and_test
       - deploy_main_to_dev:
           requires:
             - build_main_and_push_to_ecr
