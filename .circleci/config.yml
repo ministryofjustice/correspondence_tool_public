@@ -177,7 +177,7 @@ jobs:
 
   build_and_test:
     <<: *test_container_config
-    <<: * defaults
+    <<: *defaults
     steps:
       - checkout
       # - *restore_cache
