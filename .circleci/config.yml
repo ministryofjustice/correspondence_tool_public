@@ -138,8 +138,8 @@ references:
         short_version=$(git rev-parse --short $current_branch)
         build_tag=cts-${current_branch}-${short_version}
         docker_build_tag=cmoj-${current_branch}-${short_version}
-        export BUILD_TAG=${docker_build_tag}
-        # mkdir -p workspace
+        echo "export BUILD_TAG=${docker_build_tag}" >> $BASH_ENV
+        source $BASH_ENV
         echo $BUILD_TAG > /tmp/workspace/build_tag
         # python3 config/pipeline/aws_ecr_scan_results.py --search contact-moj-ecr --tag $BUILD_TAG --slack_webhook $SLACK_WEBHOOK || true
 
