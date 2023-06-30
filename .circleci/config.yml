@@ -140,42 +140,31 @@ references:
         docker_build_tag=cmoj-${current_branch}-${short_version}
         echo "export BUILD_TAG=${docker_build_tag}" >> $BASH_ENV
         source $BASH_ENV
-        echo $BUILD_TAG > /tmp/workspace/build_tag
         # python3 config/pipeline/aws_ecr_scan_results.py --search contact-moj-ecr --tag $BUILD_TAG --slack_webhook $SLACK_WEBHOOK || true
 
   deploy_to_dev: &deploy_to_dev
     run:
       name: Deploy to Development environment
       command: |
-        build_tag=`cat /tmp/workspace/build_tag`
-        ./deploy.sh $build_tag development circleci
-        echo "export BUILD_TAG=${build_tag}" >> $BASH_ENV
-        source $BASH_ENV
+        ./deploy.sh $BUILD_TAG development circleci
 
   deploy_to_staging: &deploy_to_staging
     run:
       name: Deploy to Staging environment
       command: |
-        build_tag=`cat /tmp/workspace/build_tag`
-        ./deploy.sh $build_tag staging circleci
-        echo "export BUILD_TAG=${build_tag}" >> $BASH_ENV
-        source $BASH_ENV
+        ./deploy.sh $BUILD_TAG staging circleci
 
   deploy_to_production: &deploy_to_production
     run:
       name: Deploy to production environment
       command: |
-        build_tag=`cat /tmp/workspace/build_tag`
-        ./deploy.sh $build_tag production circleci
-        echo "export BUILD_TAG=${build_tag}" >> $BASH_ENV
-        source $BASH_ENV
+        ./deploy.sh $BUILD_TAG production circleci
 
 jobs:
 
   build_and_test:
     <<: *test_container_config
-    resource_class: small
-    working_directory: ~/contact-moj
+    <<: *defaults
     steps:
       - checkout
       # - *restore_cache
@@ -193,7 +182,6 @@ jobs:
 
   build_branch_and_push_to_ecr:
     executor: aws-ecr/default # use the aws-ecr/default executor to start the docker daemon
-    working_directory: ~/contact-moj
     steps:
       - checkout
       # Authenticate to AWS using OIDC v2 with the AWS CLI
@@ -203,28 +191,16 @@ jobs:
       # Authenticate to the ECR repository using the standard command
       - run: |
           aws ecr get-login-password --region $ECR_REGION | docker login --username AWS --password-stdin ${AWS_ECR_REGISTRY_ID}.dkr.ecr.${ECR_REGION}.amazonaws.com
-      - attach_workspace:
-          at: /tmp/workspace
       - *build_tag
-      - run: |
-          echo "echo $BUILD_TAG"
-          echo $BUILD_TAG
-          echo "cat /tmp/workspace/build_tag"
-          cat /tmp/workspace/build_tag
       # Build and push your Docker image
       - aws-ecr/build-image:
           push-image: true
           tag: $BUILD_TAG
           region: $ECR_REGION # this will use the env var
           repo: $ECR_REPOSITORY # this will use the env var
-      - persist_to_workspace:
-          root: workspace
-          paths:
-            - build_tag
 
   build_main_and_push_to_ecr:
     executor: aws-ecr/default # use the aws-ecr/default executor to start the docker daemon
-    working_directory: ~/contact-moj
     steps:
       - checkout
       - *build_tag
@@ -235,26 +211,18 @@ jobs:
       # Authenticate to the ECR repository using the standard command
       - run: |
           aws ecr get-login-password --region $ECR_REGION | docker login --username AWS --password-stdin ${AWS_ECR_REGISTRY_ID}.dkr.ecr.${ECR_REGION}.amazonaws.com
-      - attach_workspace:
-          at: /tmp/workspace
       # Build and push your Docker image
       - aws-ecr/build-image:
           push-image: true
           tag: $BUILD_TAG
           region: $ECR_REGION # this will use the env var
           repo: $ECR_REPOSITORY # this will use the env var
-      - persist_to_workspace:
-          root: workspace
-          paths:
-            - build_tag
 
   dev_deployment_tasks: &do_dev_deployment_tasks
     <<: *deploy_container_config
     <<: *defaults
     steps:
       - checkout
-      - attach_workspace:
-          at: /tmp/workspace
       - *install_expect
       - *deploy_to_dev
       - slack/notify:
@@ -270,8 +238,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - attach_workspace:
-          at: /tmp/workspace
       - *install_expect
       - *deploy_to_staging
       - slack/notify:
@@ -287,8 +253,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - attach_workspace:
-          at: /tmp/workspace
       - *install_expect
       - *deploy_to_production
       - slack/notify:
