@@ -42,7 +42,7 @@ group :test do
   gem "capybara", ">= 3.35.3"
   gem "capybara-screenshot"
   gem "capybara-selenium"
-  gem "i18n-tasks", "~> 1.0.10"
+  gem "i18n-tasks", "~> 1.0.12"
   gem "rails-controller-testing", ">= 1.0.5"
   gem "selenium-webdriver", "~> 4.1.0"
   gem "shoulda-matchers"
