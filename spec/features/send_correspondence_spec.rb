@@ -59,7 +59,7 @@ feature "Submit a general enquiry" do
     expect(search_page.self_service_ga_events.size).to eq 4
   end
 
-  scenario "Using valid inputs", js: true do
+  scenario "Using valid inputs", with_csrf_protection: true, js: true do
     topic_page.load
     expect(topic_page.title).to eq "Topic search - Contact the Ministry of Justice"
     topic_page.search_govuk(topic_with_results)
