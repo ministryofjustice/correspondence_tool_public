@@ -1,5 +1,5 @@
 class SentryContextProvider
-  def self.set_context(controller = nil)
+  def self.set_context(_controller = nil)
     Sentry.set_extras(
       host_environment: ENV["ENV"] || "Not set",
       build_date: ENV["APP_BUILD_DATE"],
