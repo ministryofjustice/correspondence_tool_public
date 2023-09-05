@@ -10,7 +10,6 @@ require "spec_helper"
 require "rspec/rails"
 require "capybara/rails"
 require "capybara/rspec"
-require "webdrivers"
 
 Capybara.asset_host = "http://localhost:3000"
 
@@ -28,7 +27,7 @@ Capybara.register_driver :headless_chrome do |app|
     options.add_argument("--window-size=1980,2080")
     options.add_argument("--enable-features=NetworkService,NetworkServiceInProcess")
   end
-  Capybara::Selenium::Driver.new(app, browser: :chrome, capabilities: options)
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options:)
 end
 
 Capybara.default_max_wait_time = 4
