@@ -49,7 +49,7 @@ group :test do
   gem "selenium-webdriver", "~> 4.1.0"
   gem "shoulda-matchers"
   gem "simplecov", "~> 0.21.2"
-  gem "site_prism", "~> 3.7"
+  gem "site_prism", "~> 4.0"
   gem "timecop", "~> 0.9"
 end
 
