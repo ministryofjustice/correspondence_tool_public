@@ -38,7 +38,6 @@ gem "stopwords-filter2", require: "stopwords"
 # Alpine does not include zoneinfo files (probably) - it asked for tinfo-data, so bundle the tzinfo-data gem
 gem "tzinfo-data"
 gem "uglifier", ">= 1.3.0"
-gem "webdrivers", "~> 5.0"
 
 group :test do
   gem "capybara", ">= 3.35.3"

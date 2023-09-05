@@ -10,7 +10,6 @@ require "spec_helper"
 require "rspec/rails"
 require "capybara/rails"
 require "capybara/rspec"
-require "webdrivers"
 
 Capybara.asset_host = "http://localhost:3000"
 
