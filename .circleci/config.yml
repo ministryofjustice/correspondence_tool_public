@@ -75,7 +75,8 @@ references:
       name: Install dependencies
       command: |
         if [ "${CIRCLE_NODE_INDEX}" == "0" ]; then
-          bundle config deployment true || bundle check || bundle install
+          bundle config deployment true
+          bundle check || bundle install || bundle clean
         fi
 
   save_cache: &save_cache
