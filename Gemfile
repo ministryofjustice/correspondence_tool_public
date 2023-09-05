@@ -21,7 +21,7 @@ gem "listen", "~> 3.8.0"
 gem "logstasher"
 gem "mail", ">= 2.8"
 gem "mechanize", "~> 2.8"
-gem "pg", "~> 1.3"
+gem "pg", "~> 1.5"
 gem "prometheus_exporter"
 gem "puma", "~> 5.6"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
