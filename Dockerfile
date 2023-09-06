@@ -13,10 +13,10 @@ WORKDIR /usr/src/app
 RUN apk -U upgrade
 
 COPY Gemfile* ./
-RUN gem install bundler -v 2.4.13
-RUN bundle config --global frozen 1 && \
-    bundle config --path=vendor/bundle && \
-    bundle install --without development test
+RUN gem install bundler -v 2.4.19
+RUN bundle config deployment true && \
+    bundle config without development test && \
+    bundle install --jobs 4 --retry 3
 
 COPY . .
 
