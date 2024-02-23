@@ -22,6 +22,11 @@ COPY . .
 
 RUN RAILS_ENV=production bundle exec rake assets:clean assets:precompile SECRET_KEY_BASE=required_but_does_not_matter_for_assets
 
+# Copy fonts and images (without digest) along with the digested ones,
+# as there are some hardcoded references in the `govuk-frontend` files
+# that will not be able to use the rails digest mechanism.
+RUN cp -r node_modules/govuk-frontend/dist/govuk/assets/. public/assets/
+
 # non-root/appuser should own only what they need to
 RUN chown -R appuser:appgroup ./*
 RUN chmod +x /usr/src/app/config/docker/*
