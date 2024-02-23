@@ -36,3 +36,5 @@ config/secrets.yml
 
 # ignore local coverage files
 /coverage/*
+
+node_modules
