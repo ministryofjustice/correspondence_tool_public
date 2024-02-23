@@ -28,7 +28,6 @@ gem "puma", "~> 5.6"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 6.1", ">= 6.1.7.3"
 gem "responders", "~> 3.0", ">= 3.0.1"
-gem "sass-rails", "~> 6.0", ">= 6.0.0"
 gem "sentry-rails"
 gem "sentry-ruby"
 gem "sidekiq", "~> 6.4"
@@ -41,9 +40,8 @@ gem "tzinfo-data"
 gem "uglifier", ">= 1.3.0"
 
 group :test do
-  gem "capybara", ">= 3.35.3"
+  gem "capybara"
   gem "capybara-screenshot"
-  gem "capybara-selenium"
   gem "i18n-tasks", "~> 1.0.12"
   gem "rails-controller-testing", ">= 1.0.5"
   gem "selenium-webdriver", "~> 4.12.0"
