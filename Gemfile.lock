@@ -386,6 +386,8 @@ GEM
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
+    sass-rails (6.0.0)
+      sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -482,7 +484,7 @@ DEPENDENCIES
   binding_of_caller
   bootsnap (>= 1.1.0)
   brakeman
-  capybara
+  capybara (>= 3.35.3)
   capybara-screenshot
   config
   curb (~> 1.0, >= 1.0.5)
@@ -512,7 +514,7 @@ DEPENDENCIES
   responders (~> 3.0, >= 3.0.1)
   rspec-rails (~> 5.1)
   rubocop-govuk
-  sassc-rails
+  sass-rails (~> 6.0, >= 6.0.0)
   selenium-webdriver (~> 4.12.0)
   sentry-rails
   sentry-ruby
