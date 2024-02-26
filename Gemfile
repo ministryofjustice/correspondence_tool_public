@@ -28,6 +28,7 @@ gem "puma", "~> 5.6"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 6.1", ">= 6.1.7.3"
 gem "responders", "~> 3.0", ">= 3.0.1"
+gem "sassc-rails"
 gem "sentry-rails"
 gem "sentry-ruby"
 gem "sidekiq", "~> 6.4"
