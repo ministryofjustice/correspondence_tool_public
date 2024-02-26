@@ -53,4 +53,5 @@
 @import "moj/govuk_overrides";
 //@import "moj/autocomplete";
 
+$govuk-assets-path: '/assets/govuk-frontend/dist/govuk/assets/';
 @import "govuk-frontend/dist/govuk/all";
