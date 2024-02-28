@@ -4,7 +4,7 @@ RUN addgroup --gid 1000 --system appgroup && \
     adduser --uid 1000 --system appuser --ingroup appgroup
 
 # Note: .ruby-gemdeps libc-dev gcc libxml2-dev libxslt-dev make postgresql-dev build-base curl-dev with bundle install issues.
-RUN apk add --no-cache --virtual .ruby-gemdeps libc-dev gcc libxml2-dev libxslt-dev make postgresql-dev build-base curl-dev git nodejs zip postgresql-client runit
+RUN apk add --no-cache --virtual .ruby-gemdeps libc-dev gcc libxml2-dev libxslt-dev make postgresql-dev build-base curl-dev git nodejs zip postgresql-client runit yarn
 
 # set WORKDIR
 RUN mkdir -p /usr/src/app && mkdir -p /usr/src/app/tmp
@@ -17,6 +17,10 @@ RUN gem install bundler -v 2.4.19
 RUN bundle config deployment true && \
     bundle config without development test && \
     bundle install --jobs 4 --retry 3
+
+# Install node packages defined in package.json
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile --check-files
 
 COPY . .
 
