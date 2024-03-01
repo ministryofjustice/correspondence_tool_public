@@ -1,5 +1,5 @@
 #global-header .header-wrapper {
-  max-width: 960px; 
+  max-width: 960px;
   .header-global {
     width: 33%;
     float: left;
@@ -37,6 +37,18 @@ strong {
   margin-bottom: 0;
 }
 
-a.button:link {
-  color: #fff;
+a:link {
+  color: #005ea5
+}
+
+a:visited {
+  color: #4c2c92
+}
+
+a:hover {
+  color: #2b8cc4
+}
+
+a:active {
+  color: #2b8cc4
 }

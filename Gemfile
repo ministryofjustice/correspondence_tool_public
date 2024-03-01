@@ -8,6 +8,7 @@ gem "bootsnap", ">= 1.1.0", require: false
 gem "config"
 gem "curb", "~> 1.0", ">= 1.0.5"
 gem "foreman", "~> 0.87.2" # Used in dev & production
+gem "govuk-components"
 gem "govuk_elements_form_builder", "0.1.1"
 gem "govuk_elements_rails", "2.2.1"
 gem "govuk_frontend_toolkit", "9.0.1"
@@ -42,7 +43,6 @@ gem "uglifier", ">= 1.3.0"
 group :test do
   gem "capybara", ">= 3.35.3"
   gem "capybara-screenshot"
-  gem "capybara-selenium"
   gem "i18n-tasks", "~> 1.0.12"
   gem "rails-controller-testing", ">= 1.0.5"
   gem "selenium-webdriver", "~> 4.12.0"
