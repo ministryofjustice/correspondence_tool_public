@@ -146,7 +146,7 @@ references:
       command: |
         prefix="cmoj"
         short_version=$(git rev-parse --short ${CIRCLE_BRANCH})
-        branch=$(sed -r 's/[\/]+/-/g') # replace / with -
+        branch=$(${CIRCLE_BRANCH} | sed -r 's/[\/]+/-/g') # replace / with -
         build_tag=$prefix-$branch-$short_version
 
         echo "export BUILD_TAG=$build_tag" >> $BASH_ENV
