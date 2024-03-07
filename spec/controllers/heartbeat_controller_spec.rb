@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe HeartbeatController, type: :controller do
   describe "ping and heartbeat do not force ssl" do
     before do
-      allow(Rails).to receive(:env).and_return(double(development?: false, production?: true))  # rubocop:disable RSpec/VerifiedDoubles
+      allow(Rails).to receive(:env).and_return(double(development?: false, production?: true)) # rubocop:disable RSpec/VerifiedDoubles
     end
 
     it "ping endpoint" do
