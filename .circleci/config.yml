@@ -145,8 +145,8 @@ references:
       name: Create build tag
       command: |
         prefix="cmoj"
-        short_version=$(git rev-parse --short ${CIRCLE_BRANCH})
-        branch=$(${CIRCLE_BRANCH} | sed -r 's/[\/]+/-/g') # replace / with -
+        short_version=$(git rev-parse --short $CIRCLE_BRANCH)
+        branch=$(echo $CIRCLE_BRANCH | sed -r 's/[\/]+/-/g') # replace / with -
         build_tag=$prefix-$branch-$short_version
 
         echo "export BUILD_TAG=$build_tag" >> $BASH_ENV
