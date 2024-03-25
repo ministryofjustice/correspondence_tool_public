@@ -24,7 +24,7 @@ gem "mail", ">= 2.8"
 gem "mechanize", "~> 2.8"
 gem "pg", "~> 1.3"
 gem "prometheus_exporter"
-gem "puma", "~> 5.6"
+gem "puma", "~> 6.4"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 6.1", ">= 6.1.7.3"
 gem "responders", "~> 3.0", ">= 3.0.1"
