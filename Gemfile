@@ -47,7 +47,7 @@ group :test do
   gem "rails-controller-testing", ">= 1.0.5"
   gem "selenium-webdriver", "~> 4.12.0"
   gem "shoulda-matchers"
-  gem "simplecov", "~> 0.21.2"
+  gem "simplecov", "~> 0.22.0"
   gem "site_prism", "~> 4.0"
   gem "timecop", "~> 0.9"
 end
