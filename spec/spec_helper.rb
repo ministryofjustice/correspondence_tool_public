@@ -1,5 +1,7 @@
 require "simplecov"
-SimpleCov.start "rails"
+SimpleCov.start "rails" do
+  add_filter %r{^/lib/}
+end
 
 require "capybara/rspec"
 require "capybara-screenshot/rspec"
