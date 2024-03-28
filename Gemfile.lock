@@ -528,7 +528,7 @@ DEPENDENCIES
   sentry-ruby
   shoulda-matchers
   sidekiq (~> 6.5)
-  simplecov (~> 0.22.0)
+  simplecov
   site_prism (~> 4.0)
   slim-rails (~> 3.6)
   spring
