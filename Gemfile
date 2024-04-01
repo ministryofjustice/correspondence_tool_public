@@ -33,7 +33,7 @@ gem "sentry-rails"
 gem "sentry-ruby"
 gem "sidekiq", "~> 6.5"
 gem "slim-rails", "~> 3.6"
-gem "sprockets", "~> 3.7.2"
+gem "sprockets", "~> 3.7.3"
 # Used for the GOVUK Search API
 gem "stopwords-filter2", require: "stopwords"
 # Alpine does not include zoneinfo files (probably) - it asked for tinfo-data, so bundle the tzinfo-data gem
