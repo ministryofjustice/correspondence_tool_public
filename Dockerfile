@@ -4,8 +4,11 @@ FROM ruby:3.2.3-alpine as builder
 RUN apk add --no-cache \
     build-base \
     postgresql-dev \
+    curl-dev \
     tzdata \
     yarn
+
+# RUN apk add --no-cache libc-dev gcc libxml2-dev libxslt-dev make postgresql-dev build-base curl-dev git nodejs zip postgresql-client runit yarn
 
 WORKDIR /app
 
