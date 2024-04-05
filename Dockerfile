@@ -44,7 +44,7 @@ FROM ruby:3.2.3-alpine
 WORKDIR /app
 
 # libpq: required to run postgres, tzdata: required to set timezone, nodejs: JS runtime
-RUN apk add --no-cache libpq tzdata nodejs
+RUN apk add --no-cache libpq tzdata nodejs curl-dev
 
 # add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup && \
