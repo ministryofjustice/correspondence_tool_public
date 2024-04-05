@@ -1,4 +1,4 @@
-FROM ruby:3.2.2-alpine
+FROM ruby:3.2.3-alpine
 
 RUN addgroup --gid 1000 --system appgroup && \
     adduser --uid 1000 --system appuser --ingroup appgroup
