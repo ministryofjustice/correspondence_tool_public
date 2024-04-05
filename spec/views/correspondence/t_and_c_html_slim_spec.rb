@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "correspondence/t_and_c.html.slim" do
+describe "correspondence/t_and_c" do
   it "displays the t and c page" do
     render
 
