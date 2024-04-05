@@ -4,7 +4,6 @@ SimpleCov.start "rails" do
 end
 
 require "capybara/rspec"
-require "capybara-screenshot/rspec"
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
