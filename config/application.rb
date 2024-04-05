@@ -19,6 +19,8 @@ Bundler.require(*Rails.groups)
 
 module CorrespondenceToolPublic
   class Application < Rails::Application
+    config.load_defaults 5.0
+
     # Use AES-256-GCM authenticated encryption for encrypted cookies.
     # Also, embed cookie expiry in signed or encrypted cookies for increased security.
     #
