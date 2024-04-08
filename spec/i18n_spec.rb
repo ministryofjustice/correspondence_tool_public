@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-
+require "spec_helper"
 require "i18n/tasks"
 
 RSpec.describe "I18n" do
