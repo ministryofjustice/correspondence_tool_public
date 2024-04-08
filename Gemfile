@@ -12,18 +12,15 @@ gem "govuk_elements_rails", "2.2.1"
 gem "govuk_frontend_toolkit", "9.0.1"
 gem "govuk_notify_rails", ">= 2.1.2"
 gem "govuk_template", "~> 0.26.0"
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem "jbuilder", "~> 2.11"
 gem "jquery-rails", ">= 4.4.0"
 gem "jsonb_accessor", "~> 1.3.4"
-gem "listen", "~> 3.8.0"
 gem "logstasher"
 gem "mail", ">= 2.8"
 gem "mechanize", "~> 2.8"
 gem "pg", "~> 1.5"
 gem "prometheus_exporter"
-gem "puma", "~> 6.4"
-gem "rails", "~> 7.0.0"
+gem "puma"
+gem "rails", "~> 7.0"
 gem "responders", "~> 3.0", ">= 3.0.1"
 gem "sass-rails", "~> 6.0", ">= 6.0.0"
 gem "sentry-rails"
@@ -34,27 +31,27 @@ gem "sprockets", "~> 3.7.2"
 # Used for the GOVUK Search API
 gem "stopwords-filter2", require: "stopwords"
 # Alpine does not include zoneinfo files (probably) - it asked for tinfo-data, so bundle the tzinfo-data gem
+gem "terser"
 gem "tzinfo-data"
-gem "uglifier", ">= 1.3.0"
 
 group :test do
   gem "capybara", ">= 3.35.3"
-  gem "i18n-tasks", "~> 1.0.12"
+  gem "i18n-tasks"
   gem "rails-controller-testing", ">= 1.0.5"
-  gem "selenium-webdriver", "~> 4.12.0"
+  gem "selenium-webdriver"
   gem "shoulda-matchers"
   gem "simplecov"
   gem "site_prism", "~> 4.0"
-  gem "timecop", "~> 0.9"
+  gem "timecop"
 end
 
 group :development, :test do
   gem "awesome_print", "~> 1.7"
   gem "brakeman"
-  gem "debug", ">= 1.0.0"
-  gem "factory_bot_rails", ">= 6.2.0"
+  gem "debug"
+  gem "factory_bot_rails"
   gem "faker"
-  gem "rspec-rails", "~> 5.1"
+  gem "rspec-rails"
   gem "rubocop-govuk", require: false
 end
 
