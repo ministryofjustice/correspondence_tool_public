@@ -74,7 +74,7 @@ RSpec.describe Correspondence, type: :model do
     it do
       expect(correspondence).to validate_presence_of(:topic)
           .with_message(
-            "Please tell us what your query is about.",
+            "can't be blank",
           )
     end
 

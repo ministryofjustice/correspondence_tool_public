@@ -11,7 +11,6 @@
 #
 
 class Correspondence < ApplicationRecord
-  # i18n-tasks-use t('activerecord.errors.models.correspondence.attributes.topic.blank')
   attr_readonly :uuid
 
   validates :name,

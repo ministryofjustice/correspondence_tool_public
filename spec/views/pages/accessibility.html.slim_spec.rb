@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "pages/accessibility.html.slim", type: :view do
+RSpec.describe "pages/accessibility", type: :view do
   it "displays the creators email address" do
     render
 

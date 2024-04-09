@@ -30,7 +30,7 @@ feature "Submit service feedback" do
   scenario "Without a rating for ease of use or completeness" do
     visit feedback_path
     click_button "Send"
-    expect(page).to have_content("This online service was easy to use please select one option")
-    expect(page).to have_content("The online service enabled me to give all the relevant information please select one option")
+    expect(page).to have_content("This online service was easy to use Ease of use is not included in the list")
+    expect(page).to have_content("The online service enabled me to give all the relevant information Completeness is not included in the list")
   end
 end
