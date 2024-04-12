@@ -39,6 +39,9 @@ module CorrespondenceToolPublic
     # Don't generate system test files.
     config.generators.system_tests = nil
 
+    # Protect from open redirect attacks in `redirect_back_or_to` and `redirect_to`.
+    Rails.application.config.action_controller.raise_on_open_redirects = false
+
     ActionView::Base.default_form_builder = GovukElementsFormBuilder::FormBuilder
   end
 end
