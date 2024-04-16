@@ -6,4 +6,4 @@ staging:
   :concurrency: 10
 :logfile: ./log/sidekiq.log
 :queues:
-  - mailers
+  - default
