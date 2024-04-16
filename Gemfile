@@ -25,7 +25,7 @@ gem "responders", "~> 3.0", ">= 3.0.1"
 gem "sass-rails", "~> 6.0", ">= 6.0.0"
 gem "sentry-rails"
 gem "sentry-ruby"
-gem "sidekiq", "~> 6.5"
+gem "sidekiq"
 gem "slim-rails", "~> 3.6"
 gem "sprockets", "~> 3.7.2"
 # Used for the GOVUK Search API
