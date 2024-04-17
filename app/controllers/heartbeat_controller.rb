@@ -20,7 +20,10 @@ class HeartbeatController < ApplicationController
       sidekiq: sidekiq_alive?,
     }
 
-    status = :bad_gateway unless checks.values.all?
+    unless checks.values.all?
+      status = :bad_gateway
+      Sentry.capture_message(checks)
+    end
     render status:, json: {
       checks:,
     }

@@ -67,6 +67,11 @@ RSpec.describe HeartbeatController, type: :controller do
                                                 redis: false,
                                                 sidekiq: false } }.to_json)
       end
+
+      it "sends report to Sentry" do
+        expect(Sentry).to receive(:capture_message)
+        get :healthcheck
+      end
     end
 
     context "when everything is ok" do
