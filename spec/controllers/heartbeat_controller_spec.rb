@@ -59,7 +59,7 @@ RSpec.describe HeartbeatController, type: :controller do
       end
 
       it "returns status bad gateway" do
-        expect(response.status).to eq(502)
+        expect(response.status).to eq(503)
       end
 
       it "returns the expected response report" do
