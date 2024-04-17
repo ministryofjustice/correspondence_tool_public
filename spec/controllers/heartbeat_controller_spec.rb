@@ -41,7 +41,7 @@ RSpec.describe HeartbeatController, type: :controller do
     context "when a problem exists" do
       before do
         allow(ActiveRecord::Base.connection)
-            .to receive(:active?).and_raise(PG::ConnectionBad)
+            .to receive(:execute).and_raise(PG::ConnectionBad)
         allow(Sidekiq::ProcessSet)
             .to receive(:new).and_return(instance_double(Sidekiq::ProcessSet, size: 0))
 
@@ -70,7 +70,7 @@ RSpec.describe HeartbeatController, type: :controller do
 
     context "when everything is ok" do
       before do
-        allow(ActiveRecord::Base.connection).to receive(:active?).and_return(true)
+        allow(ActiveRecord::Base.connection).to receive(:execute).and_return(true)
 
         connection = double("connection", info: {}) # rubocop:disable RSpec/VerifiedDoubles
         allow(Sidekiq).to receive(:redis).and_yield(connection)

@@ -50,7 +50,7 @@ private
   end
 
   def database_alive?
-    ActiveRecord::Base.connection.active?
+    ActiveRecord::Base.connection.execute("select 1 as result")
   rescue StandardError => e
     log_unknown_error(e)
     false
