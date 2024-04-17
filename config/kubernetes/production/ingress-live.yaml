@@ -4,8 +4,8 @@ metadata:
   name: contact-moj-ingress
   namespace: contact-moj-production
   annotations:
-    # This forces all error pages to be server from the application
-    nginx.ingress.kubernetes.io/custom-http-errors: "418"
+    # This forces all 503 error page to be served from the application
+    nginx.ingress.kubernetes.io/custom-http-errors: "503"
     external-dns.alpha.kubernetes.io/set-identifier: contact-moj-ingress-contact-moj-production-green
     external-dns.alpha.kubernetes.io/aws-weight: "100"
 spec:
