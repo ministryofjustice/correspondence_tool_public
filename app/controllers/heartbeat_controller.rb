@@ -21,7 +21,7 @@ class HeartbeatController < ApplicationController
     }
 
     unless checks.values.all?
-      status = :service_unavailable
+      status = :internal_server_error
       Sentry.capture_message(checks.to_s)
     end
     render status:, json: {
