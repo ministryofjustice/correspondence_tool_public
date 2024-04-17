@@ -59,13 +59,18 @@ RSpec.describe HeartbeatController, type: :controller do
       end
 
       it "returns status bad gateway" do
-        expect(response.status).to eq(502)
+        expect(response.status).to eq(503)
       end
 
       it "returns the expected response report" do
         expect(response.body).to eq({ checks: { database: false,
                                                 redis: false,
                                                 sidekiq: false } }.to_json)
+      end
+
+      it "sends report to Sentry" do
+        expect(Sentry).to receive(:capture_message)
+        get :healthcheck
       end
     end
 
