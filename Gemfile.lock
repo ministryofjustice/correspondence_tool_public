@@ -547,7 +547,7 @@ DEPENDENCIES
   simplecov
   site_prism (~> 4.0)
   slim-rails (~> 3.6)
-  sprockets (~> 3.7.2)
+  sprockets (~> 3.7.3)
   stopwords-filter2
   terser
   timecop
