@@ -1,5 +1,3 @@
-require "correspondence"
-
 class CorrespondenceMailer < GovukNotifyRails::Mailer
   def new_correspondence(correspondence)
     set_template(Settings.new_correspondence_notify_template)

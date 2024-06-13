@@ -20,9 +20,6 @@ correspondence_message_max_length: 5000
 # Variables below are meant to be over-ridden in non-local environments (dev,
 # staging, prod) with correct values. The values below are place-holders.
 
-sendgrid_username: sendgrid
-sendgrid_password: password
-
 correspondence_email_from: correspondence_tool@localhost
 general_enquiries_email: general_enquiries@localhost
 freedom_of_information_request_email: foi_request@localhost

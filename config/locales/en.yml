@@ -20,24 +20,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  activerecord:
-    errors:
-      models:
-        feedback:
-          attributes:
-            ease_of_use:
-              inclusion: please select one option
-            completeness:
-              inclusion: please select one option
-        correspondence:
-          attributes:
-            topic:
-              blank: Please tell us what your query is about.
-    attributes:
-      feedback:
-        ease_of_use: This online service was easy to use
-        completeness: The online service enabled me to give all the relevant information
-
   date:
     formats:
       default: "%d/%m/%Y"

@@ -36,8 +36,8 @@ describe GovUkSearchApi::Response do
       let(:ri_2) { "Result item 2" }
 
       before do
-        allow(GovUkSearchApi::ResultItem).to receive(:new).with("item_1_key_1" => "item_1_value_1").and_return(ri_1)
-        allow(GovUkSearchApi::ResultItem).to receive(:new).with("item_2_key_1" => "item_2_value_1").and_return(ri_2)
+        allow(GovUkSearchApi::ResultItem).to receive(:new).with({ "item_1_key_1" => "item_1_value_1" }).and_return(ri_1)
+        allow(GovUkSearchApi::ResultItem).to receive(:new).with({ "item_2_key_1" => "item_2_value_1" }).and_return(ri_2)
       end
 
       describe "#result_items" do

@@ -36,20 +36,14 @@ RSpec.describe HeartbeatController, type: :controller do
     before do
       allow(Sidekiq::ProcessSet)
           .to receive(:new).and_return(instance_double(Sidekiq::ProcessSet, size: 1))
-      allow(Sidekiq::RetrySet)
-          .to receive(:new).and_return(instance_double(Sidekiq::RetrySet, size: 0))
-      allow(Sidekiq::DeadSet)
-          .to receive(:new).and_return(instance_double(Sidekiq::DeadSet, size: 0))
     end
 
     context "when a problem exists" do
       before do
         allow(ActiveRecord::Base.connection)
-            .to receive(:active?).and_raise(PG::ConnectionBad)
+            .to receive(:execute).and_raise(PG::ConnectionBad)
         allow(Sidekiq::ProcessSet)
             .to receive(:new).and_return(instance_double(Sidekiq::ProcessSet, size: 0))
-        allow(Sidekiq::DeadSet)
-            .to receive(:new).and_return(instance_double(Sidekiq::DeadSet, size: 1))
 
         connection = double("connection") # rubocop:disable RSpec/VerifiedDoubles
         allow(connection).to receive(:info).and_raise(Redis::CannotConnectError)
@@ -59,7 +53,7 @@ RSpec.describe HeartbeatController, type: :controller do
       end
 
       it "returns status bad gateway" do
-        expect(response.status).to eq(502)
+        expect(response.status).to eq(500)
       end
 
       it "returns the expected response report" do
@@ -67,11 +61,16 @@ RSpec.describe HeartbeatController, type: :controller do
                                                 redis: false,
                                                 sidekiq: false } }.to_json)
       end
+
+      it "sends report to Sentry" do
+        expect(Sentry).to receive(:capture_message).with(String)
+        get :healthcheck
+      end
     end
 
     context "when everything is ok" do
       before do
-        allow(ActiveRecord::Base.connection).to receive(:active?).and_return(true)
+        allow(ActiveRecord::Base.connection).to receive(:execute).and_return(true)
 
         connection = double("connection", info: {}) # rubocop:disable RSpec/VerifiedDoubles
         allow(Sidekiq).to receive(:redis).and_yield(connection)

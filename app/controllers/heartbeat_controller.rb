@@ -14,13 +14,18 @@ class HeartbeatController < ApplicationController
   end
 
   def healthcheck
+    @errors = []
+
     checks = {
       database: database_alive?,
       redis: redis_alive?,
       sidekiq: sidekiq_alive?,
     }
 
-    status = :bad_gateway unless checks.values.all?
+    unless checks.values.all?
+      status = :internal_server_error
+      Sentry.capture_message("HealthCheck failed: #{@errors}")
+    end
     render status:, json: {
       checks:,
     }
@@ -31,28 +36,27 @@ private
   def redis_alive?
     Sidekiq.redis(&:info)
     true
-  rescue StandardError
+  rescue StandardError => e
+    log_unknown_error(e)
     false
   end
 
   def sidekiq_alive?
     ps = Sidekiq::ProcessSet.new
     !ps.size.zero? # rubocop:disable Style/ZeroLengthPredicate
-  rescue StandardError
-    false
-  end
-
-  def sidekiq_queue_healthy?
-    dead = Sidekiq::DeadSet.new
-    retries = Sidekiq::RetrySet.new
-    dead.size.zero? && retries.size.zero? # rubocop:disable Style/ZeroLengthPredicate
-  rescue StandardError
+  rescue StandardError => e
+    log_unknown_error(e)
     false
   end
 
   def database_alive?
-    ActiveRecord::Base.connection.active?
-  rescue PG::ConnectionBad
+    ActiveRecord::Base.connection.execute("select 1 as result")
+  rescue StandardError => e
+    log_unknown_error(e)
     false
+  end
+
+  def log_unknown_error(error)
+    @errors << "Error: #{error.message}\nDetails:#{error.backtrace}"
   end
 end

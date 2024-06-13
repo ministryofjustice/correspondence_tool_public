@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "correspondence/confirmation.html.slim" do
+describe "correspondence/confirmation" do
   it "displays the creators email address" do
     item = create :correspondence, email: "person@example.com"
     assign(:correspondence, item)
