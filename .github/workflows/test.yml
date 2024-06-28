@@ -38,6 +38,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+        run: libcurl4-openssl-dev
 
       - name: Setup Node
         uses: actions/setup-node@v4
