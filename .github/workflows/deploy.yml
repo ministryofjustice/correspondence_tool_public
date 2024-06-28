@@ -5,7 +5,7 @@ on:
   workflow_call:
 
 env:
-  PREFIX: "ct-moj"
+  PREFIX: "ct-public"
   SHA: ${{ github.event.pull_request.head.sha || github.sha }}
 
 concurrency:
