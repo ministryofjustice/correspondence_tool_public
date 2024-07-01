@@ -224,6 +224,7 @@ GEM
       pg (>= 0.18.1)
     jwt (2.4.1)
     language_server-protocol (3.17.0.3)
+    logger (1.6.0)
     logstasher (2.1.5)
       activesupport (>= 5.2)
       request_store
@@ -351,8 +352,8 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
-    rexml (3.2.8)
-      strscan (>= 3.0.9)
+    rexml (3.3.1)
+      strscan
     rouge (4.2.1)
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
@@ -423,7 +424,9 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.12.0)
+    selenium-webdriver (4.22.0)
+      base64 (~> 0.2)
+      logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
