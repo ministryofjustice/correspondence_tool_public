@@ -254,7 +254,7 @@ GEM
     mime-types-data (3.2022.0105)
     mini_mime (1.1.5)
     mini_portile2 (2.8.7)
-    minitest (5.23.1)
+    minitest (5.24.1)
     msgpack (1.5.2)
     mutex_m (0.2.0)
     net-http-digest_auth (1.4.1)
@@ -348,9 +348,9 @@ GEM
       io-console (~> 0.5)
     request_store (1.5.1)
       rack (>= 1.4)
-    responders (3.0.1)
-      actionpack (>= 5.0)
-      railties (>= 5.0)
+    responders (3.1.1)
+      actionpack (>= 5.2)
+      railties (>= 5.2)
     rexml (3.2.8)
       strscan (>= 3.0.9)
     rouge (4.2.1)
@@ -535,7 +535,7 @@ DEPENDENCIES
   puma
   rails (~> 7.0)
   rails-controller-testing (>= 1.0.5)
-  responders (~> 3.0, >= 3.0.1)
+  responders (~> 3.1)
   rspec-rails
   rubocop-govuk
   sass-rails (~> 6.0, >= 6.0.0)
