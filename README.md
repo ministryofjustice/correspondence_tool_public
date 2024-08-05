@@ -99,7 +99,7 @@ API key.
 
 ### Sidekiq
 
-Email requests are put in a sidekiq queue and then processed in turn and sent to GOV.UK Notify.
+Email requests are put in a queue and then processed by Sidekiq in turn and sent to GOV.UK Notify.
 
 ## Exceptions
 Any exceptions raised in any deployed environment will be sent to [Sentry](https://ministryofjustice.sentry.io/projects/contact-moj).
