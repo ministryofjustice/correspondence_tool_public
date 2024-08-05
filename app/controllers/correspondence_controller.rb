@@ -56,10 +56,7 @@ class CorrespondenceController < ApplicationController
 private
 
   def category_attribute
-    case params[:smoke_test]
-    when "true" then "smoke_test"
-    else "general_enquiries"
-    end
+    "general_enquiries"
   end
 
   def correspondence_params
@@ -68,7 +65,6 @@ private
       :email,
       :topic,
       :message,
-      :smoke_test,
       :contact_requested,
     ).merge({ category: category_attribute })
   end

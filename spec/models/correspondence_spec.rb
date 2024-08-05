@@ -27,10 +27,8 @@ RSpec.describe Correspondence, type: :model do
 
   it { is_expected.to be_valid }
 
-  describe "each category except smoke_test" do
+  describe "each category" do
     Settings.correspondence_categories.each do |category|
-      next if category == "smoke_test"
-
       it "has a specific email address associated" do
         expect(Settings["#{category}_email"]).not_to be nil
       end
