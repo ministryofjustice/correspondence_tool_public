@@ -139,20 +139,6 @@ RSpec.describe CorrespondenceController, type: :controller do
       expect(assigns(:correspondence).category).to eq "general_enquiries"
     end
 
-    context "with smoke_test form field set to true" do
-      let(:params) do
-        {
-          correspondence: correspondence_params,
-          smoke_test: true,
-        }
-      end
-
-      it "sets the category to smoke_test" do
-        post(:create, params:)
-        expect(assigns(:correspondence).category).to eq "smoke_test"
-      end
-    end
-
     context "with invalid params" do
       let(:correspondence_params) do
         {

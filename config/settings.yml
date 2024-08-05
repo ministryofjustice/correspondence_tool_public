@@ -5,7 +5,6 @@ moj_home_page: https://www.gov.uk/government/organisations/ministry-of-justice
 correspondence_categories:
   - general_enquiries
   - freedom_of_information_request
-  - smoke_test
 
 feedback_options:
   - strongly_agree
@@ -23,17 +22,6 @@ correspondence_message_max_length: 5000
 correspondence_email_from: correspondence_tool@localhost
 general_enquiries_email: general_enquiries@localhost
 freedom_of_information_request_email: foi_request@localhost
-
-smoke_tests:
-  protocol: !ruby/symbol pop3
-  server: 'pop3.local'
-  port: 995
-  ssl: true
-  username: 'moj.aaq.smoketest@gmail.com'
-  password: 'password'
-  site_url: 'http://localhost:3000'
-  first_read_wait: 3
-  max_wait_time: 1800
 aaq_feedback_email: feedback@localhost
 aaq_email_url: http://localhost:3000
 

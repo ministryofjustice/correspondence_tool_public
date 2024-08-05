@@ -1,0 +1,10 @@
+*.log
+*.dev
+.git*
+log
+tmp
+coverage
+.github
+node_modules
+spec
+README.md

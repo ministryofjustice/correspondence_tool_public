@@ -10,24 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[6.1].define(version: 2017_04_12_140235) do
-
+ActiveRecord::Schema[7.1].define(version: 2017_04_12_140235) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "correspondence", id: :serial, force: :cascade do |t|
     t.jsonb "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "uuid"
-    t.datetime "authenticated_at"
+    t.datetime "authenticated_at", precision: nil
     t.index ["uuid"], name: "index_correspondence_on_uuid", unique: true
   end
 
   create_table "feedback", id: :serial, force: :cascade do |t|
     t.jsonb "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
 end
