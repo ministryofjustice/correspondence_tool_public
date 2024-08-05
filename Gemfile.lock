@@ -132,7 +132,7 @@ GEM
     factory_bot_rails (6.4.3)
       factory_bot (~> 6.4)
       railties (>= 5.0.0)
-    faker (2.21.0)
+    faker (3.4.2)
       i18n (>= 1.8.11, < 2)
     ffi (1.16.3)
     globalid (1.2.1)
@@ -468,7 +468,6 @@ GEM
 
 PLATFORMS
   arm64-darwin-23
-  ruby
   x86_64-darwin-19
   x86_64-linux
 
