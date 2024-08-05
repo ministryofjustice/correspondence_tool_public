@@ -3,11 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby file: ".ruby-version"
 
-# Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", ">= 1.1.0", require: false
 gem "config"
 gem "curb", "~> 1.0", ">= 1.0.5"
-gem "foreman", "~> 0.87.2" # Used in dev & production
 gem "govuk-components"
 gem "govuk_elements_form_builder", "0.1.1"
 gem "govuk_elements_rails", "2.2.1"
