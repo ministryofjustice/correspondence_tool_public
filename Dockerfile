@@ -41,6 +41,7 @@ WORKDIR /app
 # libpq: required to run postgres, tzdata: required to set timezone, nodejs: JS runtime
 RUN apk add --no-cache \
     curl \
+    nodejs \
     tzdata \
     postgresql-client
 
