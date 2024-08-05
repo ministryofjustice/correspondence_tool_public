@@ -87,6 +87,8 @@ $ bin/yarn install
 $ bin/rails server
 ```
 
+The site will be accessible at http://localhost:3000.
+
 ## Emails
 
 Emails are sent using the
