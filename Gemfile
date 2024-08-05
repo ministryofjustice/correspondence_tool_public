@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+ruby file: ".ruby-version"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false
 gem "config"
@@ -21,7 +23,7 @@ gem "pg", "~> 1.5"
 gem "prometheus_exporter"
 gem "puma"
 gem "rails", "~> 7.0"
-gem "responders", "~> 3.0", ">= 3.0.1"
+gem "responders", "~> 3.1"
 gem "sass-rails", "~> 6.0", ">= 6.0.0"
 gem "sentry-rails"
 gem "sentry-ruby"
