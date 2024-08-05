@@ -396,10 +396,10 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sentry-rails (5.17.3)
+    sentry-rails (5.18.2)
       railties (>= 5.0)
-      sentry-ruby (~> 5.17.3)
-    sentry-ruby (5.17.3)
+      sentry-ruby (~> 5.18.2)
+    sentry-ruby (5.18.2)
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
     shoulda-matchers (5.3.0)
@@ -468,7 +468,6 @@ GEM
 
 PLATFORMS
   arm64-darwin-23
-  ruby
   x86_64-darwin-19
   x86_64-linux
 
