@@ -97,5 +97,9 @@ this in the production environment ensure that the
 `SETTINGS__GOVUK_NOTIFY_API_KEY` environment variable is set with a production
 API key.
 
+### Sidekiq
+
+Email requests are put in a sidekiq queue and then processed in turn and sent to GOV.UK Notify.
+
 ## Exceptions
 Any exceptions raised in any deployed environment will be sent to [Sentry](https://ministryofjustice.sentry.io/projects/contact-moj).
