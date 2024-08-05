@@ -2,26 +2,21 @@ FROM ruby:3.2.3-alpine as builder
 
 # build dependencies:
 RUN apk add --no-cache \
+    ruby-dev \
     build-base \
     postgresql-dev \
     curl-dev \
     tzdata \
     yarn
 
-# RUN apk add --no-cache libc-dev gcc libxml2-dev libxslt-dev make postgresql-dev build-base curl-dev git nodejs zip postgresql-client runit yarn
-
 WORKDIR /app
 
-COPY Gemfile* .ruby-version ./
+COPY Gemfile* .ruby-version package.json yarn.lock ./
 
-RUN gem install bundler -v 2.4.19
 RUN bundle config deployment true && \
     bundle config without development test && \
-    bundle install --jobs 4 --retry 3
-
-# Install node packages defined in package.json
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile --check-files
+    bundle install --jobs 4 --retry 3 && \
+    yarn install --frozen-lockfile
 
 # Copy all files to /app
 COPY . .
@@ -35,12 +30,7 @@ RUN cp -r node_modules/govuk-frontend/dist/govuk/assets/. public/assets/
 
 # tidy up installation
 RUN rm -rf log/* tmp/* /tmp && \
-    rm -rf /usr/local/bundle/cache && \
-    find /usr/local/bundle/gems -name "*.c" -delete && \
-    find /usr/local/bundle/gems -name "*.h" -delete && \
-    find /usr/local/bundle/gems -name "*.o" -delete && \
-    find /usr/local/bundle/gems -name "*.html" -delete
-
+    rm -rf /usr/local/bundle/cache
 
 # Build runtime image
 FROM ruby:3.2.3-alpine
@@ -49,7 +39,9 @@ FROM ruby:3.2.3-alpine
 WORKDIR /app
 
 # libpq: required to run postgres, tzdata: required to set timezone, nodejs: JS runtime
-RUN apk add --no-cache libpq tzdata nodejs curl-dev
+RUN apk add --no-cache \
+    tzdata \
+    postgresql-client
 
 # add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup && \
@@ -64,9 +56,6 @@ RUN mkdir -p log tmp
 RUN chown -R appuser:appgroup db log tmp
 
 USER 1000
-
-ENV PUMA_PORT 3000
-EXPOSE $PUMA_PORT
 
 # expect/add ping environment variables
 ARG APP_GIT_COMMIT
