@@ -89,6 +89,12 @@ $ bin/rails server
 
 The site will be accessible at http://localhost:3000.
 
+#### Running tests
+
+```
+$ bundle exec rspec
+```
+
 ## Emails
 
 Emails are sent using the
