@@ -40,7 +40,7 @@ group :test do
   gem "selenium-webdriver"
   gem "shoulda-matchers"
   gem "simplecov"
-  gem "site_prism", "~> 4.0"
+  gem "site_prism", "~> 5.0"
   gem "timecop"
 end
 
