@@ -4,7 +4,7 @@ WORKDIR /app
 
 # curl: required in app, tzdata: required to set timezone, nodejs: JS runtime
 RUN apk add --no-cache \
-    curl \
+    curl-dev \
     nodejs \
     tzdata \
     postgresql-client
@@ -18,7 +18,6 @@ FROM base as builder
 RUN apk add --no-cache \
     ruby-dev \
     build-base \
-    curl-dev \
     postgresql-dev \
     yarn
 
