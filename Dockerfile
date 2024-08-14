@@ -18,6 +18,7 @@ FROM base as builder
 RUN apk add --no-cache \
     ruby-dev \
     build-base \
+    curl-dev \
     postgresql-dev \
     yarn
 
