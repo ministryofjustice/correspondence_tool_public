@@ -8,8 +8,11 @@ metadata:
     nginx.ingress.kubernetes.io/auth-secret: app-secrets
     external-dns.alpha.kubernetes.io/set-identifier: contact-moj-ingress-contact-moj-staging-green
     external-dns.alpha.kubernetes.io/aws-weight: "100"
+    nginx.ingress.kubernetes.io/enable-modsecurity: "true"
+    nginx.ingress.kubernetes.io/modsecurity-snippet: |
+      SecRuleEngine On
+      SecDefaultAction "phase:2,pass,log,tag:github_team=central-digital-product-team,tag:namespace=contact-moj-staging"
 spec:
-  ingressClassName: default
   tls:
     - hosts:
         - staging.contact-moj.service.justice.gov.uk
