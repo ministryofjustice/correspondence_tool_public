@@ -1,6 +1,4 @@
 moj.Modules.CharacterCount = {
-
-
   init : function(){
     var self = this;
     // the total number of characters allowed:

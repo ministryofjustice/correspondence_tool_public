@@ -7,10 +7,3 @@ Rails.application.config.assets.version = "1.0"
 # Rails.application.config.assets.paths << Emoji.images_path
 # Add Yarn node_modules folder to the asset load path.
 Rails.application.config.assets.paths << Rails.root.join("node_modules/govuk-frontend/dist/govuk/assets")
-
-# Precompile additional assets.
-# application.js, application.css, and all non-JS/CSS in the app/assets
-# folder are already added.
-# Rails.application.config.assets.precompile += %w( admin.js admin.css )
-Rails.application.config.assets.precompile << %r{fonts/[\w-]+\.(?:eot|svg|ttf|woff2?)$}
-Rails.application.config.assets.precompile << %r{images/[\w-]+\.(?:png|svg|ico)$}

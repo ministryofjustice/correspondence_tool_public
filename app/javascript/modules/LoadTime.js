@@ -1,5 +1,4 @@
 // The following script sends the page load time per page to GA
-
 moj.Modules.LoadTime = {
 
 	labels: {
@@ -19,17 +18,17 @@ moj.Modules.LoadTime = {
 		if(typeof ga === 'undefined') return;
 		var loadTime = this.getLoadTimeSeconds();
 		if(!loadTime || isNaN(loadTime)) return;
-		
+
 		var pageName = this.getPageName();
-		if(!pageName) return;		
-		
+		if(!pageName) return;
+
 		var label = this.labelLoadTime(loadTime);
-		
+
 		this.sendEventToGoogle(pageName, label, loadTime);
 	},
 
 	getLoadTimeSeconds: function() {
-		if(typeof performance === 'undefined' || !performance || !performance.getEntriesByType 
+		if(typeof performance === 'undefined' || !performance || !performance.getEntriesByType
 			|| !performance.getEntriesByType('navigation')[0]) return false;
 
 		return performance.getEntriesByType('navigation')[0].duration / 1000;
@@ -41,9 +40,9 @@ moj.Modules.LoadTime = {
 
 	labelLoadTime: function(loadTime) {
 		with(this)
-			return 	loadTime < 1 ? labels.excellent : 
-						 	loadTime < 2 ? labels.veryGood : 
-						 	loadTime < 3 ? labels.acceptable : 
+			return 	loadTime < 1 ? labels.excellent :
+						 	loadTime < 2 ? labels.veryGood :
+						 	loadTime < 3 ? labels.acceptable :
 						 	loadTime < 5 ? labels.improve : labels.fix;
 	},
 
