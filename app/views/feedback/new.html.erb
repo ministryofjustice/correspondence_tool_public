@@ -1,0 +1,25 @@
+<% content_for :page_title do
+ %><%= ::Temple::Utils.escape_html((t('page_title.feedback_form'))) %>
+
+<% end %><%= ::Temple::Utils.escape_html((GovukElementsErrorsHelper.error_summary @feedback,
+t('.error_summary'), "")) %>
+
+<%= ::Temple::Utils.escape_html((render partial: 'layouts/header', locals: {page_heading: t('.heading')})) %>
+
+<p>
+<%= ::Temple::Utils.escape_html((t('.prompt'))) %>
+
+</p><% _slim_controls1 = form_for @feedback do |f| %><% _slim_controls2 = ''.dup; 
+; _slim_controls2 << ((::Temple::Utils.escape_html((f.radio_button_fieldset :ease_of_use, choices:  Settings.feedback_options))).to_s); 
+; 
+; _slim_controls2 << ((::Temple::Utils.escape_html((f.radio_button_fieldset :completeness, choices:  Settings.feedback_options))).to_s); 
+; 
+; _slim_controls2 << ((::Temple::Utils.escape_html((f.text_area :comment, {rows: 10}))).to_s); 
+; 
+; _slim_controls2 << ("<div".freeze); _slim_controls2 << (" class=\"".freeze); _slim_controls2 << ("grid-row".freeze); _slim_controls2 << ("\"".freeze); _slim_controls2 << (">".freeze); 
+; _slim_controls2 << ("<div".freeze); _slim_controls2 << (" class=\"".freeze); _slim_controls2 << ("column-two-thirds".freeze); _slim_controls2 << ("\"".freeze); _slim_controls2 << (">".freeze); 
+; _slim_controls2 << ((::Temple::Utils.escape_html((t('.data_warning')))).to_s); 
+; 
+; _slim_controls2 << ("</div>".freeze); _slim_controls2 << ("</div>".freeze); _slim_controls2 << ("<div".freeze); _slim_controls2 << (" class=\"".freeze); _slim_controls2 << ("button-holder".freeze); _slim_controls2 << ("\"".freeze); _slim_controls2 << (">".freeze); 
+; _slim_controls2 << ((::Temple::Utils.escape_html((f.submit t('button.send'), {class:'button', onclick: "ga('send', 'event', 'Feedback', 'Sent')"}))).to_s); 
+; _slim_controls2 << ("</div>".freeze); _slim_controls2 %><% end %><%= ::Temple::Utils.escape_html((_slim_controls1)) %>

@@ -1,0 +1,44 @@
+<% content_for :page_title do
+ %><%= ::Temple::Utils.escape_html((t('page_title.contact_form'))) %>
+
+<% end %><%= ::Temple::Utils.escape_html((GovukElementsErrorsHelper.error_summary @correspondence,
+"#{pluralize(@correspondence.errors.count, t('common.error'))} #{ t('common.summary_error')}", "")) %>
+
+<%= ::Temple::Utils.escape_html((render partial: 'layouts/header', locals: {page_heading: t('common.service_name')})) %>
+
+
+<h2 class="heading-medium">
+You're contacting the Ministry of Justice about
+
+</h2><p class="original-message">
+<%= ::Temple::Utils.escape_html((@correspondence.topic)) %>
+
+</p><% _slim_controls1 = form_for @correspondence do |f| %><% _slim_controls2 = ''.dup; 
+; 
+; if @search_result.num_items > 0
+; _slim_controls2 << ("<h2".freeze); _slim_controls2 << (" class=\"".freeze); _slim_controls2 << ("heading-medium".freeze); _slim_controls2 << ("\"".freeze); _slim_controls2 << (">".freeze); 
+; _slim_controls2 << ("The following information may help:".freeze); 
+; 
+; _slim_controls2 << ("</h2>".freeze); _slim_controls2 << ("<ul".freeze); _slim_controls2 << (" class=\"".freeze); _slim_controls2 << ("list".freeze); _slim_controls2 << ("\"".freeze); _slim_controls2 << (">".freeze); 
+; @search_result.result_items.each_with_index do |item, index|
+; _slim_controls2 << ("<li".freeze); _slim_controls2 << (">".freeze); _slim_controls2 << ((::Temple::Utils.escape_html((link_to item.title, item.link,
+{onclick: "ga('send', 'event', 'External Link - Results', '#{ index + 1 } - #{ item.title } - #{ item.link }')"}))).to_s); 
+; 
+; _slim_controls2 << ("</li>".freeze); end; _slim_controls2 << ("<li".freeze); _slim_controls2 << (" class=\"".freeze); _slim_controls2 << ("more-results".freeze); _slim_controls2 << ("\"".freeze); _slim_controls2 << (">".freeze); 
+; _slim_controls2 << ((::Temple::Utils.escape_html((link_to t('.more_results'), escape_once(@search_api_client.more_results_url),
+{onclick:"ga('send', 'event', 'External Link - Results', '#{ t('.more_results')}')"}))).to_s); 
+; 
+; _slim_controls2 << ("</li>".freeze); _slim_controls2 << ("</ul>".freeze); _slim_controls2 << ((::Temple::Utils.escape_html((f.radio_button_fieldset :contact_requested))).to_s); 
+; 
+; _slim_controls2 << ("<div".freeze); _slim_controls2 << (" class=\"".freeze); _slim_controls2 << ("panel".freeze); _slim_controls2 << (" ".freeze); _slim_controls2 << ("panel-border-narrow".freeze); _slim_controls2 << (" ".freeze); _slim_controls2 << ("js-hidden".freeze); _slim_controls2 << ("\"".freeze); _slim_controls2 << (" id=\"".freeze); _slim_controls2 << ("correspondence_contact_requested_yes_content".freeze); _slim_controls2 << ("\"".freeze); _slim_controls2 << (">".freeze); 
+; _slim_controls2 << ((::Temple::Utils.escape_html((render partial: 'contact_form', locals: {f: f}))).to_s); 
+; 
+; _slim_controls2 << ("</div>".freeze); _slim_controls2 << ("<div".freeze); _slim_controls2 << (" class=\"".freeze); _slim_controls2 << ("panel".freeze); _slim_controls2 << (" ".freeze); _slim_controls2 << ("panel-border-narrow".freeze); _slim_controls2 << (" ".freeze); _slim_controls2 << ("js-hidden".freeze); _slim_controls2 << ("\"".freeze); _slim_controls2 << (" id=\"".freeze); _slim_controls2 << ("correspondence_contact_requested_no_content".freeze); _slim_controls2 << ("\"".freeze); _slim_controls2 << (">".freeze); 
+; _slim_controls2 << ((::Temple::Utils.escape_html(("Was this service helpful? "))).to_s); 
+; _slim_controls2 << ((::Temple::Utils.escape_html((link_to "Provide feedback", feedback_path))).to_s); 
+; _slim_controls2 << ((::Temple::Utils.escape_html((" (takes 30 seconds)"))).to_s); 
+; 
+; _slim_controls2 << ("</div>".freeze); else
+; _slim_controls2 << ("<div".freeze); _slim_controls2 << (" id=\"".freeze); _slim_controls2 << ("correspondence_contact_requested_yes_content".freeze); _slim_controls2 << ("\"".freeze); _slim_controls2 << (">".freeze); 
+; _slim_controls2 << ((::Temple::Utils.escape_html((render partial: 'contact_form', locals: {f: f}))).to_s); 
+; _slim_controls2 << ("</div>".freeze); end; _slim_controls2 %><% end %><%= ::Temple::Utils.escape_html((_slim_controls1)) %>
