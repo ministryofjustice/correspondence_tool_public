@@ -91,38 +91,21 @@ en:
       feedback_link: Provide feedback
       feedback_time: (takes 30 seconds)
     start:
-      closing_paragraphs_html: |
-        <p>We are not able to provide legal advice.</p>
-        <p>Write your message in English or Welsh.</p>
-      find_a_court_label: "Find a court or tribunal"
-      find_a_court_link: "https://www.gov.uk/find-court-tribunal"
-      find_a_court_event: "Visited Find a Court or Tribunal"
-      find_a_prison_label: "Find a prison"
-      find_a_prison_link: "https://www.gov.uk/find-prison"
-      find_a_prison_event: "Visited Find a prison"
-      opening_paragraphs_html: |
-        <p>We aim to respond to you as soon as possible, but allow up to 4 weeks
-        for complex cases or during busy periods.</p>
-      other_services: "Other services"
-      reasons_heading_html: "We don't reply to messages that"
-      reasons_not_to_reply_html: |
-        <li>
-          <span class="visually-hidden">
-            %{reasons_heading}
-          </span> contains offensive or abusive language or material
-        </li><li>
-          <span class="visually-hidden">
-            %{reasons_heading}
-          </span> are repeated enquiries
-        </li><li>
-          <span class="visually-hidden">
-            %{reasons_heading}
-          </span> are selling or promoting a product
-        </li>
-      service_hint: "Use this service to send a message to the Ministry of Justice"
-      visiting_a_prison_label: "Visiting someone in prison"
-      visiting_a_prison_link: "https://www.gov.uk/prison-visits"
-      visiting_a_prison_event: "Visited Prison visits"
+      find_a_court_label: Find a court or tribunal
+      find_a_court_link: https://www.gov.uk/find-court-tribunal
+      find_a_court_event: Visited Find a Court or Tribunal
+      find_a_prison_label: Find a prison
+      find_a_prison_link: https://www.gov.uk/find-prison
+      find_a_prison_event: Visited Find a prison
+      opening_paragraphs: |
+        We aim to respond to you as soon as possible, but allow up to 4 weeks
+        for complex cases or during busy periods.
+      other_services: Other services
+      reasons_heading: We don't reply to messages that
+      service_hint: Use this service to send a message to the Ministry of Justice
+      visiting_a_prison_label: Visiting someone in prison
+      visiting_a_prison_link: https://www.gov.uk/prison-visits
+      visiting_a_prison_event: Visited Prison visits
 
     search:
       more_results: 'More results'
