@@ -2,9 +2,8 @@ FROM ruby:3.3.4-alpine as base
 
 WORKDIR /app
 
-# curl: required in app, tzdata: required to set timezone, nodejs: JS runtime
+# tzdata: required to set timezone, nodejs: JS runtime
 RUN apk add --no-cache \
-    curl-dev \
     nodejs \
     tzdata \
     postgresql-client

@@ -4,11 +4,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby file: ".ruby-version"
 
 gem "config"
-gem "curb", "~> 1.0", ">= 1.0.5"
-# gem "govuk_app_config"
 gem "govuk-components"
 gem "govuk_elements_form_builder", "0.1.1"
 gem "govuk_notify_rails", ">= 2.1.2"
+gem "httparty"
 gem "jquery-rails", ">= 4.4.0"
 gem "jsonb_accessor", "~> 1.4"
 gem "logstasher"
