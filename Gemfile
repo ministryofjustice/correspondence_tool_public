@@ -5,7 +5,7 @@ ruby file: ".ruby-version"
 
 gem "config"
 gem "govuk-components"
-gem "govuk_elements_form_builder", "0.1.1"
+gem "govuk_design_system_formbuilder"
 gem "govuk_notify_rails", ">= 2.1.2"
 gem "httparty"
 gem "jquery-rails", ">= 4.4.0"

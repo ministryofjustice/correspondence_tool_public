@@ -78,6 +78,7 @@ Use the following commands to install gems and javascript packages then create t
 
 ```
 $ bin/setup
+$ yarn install
 ```
 
 #### Running locally:

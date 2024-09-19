@@ -33,7 +33,7 @@ class CorrespondenceController < ApplicationController
     if @correspondence.topic_present?
       @correspondence = Correspondence.new(topic: search_params[:topic])
       @search_api_client = GovUkSearchApi::Client.new(@correspondence.topic)
-      @search_result = @search_api_client.search
+      @search_results = search_results(@search_api_client.search)
     else
       render :topic
     end
@@ -71,5 +71,23 @@ private
 
   def search_params
     params.require(:correspondence).permit(:topic)
+  end
+
+  def search_results(search)
+    results = search.result_items.each_with_index.map do |item, index|
+      view_context.govuk_link_to(
+        item.title,
+        item.link,
+        onclick: "ga('send', 'event', 'External Link - Results', '#{index + 1} - #{item.title} - #{item.link}')",
+      )
+    end
+
+    results << view_context.govuk_link_to(
+      t(".more_results"),
+      @search_api_client.more_results_url,
+      onclick: "ga('send', 'event', 'External Link - Results', '#{t('.more_results')}')",
+    )
+
+    results
   end
 end

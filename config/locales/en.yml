@@ -29,8 +29,6 @@ en:
 
   helpers:
     fieldset:
-      correspondence:
-        contact_requested: Do you still need to contact the Ministry of Justice
       feedback:
         ease_of_use: |
           This online service was easy to use
@@ -47,6 +45,9 @@ en:
       feedback:
         comment: |
           How could we improve this service?
+    legend:
+      correspondence:
+        contact_requested: Do you still need to contact the Ministry of Justice
     hint:
       correspondence:
         email: |

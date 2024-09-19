@@ -42,6 +42,6 @@ module CorrespondenceToolPublic
     # Protect from open redirect attacks in `redirect_back_or_to` and `redirect_to`.
     Rails.application.config.action_controller.raise_on_open_redirects = false
 
-    ActionView::Base.default_form_builder = GovukElementsFormBuilder::FormBuilder
+    ActionView::Base.default_form_builder = GOVUKDesignSystemFormBuilder::FormBuilder
   end
 end

@@ -2,40 +2,30 @@
   <%= t('page_title.contact_form') %>
 <% end %>
 
-<%= GovukElementsErrorsHelper.error_summary @correspondence,
-  "#{pluralize(@correspondence.errors.count, t('common.error'))} #{ t('common.summary_error')}", "" %>
-
 <%= render partial: 'layouts/header', locals: {page_heading: t('common.service_name')} %>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h2 class="govuk-heading-l">You're contacting the Ministry of Justice about</h2>
+    <h2 class="govuk-heading-m">You're contacting the Ministry of Justice about</h2>
 
-    <p class="govuk-body">@correspondence.topic</p>
+    <p class="govuk-body original-message"><%= @correspondence.topic %></p>
+
+    <% unless @search_results.empty? %>
+      <h2 class="govuk-heading-l">The following information may help:</h2>
+      <%= govuk_list @search_results, spaced: true %>
+    <% end %>
 
     <%= form_for @correspondence do |f| %>
-      <% if @search_result.num_items > 0 %>
-        <h2 class="govuk-heading-l">| The following information may help:
+      <%= f.govuk_error_summary %>
+      <%= f.govuk_radio_buttons_fieldset :contact_requested do %>
+        <%= f.govuk_radio_button :contact_requested, 'yes', label: { text: "Yes" } %>
+        <%= f.govuk_radio_button :contact_requested, 'no', label: { text: "No" } %>
+      <% end %>
+      <%= render partial: 'contact_form', locals: {f: f} %>
+    <% end %>
 
-    ul.list
-      - @search_result.result_items.each_with_index do |item, index|
-        li = link_to item.title, item.link,
-                {onclick: "ga('send', 'event', 'External Link - Results', '#{ index + 1 } - #{ item.title } - #{ item.link }')"}
-
-      li.more-results
-        = link_to t('.more_results'), escape_once(@search_api_client.more_results_url),
-                {onclick:"ga('send', 'event', 'External Link - Results', '#{ t('.more_results')}')"}
-
-    = f.radio_button_fieldset :contact_requested
-
-    #correspondence_contact_requested_yes_content.panel.panel-border-narrow.js-hidden
-      = render partial: 'contact_form', locals: {f: f}
-
-    #correspondence_contact_requested_no_content.panel.panel-border-narrow.js-hidden
-      = "Was this service helpful? "
-      = link_to "Provide feedback", feedback_path
-      = " (takes 30 seconds)"
-
-  - else
-    #correspondence_contact_requested_yes_content
-      = render partial: 'contact_form', locals: {f: f}
+    <p class="govuk-body hidden">
+      Was this service helpful? <%= govuk_link_to "Provide feedback", feedback_path %> (takes 30 seconds)"
+    </p>
+  </div>
+</div>
