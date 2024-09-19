@@ -1,14 +1,19 @@
-<% content_for :page_title do
- %><%= ::Temple::Utils.escape_html((t('page_title.topic_search'))) %>
+<% content_for :page_title do %>
+  <%= t('page_title.topic_search') %>
+<% end %>
 
-<% end %><%= ::Temple::Utils.escape_html((GovukElementsErrorsHelper.error_summary @correspondence,
-"#{pluralize(@correspondence.errors.count, t('common.error'))} #{ t('common.summary_error')}", "")) %>
+<%= render partial: 'layouts/header', locals: { page_heading: t('common.service_name') } %>
 
-<%= ::Temple::Utils.escape_html((render partial: 'layouts/header', locals: {page_heading: t('common.service_name')})) %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p class="govuk-body">
+      <%= GovukElementsErrorsHelper.error_summary @correspondence,
+        "#{pluralize(@correspondence.errors.count, t('common.error'))} #{ t('common.summary_error')}", "" %>
 
-<% _slim_controls1 = form_for @correspondence, url: correspondence_search_path, method: :get do |f| %><% _slim_controls2 = ''.dup; 
-; 
-; _slim_controls2 << ((::Temple::Utils.escape_html((f.text_field :topic, {maxlength: Settings.correspondence_topic_max_length}))).to_s); 
-; 
-; _slim_controls2 << ((::Temple::Utils.escape_html((f.submit t('button.continue'), {class:'button', onclick: "ga('send', 'event', 'Question', 'Search')"}))).to_s); 
-; _slim_controls2 %><% end %><%= ::Temple::Utils.escape_html((_slim_controls1)) %>
+      <%= form_for @correspondence, url: correspondence_search_path, method: :get do |f| %>
+        <%= f.text_field :topic, { maxlength: Settings.correspondence_topic_max_length } %>
+        <%= f.submit t('button.continue'), { class:'button', onclick: "ga('send', 'event', 'Question', 'Search')" } %>
+      <% end %>
+    </p>
+  </div>
+</div>
