@@ -52,3 +52,6 @@
 @import "moj/typography";
 @import "moj/govuk_overrides";
 //@import "moj/autocomplete";
+
+.js-hidden{ display:none;visibility:hidden }
+.form-group{ float:none }
