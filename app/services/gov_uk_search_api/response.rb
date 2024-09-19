@@ -2,12 +2,12 @@ module GovUkSearchApi
   class Response
     attr_reader :query, :result_items, :response_code, :error
 
-    def initialize(query, curl_response_or_error_hash)
+    def initialize(query, response_or_error_hash)
       @query = query
-      if curl_response_or_error_hash.class == Curl::Easy # rubocop:disable Style/ClassEqualityComparison
-        populate_from_curl_response(curl_response_or_error_hash)
+      if response_or_error_hash.class == HTTParty::Response # rubocop:disable Style/ClassEqualityComparison
+        populate_from_response(response_or_error_hash)
       else
-        populate_from_error_hash(curl_response_or_error_hash)
+        populate_from_error_hash(response_or_error_hash)
       end
     end
 
@@ -17,10 +17,10 @@ module GovUkSearchApi
 
   private
 
-    def populate_from_curl_response(curl_response)
-      @curl_response = curl_response
-      @response_code = curl_response.response_code
-      @result_items = JSON.parse(@curl_response.body_str)["results"].map do |result|
+    def populate_from_response(response)
+      @response = response
+      @response_code = response.code
+      @result_items = JSON.parse(@response.body)["results"].map do |result|
         ResultItem.new(result)
       end
       @error = nil

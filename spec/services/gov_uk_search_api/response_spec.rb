@@ -1,7 +1,7 @@
 require "#{File.dirname(__FILE__)}/../../rails_helper"
 
 describe GovUkSearchApi::Response do
-  context "when created from a Curl::Easy response" do
+  context "when created from a HTTParty response" do
     let(:json_body) do
       {
         "results" => [
@@ -15,12 +15,12 @@ describe GovUkSearchApi::Response do
       }.to_json
     end
 
-    let(:raw_response) { instance_double Curl::Easy, response_code: 200, body_str: json_body, class: Curl::Easy }
+    let(:raw_response) { instance_double HTTParty::Response, code: 200, body: json_body, class: HTTParty::Response }
     let(:query) { "Ministry of Justice" }
     let(:response) { described_class.new(query, raw_response) }
 
-    describe "#response_code" do
-      it "returns the response code from the EasyCurl response" do
+    describe "#code" do
+      it "returns the response code from the HTTParty response" do
         expect(response.response_code).to eq 200
       end
     end
@@ -65,7 +65,7 @@ describe GovUkSearchApi::Response do
         "error" => {
           "event" => "query_search",
           "search_term" => "My Query",
-          "error_class" => "Curl::Err::GotNothingError",
+          "error_class" => "HTTParty::ReponseError",
           "message" => "No data",
         },
       }.to_json
