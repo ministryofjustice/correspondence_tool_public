@@ -6,7 +6,7 @@
     "sass": "^1.79.1"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets",
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
     "build:css": "sass ./app/assets/stylesheets/application.css.scss:./app/assets/builds/application.css --quiet-deps --no-source-map --load-path=node_modules"
   }
 }
