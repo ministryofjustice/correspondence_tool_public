@@ -17,6 +17,7 @@
 
     <%= form_for @correspondence do |f| %>
       <%= f.govuk_error_summary %>
+      <%# i18n-tasks-use t('helpers.legend.correspondence.contact_requested') %>
       <%= f.govuk_radio_buttons_fieldset :contact_requested do %>
         <%= f.govuk_radio_button :contact_requested, 'yes', label: { text: "Yes" } %>
         <%= f.govuk_radio_button :contact_requested, 'no', label: { text: "No" } %>

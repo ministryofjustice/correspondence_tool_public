@@ -9,7 +9,9 @@
     <p class="govuk-body"><%= t('.prompt') %></p>
 
     <%= form_for @feedback do |f| %>
+      <%# i18n-tasks-use t('helpers.legend.feedback.completeness') %>
       <%= f.govuk_collection_radio_buttons :ease_of_use, Settings.feedback_options, :to_s, :humanize %>
+      <%# i18n-tasks-use t('helpers.legend.feedback.ease_of_use') %>
       <%= f.govuk_collection_radio_buttons :completeness, Settings.feedback_options, :to_s, :humanize %>
       <%= f.govuk_text_area :comment, rows: 10 %>
 
