@@ -1,28 +1,5 @@
 $govuk-global-styles: true;
-$govuk-new-link-styles: true;
 
 @import "govuk-frontend/dist/govuk/all";
-
-.govuk-related-items {
-  border-top: 10px solid govuk-colour("blue");
-  padding-top: 5px;
-  margin-top: 5px;
-}
-
-.original-message {
-  border-top: 1px solid #bfc1c3;
-  border-bottom: 1px solid #bfc1c3;
-  padding-top :1em;
-  padding-bottom: 0.8em;
-}
-
-.js-hidden { display:none; visibility:hidden }
-.form-group { float:none }
-
-.search-results li:last-child {
-  margin-top: 30px;
-}
-
-.char-counter--overlimit {
-  color: govuk-colour("red");
-}
+@import "moj/layout";
+@import "moj/typography";
