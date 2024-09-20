@@ -4,12 +4,12 @@
   <%= f.govuk_text_area :message, rows: 10, 'aria-labelledby': 'correspondence_message correspondence_message_count' %>
 
   <div class="char-counter form-group" data-maxlength=<%= Settings.correspondence_message_max_length %>>
-     <p id="live-region-text" class="govuk-body" aria-live="polite">
+     <p id="live-region-text" aria-live="polite">
        <span class="char-counter-count"><%= Settings.correspondence_message_max_length %></span>
        <%= " characters remaining" %>
     </p>
   </div>
-  <p class="govuk-body">
+  <p>
     <%= "By using this service you agree to these " %>
     <%= govuk_link_to "terms and conditions", correspondence_t_and_c_path, target: "_blank" %>
     <%= ". Please read them carefully." %>

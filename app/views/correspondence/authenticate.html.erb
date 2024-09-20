@@ -2,21 +2,21 @@
   <%= t('page_title.authentication_confirmation') %>
 <% end %>
 
-<%= render partial: 'layouts/header', locals: {page_heading: t('common.service_name')} %>
+<%= render partial: 'layouts/header', locals: { page_heading: t('common.service_name')} %>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <%= govuk_panel(text: t('.success')) %>
 
     <h2 class="govuk-heading-m"><%= t('.next_title') %></h2>
-    <p class="govuk-body"><%= t('.we_will_reply') %></p>
-    <p class="govuk-body"><%= t('.reply_timescale') %></p>
+    <p><%= t('.we_will_reply') %></p>
+    <p><%= t('.reply_timescale') %></p>
 
-    <p class="govuk-body">
+    <p>
       <%= render partial: 'feedback' %>
     </p>
 
-    <p class="govuk-body">
+    <p>
       <%= govuk_link_to t('button.moj_home'), Settings.moj_home_page %>
     </p>
 

@@ -6,7 +6,7 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <p class="govuk-body"><%= t('.prompt') %></p>
+    <p><%= t('.prompt') %></p>
 
     <%= form_for @feedback do |f| %>
       <%# i18n-tasks-use t('helpers.legend.feedback.completeness') %>
@@ -15,7 +15,7 @@
       <%= f.govuk_collection_radio_buttons :completeness, Settings.feedback_options, :to_s, :humanize %>
       <%= f.govuk_text_area :comment, rows: 10 %>
 
-      <p class="govuk-body"><%= t('.data_warning') %></p>
+      <p><%= t('.data_warning') %></p>
 
       <%= f.govuk_submit t('button.send'), class:'button', onclick: "ga('send', 'event', 'Feedback', 'Sent')" %>
     <% end %>

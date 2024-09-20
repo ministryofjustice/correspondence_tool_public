@@ -2,13 +2,13 @@
   <%= t('page_title.contact_form') %>
 <% end %>
 
-<%= render partial: 'layouts/header', locals: {page_heading: t('common.service_name')} %>
+<%= render partial: 'layouts/header', locals: { page_heading: t('common.service_name')} %>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h2 class="govuk-heading-m">You're contacting the Ministry of Justice about</h2>
 
-    <p class="govuk-body original-message"><%= @correspondence.topic %></p>
+    <p class="original-message"><%= @correspondence.topic %></p>
 
     <% unless @search_results.empty? %>
       <h2 class="govuk-heading-l">The following information may help:</h2>
@@ -25,7 +25,7 @@
       <%= render partial: 'contact_form', locals: {f: f} %>
     <% end %>
 
-    <p id="correspondence_contact_requested_no_content" class="govuk-body js-hidden">
+    <p id="correspondence_contact_requested_no_content" class="js-hidden">
       <%= render partial: 'feedback' %>
     </p>
   </div>

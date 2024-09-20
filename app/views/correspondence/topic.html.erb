@@ -6,7 +6,7 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <p class="govuk-body">
+    <p>
       <%= form_for @correspondence, url: correspondence_search_path, method: :get do |f| %>
         <%= f.govuk_error_summary %>
         <%= f.govuk_text_field :topic, maxlength: Settings.correspondence_topic_max_length %>
