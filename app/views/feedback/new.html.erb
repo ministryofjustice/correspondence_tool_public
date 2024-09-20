@@ -1,24 +1,21 @@
 <% content_for :page_title do %>
-  <%= t('page_title.feedback_form') %>
+ <%= t('page_title.feedback_form') %>
 <% end %>
 
-<%= render partial: 'layouts/header', locals: {page_heading: t('.heading')} %>
+<%= render partial: 'layouts/header', locals: { page_heading: t('common.service_name') } %>
 
-<p>
-  <%= ::Temple::Utils.escape_html((t('.prompt'))) %>
-</p>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p class="govuk-body"><%= t('.prompt') %></p>
 
-<% _slim_controls1 = form_for @feedback do |f| %><% _slim_controls2 = ''.dup;
-; _slim_controls2 << ((::Temple::Utils.escape_html((f.radio_button_fieldset :ease_of_use, choices:  Settings.feedback_options))).to_s);
-;
-; _slim_controls2 << ((::Temple::Utils.escape_html((f.radio_button_fieldset :completeness, choices:  Settings.feedback_options))).to_s);
-;
-; _slim_controls2 << ((::Temple::Utils.escape_html((f.text_area :comment, {rows: 10}))).to_s);
-;
-; _slim_controls2 << ("<div".freeze); _slim_controls2 << (" class=\"".freeze); _slim_controls2 << ("grid-row".freeze); _slim_controls2 << ("\"".freeze); _slim_controls2 << (">".freeze);
-; _slim_controls2 << ("<div".freeze); _slim_controls2 << (" class=\"".freeze); _slim_controls2 << ("column-two-thirds".freeze); _slim_controls2 << ("\"".freeze); _slim_controls2 << (">".freeze);
-; _slim_controls2 << ((::Temple::Utils.escape_html((t('.data_warning')))).to_s);
-;
-; _slim_controls2 << ("</div>".freeze); _slim_controls2 << ("</div>".freeze); _slim_controls2 << ("<div".freeze); _slim_controls2 << (" class=\"".freeze); _slim_controls2 << ("button-holder".freeze); _slim_controls2 << ("\"".freeze); _slim_controls2 << (">".freeze);
-; _slim_controls2 << ((::Temple::Utils.escape_html((f.submit t('button.send'), {class:'button', onclick: "ga('send', 'event', 'Feedback', 'Sent')"}))).to_s);
-; _slim_controls2 << ("</div>".freeze); _slim_controls2 %><% end %><%= ::Temple::Utils.escape_html((_slim_controls1)) %>
+    <%= form_for @feedback do |f| %>
+      <%= f.govuk_collection_radio_buttons :ease_of_use, Settings.feedback_options, :to_s, :humanize %>
+      <%= f.govuk_collection_radio_buttons :completeness, Settings.feedback_options, :to_s, :humanize %>
+      <%= f.govuk_text_area :comment, rows: 10 %>
+
+      <p class="govuk-body"><%= t('.data_warning') %></p>
+
+      <%= f.govuk_submit t('button.send'), class:'button', onclick: "ga('send', 'event', 'Feedback', 'Sent')" %>
+    <% end %>
+  </div>
+</div>

@@ -28,12 +28,6 @@ en:
       default: "%d/%m/%Y %H:%M"
 
   helpers:
-    fieldset:
-      feedback:
-        ease_of_use: |
-          This online service was easy to use
-        completeness: |
-          The online service enabled me to give all the relevant information
     label:
       correspondence:
         name: Full name
@@ -48,6 +42,9 @@ en:
     legend:
       correspondence:
         contact_requested: Do you still need to contact the Ministry of Justice
+      feedback:
+        ease_of_use: This online service was easy to use
+        completeness: The online service enabled me to give all the relevant information
     hint:
       correspondence:
         email: |
