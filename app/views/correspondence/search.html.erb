@@ -25,7 +25,7 @@
     <% end %>
 
     <p id="correspondence_contact_requested_no_content" class="govuk-body js-hidden">
-      Was this service helpful? <%= govuk_link_to "Provide feedback", feedback_path %> (takes 30 seconds)
+      <%= render partial: 'feedback' %>
     </p>
   </div>
 </div>

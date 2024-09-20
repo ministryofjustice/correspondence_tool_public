@@ -1,17 +1,24 @@
-<%= ::Temple::Utils.escape_html((f.text_field :name)) %>
-<%= ::Temple::Utils.escape_html((f.email_field :email)) %>
-<%= ::Temple::Utils.escape_html((f.text_area :message, {rows: 10, 'aria-labelledby': 'correspondence_message correspondence_message_count' })) %>
+<% content_for :page_title do %>
+  <%= t('page_title.authentication_confirmation') %>
+<% end %>
 
-<div class="char-counter form-group"<% _slim_codeattributes1 = Settings.correspondence_message_max_length; if _slim_codeattributes1; if _slim_codeattributes1 == true %> data-maxlength=""<% else %> data-maxlength="<%= ::Temple::Utils.escape_html((_slim_codeattributes1)) %>"<% end; end %> id="correspondence_message_count">
-<span aria-live="polite" id="live-region-text">
+<%= render partial: 'layouts/header', locals: {page_heading: t('common.service_name')} %>
 
-<span class="char-counter-count">
-<%= ::Temple::Utils.escape_html((Settings.correspondence_message_max_length)) %>
-</span><%= ::Temple::Utils.escape_html((" characters remaining")) %>
-</span></div><p>
-<%= ::Temple::Utils.escape_html(("By using this service you agree to these ")) %>
-<%= ::Temple::Utils.escape_html((link_to "terms and conditions", correspondence_t_and_c_path, target:"_blank")) %>
-<%= ::Temple::Utils.escape_html((". Please read them carefully.")) %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_panel(text: t('.success')) %>
 
-</p><%= ::Temple::Utils.escape_html((f.hidden_field :topic, value: @correspondence.topic)) %>
-<%= ::Temple::Utils.escape_html((f.submit t('button.send'), {class:'button', onclick: "ga('send', 'event', 'Question', 'Sent')"})) %>
+    <h2 class="govuk-heading-m"><%= t('.next_title') %></h2>
+    <p class="govuk-body"><%= t('.we_will_reply') %></p>
+    <p class="govuk-body"><%= t('.reply_timescale') %></p>
+
+    <p class="govuk-body">
+      <%= render partial: 'feedback' %>
+    </p>
+
+    <p class="govuk-body">
+      <%= govuk_link_to t('button.moj_home'), Settings.moj_home_page %>
+    </p>
+
+  </div>
+<div>

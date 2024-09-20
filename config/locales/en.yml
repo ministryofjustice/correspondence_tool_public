@@ -75,6 +75,10 @@ en:
       prevented this form from being submitted:
 
   correspondence:
+    feedback:
+      prompt: Was this service helpful?
+      link: Provide feedback
+      time: (takes 30 seconds)
     confirmation:
       one_more_step: One more step...
       next_copy_html: |
@@ -88,9 +92,6 @@ en:
       success: Your message has been sent
       we_will_reply: We will review your message and reply to your email address.
       reply_timescale: We aim to respond to you as soon as possible, but allow up to 4 weeks for complex cases or during busy periods.
-      feedback_prompt: Was this service helpful?
-      feedback_link: Provide feedback
-      feedback_time: (takes 30 seconds)
     start:
       find_a_court_label: Find a court or tribunal
       find_a_court_link: https://www.gov.uk/find-court-tribunal
