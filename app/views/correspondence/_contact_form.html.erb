@@ -1,15 +1,15 @@
 <div id="correspondence_contact_requested_yes_content" class="js-hidden">
   <%= f.govuk_text_field :name %>
   <%= f.govuk_email_field :email %>
-  <%= f.govuk_text_area :message, rows: 10 %>
+  <%= f.govuk_text_area :message, rows: 10, 'aria-labelledby': 'correspondence_message correspondence_message_count' %>
 
-  <div class="char-counter form-group">
-    <span aria-live="polite" id="live-region-text">
-      <span class="char-counter-count"><%= Settings.correspondence_message_max_length %></span>
-      <%= " characters remaining" %>
-    </span>
+  <div class="char-counter form-group" data-maxlength=<%= Settings.correspondence_message_max_length %>>
+     <p id="live-region-text" class="govuk-body" aria-live="polite">
+       <span class="char-counter-count"><%= Settings.correspondence_message_max_length %></span>
+       <%= " characters remaining" %>
+    </p>
   </div>
-  <p>
+  <p class="govuk-body">
     <%= "By using this service you agree to these " %>
     <%= govuk_link_to "terms and conditions", correspondence_t_and_c_path, target: "_blank" %>
     <%= ". Please read them carefully." %>
@@ -17,4 +17,4 @@
 
   <%= f.hidden_field :topic, value: @correspondence.topic %>
   <%= f.govuk_submit t('button.send'), class:'button', onclick: "ga('send', 'event', 'Question', 'Sent')" %>
-  </div>
+</div>

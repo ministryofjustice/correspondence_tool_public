@@ -15,7 +15,7 @@ class CorrespondenceController < ApplicationController
       redirect_to Settings.moj_home_page
     when :validation_error
       @search_api_client = GovUkSearchApi::Client.new(@correspondence.topic)
-      @search_result = @search_api_client.search
+      @search_results = search_results(@search_api_client.search)
       render :search
     end
   end

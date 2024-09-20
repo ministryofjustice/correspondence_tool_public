@@ -2,12 +2,11 @@
   'use strict';
 
   var moj = {
-
     Modules: {},
 
     Helpers: {},
 
-    Events: $({}),
+    Events: {},
 
     init: function () {
       for (var x in moj.Modules) {
@@ -15,8 +14,6 @@
           moj.Modules[x].init();
         }
       }
-      // trigger initial render event
-      moj.Events.trigger('render');
     },
 
     // safe logging

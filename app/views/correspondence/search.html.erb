@@ -12,7 +12,7 @@
 
     <% unless @search_results.empty? %>
       <h2 class="govuk-heading-l">The following information may help:</h2>
-      <%= govuk_list @search_results %>
+      <%= govuk_list @search_results, classes: "search-results" %>
     <% end %>
 
     <%= form_for @correspondence do |f| %>
@@ -25,7 +25,7 @@
     <% end %>
 
     <p id="correspondence_contact_requested_no_content" class="govuk-body js-hidden">
-      Was this service helpful? <%= govuk_link_to "Provide feedback", feedback_path %> (takes 30 seconds)"
+      Was this service helpful? <%= govuk_link_to "Provide feedback", feedback_path %> (takes 30 seconds)
     </p>
   </div>
 </div>

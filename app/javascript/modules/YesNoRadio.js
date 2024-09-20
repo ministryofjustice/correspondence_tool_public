@@ -1,28 +1,25 @@
 moj.Modules.YesNoRadio = {
+  $yesContent: document.getElementById('correspondence_contact_requested_yes_content'),
+  $noContent: document.getElementById('correspondence_contact_requested_no_content'),
 
-  // Using custom show/hide because old Gov UK show hide didn't work for us on Chrome 105+
-  yes: $('#correspondence-contact-requested-yes-field')
-  ,yesContent: $('#correspondence_contact_requested_yes_content')
-  ,no: $('#correspondence-contact-requested-no-field')
-  ,noContent: $('#correspondence_contact_requested_no_content')
+  init: function() {
+    const $yes = document.getElementById('correspondence-contact-requested-yes-field');
+    const $no = document.getElementById('correspondence-contact-requested-no-field');
 
-  ,init: function() {
-    with(this) {
-      yes.click(showYesContent.bind(this));
-      no.click(showNoContent.bind(this));
+    $yes.addEventListener("click", this.showYesContent.bind(this))
+    $no.addEventListener("click", this.showNoContent.bind(this))
 
-      if(yes.is(':checked'))showYesContent();
-      if(no.is(':checked'))showNoContent();
-    }
-  }
+    if($yes.checked) this.showYesContent();
+    if($no.checked) this.showNoContent();
+  },
 
-  ,showYesContent: function() {
-    this.yesContent.removeClass('js-hidden');
-    this.noContent.addClass('js-hidden');
-  }
+  showYesContent: function() {
+    this.$yesContent.classList.remove('js-hidden');
+    this.$noContent.classList.add('js-hidden');
+  },
 
-  ,showNoContent: function() {
-    this.yesContent.addClass('js-hidden');
-    this.noContent.removeClass('js-hidden');
+  showNoContent: function() {
+    this.$yesContent.classList.add('js-hidden');
+    this.$noContent.classList.remove('js-hidden');
   }
 };

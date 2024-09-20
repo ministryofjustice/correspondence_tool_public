@@ -18,3 +18,11 @@ $govuk-new-link-styles: true;
 
 .js-hidden { display:none; visibility:hidden }
 .form-group { float:none }
+
+.search-results li:last-child {
+  margin-top: 30px;
+}
+
+.char-counter--overlimit {
+  color: govuk-colour("red");
+}

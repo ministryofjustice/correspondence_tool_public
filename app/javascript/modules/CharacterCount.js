@@ -1,40 +1,35 @@
 moj.Modules.CharacterCount = {
-  init : function(){
-    var self = this;
-    // the total number of characters allowed:
-    var totalChars = $('.char-counter').attr('data-maxlength');
-    var $message = $('#correspondence_message');
-    var $liveRegion =  $('#live-region-text');
+  $message: document.getElementById('correspondence-message-field'),
+  $liveRegion: document.getElementById('live-region-text'),
+  maxChars: Number(document.getElementsByClassName('char-counter')[0].dataset['maxlength']),
 
-    $message.on('keyup keydown', function () {
-      var $el = $(this);
-      // Get the value
-      var text = $el.val();
-      // chars remaining
-      var realLength = text.length;
-      var remaining = totalChars - realLength;
-
-      if (remaining < 0) {
-
-        $liveRegion.add($message).addClass('char-counter--overlimit');
-        $liveRegion.attr({
-          'aria-live': 'assertive',
-          'aria-atomic': 'true'
-        });
-        self.updateRemaining($liveRegion,remaining);
-
-      }else{
-        $liveRegion.add($message).removeClass('char-counter--overlimit');
-        $liveRegion
-          .removeAttr('aria-live')
-          .removeAttr('aria-atomic');
-        self.updateRemaining($liveRegion,remaining);
-
-      }
-    }).trigger('keyup');
+  init : function() {
+    this.$message.addEventListener("keydown", this.countCharacters.bind(this));
+    this.$message.addEventListener("keyup", this.countCharacters.bind(this));
   },
 
-  updateRemaining : function ($liveRegion, charsLeft) {
-    $liveRegion.find('.char-counter-count').text(charsLeft);
+  countCharacters: function() {
+    var text = this.$message.value;
+    var realLength = text.length;
+    var remaining = this.maxChars - realLength;
+
+    if (remaining < 0) {
+      this.$message.classList.add('char-counter--overlimit');
+      this.$liveRegion.classList.add('char-counter--overlimit');
+      this.$liveRegion.ariaLive = "assertive"
+      this.$liveRegion.ariaAtomic = "true"
+      this.updateRemaining(remaining);
+
+    } else {
+      this.$message.classList.remove('char-counter--overlimit');
+      this.$liveRegion.classList.remove('char-counter--overlimit');
+      this.$liveRegion.ariaLive = "polite"
+      this.$liveRegion.ariaAtomic = "false"
+      this.updateRemaining(remaining);
+    }
+  },
+
+  updateRemaining : function (charsLeft) {
+    this.$liveRegion.getElementsByClassName('char-counter-count')[0].textContent = charsLeft;
   }
 };
