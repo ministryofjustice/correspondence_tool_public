@@ -63,13 +63,8 @@ en:
 
   common:
     accessibility: Accessibility
-    alert_banner_html: "We are unable to respond to documents sent by post because of coronavirus (COVID-19). When using this online contact form please be aware that responses will take longer than usual."
-    error: error
-    phase_banner: |
-      This is a new service – your feedback will help us to improve it.
+    alert_banner: "We are unable to respond to documents sent by post because of coronavirus (COVID-19). When using this online contact form please be aware that responses will take longer than usual."
     service_name: Contact the Ministry of Justice
-    summary_error: |
-      prevented this form from being submitted:
 
   correspondence:
     feedback:
@@ -111,7 +106,6 @@ en:
 
   feedback:
     new:
-      error_summary: Please answer the statement(s) below
       heading: Give feedback
       prompt: To what extent do you agree with the following statements?
       data_warning: |

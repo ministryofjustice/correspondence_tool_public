@@ -83,9 +83,9 @@ private
     end
 
     results << view_context.govuk_link_to(
-      t(".more_results"),
+      t("correspondence.search.more_results"),
       @search_api_client.more_results_url,
-      onclick: "ga('send', 'event', 'External Link - Results', '#{t('.more_results')}')",
+      onclick: "ga('send', 'event', 'External Link - Results', '#{t('correspondence.search.more_results')}')",
     )
 
     results
