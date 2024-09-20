@@ -1,9 +1,9 @@
 moj.Modules.YesNoRadio = {
 
   // Using custom show/hide because old Gov UK show hide didn't work for us on Chrome 105+
-  yes: $('#correspondence_contact_requested_yes')
+  yes: $('#correspondence-contact-requested-yes-field')
   ,yesContent: $('#correspondence_contact_requested_yes_content')
-  ,no: $('#correspondence_contact_requested_no')
+  ,no: $('#correspondence-contact-requested-no-field')
   ,noContent: $('#correspondence_contact_requested_no_content')
 
   ,init: function() {
