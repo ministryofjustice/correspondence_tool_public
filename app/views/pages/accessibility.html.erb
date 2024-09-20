@@ -1,65 +1,57 @@
-<% content_for :page_title do
- %><%= ::Temple::Utils.escape_html((t('page_title.accessibility_statement'))) %>
+<% content_for :page_title do %>
+  <%= t('page_title.accessibility_statement') %>
+<% end %>
 
-<% end %><h1 class="heading-xlarge">Accessibility statement for Contact the Ministry of Justice
-</h1>
-<p>This web form is run by the Justice Digital team. We want as many people as possible to be able to use this web form. For example, that means you should be able to:
-</p>
-<ul class="list list-bullet">
-<li>change colours, contrast levels and fonts</li>
-<li>zoom in up to 200% without the text spilling off the screen</li>
-<li>navigate most of the web form using just a keyboard</li>
-<li>navigate most of the web form using speech recognition software</li>
-<li>listen to most of the web form using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Accessibility statement for Contact the Ministry of Justice</h1>
 
-</li>
-</ul><p>We’ve also made the form text as simple as possible to understand.
-</p>
-<p><a href="https://mcmw.abilitynet.org.uk/">AbilityNet</a> has advice on making your device easier to use if you have a disability.
+    <p class="govuk-body">This web form is run by the Justice Digital team. We want as many people as possible to be able to use this web form. For example, that means you should be able to:</p>
+    <%= govuk_list [
+        "change colours, contrast levels and fonts",
+        "zoom in up to 200% without the text spilling off the screen",
+        "navigate most of the web form using just a keyboard",
+        "navigate most of the web form using speech recognition software",
+        "listen to most of the web form using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)"
+      ], type: "bullet"
+    %>
 
-</p>
-<h2 class="start-heading start-heading--reasons">How accessible this web form is
-</h2>
-<p>This web form is accessible.
-</p>
-<p>We have completed a WCAG 2.1 review for this web form.
-</p>
-<h2 class="start-heading start-heading--reasons">What to do if you cannot access parts of this web form
-</h2>
-<p>If you need information on this web form in a different format like accessible PDF, large print, easy read, audio recording or braille:
-</p>
-<ul class="list list-bullet">
-<li>email: <a href="mailto:Contact-MOJ-Support@digital.justice.gov.uk">Contact-MOJ-Support@digital.justice.gov.uk</a>
-</li>
-</ul><p>We’ll consider your request and get back to you within 7 days.
-</p>
-<h2 class="start-heading start-heading--reasons">Reporting accessibility problems with this web form
-</h2>
-<p>We’re always looking to improve the accessibility of this web form. If you find any problems or think we’re not meeting accessibility requirements:
-</p>
-<ul class="list list-bullet">
-<li>email: <a href="mailto:Contact-MOJ-Support@digital.justice.gov.uk">Contact-MOJ-Support@digital.justice.gov.uk</a>
-</li>
-</ul><h2 class="start-heading start-heading--reasons">Enforcement procedure
-</h2>
-<p>The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the ‘accessibility regulations’). If you’re not happy with how we respond to your complaint, contact the <a href="https://www.equalityadvisoryservice.com/">Equality Advisory and Support Service</a> (EASS).
-</p>
-<h2 class="start-heading start-heading--reasons">Technical information about this web form’s accessibility
-</h2>
-<p>Justice Digital is committed to making its web form accessible, in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.
-</p>
-<h2 class="start-heading start-heading--reasons">Compliance status
-</h2>
-<p>This web form is fully compliant with the <a href="https://www.w3.org/TR/WCAG21/">Web Content Accessibility Guidelines version 2.1</a> AA standard.
-</p>
-<h2 class="start-heading start-heading--reasons">How this web form has been tested for accessibility
-</h2>
-<p>We tested the form with a range of assistive technologies such as Wave, Dragons & JAWs, and no accessibility issues were identified.
-</p>
-<p>Our main web form is available at <a href="https://contact-moj.service.justice.gov.uk/">https://contact-moj.service.justice.gov.uk/</a>.
-</p>
-<h2 class="start-heading start-heading--reasons">Preparation of this accessibility statement
-</h2>
-<p>This web form was last tested on 6th March 2020. The test was carried out internally by an assistive technology specialist from the MoJ Assistive Technology Support Team.
-</p>
-<p>This statement was prepared on 15th September 2020. It was last updated on 21st October 2022.</p>
+    <p class="govuk-body">We’ve also made the form text as simple as possible to understand.</p>
+    <p class="govuk-body"><a href="https://mcmw.abilitynet.org.uk/">AbilityNet</a> has advice on making your device easier to use if you have a disability.</p>
+
+    <h2 class="govuk-heading-m">How accessible this web form is</h2>
+    <p class="govuk-body">This web form is accessible.</p>
+    <p class="govuk-body">We have completed a WCAG 2.1 review for this web form.</p>
+
+    <h2 class="govuk-heading-m">What to do if you cannot access parts of this web form</h2>
+    <p class="govuk-body">If you need information on this web form in a different format like accessible PDF, large print, easy read, audio recording or braille:</p>
+    <p class="govuk-body">
+      email: <%= govuk_link_to('Contact-MOJ-Support@digital.justice.gov.uk', 'mailto:Contact-MOJ-Support@digital.justice.gov.uk') %>
+    </p>
+
+    <p class="govuk-body">We’ll consider your request and get back to you within 7 days.</p>
+
+    <h2 class="govuk-heading-m">Reporting accessibility problems with this web form</h2>
+    <p class="govuk-body">We’re always looking to improve the accessibility of this web form. If you find any problems or think we’re not meeting accessibility requirements:</p>
+    <p class="govuk-body">
+      email: <%= govuk_link_to('Contact-MOJ-Support@digital.justice.gov.uk', 'mailto:Contact-MOJ-Support@digital.justice.gov.uk') %>
+    </p>
+
+    <h2 class="govuk-heading-m">Enforcement procedure
+    <p class="govuk-body">The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the ‘accessibility regulations’). If you’re not happy with how we respond to your complaint, contact the <a href="https://www.equalityadvisoryservice.com/">Equality Advisory and Support Service</a> (EASS).</p>
+
+    <h2 class="govuk-heading-m">Technical information about this web form’s accessibility</h2>
+    <p class="govuk-body">Justice Digital is committed to making its web form accessible, in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.</p>
+
+    <h2 class="govuk-heading-m">Compliance status</h2>
+    <p class="govuk-body">This web form is fully compliant with the <a href="https://www.w3.org/TR/WCAG21/">Web Content Accessibility Guidelines version 2.1</a> AA standard.</p>
+
+    <h2 class="govuk-heading-m">How this web form has been tested for accessibility</h2>
+    <p class="govuk-body">We tested the form with a range of assistive technologies such as Wave, Dragons & JAWs, and no accessibility issues were identified.</p>
+    <p class="govuk-body">Our main web form is available at <a href="https://contact-moj.service.justice.gov.uk/">https://contact-moj.service.justice.gov.uk/</a>.</p>
+
+    <h2 class="govuk-heading-m">Preparation of this accessibility statement</h2>
+    <p class="govuk-body">This web form was last tested on 6th March 2020. The test was carried out internally by an assistive technology specialist from the MoJ Assistive Technology Support Team.</p>
+    <p class="govuk-body">This statement was prepared on 15th September 2020. It was last updated on 21st October 2022.</p>
+  </div>
+</div>
