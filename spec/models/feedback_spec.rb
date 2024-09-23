@@ -16,8 +16,8 @@ RSpec.describe Feedback, type: :model do
   it { is_expected.to be_valid }
 
   it do
-    expect(feedback).to validate_inclusion_of(:ease_of_use).in_array Settings.feedback_options
-    expect(feedback).to validate_inclusion_of(:completeness).in_array Settings.feedback_options
+    expect(feedback).to validate_inclusion_of(:ease_of_use).in_array(Settings.feedback_options).with_message("Ease of use is not included in the list")
+    expect(feedback).to validate_inclusion_of(:completeness).in_array(Settings.feedback_options).with_message("Completeness is not included in the list")
   end
 
   describe "Feedback env variable is not null" do
