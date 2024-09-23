@@ -13,15 +13,17 @@
 class Correspondence < ApplicationRecord
   attr_readonly :uuid
 
-  validates :name,
-            :email,
-            :category,
-            :topic,
-            :message, presence: true
+  validates :category,
+            :topic, presence: true
+
+  validates :name, presence: { message: "Full name can't be blank" }
+  validates :email, presence: { message: "Email can't be blank" }
+  validates :message, presence: { message: "Your message can't be blank" }
 
   validates :email, confirmation: { case_sensitive: false }
 
   validates :email, format: { with: /\A.*@.*\z/,
+                              message: "Email is invalid",
                               if: proc { email.present? } }
 
   validates :category,
@@ -30,7 +32,8 @@ class Correspondence < ApplicationRecord
   validates :topic,
             length: { maximum: Settings.correspondence_topic_max_length }
   validates :message,
-            length: { maximum: Settings.correspondence_message_max_length }
+            length: { maximum: Settings.correspondence_message_max_length,
+                      message: "Message is too long (maximum is 5000 characters)" }
 
   validates :contact_requested,
             inclusion: { in: %w[yes no],
@@ -47,7 +50,7 @@ class Correspondence < ApplicationRecord
   before_validation :set_uuid, on: :create
 
   def topic_present?
-    errors.add("topic", " can't be blank") if topic.blank?
+    errors.add("topic", "What are you contacting the Ministry of Justice about? can't be blank") if topic.blank?
     topic.present?
   end
 

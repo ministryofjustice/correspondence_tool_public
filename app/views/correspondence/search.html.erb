@@ -8,11 +8,12 @@
     <p class="original-message"><%= @correspondence.topic %></p>
 
     <%= form_for @correspondence do |f| %>
+      <%= f.govuk_error_summary %>
+
       <% if @search_results.size > 1 %>
         <h2 class="govuk-heading-l">The following information may help:</h2>
         <%= govuk_list @search_results, classes: "search-results" %>
 
-        <%= f.govuk_error_summary %>
         <%# i18n-tasks-use t('helpers.legend.correspondence.contact_requested') %>
         <%= f.govuk_radio_buttons_fieldset :contact_requested do %>
           <%= f.govuk_radio_button :contact_requested, 'yes', label: { text: "Yes" } %>
