@@ -1,11 +1,12 @@
 moj.Modules.CharacterCount = {
-  $message: document.getElementById('correspondence-message-field'),
+  $message: document.getElementById('correspondence-message-field') || document.getElementById('correspondence-message-field-error'),
   $liveRegion: document.getElementById('live-region-text'),
   maxChars: Number(document.getElementsByClassName('char-counter')[0].dataset['maxlength']),
 
   init : function() {
     this.$message.addEventListener("keydown", this.countCharacters.bind(this));
     this.$message.addEventListener("keyup", this.countCharacters.bind(this));
+    this.$message.dispatchEvent(new Event("keydown"));
   },
 
   countCharacters: function() {

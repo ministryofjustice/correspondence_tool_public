@@ -1,11 +1,6 @@
 require "rails_helper"
 
 feature "Submit a general enquiry" do
-  #
-  # before do
-  #   @app ||= AskTool::Pages::Application.new
-  # end
-
   given(:name)               { Faker::Name.name                   }
   given(:email)              { Faker::Internet.email              }
   given(:message)            { Faker::Lorem.paragraphs[1]         }
@@ -35,26 +30,26 @@ feature "Submit a general enquiry" do
 
   scenario 'User should start at the service "Start page"' do
     start_page.load
-    expect(start_page.title).to eq "Start - Contact the Ministry of Justice\n"
+    expect(start_page.title).to eq "Start - Contact the Ministry of Justice"
 
-    expect(start_page).to have_sidebar
-    expect(start_page.sidebar).to have_find_a_court
-    expect(start_page.sidebar).to have_find_a_prison
-    expect(start_page.sidebar).to have_visit_a_prison
-    expect(start_page.sidebar.other_services.size).to eq 3
+    expect(start_page).to have_related_items
+    expect(start_page.related_items).to have_find_a_court
+    expect(start_page.related_items).to have_find_a_prison
+    expect(start_page.related_items).to have_visit_a_prison
+    expect(start_page.related_items.other_services.size).to eq 3
 
     start_page.start_button.click
     expect(topic_page).to be_displayed
-    expect(topic_page.title).to eq "Topic search - Contact the Ministry of Justice\n"
+    expect(topic_page.title).to eq "Topic search - Contact the Ministry of Justice"
   end
 
   scenario "self-service - searching govuk service" do
     topic_page.load
-    expect(topic_page.title).to eq "Topic search - Contact the Ministry of Justice\n"
+    expect(topic_page.title).to eq "Topic search - Contact the Ministry of Justice"
     topic_page.search_govuk(topic_with_results)
 
     expect(search_page).to be_displayed
-    expect(search_page.title).to eq "Contact form - Contact the Ministry of Justice\n"
+    expect(search_page.title).to eq "Contact form - Contact the Ministry of Justice"
     expect(search_page.self_service.size).to eq 4
     expect(search_page.self_service_ga_events.size).to eq 4
   end
@@ -98,16 +93,16 @@ feature "Submit a general enquiry" do
   scenario "Without a topic, name, email address, confirm email or message" do
     topic_page.load
 
-    expect(topic_page.title).to eq "Topic search - Contact the Ministry of Justice\n"
+    expect(topic_page.title).to eq "Topic search - Contact the Ministry of Justice"
 
     topic_page.search_govuk("")
     expect(topic_page.text).to have_content(topic_error)
 
-    expect(search_page.title).to eq "Topic search - Contact the Ministry of Justice\n"
+    expect(search_page.title).to eq "Topic search - Contact the Ministry of Justice"
 
     topic_page.search_govuk(topic_with_results)
 
-    expect(search_page.title).to eq "Contact form - Contact the Ministry of Justice\n"
+    expect(search_page.title).to eq "Contact form - Contact the Ministry of Justice"
 
     search_page.need_to_contact_radio.click
 

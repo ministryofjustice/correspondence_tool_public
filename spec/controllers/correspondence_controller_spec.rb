@@ -35,10 +35,25 @@ RSpec.describe CorrespondenceController, type: :controller do
   describe "GET search" do
     context "with a topic specified" do
       let(:params) { { "correspondence" => { "topic" => "complaints about prisons" }, "commit" => "Send" } }
-      let(:result) { "GovUkSearchClient result" }
+      let(:json_body) do
+        {
+          "results" => [
+            {
+              "title" => "item_1_title",
+              "link" => "item_1_link",
+            },
+            {
+              "title" => "item_2_title",
+              "link" => "item_2_link",
+            },
+          ],
+        }.to_json
+      end
+      let(:response) { instance_double HTTParty::Response, code: 200, body: json_body, class: HTTParty::Response }
+      let(:result) { GovUkSearchApi::Response.new("", response) }
 
       before do
-        search_client = instance_double GovUkSearchApi::Client
+        search_client = instance_double(GovUkSearchApi::Client, more_results_url: "")
         allow(GovUkSearchApi::Client).to receive(:new).and_return(search_client)
         allow(search_client).to receive(:search).and_return(result)
       end
@@ -54,7 +69,7 @@ RSpec.describe CorrespondenceController, type: :controller do
 
       it "calls the search client and stores results" do
         get(:search, params:)
-        expect(assigns(:search_result)).to eq result
+        expect(assigns(:search_results).size).to eq 3
       end
     end
 

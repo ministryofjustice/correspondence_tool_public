@@ -1,7 +1,4 @@
-<% content_for :page_title do %>
-  <%= t('page_title.terms_and_conditions') %>
-<% end %>
-
+<% content_for :page_title, t('page_title.terms_and_conditions') %>
 <%= render partial: 'layouts/header', locals: { page_heading: t('page_title.terms_and_conditions')} %>
 
 <div class="govuk-grid-row">

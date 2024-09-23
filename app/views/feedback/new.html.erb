@@ -1,7 +1,4 @@
-<% content_for :page_title do %>
- <%= t('page_title.feedback_form') %>
-<% end %>
-
+<% content_for :page_title, t('page_title.feedback_form') %>
 <%= render partial: 'layouts/header', locals: { page_heading: t('.heading') } %>
 
 <div class="govuk-grid-row">

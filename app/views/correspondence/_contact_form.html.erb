@@ -1,4 +1,4 @@
-<div id="correspondence_contact_requested_yes_content" class="js-hidden">
+<div id="correspondence_contact_requested_yes_content" class=<%= local_assigns.fetch :klass, '' %>>
   <%= f.govuk_text_field :name %>
   <%= f.govuk_email_field :email %>
   <%= f.govuk_text_area :message, rows: 10, 'aria-labelledby': 'correspondence_message correspondence_message_count' %>

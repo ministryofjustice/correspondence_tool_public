@@ -4,8 +4,8 @@ module AskTool
       class TopicPage < SitePrism::Page
         set_url "/correspondence/topic"
 
-        element :topic_field, "#correspondence_topic"
-        element :continue_button, 'input[type="submit"][value="Continue"]'
+        element :topic_field, "#correspondence-topic-field"
+        element :continue_button, 'button[type="submit"]'
 
         def search_govuk(topic)
           topic_field.set topic

@@ -1,7 +1,4 @@
-<% content_for :page_title do %>
-  <%= t('page_title.feedback_confirm') %>
-<% end %>
-
+<% content_for :page_title, t('page_title.feedback_confirm') %>
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <%= govuk_panel(text: t('.success')) %>

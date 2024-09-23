@@ -6,11 +6,15 @@ moj.Modules.YesNoRadio = {
     const $yes = document.getElementById('correspondence-contact-requested-yes-field');
     const $no = document.getElementById('correspondence-contact-requested-no-field');
 
-    $yes.addEventListener("click", this.showYesContent.bind(this))
-    $no.addEventListener("click", this.showNoContent.bind(this))
+    if ($yes) {
+      $yes.addEventListener("click", this.showYesContent.bind(this))
+      if($yes.checked) this.showYesContent();
+    }
 
-    if($yes.checked) this.showYesContent();
-    if($no.checked) this.showNoContent();
+    if ($no) {
+      $no.addEventListener("click", this.showNoContent.bind(this))
+      if($no.checked) this.showNoContent();
+    }
   },
 
   showYesContent: function() {
