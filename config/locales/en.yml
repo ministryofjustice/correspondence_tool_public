@@ -31,7 +31,6 @@ en:
     label:
       correspondence:
         name: Full name
-        email_confirmation: Confirm email
         message: |
           Your message
         topic:

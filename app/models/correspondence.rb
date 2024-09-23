@@ -20,8 +20,6 @@ class Correspondence < ApplicationRecord
   validates :email, presence: { message: "Email can't be blank" }
   validates :message, presence: { message: "Your message can't be blank" }
 
-  validates :email, confirmation: { case_sensitive: false }
-
   validates :email, format: { with: /\A.*@.*\z/,
                               message: "Email is invalid",
                               if: proc { email.present? } }

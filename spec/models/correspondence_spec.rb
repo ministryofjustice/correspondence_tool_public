@@ -65,19 +65,11 @@ RSpec.describe Correspondence, type: :model do
   end
 
   describe "validations" do
-    it { is_expected.to validate_presence_of     :name }
-    it { is_expected.to validate_presence_of     :email }
-    it { is_expected.to validate_presence_of     :category }
-
-    it do
-      expect(correspondence).to validate_presence_of(:topic)
-          .with_message(
-            "can't be blank",
-          )
-    end
-
-    it { is_expected.to validate_presence_of     :message }
-    it { is_expected.to validate_confirmation_of :email }
+    it { is_expected.to validate_presence_of(:name).with_message("Full name can't be blank") }
+    it { is_expected.to validate_presence_of(:email).with_message("Email can't be blank") }
+    it { is_expected.to validate_presence_of :category }
+    it { is_expected.to validate_presence_of(:topic).with_message("can't be blank") }
+    it { is_expected.to validate_presence_of(:message).with_message("Your message can't be blank") }
 
     it do
       expect(correspondence).to validate_inclusion_of(:category)
@@ -87,7 +79,7 @@ RSpec.describe Correspondence, type: :model do
     it { is_expected.to allow_value("foo@bar.com").for :email }
     it { is_expected.not_to allow_value("foobar.com").for :email  }
     it { is_expected.to validate_length_of(:topic).is_at_most(60) }
-    it { is_expected.to validate_length_of(:message).is_at_most(5000) }
+    it { is_expected.to validate_length_of(:message).is_at_most(5000).with_message("Message is too long (maximum is 5000 characters)") }
 
     it { is_expected.to validate_inclusion_of(:contact_requested).in_array(%w[yes no]) }
   end
@@ -115,7 +107,7 @@ RSpec.describe Correspondence, type: :model do
 
       it "has an error messages" do
         correspondence.topic_present?
-        expect(correspondence.errors[:topic]).to eq [" can't be blank"]
+        expect(correspondence.errors[:topic]).to eq ["What are you contacting the Ministry of Justice about? can't be blank"]
       end
     end
   end
