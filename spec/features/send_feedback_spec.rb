@@ -1,14 +1,14 @@
 require "rails_helper"
 
 feature "Submit service feedback" do
-  given(:ease_of_use)   { Settings.feedback_options.sample }
-  given(:completeness)  { Settings.feedback_options.sample }
-  given(:comment)       { Faker::Lorem.paragraphs[1] }
+  given(:ease_of_use) { Settings.feedback_options.sample }
+  given(:completeness) { Settings.feedback_options.sample }
+  given(:comment) { Faker::Lorem.paragraphs[1] }
 
   scenario "Using valid inputs" do
     visit feedback_path
-    choose "feedback_ease_of_use_#{ease_of_use}"
-    choose "feedback_completeness_#{completeness}"
+    choose "feedback-ease-of-use-#{ease_of_use.dasherize}-field"
+    choose "feedback-completeness-#{completeness.dasherize}-field"
     fill_in "feedback[comment]", with: comment
     click_button "Send"
 
@@ -30,7 +30,7 @@ feature "Submit service feedback" do
   scenario "Without a rating for ease of use or completeness" do
     visit feedback_path
     click_button "Send"
-    expect(page).to have_content("This online service was easy to use Ease of use is not included in the list")
-    expect(page).to have_content("The online service enabled me to give all the relevant information Completeness is not included in the list")
+    expect(page).to have_content("This online service was easy to use\nError: Ease of use is not included in the list")
+    expect(page).to have_content("The online service enabled me to give all the relevant information\nError: Completeness is not included in the list")
   end
 end

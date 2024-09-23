@@ -81,7 +81,7 @@ RSpec.describe CorrespondenceController, type: :controller do
 
       it "has a flash error message" do
         get(:search, params:)
-        expect(assigns(:correspondence).errors[:topic]).to include(" can't be blank")
+        expect(assigns(:correspondence).errors[:topic]).to include("What are you contacting the Ministry of Justice about? can't be blank")
       end
     end
   end

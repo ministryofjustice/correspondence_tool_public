@@ -9,8 +9,14 @@
 #
 
 class Feedback < ApplicationRecord
-  validates :ease_of_use, :completeness, inclusion: {
+  validates :ease_of_use, inclusion: {
     in: Settings.feedback_options,
+    message: "Ease of use is not included in the list",
+  }
+
+  validates :completeness, inclusion: {
+    in: Settings.feedback_options,
+    message: "Completeness is not included in the list",
   }
 
   jsonb_accessor :content,

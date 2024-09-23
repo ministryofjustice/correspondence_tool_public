@@ -100,7 +100,7 @@ feature "Submit a general enquiry" do
 
     expect(search_page.title).to eq "Topic search - Contact the Ministry of Justice"
 
-    topic_page.search_govuk(topic_with_results)
+    topic_page.search_govuk(topic_with_results, topic_page.topic_field_error)
 
     expect(search_page.title).to eq "Contact form - Contact the Ministry of Justice"
 
