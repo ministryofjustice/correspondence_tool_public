@@ -26,7 +26,7 @@ gem "sentry-rails"
 gem "sentry-ruby"
 gem "sidekiq", "~> 6.5"
 gem "slim-rails", "~> 3.6"
-gem "sprockets", "~> 3.7.3"
+gem "sprockets", "~> 3.7.5"
 # Used for the GOVUK Search API
 gem "stopwords-filter2", require: "stopwords"
 gem "terser"
