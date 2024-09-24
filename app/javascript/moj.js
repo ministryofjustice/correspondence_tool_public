@@ -4,10 +4,6 @@
   var moj = {
     Modules: {},
 
-    Helpers: {},
-
-    Events: {},
-
     init: function () {
       for (var x in moj.Modules) {
         if (typeof moj.Modules[x].init === 'function') {
