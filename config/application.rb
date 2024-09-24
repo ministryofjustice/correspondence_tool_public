@@ -43,5 +43,7 @@ module CorrespondenceToolPublic
     Rails.application.config.action_controller.raise_on_open_redirects = false
 
     ActionView::Base.default_form_builder = GOVUKDesignSystemFormBuilder::FormBuilder
+
+    config.exceptions_app = routes
   end
 end

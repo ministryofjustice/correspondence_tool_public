@@ -1,6 +1,6 @@
 class CorrespondenceController < ApplicationController
   rescue_from Redis::CannotConnectError do
-    render "errors/internal_error", status: :internal_server_error, layout: false
+    internal_server_error
   end
 
   def start; end
