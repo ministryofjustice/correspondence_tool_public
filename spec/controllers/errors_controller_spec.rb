@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 RSpec.describe ErrorsController, type: :controller do
   context "when not found" do

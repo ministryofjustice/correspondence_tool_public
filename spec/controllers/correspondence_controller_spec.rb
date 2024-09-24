@@ -106,8 +106,9 @@ RSpec.describe CorrespondenceController, type: :controller do
 
     context "when uuid not in database" do
       it "responds Not found" do
-        get :authenticate, params: { uuid: "ffffffff-eeee-dddd-cccc-bbbbbbbbbbb" }
-        expect(response).to have_http_status(:not_found)
+        expect {
+          get :authenticate, params: { uuid: "ffffffff-eeee-dddd-cccc-bbbbbbbbbbb" }
+        }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
@@ -117,12 +118,18 @@ RSpec.describe CorrespondenceController, type: :controller do
       before { correspondence.authenticated_at = authenticated_time }
 
       it "does not update the authenticated at date" do
-        get :authenticate, params: { uuid: "3cc98e93-d11c-42ad-832d-f40113d3ec27" }
+        expect {
+          get :authenticate, params: { uuid: "3cc98e93-d11c-42ad-832d-f40113d3ec27" }
+        }.to raise_error(ActiveRecord::RecordNotFound)
+
         expect(correspondence.authenticated_at).to eq authenticated_time
       end
 
       it "does not resend the email" do
-        get :authenticate, params: { uuid: "3cc98e93-d11c-42ad-832d-f40113d3ec27" }
+        expect {
+          get :authenticate, params: { uuid: "3cc98e93-d11c-42ad-832d-f40113d3ec27" }
+        }.to raise_error(ActiveRecord::RecordNotFound)
+
         expect(CorrespondenceMailer).not_to receive(:new_correspondence)
       end
     end

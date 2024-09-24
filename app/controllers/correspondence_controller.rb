@@ -1,6 +1,6 @@
 class CorrespondenceController < ApplicationController
   rescue_from Redis::CannotConnectError do
-    render file: "public/500-redis-down.html", status: :internal_server_error, layout: false
+    render "errors/internal_error", status: :internal_server_error, layout: false
   end
 
   def start; end
@@ -42,7 +42,7 @@ class CorrespondenceController < ApplicationController
   def authenticate
     @correspondence = Correspondence.where(uuid: params[:uuid]).first
     if @correspondence.nil?
-      render file: Rails.root.join("public/404.html"), status: :not_found, layout: false
+      not_found and return
     else
       @correspondence.authenticate!
       CorrespondenceMailer.new_correspondence(@correspondence).deliver_later
