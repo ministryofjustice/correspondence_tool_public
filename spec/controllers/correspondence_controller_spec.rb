@@ -12,7 +12,6 @@ RSpec.describe CorrespondenceController, type: :controller do
     {
       name: external_user.name,
       email: external_user.email,
-      email_confirmation: external_user.email,
       topic: "prisons and probations",
       message: "Question about prisons and probation",
     }
@@ -35,10 +34,25 @@ RSpec.describe CorrespondenceController, type: :controller do
   describe "GET search" do
     context "with a topic specified" do
       let(:params) { { "correspondence" => { "topic" => "complaints about prisons" }, "commit" => "Send" } }
-      let(:result) { "GovUkSearchClient result" }
+      let(:json_body) do
+        {
+          "results" => [
+            {
+              "title" => "item_1_title",
+              "link" => "item_1_link",
+            },
+            {
+              "title" => "item_2_title",
+              "link" => "item_2_link",
+            },
+          ],
+        }.to_json
+      end
+      let(:response) { instance_double HTTParty::Response, code: 200, body: json_body, class: HTTParty::Response }
+      let(:result) { GovUkSearchApi::Response.new("", response) }
 
       before do
-        search_client = instance_double GovUkSearchApi::Client
+        search_client = instance_double(GovUkSearchApi::Client, more_results_url: "")
         allow(GovUkSearchApi::Client).to receive(:new).and_return(search_client)
         allow(search_client).to receive(:search).and_return(result)
       end
@@ -54,7 +68,7 @@ RSpec.describe CorrespondenceController, type: :controller do
 
       it "calls the search client and stores results" do
         get(:search, params:)
-        expect(assigns(:search_result)).to eq result
+        expect(assigns(:search_results).size).to eq 3
       end
     end
 
@@ -67,7 +81,7 @@ RSpec.describe CorrespondenceController, type: :controller do
 
       it "has a flash error message" do
         get(:search, params:)
-        expect(assigns(:correspondence).errors[:topic]).to include(" can't be blank")
+        expect(assigns(:correspondence).errors[:topic]).to include("What are you contacting the Ministry of Justice about? can't be blank")
       end
     end
   end
@@ -91,7 +105,7 @@ RSpec.describe CorrespondenceController, type: :controller do
     end
 
     context "when uuid not in database" do
-      it "responds Not found" do
+      it "responds not found" do
         get :authenticate, params: { uuid: "ffffffff-eeee-dddd-cccc-bbbbbbbbbbb" }
         expect(response).to have_http_status(:not_found)
       end
@@ -144,7 +158,6 @@ RSpec.describe CorrespondenceController, type: :controller do
         {
           # no name
           email: external_user.email,
-          email_confirmation: external_user.email,
           topic: "prisons and probations",
           message: "Question about prisons and probation",
         }

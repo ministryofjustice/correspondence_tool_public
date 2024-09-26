@@ -16,7 +16,7 @@ module GovUkSearchApi
         http_response = HTTParty.get(json_query_url)
         Response.new(@original_query, http_response)
       rescue StandardError => e
-        Rails.logger.error(event: "query_search", search_term: @original_query, error_class: e.class, message: e.message)
+        GovukError.notify("Search failed", extra: { event: "query_search", search_term: @original_query, error_class: e.class, message: e.message })
         Response.new(@original_query, { error: { event: "query_search", search_term: @original_query, error_class: e.class.to_s, message: e.message } }.to_json)
       end
     end

@@ -1,0 +1,33 @@
+<% content_for :page_title, t('page_title.start_page') %>
+<%= render partial: 'layouts/header', locals: { page_heading: t('common.service_name') } %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h2 class="govuk-heading-l"><%= t('.service_hint') %></h2>
+    <p><%= t('.opening_paragraphs') %></p>
+
+    <h3 class="govuk-heading-m"><%= t('.reasons_heading') %></h3>
+    <%= govuk_list ["contains offensive or abusive language or material", "are repeated enquiries", "are selling or promoting a product"], type: :bullet %>
+
+    <p>We are not able to provide legal advice.</p>
+    <p>Write your message in English or Welsh.</p>
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    <aside class="govuk-related-items">
+      <h3 class="govuk-heading-m"><%= t('.other_services') %></h3>
+      <%= govuk_list [
+          govuk_link_to(t('.find_a_court_label'), t('.find_a_court_link'), onclick:"ga('send', 'event', 'External Link', '#{ t('.find_a_court_event')}')"),
+          govuk_link_to(t('.find_a_prison_label'), t('.find_a_prison_link'), onclick:"ga('send', 'event', 'External Link', '#{ t('.find_a_prison_event')}')"),
+          govuk_link_to(t('.visiting_a_prison_label'), t('.visiting_a_prison_link'), onclick:"ga('send', 'event', 'External Link', '#{ t('.visiting_a_prison_event')}')")
+        ]
+      %>
+    </aside>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_start_button(text: t('button.start'), href: correspondence_topic_path) %>
+  </div>
+</div>

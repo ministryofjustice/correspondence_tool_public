@@ -1,0 +1,15 @@
+<% content_for :page_title, t('page_title.topic_search') %>
+
+<%= render partial: 'layouts/header', locals: { page_heading: t('common.service_name') } %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p>
+      <%= form_for @correspondence, url: correspondence_search_path, method: :get do |f| %>
+        <%= f.govuk_error_summary %>
+        <%= f.govuk_text_field :topic, maxlength: Settings.correspondence_topic_max_length %>
+        <%= f.govuk_submit t('button.continue'), class:'button', onclick: "ga('send', 'event', 'Question', 'Search')" %>
+      <% end %>
+    </p>
+  </div>
+</div>

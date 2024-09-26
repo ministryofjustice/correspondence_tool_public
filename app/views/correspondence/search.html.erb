@@ -1,0 +1,32 @@
+<% content_for :page_title, t('page_title.contact_form') %>
+<%= render partial: 'layouts/header', locals: { page_heading: t('common.service_name')} %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h2 class="govuk-heading-m">You're contacting the Ministry of Justice about</h2>
+
+    <p class="original-message"><%= @correspondence.topic %></p>
+
+    <%= form_for @correspondence do |f| %>
+      <%= f.govuk_error_summary %>
+
+      <% if @search_results.size > 1 %>
+        <h2 class="govuk-heading-l">The following information may help:</h2>
+        <%= govuk_list @search_results, classes: "search-results" %>
+
+        <%# i18n-tasks-use t('helpers.legend.correspondence.contact_requested') %>
+        <%= f.govuk_radio_buttons_fieldset :contact_requested do %>
+          <%= f.govuk_radio_button :contact_requested, 'yes', label: { text: "Yes" } %>
+          <%= f.govuk_radio_button :contact_requested, 'no', label: { text: "No" } %>
+        <% end %>
+        <%= render partial: 'contact_form', locals: {f: f, klass: "js-hidden"} %>
+
+        <p id="correspondence_contact_requested_no_content" class="js-hidden">
+          <%= render partial: 'feedback' %>
+        </p>
+      <% else %>
+        <%= render partial: 'contact_form', locals: {f: f} %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

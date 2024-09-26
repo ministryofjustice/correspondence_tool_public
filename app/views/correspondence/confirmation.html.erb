@@ -1,0 +1,11 @@
+<% content_for :page_title, t('page_title.contact_confirm') %>
+<%= render partial: 'layouts/header', locals: { page_heading: t('.one_more_step') } %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p><%= t('.next_copy_html', email: @correspondence.email) %></p>
+  </div>
+</div>
+
+<div class="uuid" data-uuid="<%= @correspondence.uuid %>">
+</div>

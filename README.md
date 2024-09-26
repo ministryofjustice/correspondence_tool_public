@@ -78,13 +78,15 @@ Use the following commands to install gems and javascript packages then create t
 
 ```
 $ bin/setup
-$ bin/yarn install
+$ yarn install
 ```
 
 #### Running locally:
 
+Use the dev command to run the application. This will use Foreman to start the rails server as well as compiling the css and js. Any changes to the css and js will be live updated.
+
 ```
-$ bin/rails server
+$ bin/dev
 ```
 
 The site will be accessible at http://localhost:3000.

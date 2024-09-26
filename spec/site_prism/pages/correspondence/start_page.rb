@@ -4,8 +4,8 @@ module AskTool
       class StartPage < SitePrism::Page
         set_url "/"
 
-        element :start_button, ".button-start"
-        section :sidebar, ".sidebar" do
+        element :start_button, ".govuk-button--start"
+        section :related_items, ".govuk-related-items" do
           element :heading, "h2.bold-medium"
           elements :other_services, "a"
           element :find_a_court, 'a:contains("Find a court or tribunal")[href="https://www.gov.uk/find-court-tribunal"]'

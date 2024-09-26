@@ -1,0 +1,21 @@
+<% content_for :page_title, t('page_title.authentication_confirmation') %>
+<%= render partial: 'layouts/header', locals: { page_heading: t('common.service_name')} %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_panel(text: t('.success')) %>
+
+    <h2 class="govuk-heading-m"><%= t('.next_title') %></h2>
+    <p><%= t('.we_will_reply') %></p>
+    <p><%= t('.reply_timescale') %></p>
+
+    <p>
+      <%= render partial: 'feedback' %>
+    </p>
+
+    <p>
+      <%= govuk_link_to t('button.moj_home'), Settings.moj_home_page %>
+    </p>
+
+  </div>
+<div>

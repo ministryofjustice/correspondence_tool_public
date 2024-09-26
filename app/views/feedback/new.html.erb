@@ -1,0 +1,20 @@
+<% content_for :page_title, t('page_title.feedback_form') %>
+<%= render partial: 'layouts/header', locals: { page_heading: t('.heading') } %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p><%= t('.prompt') %></p>
+
+    <%= form_for @feedback do |f| %>
+      <%# i18n-tasks-use t('helpers.legend.feedback.completeness') %>
+      <%= f.govuk_collection_radio_buttons :ease_of_use, Settings.feedback_options, :to_s, :humanize %>
+      <%# i18n-tasks-use t('helpers.legend.feedback.ease_of_use') %>
+      <%= f.govuk_collection_radio_buttons :completeness, Settings.feedback_options, :to_s, :humanize %>
+      <%= f.govuk_text_area :comment, rows: 10 %>
+
+      <p><%= t('.data_warning') %></p>
+
+      <%= f.govuk_submit t('button.send'), class:'button', onclick: "ga('send', 'event', 'Feedback', 'Sent')" %>
+    <% end %>
+  </div>
+</div>
