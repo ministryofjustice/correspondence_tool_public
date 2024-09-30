@@ -125,7 +125,6 @@ GEM
     deep_merge (1.2.2)
     diff-lcs (1.5.1)
     docile (1.4.0)
-    domain_name (0.6.20240107)
     drb (2.2.1)
     erubi (1.13.0)
     execjs (2.9.1)
@@ -170,8 +169,6 @@ GEM
     highline (3.0.1)
     html-attributes-utils (1.0.2)
       activesupport (>= 6.1.4.4)
-    http-cookie (1.0.6)
-      domain_name (~> 0.5)
     httparty (0.22.0)
       csv
       mini_mime (>= 1.0.0)
@@ -217,31 +214,12 @@ GEM
       net-smtp
     marcel (1.0.4)
     matrix (0.4.2)
-    mechanize (2.12.0)
-      addressable (~> 2.8)
-      base64
-      domain_name (~> 0.5, >= 0.5.20190701)
-      http-cookie (~> 1.0, >= 1.0.3)
-      mime-types (~> 3.0)
-      net-http-digest_auth (~> 1.4, >= 1.4.1)
-      net-http-persistent (>= 2.5.2, < 5.0.dev)
-      nkf
-      nokogiri (~> 1.11, >= 1.11.2)
-      rubyntlm (~> 0.6, >= 0.6.3)
-      webrick (~> 1.7)
-      webrobots (~> 0.1.2)
     method_source (1.1.0)
-    mime-types (3.5.2)
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2024.0702)
     mini_mime (1.1.5)
     minitest (5.25.1)
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
     mutex_m (0.2.0)
-    net-http-digest_auth (1.4.1)
-    net-http-persistent (4.0.2)
-      connection_pool (~> 2.2)
     net-imap (0.4.14)
       date
       net-protocol
@@ -252,7 +230,6 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.3)
-    nkf (0.2.0)
     nokogiri (1.16.7-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-darwin)
@@ -590,8 +567,6 @@ GEM
       rubocop-capybara (~> 2.17)
       rubocop-factory_bot (~> 2.22)
     ruby-progressbar (1.13.0)
-    rubyntlm (0.6.5)
-      base64
     rubyzip (2.3.2)
     selenium-webdriver (4.23.0)
       base64 (~> 0.2)
@@ -660,7 +635,6 @@ GEM
       concurrent-ruby (~> 1.0)
       method_source (~> 1.0)
     webrick (1.8.1)
-    webrobots (0.1.2)
     websocket (1.2.11)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
@@ -696,7 +670,6 @@ DEPENDENCIES
   jsonb_accessor (~> 1.4)
   logstasher
   mail (>= 2.8)
-  mechanize (~> 2.12)
   pg (~> 1.5)
   puma
   rails (~> 7.0)
