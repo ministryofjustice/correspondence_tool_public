@@ -54,7 +54,7 @@ feature "Submit a general enquiry" do
     expect(search_page.self_service_ga_events.size).to eq 4
   end
 
-  scenario "Using valid inputs", js: true do
+  scenario "Using valid inputs", :js do
     topic_page.load
     expect(topic_page.title).to eq "Topic search - Contact the Ministry of Justice"
     topic_page.search_govuk(topic_with_results)
@@ -87,7 +87,7 @@ feature "Submit a general enquiry" do
       message:,
       topic: topic_with_results,
     )
-    expect(ActionMailer::MailDeliveryJob).to have_been_enqueued.with("ConfirmationMailer", "new_confirmation", "deliver_now", anything).at_least(:once)
+    expect(ActionMailer::MailDeliveryJob).to have_been_enqueued.with("ConfirmationMailer", "new_confirmation", "deliver_now", args: anything).at_least(:once)
   end
 
   scenario "Without a topic, name, email address, confirm email or message" do
@@ -139,10 +139,10 @@ feature "Submit a general enquiry" do
       message:,
       topic: "AbccdefghijkLmnopqrstuvwxyz",
     )
-    expect(ActionMailer::MailDeliveryJob).to have_been_enqueued.with("ConfirmationMailer", "new_confirmation", "deliver_now", anything).at_least(:once)
+    expect(ActionMailer::MailDeliveryJob).to have_been_enqueued.with("ConfirmationMailer", "new_confirmation", "deliver_now", args: anything).at_least(:once)
   end
 
-  scenario "message character count updates when text is entered", js: true do
+  scenario "message character count updates when text is entered", :js do
     input_within_maxlength = "a" * rand(1..5000)
     input_over_maxlength = "a" * rand(5001..6000)
 
@@ -172,7 +172,7 @@ feature "Submit a general enquiry" do
     expect(search_page.need_to_contact_form.counter.text).to eq (5000 - input_over_maxlength.length).to_s
   end
 
-  scenario "message character count shows correct count on page load", js: true do
+  scenario "message character count shows correct count on page load", :js do
     input_over_maxlength = "a" * rand(5001..6000)
 
     topic_page.load
