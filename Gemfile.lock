@@ -129,14 +129,11 @@ GEM
     factory_bot_rails (6.4.3)
       factory_bot (~> 6.4)
       railties (>= 5.0.0)
-    faker (3.4.2)
+    faker (3.5.1)
       i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     google-protobuf (4.27.5-arm64-darwin)
-      bigdecimal
-      rake (>= 13)
-    google-protobuf (4.27.5-x86_64-darwin)
       bigdecimal
       rake (>= 13)
     google-protobuf (4.27.5-x86_64-linux)
@@ -648,7 +645,6 @@ GEM
 
 PLATFORMS
   arm64-darwin-23
-  ruby
   x86_64-linux
 
 DEPENDENCIES
