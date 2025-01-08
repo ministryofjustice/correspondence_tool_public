@@ -15,7 +15,7 @@ describe CorrespondenceCreator do
       it "does not create a correspondence item" do
         expect {
           described_class.new(params)
-        }.to change(Correspondence, :count).by(0)
+        }.not_to change(Correspondence, :count)
       end
     end
 
@@ -61,7 +61,7 @@ describe CorrespondenceCreator do
       it "does not save a correspondence obejct" do
         expect {
           described_class.new(params)
-        }.to change(Correspondence, :count).by(0)
+        }.not_to change(Correspondence, :count)
       end
     end
   end

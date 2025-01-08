@@ -30,7 +30,7 @@ RSpec.describe Correspondence, type: :model do
   describe "each category" do
     Settings.correspondence_categories.each do |category|
       it "has a specific email address associated" do
-        expect(Settings["#{category}_email"]).not_to be nil
+        expect(Settings["#{category}_email"]).not_to be_nil
       end
     end
   end
@@ -151,14 +151,14 @@ RSpec.describe Correspondence, type: :model do
   end
 
   describe ".message search" do
-    let!(:c1) { create :correspondence, message: "aa1" }
-    let!(:c2) { create :correspondence, message: "abb1" }
-    let!(:c3) { create :correspondence, message: "aa1" }
+    let!(:c_one) { create :correspondence, message: "aa1" }
+    let!(:c_two) { create :correspondence, message: "abb1" }
+    let!(:c_three) { create :correspondence, message: "aa1" }
 
     describe ".all_by_message" do
       it "returns a collection of the correspondence items with the specified message" do
-        expect(described_class.all_by_message("aa1")).to match_array [c1, c3]
-        expect(described_class.all_by_message("abb1")).to match_array [c2]
+        expect(described_class.all_by_message("aa1")).to contain_exactly(c_one, c_three)
+        expect(described_class.all_by_message("abb1")).to contain_exactly(c_two)
       end
 
       it "returns an empty collection if there are no records with the specified message" do
