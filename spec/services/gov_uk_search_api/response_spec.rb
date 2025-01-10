@@ -32,17 +32,17 @@ describe GovUkSearchApi::Response do
     end
 
     describe "result_items" do
-      let(:ri_1) { "Result item 1" }
-      let(:ri_2) { "Result item 2" }
+      let(:ri_one) { "Result item 1" }
+      let(:ri_two) { "Result item 2" }
 
       before do
-        allow(GovUkSearchApi::ResultItem).to receive(:new).with({ "item_1_key_1" => "item_1_value_1" }).and_return(ri_1)
-        allow(GovUkSearchApi::ResultItem).to receive(:new).with({ "item_2_key_1" => "item_2_value_1" }).and_return(ri_2)
+        allow(GovUkSearchApi::ResultItem).to receive(:new).with({ "item_1_key_1" => "item_1_value_1" }).and_return(ri_one)
+        allow(GovUkSearchApi::ResultItem).to receive(:new).with({ "item_2_key_1" => "item_2_value_1" }).and_return(ri_two)
       end
 
       describe "#result_items" do
         it "returns an array of result items created from the json response" do
-          expect(response.result_items).to eq [ri_1, ri_2]
+          expect(response.result_items).to eq [ri_one, ri_two]
         end
       end
 
