@@ -117,13 +117,13 @@ RSpec.describe CorrespondenceController, type: :controller do
       before { correspondence.authenticated_at = authenticated_time }
 
       it "does not update the authenticated at date" do
-        get :authenticate, params: { uuid: "3cc98e93-d11c-42ad-832d-f40113d3ec27" }
+        get :authenticate, params: { uuid: correspondence.uuid }
         expect(correspondence.authenticated_at).to eq authenticated_time
       end
 
       it "does not resend the email" do
-        get :authenticate, params: { uuid: "3cc98e93-d11c-42ad-832d-f40113d3ec27" }
         expect(CorrespondenceMailer).not_to receive(:new_correspondence)
+        get :authenticate, params: { uuid: correspondence.uuid }
       end
     end
   end
