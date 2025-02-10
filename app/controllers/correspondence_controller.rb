@@ -43,7 +43,7 @@ class CorrespondenceController < ApplicationController
     @correspondence = Correspondence.where(uuid: params[:uuid]).first
     if @correspondence.nil?
       not_found and return
-    else
+    elsif !@correspondence.authenticated?
       @correspondence.authenticate!
       CorrespondenceMailer.new_correspondence(@correspondence).deliver_later
     end

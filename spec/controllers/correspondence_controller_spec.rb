@@ -114,7 +114,7 @@ RSpec.describe CorrespondenceController, type: :controller do
     context "when record already authenticated" do
       let(:authenticated_time) { 20.minutes.ago }
 
-      before { correspondence.authenticated_at = authenticated_time }
+      before { correspondence.update(authenticated_at: authenticated_time) }
 
       it "does not update the authenticated at date" do
         get :authenticate, params: { uuid: correspondence.uuid }
