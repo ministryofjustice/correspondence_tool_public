@@ -117,8 +117,9 @@ RSpec.describe CorrespondenceController, type: :controller do
       before { correspondence.update(authenticated_at: authenticated_time) }
 
       it "does not update the authenticated at date" do
-        get :authenticate, params: { uuid: correspondence.uuid }
-        expect(correspondence.reload.authenticated_at).to eq authenticated_time
+        expect {
+          get :authenticate, params: { uuid: correspondence.uuid }
+        }.not_to(change { correspondence.reload.authenticated_at })
       end
 
       it "does not resend the email" do
