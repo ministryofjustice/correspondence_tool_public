@@ -59,6 +59,9 @@ en:
     send: Send
     start: Start now
     continue: Continue
+    cookies:
+      accept: Accept analytics cookies
+      reject: Reject analytics cookies
 
   common:
     accessibility: Accessibility

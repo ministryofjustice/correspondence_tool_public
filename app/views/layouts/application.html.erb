@@ -36,6 +36,10 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
+    <% unless analytics_consent_cookie.present? %>
+      <%= render partial: 'layouts/cookie_banner' %>
+    <% end %>
+    
     <%= govuk_skip_link %>
 
     <%= govuk_header(homepage_url: "https://www.gov.uk", service_name: t('common.service_name')) %>
