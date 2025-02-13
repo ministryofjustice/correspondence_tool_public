@@ -1,0 +1,86 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <% if flash['cookies_consent_updated'] %>
+      <%= govuk_notification_banner(title_text: "Success", success: true) do |nb|
+          nb.with_heading(text: "You've set your cookie preferences.") end %>
+    <% end %>
+    <h1 class="govuk-heading-xl">Cookies</h1>
+    <p class="govuk-body">Contact the Ministry of Justice puts small files (known as 'cookies') onto your device to collect information about how you browse the site.</p>
+    <p class="govuk-body">Cookies are used to:</p>
+    <%= govuk_list ["measure how you use the website so it can be updated and improved based on your needs"], type: :bullet %>
+
+    <p class="govuk-body">Cookies aren't used to identify you personally.</p>
+    <p class="govuk-body">You'll normally see a message on the site before we store a cookie on your device.</p>
+    <p class="govuk-body">Find out <%= govuk_link_to "how to manage cookies", "https://ico.org.uk/for-the-public/online/cookies" %> from the Information Commissioner's Office.</p>
+
+    <h2 class="govuk-heading-l">Essential cookies (strictly necessary)</h2>
+    <p class="govuk-body">We use these cookies to remember your progress on this device and your cookie consent settings.</p>
+
+
+    <%= govuk_table do |table| %>
+      <%= table.with_head do |head| %>
+        <%= head.with_row do |row| %>
+          <%= row.with_cell(text: "Name") %>
+          <%= row.with_cell(text: "Purpose") %>
+          <%= row.with_cell(text: "Expires") %>
+        <% end %>
+
+        <%= table.with_body do |body| %>
+          <%= body.with_row do |row| %>
+            <%= row.with_cell(header: true, text: ConsentCookie::COOKIE_NAME) %>
+            <%= row.with_cell(text: "Saves your cookies consent settings") %>
+            <%= row.with_cell(text: "1 year") %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <h2 class="govuk-heading-l">Analytics cookies (optional)</h2>
+    <p class="govuk-body">We use Google Analytics software to collect information about how you use this tool. We do this to help make sure this tool is meeting the needs of its users and to help us make improvements. Google Analytics stores information about:</p>
+    <%= govuk_list ["the pages you visit",
+                    "how long you spend on each page",
+                    "how you got to the tool",
+                    "what you click on while you're visiting the site"], type: :bullet %>
+    <p class="govuk-body">We do not collect or store your personal information (for example your name or address) so this information can't be used to identify who you are.</p>
+    <p class="govuk-body">We do not allow Google to use or share our analytics data.</p>
+    <p class="govuk-body">Google Analytics sets the following cookies:</p>
+
+    <%= govuk_table do |table| %>
+      <%= table.with_head do |head| %>
+        <%= head.with_row do |row| %>
+          <%= row.with_cell(text: "Name") %>
+          <%= row.with_cell(text: "Purpose") %>
+          <%= row.with_cell(text: "Expires") %>
+        <% end %>
+
+        <%= table.with_body do |body| %>
+          <%= body.with_row do |row| %>
+            <%= row.with_cell(header: true, text: "_ga") %>
+            <%= row.with_cell(text: "Helps us count how many people visit this tool by tracking if you've visited before") %>
+            <%= row.with_cell(text: "1 week") %>
+          <% end %>
+          <%= body.with_row do |row| %>
+            <%= row.with_cell(header: true, text: "_gid") %>
+            <%= row.with_cell(text: "Helps us count how many people visit this tool by tracking if you've visited before") %>
+            <%= row.with_cell(text: "24 hours") %>
+          <% end %>
+          <%= body.with_row do |row| %>
+            <%= row.with_cell(header: true, text: "_gat") %>
+            <%= row.with_cell(text: "Used to manage the rate at which page view requests are made") %>
+            <%= row.with_cell(text: "1 minute") %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <h2 class="govuk-heading-m">Change your cookie settings</h2>
+
+    <%= form_with url: cookies_path, method: :patch do |f| %>
+      <%= f.govuk_radio_buttons_fieldset :consent, legend: { text: "Do you want to accept analytics cookies?" } do %>
+        <%= f.govuk_radio_button :consent, ConsentCookie::ACCEPT, label: { text: 'Yes' }, checked: @consent == ConsentCookie::ACCEPT %>
+        <%= f.govuk_radio_button :consent, ConsentCookie::REJECT, label: { text: 'No' }, checked: @consent == ConsentCookie::REJECT %>
+      <% end %>
+      <%= f.govuk_submit "Save cookie settings" %>
+    <% end %>
+  </div>
+</div>

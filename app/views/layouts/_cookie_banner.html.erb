@@ -2,7 +2,7 @@
   <% cb.with_message(heading_text: t("cookies.heading")) do |m| %>
     <% m.with_action { govuk_button_link_to(t("button.cookies.accept"), "/cookies/accept") } %>
     <% m.with_action { govuk_button_link_to(t("button.cookies.reject"), "/cookies/reject") } %>
-    <% m.with_action { govuk_link_to("View cookies", "/cookies") } %>
+    <% m.with_action { govuk_link_to("View cookies", cookies_path, method: "get") } %>
 
     <p class="govuk-body">
       We use some essential cookies to make this service work.

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "/give-feedback" => "feedback#new", as: "feedback"
 
   get "/cookies/:consent", to: "cookies#update"
+  resource :cookies, only: %i[show update]
 
   get "/correspondence" => "correspondence#topic"
   get "/correspondence/topic" => "correspondence#topic"
