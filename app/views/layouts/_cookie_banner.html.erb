@@ -1,5 +1,5 @@
 <%= govuk_cookie_banner do |cb| %>
-  <% cb.with_message(heading_text: "Cookies on Contact the Ministry of Justice") do |m| %>
+  <% cb.with_message(heading_text: t("cookies.heading")) do |m| %>
     <% m.with_action { govuk_button_link_to(t("button.cookies.accept"), "/cookies/accept") } %>
     <% m.with_action { govuk_button_link_to(t("button.cookies.reject"), "/cookies/reject") } %>
     <% m.with_action { govuk_link_to("View cookies", "/cookies") } %>

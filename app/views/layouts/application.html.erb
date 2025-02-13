@@ -39,6 +39,10 @@
     <% unless analytics_consent_cookie.present? %>
       <%= render partial: 'layouts/cookie_banner' %>
     <% end %>
+
+    <% if flash['cookies_consent_updated'] %>
+      <%= render partial: 'layouts/cookie_banner_confirmation', locals: { result: flash['cookies_consent_updated'] } %>
+    <% end %>
     
     <%= govuk_skip_link %>
 
