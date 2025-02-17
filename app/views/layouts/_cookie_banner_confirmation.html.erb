@@ -1,0 +1,10 @@
+<%= govuk_cookie_banner do |cb| %>
+  <% cb.with_message(heading_text: t("cookies.heading")) do |m| %>
+    <% m.with_action { govuk_button_link_to("Hide this message", "/", class: "cookie-hide-button") } %>
+
+    <p class="govuk-body">
+      <%= t "cookies.result.#{result}" %>
+      You can <%= govuk_link_to "change your cookie settings", cookies_path, method: "get" %> at any time.
+    </p>
+  <% end %>
+<% end %>

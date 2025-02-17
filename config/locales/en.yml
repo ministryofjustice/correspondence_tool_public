@@ -59,11 +59,21 @@ en:
     send: Send
     start: Start now
     continue: Continue
+    cookies:
+      accept: Accept analytics cookies
+      reject: Reject analytics cookies
 
   common:
     accessibility: Accessibility
+    cookies: Cookies
     alert_banner: "We are unable to respond to documents sent by post because of coronavirus (COVID-19). When using this online contact form please be aware that responses will take longer than usual."
     service_name: Contact the Ministry of Justice
+
+  cookies:
+    heading: Cookies on Contact the Ministry of Justice
+    result:
+      accept: You've accepted analytics cookies.
+      reject: You've rejected analytics cookies.
 
   correspondence:
     feedback:
