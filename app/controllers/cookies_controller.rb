@@ -1,4 +1,10 @@
 class CookiesController < ApplicationController
+  include AnalyticsHelper
+
+  def show
+    @consent = analytics_consent_cookie || ConsentCookie::REJECT
+  end
+
   def update
     consent = params[:consent].presence_in([ConsentCookie::ACCEPT, ConsentCookie::REJECT])
 

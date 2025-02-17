@@ -4,7 +4,7 @@
 
     <p class="govuk-body">
       <%= t "cookies.result.#{result}" %>
-      You can <%= govuk_link_to "change your cookie settings", "/cookies" %> at any time.
+      You can <%= govuk_link_to "change your cookie settings", cookies_path, method: "get" %> at any time.
     </p>
   <% end %>
 <% end %>

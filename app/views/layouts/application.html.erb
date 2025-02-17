@@ -46,6 +46,7 @@
     </div>
 
     <%= govuk_footer(meta_items_title: "Support links", meta_items: {
+      t("common.cookies") => cookies_path, method: "get",
       t("common.accessibility") => "/accessibility" }) %>
   </body>
 </html>
