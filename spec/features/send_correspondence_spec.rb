@@ -31,6 +31,7 @@ feature "Submit a general enquiry" do
   scenario 'User should start at the service "Start page"' do
     start_page.load
     expect(start_page.title).to eq "Start - Contact the Ministry of Justice"
+    expect(start_page).to have_content("Help us make this service better. Give us your feedback.")
 
     expect(start_page).to have_related_items
     expect(start_page.related_items).to have_find_a_court
