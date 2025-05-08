@@ -40,6 +40,13 @@
     <%= govuk_header(homepage_url: "https://www.gov.uk", service_name: t('common.service_name')) %>
 
     <div class="govuk-width-container">
+      <div class="govuk-phase-banner">
+        <p class="govuk-phase-banner__content">
+          <span class="govuk-phase-banner__text">
+            Help us make this service better. Give us your <%= govuk_link_to("feedback", t("correspondence.feedback.link_address"))%>.
+          </span>
+        </p>
+      </div>
       <main class="govuk-main-wrapper" id="main-content" role="main">
         <%= yield %>
       </main>

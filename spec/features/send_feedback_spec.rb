@@ -1,5 +1,7 @@
 require "rails_helper"
 
+# We are no longer submitting feedback via this mechanism and are instead using SmartSurvey.
+# Will not delete code until we are sure we will not revert.
 feature "Submit service feedback" do
   given(:ease_of_use) { Settings.feedback_options.sample }
   given(:completeness) { Settings.feedback_options.sample }
