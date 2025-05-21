@@ -118,7 +118,7 @@ jobs:
       webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
     with:
       build_tag: ${{ needs.build.outputs.build_tag }}
-      environment: Staging
+      environment: Development
 
   deploy-staging:
     runs-on: ubuntu-latest

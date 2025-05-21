@@ -80,6 +80,7 @@ en:
       prompt: Was this service helpful?
       link: Provide feedback
       time: (takes 30 seconds)
+      link_address: https://www.smartsurvey.co.uk/s/SU2UAX/
     confirmation:
       one_more_step: One more step...
       next_copy_html: |
