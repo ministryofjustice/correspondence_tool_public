@@ -1,5 +1,5 @@
 $govuk-global-styles: true;
 
-@import "govuk-frontend/dist/govuk/all";
+@import "govuk-frontend/dist/govuk/index";
 @import "moj/layout";
 @import "moj/typography";
