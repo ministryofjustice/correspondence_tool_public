@@ -1,7 +1,7 @@
 {
   "name": "correspondence-tool-public",
   "dependencies": {
-    "esbuild": "^0.25.0",
+    "esbuild": "^0.25.5",
     "govuk-frontend": "^5.11.1",
     "sass": "^1.79.1"
   },
