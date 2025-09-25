@@ -171,10 +171,10 @@ esbuild@^0.25.5:
     "@esbuild/win32-ia32" "0.25.10"
     "@esbuild/win32-x64" "0.25.10"
 
-govuk-frontend@^5.11.1:
-  version "5.11.1"
-  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-5.11.1.tgz#06cd64d2bbe0bfd26aa8ce393a348bff14c59f4f"
-  integrity sha512-hJJFpaer4MZLvz/2F9RZ7xZ6FqlzpxL9aw6YWOGK3F1tn419xj2WcVXwOC8Bcj/dc/LanknbWJDGkb+IdkuhTQ==
+govuk-frontend@^5.11.0:
+  version "5.12.0"
+  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-5.12.0.tgz#315e460c2556ff076ff7b4150e1c7aae371df23b"
+  integrity sha512-gNr/UVDoORVOqVKTC9i9HOKKPeM4IDTAqtnd3t6U8LQibEr+8Q+FB7Id0u/MfR/5mqPfenG/+VGLW96vJXok/g==
 
 immutable@^4.0.0:
   version "4.3.7"
