@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../javascript/moj.js"],
+  "sourcesContent": ["(function(){\n  'use strict';\n\n  var moj = {\n    Modules: {},\n\n    init: function () {\n      for (var x in moj.Modules) {\n        if (typeof moj.Modules[x].init === 'function') {\n          moj.Modules[x].init();\n        }\n      }\n    },\n\n    // safe logging\n    log: function (msg) {\n      if (window && window.console) {\n        window.console.log(msg);\n      }\n    },\n    dir: function (obj) {\n      if (window && window.console) {\n        window.console.dir(obj);\n      }\n    }\n\n  };\n\n  window.moj = moj;\n}());\n"],
+  "mappings": ";CAAC,WAAU;AACT;AAEA,MAAI,MAAM;AAAA,IACR,SAAS,CAAC;AAAA,IAEV,MAAM,WAAY;AAChB,eAAS,KAAK,IAAI,SAAS;AACzB,YAAI,OAAO,IAAI,QAAQ,CAAC,EAAE,SAAS,YAAY;AAC7C,cAAI,QAAQ,CAAC,EAAE,KAAK;AAAA,QACtB;AAAA,MACF;AAAA,IACF;AAAA;AAAA,IAGA,KAAK,SAAU,KAAK;AAClB,UAAI,UAAU,OAAO,SAAS;AAC5B,eAAO,QAAQ,IAAI,GAAG;AAAA,MACxB;AAAA,IACF;AAAA,IACA,KAAK,SAAU,KAAK;AAClB,UAAI,UAAU,OAAO,SAAS;AAC5B,eAAO,QAAQ,IAAI,GAAG;AAAA,MACxB;AAAA,IACF;AAAA,EAEF;AAEA,SAAO,MAAM;AACf,GAAE;",
+  "names": []
+}

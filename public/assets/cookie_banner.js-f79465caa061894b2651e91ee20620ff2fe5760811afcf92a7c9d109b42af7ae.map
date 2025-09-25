@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../javascript/cookie_banner.js"],
+  "sourcesContent": ["// Hide cookie banner\nvar cookieBanner = document.querySelector(\".govuk-cookie-banner\");\nif (cookieBanner) {\n  var hideButton = cookieBanner.querySelector('.cookie-hide-button');\n\n  if (hideButton) {\n    hideButton.addEventListener(\"click\", function(e) {\n      e.preventDefault();\n      cookieBanner.style.display = 'none';\n    });\n  }\n}\n"],
+  "mappings": ";AACA,IAAI,eAAe,SAAS,cAAc,sBAAsB;AAChE,IAAI,cAAc;AACZ,eAAa,aAAa,cAAc,qBAAqB;AAEjE,MAAI,YAAY;AACd,eAAW,iBAAiB,SAAS,SAAS,GAAG;AAC/C,QAAE,eAAe;AACjB,mBAAa,MAAM,UAAU;AAAA,IAC/B,CAAC;AAAA,EACH;AACF;AARM;",
+  "names": []
+}
