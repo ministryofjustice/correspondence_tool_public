@@ -37,7 +37,11 @@
     
     <%= govuk_skip_link %>
 
-    <%= govuk_header(homepage_url: "https://www.gov.uk", service_name: t('common.service_name')) %>
+    <%= govuk_header(homepage_url: "https://www.gov.uk") %>
+
+    <% unless current_page?(root_path) %>
+      <%= govuk_service_navigation(service_name: t("common.service_name"), service_url: "/") %>
+    <% end %>
 
     <div class="govuk-width-container">
       <div class="govuk-phase-banner">
