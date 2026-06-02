@@ -1,4 +1,4 @@
-FROM ruby:3.3.11-alpine as base
+FROM ruby:3.3.11-alpine AS base
 
 WORKDIR /app
 
@@ -6,20 +6,22 @@ WORKDIR /app
 RUN apk add --no-cache \
     nodejs \
     tzdata \
-    postgresql-client
+    postgresql-client \
+    libc6-compat
 
 # Ensure latest rubygems is installed
 RUN gem update --system
 
-FROM base as builder
+FROM base AS builder
 
 # build dependencies:
 RUN apk add --no-cache \
     ruby-dev \
     build-base \
     postgresql-dev \
-    yarn\
-    yaml-dev
+    yarn \
+    yaml-dev \
+    libc6-compat
 
 COPY Gemfile* .ruby-version package.json yarn.lock ./
 
@@ -31,7 +33,9 @@ RUN bundle config deployment true && \
 # Copy all files to /app
 COPY . .
 
-RUN RAILS_ENV=production SECRET_KEY_BASE_DUMMY=1 \
+RUN RAILS_ENV=production \
+    SECRET_KEY_BASE_DUMMY=1 \
+    PROMETHEUS_DISABLE=1 \
     bundle exec rake assets:precompile
 
 # Copy govuk assets
