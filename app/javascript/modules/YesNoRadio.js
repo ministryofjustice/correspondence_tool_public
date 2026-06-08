@@ -18,6 +18,8 @@ moj.Modules.YesNoRadio = {
   },
 
   showYesContent: function() {
+    const $srStatus = this.$yesContent.querySelector('.govuk-character-count__sr-status');
+    if ($srStatus) $srStatus.textContent = '';
     this.$yesContent.classList.remove('js-hidden');
     this.$noContent.classList.add('js-hidden');
   },

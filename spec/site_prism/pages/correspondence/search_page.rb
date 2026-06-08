@@ -13,8 +13,8 @@ module AskTool
         section :need_to_contact_form, "#correspondence_contact_requested_yes_content" do
           element :name, "#correspondence-name-field"
           element :email, "#correspondence-email-field"
-          element :message, "#correspondence-message-field"
-          element :counter, ".char-counter-count"
+          element :message, "#correspondence-message"
+          element :counter, ".govuk-character-count__message.govuk-character-count__status"
         end
 
         element :send_button, 'button[type="submit"]'
