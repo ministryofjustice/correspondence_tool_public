@@ -3,7 +3,7 @@
   <%= f.govuk_email_field :email %>
 
   <div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="<%= Settings.correspondence_message_max_length %>">
-    <label class="govuk-label" for="correspondence-message">Your message</label>
+    <%= f.label :message, t('helpers.label.correspondence.message'), class: 'govuk-label', for: 'correspondence-message' %>
     <div id="correspondence-message-hint" class="govuk-hint">
       <%= t('helpers.hint.correspondence.message_html') %>
     </div>
