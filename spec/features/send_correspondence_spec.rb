@@ -111,9 +111,14 @@ feature "Submit a general enquiry" do
 
     click_button "Send"
 
+    expect(search_page).to have_error_summary
     error_messages.each do |error_message|
-      expect(page).to have_content(error_message)
+      expect(search_page.error_summary).to have_link(error_message)
     end
+
+    expect(search_page.need_to_contact_form.name_error.text).to eq "Error: Full name can't be blank"
+    expect(search_page.need_to_contact_form.email_error.text).to eq "Error: Email can't be blank"
+    expect(search_page.need_to_contact_form.message_error.text).to eq "Error: Your message can't be blank"
   end
 
   scenario "A topic which returns zero results" do
@@ -197,4 +202,5 @@ feature "Submit a general enquiry" do
 
     expect(search_page.need_to_contact_form.counter.text).to eq "You have #{(input_over_maxlength.length - max_length).to_fs(:delimited)} characters too many"
   end
+
 end
