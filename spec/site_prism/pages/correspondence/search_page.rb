@@ -10,11 +10,16 @@ module AskTool
         element :self_serviced_radio_copy, "#correspondence_contact_requested_no_content"
 
         element :need_to_contact_radio, 'label[for="correspondence-contact-requested-yes-field"]'
+        element :error_summary, ".govuk-error-summary"
+
         section :need_to_contact_form, "#correspondence_contact_requested_yes_content" do
-          element :name, "#correspondence-name-field"
-          element :email, "#correspondence-email-field"
-          element :message, "#correspondence-message-field"
-          element :counter, ".char-counter-count"
+          element :name, "#correspondence-name-field, #correspondence-name-field-error"
+          element :email, "#correspondence-email-field, #correspondence-email-field-error"
+          element :message, "#correspondence-message-field, #correspondence-message-field-error"
+          element :counter, ".govuk-character-count__message.govuk-character-count__status"
+          element :name_error, "#correspondence-name-error"
+          element :email_error, "#correspondence-email-error"
+          element :message_error, "#correspondence-message-error"
         end
 
         element :send_button, 'button[type="submit"]'

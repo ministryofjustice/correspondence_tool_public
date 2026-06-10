@@ -111,9 +111,14 @@ feature "Submit a general enquiry" do
 
     click_button "Send"
 
+    expect(search_page).to have_error_summary
     error_messages.each do |error_message|
-      expect(page).to have_content(error_message)
+      expect(search_page.error_summary).to have_link(error_message)
     end
+
+    expect(search_page.need_to_contact_form.name_error.text).to eq "Error: Full name can't be blank"
+    expect(search_page.need_to_contact_form.email_error.text).to eq "Error: Email can't be blank"
+    expect(search_page.need_to_contact_form.message_error.text).to eq "Error: Your message can't be blank"
   end
 
   scenario "A topic which returns zero results" do
@@ -143,9 +148,10 @@ feature "Submit a general enquiry" do
     expect(ActionMailer::MailDeliveryJob).to have_been_enqueued.with("ConfirmationMailer", "new_confirmation", "deliver_now", args: anything).at_least(:once)
   end
 
-  scenario "message character count updates when text is entered", :js do
-    input_within_maxlength = "a" * rand(1..5000)
-    input_over_maxlength = "a" * rand(5001..6000)
+  scenario "Message character count updates when text is entered", :js do
+    max_length = Settings.correspondence_message_max_length
+    input_within_maxlength = "a" * rand(1..max_length)
+    input_over_maxlength = "a" * rand(max_length + 1..max_length + 1000)
 
     topic_page.load
     topic_page.search_govuk(topic_with_results)
@@ -162,19 +168,20 @@ feature "Submit a general enquiry" do
 
     expect(search_page).to have_link("terms and conditions", href: "/correspondence/t_and_c")
 
-    expect(search_page.need_to_contact_form.counter.text).to eq "5000"
+    expect(search_page.need_to_contact_form.counter.text).to eq "You have #{max_length.to_fs(:delimited)} characters remaining"
 
     search_page.need_to_contact_form.message.set input_within_maxlength
 
-    expect(search_page.need_to_contact_form.counter.text).to eq (5000 - input_within_maxlength.length).to_s
+    expect(search_page.need_to_contact_form.counter.text).to eq "You have #{(max_length - input_within_maxlength.length).to_fs(:delimited)} characters remaining"
 
     search_page.need_to_contact_form.message.set input_over_maxlength
 
-    expect(search_page.need_to_contact_form.counter.text).to eq (5000 - input_over_maxlength.length).to_s
+    expect(search_page.need_to_contact_form.counter.text).to eq "You have #{(input_over_maxlength.length - max_length).to_fs(:delimited)} characters too many"
   end
 
-  scenario "message character count shows correct count on page load", :js do
-    input_over_maxlength = "a" * rand(5001..6000)
+  scenario "message character count shows correct count after failed submission with over-limit text", :js do
+    max_length = Settings.correspondence_message_max_length
+    input_over_maxlength = "a" * rand(max_length + 1..max_length + 1000)
 
     topic_page.load
     topic_page.search_govuk(topic_with_results)
@@ -185,7 +192,7 @@ feature "Submit a general enquiry" do
 
     search_page.wait_until_need_to_contact_form_visible
 
-    expect(search_page.need_to_contact_form.counter.text).to eq "5000"
+    expect(search_page.need_to_contact_form.counter.text).to eq "You have #{max_length.to_fs(:delimited)} characters remaining"
 
     search_page.send_correspondence(name,
                                     email,
@@ -193,6 +200,6 @@ feature "Submit a general enquiry" do
 
     search_page.wait_until_need_to_contact_form_visible
 
-    expect(search_page.need_to_contact_form.counter.text).to eq (5000 - input_over_maxlength.length).to_s
+    expect(search_page.need_to_contact_form.counter.text).to eq "You have #{(input_over_maxlength.length - max_length).to_fs(:delimited)} characters too many"
   end
 end
