@@ -202,5 +202,4 @@ feature "Submit a general enquiry" do
 
     expect(search_page.need_to_contact_form.counter.text).to eq "You have #{(input_over_maxlength.length - max_length).to_fs(:delimited)} characters too many"
   end
-
 end
