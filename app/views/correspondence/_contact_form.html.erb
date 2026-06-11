@@ -2,22 +2,11 @@
   <%= f.govuk_text_field :name %>
   <%= f.govuk_email_field :email %>
 
-  <% message_field_id = @correspondence.errors[:message].any? ? 'correspondence-message-field-error' : 'correspondence-message-field' %>
-  <div class="govuk-form-group<%= ' govuk-form-group--error' if @correspondence.errors[:message].any? %> govuk-character-count" data-module="govuk-character-count" data-maxlength="<%= Settings.correspondence_message_max_length %>">
-    <%= f.label :message, t('helpers.label.correspondence.message'), class: 'govuk-label', for: message_field_id %>
-    <div id="correspondence-message-hint" class="govuk-hint">
-      <%= t('helpers.hint.correspondence.message_html') %>
-    </div>
-    <% if @correspondence.errors[:message].any? %>
-      <p class="govuk-error-message" id="correspondence-message-error">
-        <span class="govuk-visually-hidden">Error: </span><%= @correspondence.errors[:message].to_sentence %>
-      </p>
-    <% end %>
-    <%= f.text_area :message, id: message_field_id, class: "govuk-textarea govuk-js-character-count#{ ' govuk-textarea--error' if @correspondence.errors[:message].any? }", rows: 10, 'aria-describedby': "correspondence-message-hint #{'correspondence-message-error ' if @correspondence.errors[:message].any?}#{message_field_id}-info" %>
-    <div id="<%= "#{message_field_id}-info" %>" class="govuk-hint govuk-character-count__message">
-      You can enter up to <%= Settings.correspondence_message_max_length %> characters
-    </div>
-  </div>
+  <%= f.govuk_text_area :message,
+        label: { text: t('helpers.label.correspondence.message') },
+        hint: { text: t('helpers.hint.correspondence.message_html') },
+        rows: 10,
+        max_chars: Settings.correspondence_message_max_length %>
 
   <p class="govuk-body">
     <%= "By using this service you agree to these " %>
