@@ -55,6 +55,25 @@ feature "Submit a general enquiry" do
     expect(search_page.self_service_ga_events.size).to eq 4
   end
 
+  scenario "Selecting 'No' shows content with next step links", :js do
+    topic_page.load
+    topic_page.search_govuk(topic_with_results)
+
+    expect(search_page).to be_displayed
+    expect(search_page).to have_self_serviced_radio
+
+    search_page.self_serviced_radio.click
+    search_page.wait_until_self_serviced_radio_copy_visible
+
+    no_content = search_page.self_serviced_radio_copy
+
+    expect(no_content).to have_content("Thank you for using this service")
+    expect(no_content).to have_content("You are free to close this window or do something else:")
+    expect(no_content).to have_link("Start again with a new reason for contacting MoJ", href: "/")
+    expect(no_content).to have_link("Give feedback on this service (takes 30 seconds)", href: "https://www.smartsurvey.co.uk/s/SU2UAX/")
+    expect(no_content).to have_link("Return to the Ministry of Justice home page", href: "https://www.gov.uk/government/organisations/ministry-of-justice")
+  end
+
   scenario "Using valid inputs", :js do
     topic_page.load
     expect(topic_page.title).to eq "Topic search - Contact the Ministry of Justice"
