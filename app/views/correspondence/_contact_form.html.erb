@@ -1,7 +1,6 @@
 <div id="correspondence_contact_requested_yes_content" class="<%= local_assigns.fetch :klass, '' %>">
   <%= f.govuk_text_field :name %>
   <%= f.govuk_email_field :email %>
-
   <%= f.govuk_text_area :message,
         label: { text: t('helpers.label.correspondence.message') },
         hint: { text: t('helpers.hint.correspondence.message_html') },
