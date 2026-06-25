@@ -18,11 +18,10 @@ class Correspondence < ApplicationRecord
 
   validates :name, presence: { message: "Full name can't be blank" }
   validates :email, presence: { message: "Email can't be blank" }
-  validates :message, presence: { message: "Your message can't be blank" }
-
   validates :email, format: { with: /\A.*@.*\z/,
                               message: "Email is invalid",
                               if: proc { email.present? } }
+  validates :message, presence: { message: "Your message can't be blank" }
 
   validates :category,
             inclusion: { in: Settings.correspondence_categories,
