@@ -1,3 +1,7 @@
-<%= t('.prompt') %>
-<%= govuk_link_to t('.link'), t('.link_address') %>
-<%= t('.time') %>
+<h2 class="govuk-heading-m"><%= t('.heading') %></h2>
+<p class="govuk-body"><%= t('.sub_heading') %></p>
+<ul class="govuk-list">
+  <li><%= govuk_link_to t('.start_again'), root_path %></li>
+  <li><%= govuk_link_to t('.give_feedback'), t('.link_address') %></li>
+  <li><%= govuk_link_to t('.moj_home'), Settings.moj_home_page %></li>
+</ul>

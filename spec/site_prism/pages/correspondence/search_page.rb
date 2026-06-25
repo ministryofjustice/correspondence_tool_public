@@ -4,7 +4,7 @@ module AskTool
       class SearchPage < SitePrism::Page
         set_url "/correspondence/search"
 
-        elements :self_service, "ul.govuk-list li"
+        elements :self_service, "ul.govuk-list.search-results li"
         elements :self_service_ga_events, "ul.govuk-list li a[onclick]"
         element :self_serviced_radio, 'label[for="correspondence-contact-requested-no-field"]'
         element :self_serviced_radio_copy, "#correspondence_contact_requested_no_content"

@@ -21,9 +21,9 @@
         <% end %>
         <%= render partial: 'contact_form', locals: {f: f, klass: "js-hidden"} %>
 
-        <p id="correspondence_contact_requested_no_content" class="js-hidden">
+        <div id="correspondence_contact_requested_no_content" class="js-hidden">
           <%= render partial: 'feedback' %>
-        </p>
+        </div>
       <% else %>
         <%= render partial: 'contact_form', locals: {f: f} %>
       <% end %>

@@ -77,10 +77,12 @@ en:
 
   correspondence:
     feedback:
-      prompt: Was this service helpful?
-      link: Provide feedback
-      time: (takes 30 seconds)
+      heading: Thank you for using this service
+      sub_heading: "You are free to close this window or do something else:"
+      start_again: Start again with a new reason for contacting MoJ
+      give_feedback: Give feedback on this service (takes 30 seconds)
       link_address: https://www.smartsurvey.co.uk/s/SU2UAX/
+      moj_home: Return to the Ministry of Justice home page
     confirmation:
       one_more_step: One more step...
       next_copy_html: |
