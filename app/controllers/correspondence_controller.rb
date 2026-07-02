@@ -25,8 +25,7 @@ class CorrespondenceController < ApplicationController
   end
 
   def topic
-    topic = params.dig(:correspondence, :topic)
-    @correspondence = Correspondence.new(topic:)
+    @correspondence = Correspondence.new
   end
 
   def search

@@ -1,6 +1,6 @@
 <% content_for :page_title, t('page_title.contact_form') %>
 <% content_for :back_link do %>
-  <%= govuk_back_link href: correspondence_topic_path(correspondence: { topic: @correspondence.topic }) %>
+  <%= govuk_back_link href: correspondence_topic_path %>
 <% end %>
 <%= render partial: 'layouts/header', locals: { page_heading: t('.heading') } %>
 
