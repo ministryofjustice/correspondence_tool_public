@@ -29,6 +29,24 @@ RSpec.describe CorrespondenceController, type: :controller do
     it "renders the topic form" do
       expect(get(:topic)).to render_template(:topic)
     end
+
+    it "instantiates an empty correspondence when no topic param is given" do
+      get(:topic)
+      expect(assigns(:correspondence).topic).to be_nil
+    end
+
+    context "when a topic param is provided" do
+      let(:topic_params) { { correspondence: { topic: "prisons and probation" } } }
+
+      it "renders the topic form" do
+        expect(get(:topic, params: topic_params)).to render_template(:topic)
+      end
+
+      it "pre-populates the correspondence with the given topic" do
+        get(:topic, params: topic_params)
+        expect(assigns(:correspondence).topic).to eq "prisons and probation"
+      end
+    end
   end
 
   describe "GET search" do
