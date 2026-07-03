@@ -47,7 +47,7 @@ class Correspondence < ApplicationRecord
   before_validation :set_uuid, on: :create
 
   def topic_present?
-    errors.add("topic", "What are you contacting the Ministry of Justice about? can't be blank") if topic.blank?
+    errors.add("topic", "Enter what you are contacting the Ministry of Justice about") if topic.blank?
     topic.present?
   end
 

@@ -7,7 +7,7 @@ feature "Submit a general enquiry" do
   given(:topic_with_results) { "Visiting a prison" }
 
   given(:topic_error) do
-    "What are you contacting the Ministry of Justice about? can't be blank"
+    "Enter what you are contacting the Ministry of Justice about"
   end
 
   given(:error_messages) do

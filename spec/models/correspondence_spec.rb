@@ -107,7 +107,7 @@ RSpec.describe Correspondence, type: :model do
 
       it "has an error messages" do
         correspondence.topic_present?
-        expect(correspondence.errors[:topic]).to eq ["What are you contacting the Ministry of Justice about? can't be blank"]
+        expect(correspondence.errors[:topic]).to eq ["Enter what you are contacting the Ministry of Justice about"]
       end
     end
   end
