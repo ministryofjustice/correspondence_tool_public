@@ -4,7 +4,7 @@ data:
   RAILS_SERVE_STATIC_FILES: 'true'
   SETTINGS__AAQ_EMAIL_URL: https://development.contact-moj.service.justice.gov.uk
   SETTINGS__AAQ_FEEDBACK_EMAIL: ContactMOJTest-gg@justice.gov.uk
-  SETTINGS__CORRESPONDENCE_EMAIL_FROM: correspondence-tool@digital.justice.gov.uk
+  SETTINGS__CORRESPONDENCE_EMAIL_FROM: ContactMOJTest-gg@justice.gov.uk
   SETTINGS__GENERAL_ENQUIRIES_EMAIL: ContactMOJTest-gg@justice.gov.uk
   SENTRY_ENVIRONMENT: development
   SENTRY_DSN: https://ea2d904892c54e25954261508b9c1ccf@o345774.ingest.sentry.io/5407958
