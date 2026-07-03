@@ -4,6 +4,7 @@ module AskTool
       class TopicPage < SitePrism::Page
         set_url "/correspondence/topic"
 
+        element :back_link, ".govuk-back-link"
         element :topic_field, "#correspondence-topic-field"
         element :topic_field_error, "#correspondence-topic-field-error"
         element :continue_button, 'button[type="submit"]'

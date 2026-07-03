@@ -221,4 +221,37 @@ feature "Submit a general enquiry" do
 
     expect(search_page.need_to_contact_form.counter.text).to eq "You have #{(input_over_maxlength.length - max_length).to_fs(:delimited)} characters too many"
   end
+
+  scenario "Topic page has a back link to the start page" do
+    topic_page.load
+
+    expect(topic_page).to have_back_link
+    expect(topic_page.back_link[:href]).to eq "/"
+  end
+
+  scenario "Contact form page has a back link to the topic page" do
+    topic_page.load
+    topic_page.search_govuk(topic_with_results)
+
+    expect(search_page).to be_displayed
+    expect(search_page).to have_back_link
+    expect(search_page.back_link[:href]).to eq "/correspondence/topic"
+  end
+
+  scenario "Back link on topic page navigates to start page" do
+    topic_page.load
+    topic_page.back_link.click
+
+    expect(start_page).to be_displayed
+  end
+
+  scenario "Back link on contact form page navigates to topic page" do
+    topic_page.load
+    topic_page.search_govuk(topic_with_results)
+
+    expect(search_page).to be_displayed
+    search_page.back_link.click
+
+    expect(topic_page).to be_displayed
+  end
 end

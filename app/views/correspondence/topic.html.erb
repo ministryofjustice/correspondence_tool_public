@@ -1,4 +1,7 @@
 <% content_for :page_title, t('page_title.topic_search') %>
+<% content_for :back_link do %>
+  <%= govuk_back_link href: root_path %>
+<% end %>
 
 <%= render partial: 'layouts/header', locals: { page_heading: t('helpers.label.correspondence.topic') } %>
 
