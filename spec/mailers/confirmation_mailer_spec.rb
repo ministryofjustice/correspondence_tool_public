@@ -16,7 +16,7 @@ RSpec.describe ConfirmationMailer, type: :mailer do
 
     it "sets the template" do
       expect(mail.govuk_notify_template)
-        .to eq "cfa41a99-a4d0-4a7f-8c69-3d5f097397a0"
+        .to eq "a63dc9f8-3ccb-45ee-9a87-2f6654fc1112"
     end
 
     it "personalises the email" do
