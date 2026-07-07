@@ -1,7 +1,3 @@
-Sidekiq.configure_client do |config|
-  config.redis = { size: 1 }
-end
-
 Sidekiq.configure_server do |config|
   config.on :startup do
     require "prometheus_exporter/instrumentation"

@@ -46,7 +46,7 @@ RSpec.describe HeartbeatController, type: :controller do
             .to receive(:new).and_return(instance_double(Sidekiq::ProcessSet, size: 0))
 
         connection = double("connection") # rubocop:disable RSpec/VerifiedDoubles
-        allow(connection).to receive(:info).and_raise(Redis::CannotConnectError)
+        allow(connection).to receive(:call).with("INFO").and_raise(RedisClient::CannotConnectError)
         allow(Sidekiq).to receive(:redis).and_yield(connection)
 
         get :healthcheck
@@ -72,7 +72,8 @@ RSpec.describe HeartbeatController, type: :controller do
       before do
         allow(ActiveRecord::Base.connection).to receive(:execute).and_return(true)
 
-        connection = double("connection", info: {}) # rubocop:disable RSpec/VerifiedDoubles
+        connection = double("connection") # rubocop:disable RSpec/VerifiedDoubles
+        allow(connection).to receive(:call).with("INFO")
         allow(Sidekiq).to receive(:redis).and_yield(connection)
 
         get :healthcheck
