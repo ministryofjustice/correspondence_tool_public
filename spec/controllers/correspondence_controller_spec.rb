@@ -188,7 +188,7 @@ RSpec.describe CorrespondenceController, type: :controller do
       before do
         allow(ConfirmationMailer)
           .to receive(:new_confirmation)
-          .and_raise(Redis::CannotConnectError)
+          .and_raise(RedisClient::CannotConnectError)
         post :create, params:
       end
 

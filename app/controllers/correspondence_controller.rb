@@ -1,5 +1,5 @@
 class CorrespondenceController < ApplicationController
-  rescue_from Redis::CannotConnectError do
+  rescue_from RedisClient::CannotConnectError do
     internal_server_error
   end
 

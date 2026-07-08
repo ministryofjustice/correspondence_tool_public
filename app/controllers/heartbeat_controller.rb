@@ -34,7 +34,7 @@ class HeartbeatController < ApplicationController
 private
 
   def redis_alive?
-    Sidekiq.redis(&:info)
+    Sidekiq.redis { |conn| conn.call("INFO") }
     true
   rescue StandardError => e
     log_unknown_error(e)
