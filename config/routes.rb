@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
   resources :correspondence, only: %i[new create]
 
-  resources :feedback, only: %i[new create], path: "give-feedback", path_names: { new: "" }
-  get "/give-feedback" => "feedback#new", as: "feedback"
-
   get "/cookies/:consent", to: "cookies#update"
   resource :cookies, only: %i[show update]
 
