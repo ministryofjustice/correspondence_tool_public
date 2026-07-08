@@ -6,13 +6,6 @@ correspondence_categories:
   - general_enquiries
   - freedom_of_information_request
 
-feedback_options:
-  - strongly_agree
-  - agree
-  - neither_agree_nor_disagree
-  - disagree
-  - strongly_disagree
-
 correspondence_topic_max_length: 60
 correspondence_message_max_length: 5000
 
@@ -22,7 +15,6 @@ correspondence_message_max_length: 5000
 correspondence_email_from: correspondence_tool@localhost
 general_enquiries_email: general_enquiries@localhost
 freedom_of_information_request_email: foi_request@localhost
-aaq_feedback_email: feedback@localhost
 aaq_email_url: http://localhost:3000
 
 # These are set in run.sh
@@ -33,4 +25,3 @@ git_commit:  Git Commit Not Available
 govuk_notify_api_key: ENV['SETTINGS__GOVUK_NOTIFY_API_KEY']
 new_correspondence_notify_template: '29ad44f7-ba74-455c-9f8e-e2d72c933620'
 correspondence_confirmation_notify_template: 'a63dc9f8-3ccb-45ee-9a87-2f6654fc1112'
-new_feedback_notify_template: '2ddca175-7284-4343-9408-a7db23975269'

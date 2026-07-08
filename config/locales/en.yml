@@ -35,15 +35,9 @@ en:
           Your message
         topic:
           What are you contacting the Ministry of Justice about?
-      feedback:
-        comment: |
-          How could we improve this service?
     legend:
       correspondence:
         contact_requested: Do you still need to contact the Ministry of Justice?
-      feedback:
-        ease_of_use: This online service was easy to use
-        completeness: The online service enabled me to give all the relevant information
     hint:
       correspondence:
         email: |
@@ -117,23 +111,11 @@ en:
       heading: Your query
       more_results: 'More results'
 
-  feedback:
-    new:
-      heading: Give feedback
-      prompt: To what extent do you agree with the following statements?
-      data_warning: |
-        Please don't include any personal or financial information,
-        for example your National Insurance or credit card numbers.
-    confirmation:
-      success: Your feedback has been sent
-
   page_title:
     start_page: Start - Contact the Ministry of Justice
     topic_search: Topic search - Contact the Ministry of Justice
     contact_form: Contact form - Contact the Ministry of Justice
     contact_confirm: Please confirm your Email address - Contact the Ministry of Justice
-    feedback_form: Feedback form - Contact the Ministry of Justice
-    feedback_confirm: Feedback confirmation - Contact the Ministry of Justice
     authentication_confirmation: Your message has been sent - Contact the Ministry of Justice
     terms_and_conditions: Terms and conditions and privacy policy - Contact the Ministry of Justice
     accessibility_statement: Accessibility statement - Contact the Ministry of Justice
