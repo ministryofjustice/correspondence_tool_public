@@ -5,6 +5,6 @@ RSpec.describe "pages/accessibility", type: :view do
     render
 
     expect(rendered).to have_text("Accessibility statement")
-    expect(rendered).to have_text("This statement was last updated")
+    expect(rendered).to have_text("This statement was prepared")
   end
 end
