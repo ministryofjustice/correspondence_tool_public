@@ -19,7 +19,10 @@
 
         <%# i18n-tasks-use t('helpers.legend.correspondence.contact_requested') %>
         <%= f.govuk_radio_buttons_fieldset :contact_requested, legend: { tag: 'h2' } do %>
-          <%= f.govuk_radio_button :contact_requested, 'yes', label: { text: "Yes" } %>
+          <%= f.govuk_radio_button :contact_requested, 'yes', label: proc {
+            concat "Yes"
+            concat tag.span("Selecting Yes will reveal fields for your full name, email address and message", class: "govuk-visually-hidden")
+          } %>
           <%= f.govuk_radio_button :contact_requested, 'no', label: { text: "No" } %>
         <% end %>
         <%= render partial: 'contact_form', locals: {f: f, klass: "js-hidden"} %>
