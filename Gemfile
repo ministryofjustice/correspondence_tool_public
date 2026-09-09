@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby file: ".ruby-version"
 
 gem "config"
-gem "govuk_app_config"
+gem "govuk_app_config", ">= 9.25.2"
 gem "govuk-components", ">= 5.11.1"
 gem "govuk_design_system_formbuilder"
 gem "govuk_notify_rails", ">= 2.1.2"
