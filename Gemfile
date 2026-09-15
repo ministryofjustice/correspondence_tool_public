@@ -5,20 +5,20 @@ ruby file: ".ruby-version"
 
 gem "config"
 gem "govuk_app_config"
-gem "govuk-components", ">= 5.11.1"
-gem "govuk_design_system_formbuilder"
+gem "govuk-components", ">= 6.4.1"
+gem "govuk_design_system_formbuilder", ">= 6.3.1"
 gem "govuk_notify_rails", ">= 2.1.2"
 gem "httparty"
 gem "jsonb_accessor", "~> 1.4"
-gem "logstasher"
+gem "logstasher", ">= 3.0.0"
 gem "mail", ">= 2.8"
 gem "ostruct"
 gem "pg", "~> 1.5"
 gem "rails", "8.1.3.1"
 gem "responders", "~> 3.1"
-gem "sentry-sidekiq"
+gem "sentry-sidekiq", ">= 6.7.0"
 gem "sidekiq", "~> 8.1"
-gem "slim-rails", "~> 3.7"
+gem "slim-rails", "~> 4.0", ">= 4.0.0"
 # Used for the GOVUK Search API
 gem "stopwords-filter2", require: "stopwords"
 gem "terser"
@@ -35,7 +35,7 @@ group :test do
   gem "i18n-tasks"
   gem "rails-controller-testing", ">= 1.0.5"
   gem "selenium-webdriver"
-  gem "shoulda-matchers"
+  gem "shoulda-matchers", ">= 8.0.0"
   gem "simplecov"
   gem "site_prism", "~> 5.1"
   gem "timecop"
@@ -53,7 +53,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "annotate"
+  gem "annotate", ">= 2.6.6"
   gem "better_errors"
   gem "binding_of_caller"
 end
