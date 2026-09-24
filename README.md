@@ -97,6 +97,22 @@ The site will be accessible at http://localhost:3000.
 $ bundle exec rspec
 ```
 
+## Docker
+
+The production image (see `Dockerfile`) is built from an official `ruby` base image. To keep the Ruby version used by Docker in sync with the version defined in `.ruby-version`, always build the image using the `bin/docker-build` wrapper script rather than calling `docker build` directly:
+
+```
+$ bin/docker-build
+```
+
+The script reads `.ruby-version` and passes it through to Docker as the `RUBY_VERSION` build argument, so bumping `.ruby-version` is enough to upgrade the Ruby version used in both local and CI-built images — there's no separate version to update in the `Dockerfile` itself. Any additional arguments are forwarded to `docker build`, for example:
+
+```
+$ bin/docker-build -t contact-moj:latest
+```
+
+CI pipelines follow the same pattern and build the image via `bin/docker-build` (see `.github/workflows/deploy.yml`), and `ruby/setup-ruby` in `.github/workflows/test.yml` also reads the version from `.ruby-version` automatically, so the Ruby version only needs to be maintained in one place.
+
 ## Emails
 
 Emails are sent using the
