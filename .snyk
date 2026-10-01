@@ -1,0 +1,11 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.0.0
+ignore:
+  SNYK-JS-BRACES-19963945:
+    - '*':
+        reason: >-
+          Transitive dependency via sass > @parcel/watcher > micromatch > braces.
+          sass is only invoked here for a one-shot `build:css` compile, never with
+          --watch, so the vulnerable @parcel/watcher glob-watching code path is not
+          exercised. No upstream fix is available yet; re-review when braces ships one.
+        expires: 2026-12-31T00:00:00.000Z

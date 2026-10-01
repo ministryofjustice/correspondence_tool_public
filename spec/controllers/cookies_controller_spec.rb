@@ -32,5 +32,19 @@ RSpec.describe CookiesController, type: :controller do
         expect(cookies[:contact_moj_cookies_consent]).to be_nil
       end
     end
+
+    context "when the Referer header points to an external host" do
+      before { request.env["HTTP_REFERER"] = "https://evil.example.com/attacker-landing" }
+
+      it "does not redirect to the external host" do
+        response = get :update, params: { consent: "accept" }
+        expect(response).not_to redirect_to "https://evil.example.com/attacker-landing"
+      end
+
+      it "redirects to the fallback path instead" do
+        response = get :update, params: { consent: "accept" }
+        expect(response).to redirect_to root_path
+      end
+    end
   end
 end
