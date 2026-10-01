@@ -4,13 +4,7 @@ class HeartbeatController < ApplicationController
   respond_to :json
 
   def ping
-    version_info = {
-      build_date: Settings.build_date,
-      git_commit: Settings.git_commit,
-      build_tag: Settings.git_source,
-    }
-
-    render json: version_info
+    render json: { status: "ok" }
   end
 
   def healthcheck
@@ -22,13 +16,14 @@ class HeartbeatController < ApplicationController
       sidekiq: sidekiq_alive?,
     }
 
-    unless checks.values.all?
+    if checks.values.all?
+      status = :ok
+    else
       status = :internal_server_error
       Sentry.capture_message("HealthCheck failed: #{@errors}")
     end
-    render status:, json: {
-      checks:,
-    }
+
+    render status:, json: { status: status == :ok ? "ok" : "error" }
   end
 
 private
