@@ -12,7 +12,7 @@ class CorrespondenceController < ApplicationController
     when :success
       redirect_to correspondence_confirmation_path(@correspondence.uuid)
     when :no_op
-      redirect_to Settings.moj_home_page
+      redirect_to Settings.moj_home_page, allow_other_host: true
     when :validation_error
       @search_api_client = GovUkSearchApi::Client.new(@correspondence.topic)
       @search_results = search_results(@search_api_client.search)
