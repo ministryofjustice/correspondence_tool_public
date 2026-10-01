@@ -18,17 +18,10 @@ RSpec.describe HeartbeatController, type: :controller do
   end
 
   describe "#ping" do
-    it "returns JSON with app information" do
+    it "returns a minimal JSON status with no build or infrastructure detail" do
       get :ping
 
-      ping_response = JSON.parse response.body
-      # Settings can be nil, and since we don't test Settings anywhere else we do it here.
-      expect(ping_response["build_date"]).not_to be_nil
-      expect(ping_response["build_date"]).to eq Settings.build_date
-      expect(ping_response["git_commit"]).not_to be_nil
-      expect(ping_response["git_commit"]).to eq Settings.git_commit
-      expect(ping_response["build_tag"]).not_to be_nil
-      expect(ping_response["build_tag"]).to eq Settings.git_source
+      expect(response.body).to eq({ status: "ok" }.to_json)
     end
   end
 
@@ -56,10 +49,8 @@ RSpec.describe HeartbeatController, type: :controller do
         expect(response.status).to eq(500)
       end
 
-      it "returns the expected response report" do
-        expect(response.body).to eq({ checks: { database: false,
-                                                redis: false,
-                                                sidekiq: false } }.to_json)
+      it "returns the expected response report with no per-service detail" do
+        expect(response.body).to eq({ status: "error" }.to_json)
       end
 
       it "sends report to Sentry" do
@@ -83,10 +74,8 @@ RSpec.describe HeartbeatController, type: :controller do
         expect(response.status).to eq(200)
       end
 
-      it "returns the expected response report" do
-        expect(response.body).to eq({ checks: { database: true,
-                                                redis: true,
-                                                sidekiq: true } }.to_json)
+      it "returns the expected response report with no per-service detail" do
+        expect(response.body).to eq({ status: "ok" }.to_json)
       end
     end
   end
