@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   get "ping", to: "heartbeat#ping", format: :json
   get "healthcheck", to: "heartbeat#healthcheck", as: "healthcheck", format: :json
+  get "deploy_info", to: "heartbeat#deploy_info", format: :json
 
   get "/404", to: "errors#not_found"
   get "/500", to: "errors#internal_error"
