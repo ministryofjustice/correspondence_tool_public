@@ -149,6 +149,23 @@ RSpec.describe CorrespondenceController, type: :controller do
       end
     end
 
+    context "when contact was not requested" do
+      let(:correspondence_params) do
+        {
+          name: external_user.name,
+          email: external_user.email,
+          topic: "prisons and probations",
+          message: "Question about prisons and probation",
+          contact_requested: "no",
+        }
+      end
+
+      it "redirects to the MoJ home page" do
+        post(:create, params:)
+        expect(response).to redirect_to(Settings.moj_home_page)
+      end
+    end
+
     it "defaults the category to general enquiry" do
       post(:create, params:)
       expect(assigns(:correspondence).category).to eq "general_enquiries"
