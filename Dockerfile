@@ -1,4 +1,7 @@
-FROM ruby:3.4.9-alpine AS base
+# Fallback only - bin/docker-build passes the version from .ruby-version instead
+ARG RUBY_VERSION=4.0.3
+
+FROM ruby:${RUBY_VERSION}-alpine AS base
 
 WORKDIR /app
 
