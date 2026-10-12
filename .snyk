@@ -1,14 +1,14 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.25.0
+version: v1.5.0
 ignore:
   SNYK-JS-BRACES-19963945:
     - '*':
         reason: >-
-          Uncontrolled recursion DoS in braces, disclosed 2026-09-18. No fixed
-          version is available upstream yet. Pulled in transitively via
-          sass -> @parcel/watcher -> micromatch -> braces for asset-build file
-          watching only; not exposed to attacker-controlled input at runtime.
-          Revisit when a patched braces release exists.
-        expires: 2026-12-23T00:00:00.000Z
-        created: 2026-09-24T00:00:00.000Z
+          No upstream fix is published yet (latest braces release is 3.0.3,
+          2024-05-21). braces is pulled in transitively via
+          sass -> @parcel/watcher -> micromatch, and is only used at build
+          time by the Sass file watcher during asset compilation - it never
+          runs against attacker-controlled input in production. Revisit and
+          remove this ignore once a patched braces version is released.
+        expires: 2026-12-30T00:00:00.000Z
 patch: {}
