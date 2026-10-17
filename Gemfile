@@ -34,7 +34,7 @@ group :test do
   gem "capybara", ">= 3.35.3"
   gem "i18n-tasks"
   gem "rails-controller-testing", ">= 1.0.5"
-  gem "selenium-webdriver"
+  gem "selenium-webdriver", ">= 4.45.0"
   gem "shoulda-matchers"
   gem "simplecov"
   gem "site_prism", "~> 5.1"
