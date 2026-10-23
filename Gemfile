@@ -32,6 +32,8 @@ gem "sprockets-rails"
 
 group :test do
   gem "capybara", ">= 3.35.3"
+  gem "capybara-screenshot-diff", "~> 1.15"
+  gem "chunky_png"
   gem "i18n-tasks"
   gem "rails-controller-testing", ">= 1.0.5"
   gem "selenium-webdriver"

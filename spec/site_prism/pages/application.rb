@@ -20,6 +20,14 @@ module AskTool
       def topic_page
         pages[:topic] ||= AskTool::Pages::Correspondence::TopicPage.new
       end
+
+      def confirmation_page
+        pages[:confirmation] ||= AskTool::Pages::Correspondence::ConfirmationPage.new
+      end
+
+      def authenticate_page
+        pages[:authenticate] ||= AskTool::Pages::Correspondence::AuthenticatePage.new
+      end
     end
   end
 end

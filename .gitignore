@@ -44,3 +44,9 @@ config/secrets.yml
 /coverage/*
 
 /node_modules
+
+# capybara-screenshot-diff: keep committed baselines, ignore generated diff artifacts
+doc/screenshots/**/*.base.png
+doc/screenshots/**/*.diff.png
+doc/screenshots/**/*.heatmap.diff.png
+doc/screenshots/**/snap_diff_report.html
