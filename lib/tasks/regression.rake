@@ -129,8 +129,9 @@ namespace :regression do
       end
 
       session.find(:css, 'label[for="correspondence-contact-requested-no-field"]').click
-      abort "FAIL: selecting 'No' did not reveal the self-service thank you content" \
+      raise "FAIL: selecting 'No' did not reveal the self-service thank you content" \
         unless session.has_content?("Thank you for using this service")
+
       puts "'No' path reveals self-service content: OK"
 
       session.find(:css, 'label[for="correspondence-contact-requested-yes-field"]').click
@@ -140,7 +141,7 @@ namespace :regression do
       session.click_button("Send")
 
       unless session.has_content?("One more step...") && session.has_content?("We've sent an email to #{test_email}")
-        abort "FAIL: did not reach the 'One more step...' confirmation page"
+        raise "FAIL: did not reach the 'One more step...' confirmation page"
       end
 
       puts

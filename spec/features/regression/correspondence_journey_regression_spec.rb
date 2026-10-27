@@ -2,7 +2,10 @@ require "rails_helper"
 
 feature "Full correspondence journey regression" do
   given(:name)               { Faker::Name.name }
-  given(:email)              { Faker::Internet.email }
+  # Fixed, rather than Faker-generated: this is rendered on the confirmation
+  # page under screenshot comparison, and a random length/value would shift
+  # text wrapping and cause false-positive visual regression failures.
+  given(:email)              { "regression.test@example.com" }
   given(:message)            { Faker::Lorem.paragraphs[1] }
   given(:topic_with_results) { "Visiting a prison" }
 
