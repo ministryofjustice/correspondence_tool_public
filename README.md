@@ -97,6 +97,53 @@ The site will be accessible at http://localhost:3000.
 $ bundle exec rspec
 ```
 
+#### Regression testing
+
+`spec/features/regression/correspondence_journey_regression_spec.rb` drives
+the full public correspondence journey — start page → topic search →
+contact form → submission → emailed authentication link — against this
+app's local Rails environment, and runs as part of `bundle exec rspec`
+above like any other spec.
+
+##### Updating visual regression baselines
+
+That spec also compares screenshots against baselines committed in
+`doc/screenshots/regression/`. Don't regenerate these locally — Chrome
+renders text differently across OS/font setups, so a baseline captured on
+a laptop will fail in CI even though nothing meaningfully changed. Instead,
+once a change intentionally affects one of these pages, run the "Record
+visual regression baselines" workflow against the branch that needs
+updating, which captures fresh baselines on the same `ubuntu-latest`
+environment CI runs tests in and pushes them to that branch:
+
+```
+$ gh workflow run record-regression-baselines.yml --ref <branch> -f branch=<branch>
+```
+
+(Only dispatchable once the workflow file exists on `main`.)
+
+##### Live-environment smoke test
+
+`lib/tasks/regression.rake` provides a `regression:live_contact_moj_check`
+rake task that smoke-tests the same journey against a real deployed Contact
+MoJ environment (e.g. development or staging), rather than this app's local
+Rails environment/database. Useful after a deploy, to check the live site
+end-to-end without waiting on a manual walkthrough.
+
+```
+$ CONTACT_MOJ_URL= <url>\
+  CONTACT_MOJ_TEST_EMAIL=you@example.com \
+  bundle exec rake regression:live_contact_moj_check
+```
+
+`CONTACT_MOJ_URL` and `CONTACT_MOJ_TEST_EMAIL` are required; everything else
+(Basic Auth credentials, test name/topic/message, headless mode) is prompted
+for interactively if not set via env var, with sensible defaults where one
+makes sense. Pass `CONTACT_MOJ_DEFAULT=true` to accept all defaults without
+prompting. It never touches this app's local Rails environment, database,
+or sends a confirmation email check — the emailed authentication step still
+needs to be verified by hand. Never commit real values for these env vars.
+
 ## Docker
 
 The production image (see `Dockerfile`) is built from an official `ruby` base image. To keep the Ruby version used by Docker in sync with the version defined in `.ruby-version`, always build the image using the `bin/docker-build` wrapper script rather than calling `docker build` directly:

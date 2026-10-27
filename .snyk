@@ -11,4 +11,15 @@ ignore:
           runs against attacker-controlled input in production. Revisit and
           remove this ignore once a patched braces version is released.
         expires: 2026-12-30T00:00:00.000Z
+  SNYK-JS-PICOMATCH-21248802:
+    - '*':
+        reason: >-
+          No upstream fix is published yet (latest picomatch 2.x release is
+          2.3.2; micromatch@latest still pins picomatch ^2.3.1). picomatch is
+          pulled in transitively via the same chain as the braces ignore
+          above - sass -> @parcel/watcher -> micromatch - and is only used at
+          build time by the Sass file watcher during asset compilation, never
+          against attacker-controlled input in production. Revisit and remove
+          this ignore once a patched picomatch version is released.
+        expires: 2026-12-30T00:00:00.000Z
 patch: {}

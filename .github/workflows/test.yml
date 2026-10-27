@@ -65,6 +65,14 @@ jobs:
       - name: Run tests
         run: bundle exec rspec
 
+      - name: Upload regression screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: regression-screenshots
+          path: doc/screenshots/regression/*.png
+          retention-days: 7
+
       - name: Code coverage
         uses: joshmfrankel/simplecov-check-action@main
         with:

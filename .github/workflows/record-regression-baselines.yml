@@ -1,0 +1,70 @@
+name: Record visual regression baselines
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: Branch to regenerate baselines on and push the result to
+        required: true
+        default: main
+
+permissions:
+  contents: write
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: "postgresql://postgres:postgres@127.0.0.1/correspondence_tool_public_test"
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: correspondence_tool_public_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.branch }}
+
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Install packages
+        run: yarn install --pure-lockfile
+
+      - name: Precompile assets
+        run: bin/rails assets:precompile
+
+      - name: Setup test database
+        run: bin/rails db:setup
+
+      - name: Remove existing baselines
+        run: rm -f doc/screenshots/regression/*.png
+
+      - name: Record regression screenshots
+        env:
+          RECORD_SCREENSHOTS: "1"
+        run: bundle exec rspec spec/features/regression/correspondence_journey_regression_spec.rb
+
+      - name: Commit regenerated baselines
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add doc/screenshots/regression/*.png
+          if git diff --cached --quiet; then
+            echo "No baseline changes to commit."
+          else
+            git commit -m "Regenerate visual regression baselines [skip ci]"
+            git push origin HEAD:${{ inputs.branch }}
+          fi
