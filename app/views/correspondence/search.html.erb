@@ -12,6 +12,9 @@
 
     <%= form_for @correspondence do |f| %>
       <%= f.govuk_error_summary %>
+      <% if @correspondence.errors.any? %>
+        <%= content_for :page_title, "Error: " + t('page_title.contact_form') %>
+      <% end %>
 
       <% if @search_results.size > 1 %>
         <h2 class="govuk-heading-l">The following information may help:</h2>

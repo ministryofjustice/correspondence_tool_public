@@ -9,6 +9,10 @@
   <div class="govuk-grid-column-two-thirds">
     <p>
       <%= form_for @correspondence, url: correspondence_search_path, method: :get do |f| %>
+        alert(@correspondence.errors.any?)
+        <% if f.object.errors.any? %>
+          <%= content_for :page_title, "Error: " + t('page_title.topic_search') %>
+        <% end %>
         <%= f.govuk_error_summary %>
         <%= f.govuk_text_field :topic, maxlength: Settings.correspondence_topic_max_length, label: { hidden: true } %>
         <%= f.govuk_submit t('button.continue'), class:'button', onclick: "ga('send', 'event', 'Question', 'Search')" %>
