@@ -112,6 +112,7 @@ en:
       more_results: 'More results'
 
   page_title:
+    error_prefix: 'Error:'
     start_page: Start - Contact the Ministry of Justice
     topic_search: Topic search - Contact the Ministry of Justice
     contact_form: Contact form - Contact the Ministry of Justice

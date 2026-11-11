@@ -1,4 +1,4 @@
-<% content_for :page_title, t('page_title.topic_search') %>
+<% content_for :page_title, error_prefixed_title(t('page_title.topic_search'), @correspondence.errors.any?) %>
 <% content_for :back_link do %>
   <%= govuk_back_link href: root_path %>
 <% end %>
