@@ -70,7 +70,7 @@ feature "Submit a general enquiry" do
     expect(no_content).to have_content("Thank you for using this service")
     expect(no_content).to have_content("You are free to close this window or do something else:")
     expect(no_content).to have_link("Start again with a new reason for contacting MoJ", href: "/")
-    expect(no_content).to have_link("Give feedback on this service (takes 30 seconds)", href: "https://www.smartsurvey.co.uk/s/SU2UAX/")
+    expect(no_content).to have_link("Give feedback on this service (takes 30 seconds)", href: "https://forms.cloud.microsoft/e/iTy3Xm6BWS")
     expect(no_content).to have_link("Return to the Ministry of Justice home page", href: "https://www.gov.uk/government/organisations/ministry-of-justice")
   end
 
