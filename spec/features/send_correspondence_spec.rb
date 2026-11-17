@@ -112,13 +112,13 @@ feature "Submit a general enquiry" do
 
   scenario "Without a topic, name, email address, confirm email or message" do
     topic_page.load
-
     expect(topic_page.title).to eq "Topic search - Contact the Ministry of Justice"
 
     topic_page.search_govuk("")
+
     expect(topic_page.text).to have_content(topic_error)
 
-    expect(search_page.title).to eq "Topic search - Contact the Ministry of Justice"
+    expect(search_page.title).to eq "Error: Topic search - Contact the Ministry of Justice"
 
     topic_page.search_govuk(topic_with_results, topic_page.topic_field_error)
 

@@ -1,4 +1,4 @@
-<% content_for :page_title, t('page_title.contact_form') %>
+<% content_for :page_title, error_prefixed_title( t('page_title.contact_form'), @correspondence.errors.any?) %>
 <% content_for :back_link do %>
   <%= govuk_back_link href: correspondence_topic_path %>
 <% end %>
