@@ -50,7 +50,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "faker"
   gem "pry"
-  gem "rspec-rails"
+  gem "rspec-rails", ">= 8.0.5"
   gem "rubocop-govuk", require: false
 end
 
