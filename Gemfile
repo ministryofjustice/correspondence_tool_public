@@ -51,7 +51,7 @@ group :development, :test do
   gem "faker"
   gem "pry"
   gem "rspec-rails"
-  gem "rubocop-govuk", require: false
+  gem "rubocop-govuk", ">= 6.0.0", require: false
 end
 
 group :development do
